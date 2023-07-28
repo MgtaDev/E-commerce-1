@@ -4,13 +4,13 @@ const { DataTypes } = require('sequelize');
 // Luego le inyectamos la conexión a sequelize.
 module.exports = (sequelize) => {
   // Defino el modelo
-  sequelize.define('tamaño', {
+  sequelize.define('size', {
     id:{
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-  },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,

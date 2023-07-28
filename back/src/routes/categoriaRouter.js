@@ -43,7 +43,7 @@ router.put('/:categoriaId', async (req, res) => {
     res.status(200).json(updatedCategoria);
   } catch (error) {
     console.error('Error al actualizar el nombre de la categoría:', error);
-    res.status(500).json({ error: 'Ha ocurrido un error al actualizar el nombre de la categoría.' });
+    res.status(500).json({ error: `Ha ocurrido un error al actualizar el nombre de la categoría: ${error.message}` });
   }
 });
 
@@ -55,7 +55,7 @@ router.put('/activate/:categoriaId', async (req, res) => {
     res.status(200).json(categoria);
   } catch (error) {
     console.error('Error al activar la categoría:', error);
-    res.status(500).json({ error: 'Ha ocurrido un error al activar la categoría.' });
+    res.status(500).json({ error: `Ha ocurrido un error al activar la categoría: ${error.message}` });
   }
 });
 
@@ -67,7 +67,7 @@ router.delete('/:categoriaId', async (req, res) => {
     res.status(200).json(updatedCategoria);
   } catch (error) {
     console.error('Error al desactivar la categoría:', error.message);
-    res.status(500).json({ error: 'Ha ocurrido un error al desactivar la categoría.' });
+    res.status(500).json({ error: `Ha ocurrido un error al desactivar la categoría: ${error.message}`, });
   }
 });
 
