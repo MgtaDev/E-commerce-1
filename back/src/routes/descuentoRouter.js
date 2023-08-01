@@ -28,12 +28,12 @@ router.post('/', async (req, res) => {
       const descuentos = await postDescuentoArray(req.body);
       res.status(200).json(descuentos);
     } else {
-      const descuento = await postDescuento({
+      const descuento = await postDescuento(
         nombre,
         porcentaje,
         codigo,
         condiciones
-      });
+      );
       res.status(200).json(descuento);
     }
   } catch (error) {
