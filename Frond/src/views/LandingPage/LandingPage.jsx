@@ -309,7 +309,7 @@ const LandingPage = () => {
         
         </CardContainer>
 
-        <div style={{ height: '500px', overflowX: 'scroll' }}>
+        <div style={{ height: '300px', overflowX: 'scroll' }}>
         <CarouselMid></CarouselMid>
         </div>
 
