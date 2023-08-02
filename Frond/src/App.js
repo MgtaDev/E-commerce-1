@@ -6,6 +6,7 @@ import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Contact from "./views/Contact/Contact";
 import FAQs from "./views/FAQs/FAQs"
+import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Chatbot from "react-chatbot-kit";
 
 
@@ -21,6 +22,7 @@ function App () {
         <Route path="/products" element={<Products />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/faqs" element={<FAQs />} />
       </Routes>
       <div className="chatbot-container">

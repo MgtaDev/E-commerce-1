@@ -54,7 +54,12 @@ const Navbar = ({ initialLanguage }) => {
               {initialLanguage === 'en' ? 'Contact Us' : 'Contacto'}
             </NavLink>
           </li>
-
+          <li>
+            <NavLink to="/catalogo" lang={initialLanguage === 'en' ? 'en' : 'es'} 
+            className={style.menuItem}>
+              {initialLanguage === 'en' ? 'Catalogo' : 'Catalogo'}
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/faqs" lang={initialLanguage === 'en' ? 'en' : 'es'} 
             className={style.menuItem}>
