@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 // Luego le inyectamos la conexión a sequelize.
 module.exports = (sequelize) => {
   // Defino el modelo
-  sequelize.define('proveedor', {
+  const Proveedor = sequelize.define('Proveedor', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -49,4 +49,6 @@ module.exports = (sequelize) => {
       defaultValue: true,
     },
   }, { tableName: 'proveedor',timestamps: false });
+
+  return Proveedor;
 };

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Subcategoria = sequelize.define('subcategoria', {
+  const Subcategoria = sequelize.define('Subcategoria', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
   },
   { tableName: 'subcategoria',timestamps: false });
 
-  Subcategoria.belongsTo(sequelize.models.categoria, {
+  Subcategoria.belongsTo(sequelize.models.Categoria, {
     foreignKey: {
       allowNull: false,
       name: 'categoriaId' // Cambia el nombre de la columna a categoriaId
