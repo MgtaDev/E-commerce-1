@@ -4,10 +4,9 @@ import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import bagIcon from '../../assets/img/baghandle.svg'
 import bellIcon from '../../assets/img/-icon-bell.svg';
-import vector from '../../assets/img/vector.svg'
-import SearchBar from '../../components/Searchbar/Searchbar'
+import vector from '../../assets/img/vector.svg';
+import SearchBar from '../SearchBar/SearchBar';
 import style from './NavBar.module.css';
-
 
 const Navbar = ({ initialLanguage }) => {
   const [showMenu, setShowMenu] = useState(false);
