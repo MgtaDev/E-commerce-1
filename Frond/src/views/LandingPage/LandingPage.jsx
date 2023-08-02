@@ -12,6 +12,7 @@ import ChatBotComponent from '../../components/ChatBot/ChatBot';
 import Reviews from '../../components/Reviews/Reviews'
 import ChooseUs from '../../components/ChooseUsSection/Choose'
 
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   background-color: ${props => props.darkMode ? '#1a1a1a' : '#fff'};
@@ -47,33 +48,33 @@ const Button = styled.button`
   }
 `;
 
-const CardContainer = styled.div`
+
+
+
+const LanguageSelector = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  margin-bottom:5%;
-  margin-top:3%;
+  margin-bottom: 1rem;
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: ${props => props.active ? '#8d8af1' : '#333'};
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #8d8af1;
+    }
+  }
 `;
-
-const Card = styled.div`
-  background-color: #fff;
-  border-radius: 2rem;
-  display:flex;
-  padding:1rem;
-  flex-direction:row;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  margin: 4rem;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s ease;
-  &:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-
-
 
 
 const LandingPage = () => {
+  const navigate = useNavigate()
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState('en'); 
 
