@@ -7,6 +7,7 @@ import AboutUs from "./views/AboutUs/AboutUs";
 import Contact from "./views/Contact/Contact";
 import FAQs from "./views/FAQs/FAQs"
 import Chatbot from "react-chatbot-kit";
+import Form from "./views/Form/Form";
 
 
 import Configs from "./components/ChatBot/Configs";
@@ -22,6 +23,7 @@ function App () {
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faqs" element={<FAQs />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
       <div className="chatbot-container">
         <Chatbot
