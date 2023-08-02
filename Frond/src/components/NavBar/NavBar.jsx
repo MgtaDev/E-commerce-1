@@ -5,7 +5,7 @@ import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import bagIcon from '../../assets/img/baghandle.svg'
 import bellIcon from '../../assets/img/-icon-bell.svg';
 import vector from '../../assets/img/vector.svg'
-import SearchBar from '../SearchBar/SearchBar'
+import SearchBar from '../../components/Searchbar/Searchbar'
 import style from './NavBar.module.css';
 
 
@@ -43,21 +43,21 @@ const Navbar = ({ initialLanguage }) => {
           </li>
 
           <li>
-            <NavLink to="../../views/AboutUs/AboutUs" lang={initialLanguage === 'en' ? 'en' : 'es'}  
+            <NavLink to="/AboutUs" lang={initialLanguage === 'en' ? 'en' : 'es'}  
             className={`${style.menuItem} ${style.itemAbout}`}>
               {initialLanguage === 'en' ? 'About Us' : 'Nosotros'}
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="../../views/contact/contact" lang={initialLanguage === 'en' ? 'en' : 'es'} 
+            <NavLink to="/contact" lang={initialLanguage === 'en' ? 'en' : 'es'} 
             className={style.menuItem}>
               {initialLanguage === 'en' ? 'Contact Us' : 'Contacto'}
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="" lang={initialLanguage === 'en' ? 'en' : 'es'} 
+            <NavLink to="/faqs" lang={initialLanguage === 'en' ? 'en' : 'es'} 
             className={style.menuItem}>
               {initialLanguage === 'en' ? 'FAQs' : 'FAQs'}
             </NavLink>
