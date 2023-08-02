@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       defaultValue: true,
     },
   },
-  { timestamps: false });
+  { tableName: 'subcategoria',timestamps: false });
 
   Subcategoria.belongsTo(sequelize.models.categoria, {
     foreignKey: {

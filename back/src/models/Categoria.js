@@ -22,6 +22,6 @@ module.exports = (sequelize) => {
       defaultValue: true,
     },
   },
-  { timestamps: false }
+  { tableName: 'categoria',timestamps: false }
   );
 };
