@@ -5,7 +5,11 @@ import LandingPage from "./views/LandingPage/LandingPage";
 import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Contact from "./views/Contact/Contact";
+import FAQs from "./views/FAQs/FAQs"
+import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Chatbot from "react-chatbot-kit";
+import Form from "./views/Form/Form";
+
 
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
@@ -19,6 +23,9 @@ function App () {
         <Route path="/products" element={<Products />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
       <div className="chatbot-container">
         <Chatbot
@@ -29,6 +36,6 @@ function App () {
       </div>
     </div>
   );
-};
+}
 
 export default App;
