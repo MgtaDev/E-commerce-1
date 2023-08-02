@@ -12,9 +12,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    categoriaId: { // Cambia el nombre de la columna a categoriaId
+    categoriaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'categoria', // Nombre de la tabla referenciada
+        key: 'id', // Nombre de la columna referenciada en la tabla 'categoria'
+      },
     },
     activa: {
       type: DataTypes.BOOLEAN,
@@ -24,12 +28,6 @@ module.exports = (sequelize) => {
   },
   { timestamps: false });
 
-  Subcategoria.belongsTo(sequelize.models.categoria, {
-    foreignKey: {
-      allowNull: false,
-      name: 'categoriaId' // Cambia el nombre de la columna a categoriaId
-    }
-  });
-
+ 
   return Subcategoria;
 };
