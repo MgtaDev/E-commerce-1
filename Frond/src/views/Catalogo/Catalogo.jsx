@@ -1,12 +1,12 @@
 import Cards from "../../components/CatalogoComponen/Cards";
 import Catalogfilters from "../../components/CatalogoComponen/Catalogfilters";
-
+import NavBar from '../../components/NavBar/NavBar';
 const Catalogo = () => {
     return (
-      <section>
+      <><NavBar /><section>
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-1 px-10">
-            <Catalogfilters/>
+            <Catalogfilters />
           </div>
           <div className="col-span-4 py-10 px-10">
             <div className="grid grid-cols-2 pb-10 justify-items-center	">
@@ -21,7 +21,7 @@ const Catalogo = () => {
           </div>
         </div>
         <div>paginacion</div>
-      </section>
+      </section></>
     );
   };
   
