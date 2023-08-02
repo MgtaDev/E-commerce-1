@@ -30,7 +30,7 @@ const Card = styled.div`
 const H1 = styled.h1`
 font-weight:600;
 margin-left:1%;
-font-sise:40px;
+font-size:40px;
 `
 
 const Products = () => {
