@@ -5,7 +5,7 @@ module.exports = async (proveedorData) => {
     // Verificar si ya existe un proveedor con el mismo nombre
     const existingProveedor = await Proveedor.findOne({
       where: {
-        nombre: proveedorData.nombre,
+        name: proveedorData.name,
       },
     });
 

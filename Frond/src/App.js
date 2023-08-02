@@ -4,33 +4,35 @@ import LandingPage from "./views/LandingPage/LandingPage";
 import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Contact from "./views/Contact/Contact";
+import FAQs from "./views/FAQs/FAQs"
+import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Chatbot from "react-chatbot-kit";
 import Detail from "./views/Detail/Detail";
+import Form from "./views/Form/Form";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 function App() {
   return (
-    <div className="font-poppins">
-      <div className="min-h-screen bg-gray-100">
-       
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/detail/:id" element={<Detail />} />
-          </Routes>
-      </div>
-      <div className="fixed bottom-4 right-4">
-        <div className="bg-white p-4 rounded-lg shadow-lg">
-          <Chatbot
-            config={Configs}
-            messageParser={MessageParser}
-            // actionProvider={ActionProvider}
-          />
-        </div>
+
+    <div>
+      <Routes>
+        <Route exact path="/" element={<LandingPage />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
+      <div className="chatbot-container">
+        <Chatbot
+          config={Configs}
+          messageParser={MessageParser}
+          // actionProvider={ActionProvider}
+        />
       </div>
     </div>
   );
