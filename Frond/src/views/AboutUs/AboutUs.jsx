@@ -1,53 +1,66 @@
 import { useState } from 'react';
-import logo from '../../assets/img/Logo.png';
+import Logo from '../../../src/assets/img/logoBonitaLovelyw.png';
+import icon3 from '../../../src/assets/img/icon3.svg';
+import icon2 from '../../../src/assets/img/icon2.svg';
+import icon1 from '../../../src/assets/img/icon1.svg';
+import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer'
+import 'tailwindcss/tailwind.css';
+
 
 const AboutUs = () => {
-  const [language, setLanguage] = useState('en');
-
-  const handleLanguageChange = (selectedLanguage) => {
-    setLanguage(selectedLanguage);
-  };
-
-  const getText = () => {
-    if (language === 'es') {
-      return (
-        <>
-          <img src={logo} alt="Bonita & Lovely" />
-          <p>
-            Bonita & Lovely es una tienda de maquillaje dedicada a realzar tu belleza y brindarte la confianza para brillar en cada
-            paso. Nuestros productos de SkinCare, maquillaje y accesorios de alta calidad te ayudarán a sentirte segura y hermosa,
-            expresando tu auténtica belleza. En Bonita & Lovely, creemos en la belleza que viene desde adentro hacia afuera, y estamos
-            aquí para acompañarte en tu viaje hacia la autoexpresión y el amor propio.
-          </p>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <img src={logo} alt="Bonita & Lovely" />
-          <p>
-            Bonita & Lovely is a makeup store dedicated to enhancing your beauty and giving you the confidence to shine at every step.
-            Our high-quality SkinCare, makeup, and accessories will help you feel secure and beautiful, expressing your authentic beauty.
-            At Bonita & Lovely, we believe in beauty that comes from within, and we are here to accompany you on your journey to self-expression
-            and self-love.
-          </p>
-        </>
-      );
-    }
-  };
-
   return (
-    <div className="about-us">
-      <div className="language-selector">
-        <button onClick={() => handleLanguageChange('es')} className={language === 'es' ? 'active' : ''}>
-          Español
-        </button>
-        <button onClick={() => handleLanguageChange('en')} className={language === 'en' ? 'active' : ''}>
-          English
-        </button>
+    <>
+      <NavBar />
+
+      <div className="grid grid-cols-14 grid-rows-20 gap-0 w-screen ml-20 pr-40">
+        <div className="col-start-2 col-end-6 row-start-0 row-end-2 font-bold text-3xl flex justify-center items-center ">Quienes somos?</div>
+
+        <div className="col-start-1 col-end-6 row-start-2 row-end-6 flex justify-center items-center ">
+          <img src={Logo} alt="logobonitaAndLovely" className="h-40" />
+        </div>
+
+        <div className="col-start-0 col-end-6 row-start-6 row-end-10">
+          Texto debajo de logo Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </div>
+
+        <div className="col-start-0 col-end-6 row-start-16 row-end-20">
+          subtexto de la columna izquierda Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+        
+        <div className="col-start-6 col-end-8 row-start-3 row-end-3 flex justify-end items-center">
+          <img src={icon1} alt="icon1-rocket" className="h-12" />
+        </div>
+
+        <div className="col-start-9 col-end-14 row-start-3 row-end-5 text-left">
+          1ro texto de la columna derecha Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+
+        <div className="col-start-6 col-end-8 row-start-6 row-end-6 flex justify-end items-center">
+          <img src={icon2} alt="icon2-lightbulb" className="h-12" />
+        </div>
+        
+        <div className="col-start-9 col-end-14 row-start-6 row-end-9 text-left">
+          2do texto de la columna derecha Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+
+        <div className="col-start-6 col-end-8 row-start-10 row-end-10 flex justify-end items-center">
+          <img src={icon3} alt="icon3-360" className="h-8" />
+        </div>
+
+        <div className="col-start-9 col-end-14 row-start-10 row-end-14 text-left">
+          3r texto de la columna derecha Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </div>
+
+
+
+
+
+
       </div>
-      {getText()}
-    </div>
+     
+     <Footer/>
+    </>
   );
 };
 

@@ -1,11 +1,14 @@
 const { Producto } = require('../../db');
 
-module.exports = async () => {
+module.exports = async (page,size) => {
   try {
-    const productos = await Producto.findAll();
+    const productos = await Producto.findAndCountAll({
+      limit: size,
+      offset: page * size
+    });
 
-    // Concatenar "col-" al ID de cada color
-    productos.forEach((producto) => {
+
+    productos.rows.forEach((producto) => {
       producto.dataValues.id = `col-${producto.dataValues.id}`;
     });
 
