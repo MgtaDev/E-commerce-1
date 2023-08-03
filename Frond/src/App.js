@@ -14,6 +14,7 @@ import Form from "./views/Form/Form";
 
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
+import Dashboard from "./components/Dashboard/Dashboard";
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 
@@ -30,6 +31,7 @@ function App () {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/devTeam" element={<DevTeam />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/dashboard" element = {<Dashboard/>}/>
       </Routes>
       <div className="chatbot-container">
         <Chatbot
