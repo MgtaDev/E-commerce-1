@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import loupe from '../../assets/img/Loupe.svg';
 import styled from 'styled-components';
 
-
-const SearchBar = ({ placeholder, history }) => {
-    const FormSearchBar = styled.form`
+const FormSearchBar = styled.form`
 	background: var(--clr-white);
 	border: 2px solid var(--clr-primary); 
 	border-radius: 99em;
@@ -52,6 +50,8 @@ const SearchBar = ({ placeholder, history }) => {
         // outline: none;
     }
 `
+
+const SearchBar = ({ placeholder, history }) => {
 
 	const [inputText, setInputText] = useState('');
 	

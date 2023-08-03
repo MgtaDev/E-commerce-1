@@ -37,7 +37,7 @@ function App () {
         <Route path="/form" element={<Form />} />
 
         <Route path="/detail/:id" element={<Detail />} />
-=======
+
         <Route path="/dashboard" element = {<Dashboard/>}/>
 
       </Routes>

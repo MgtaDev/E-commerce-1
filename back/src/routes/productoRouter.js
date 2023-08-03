@@ -9,9 +9,13 @@ const putActiveProducto = require('../controllers/Producto/putActiveProducto')
 const deleteProducto = require('../controllers/Producto/deleteProducto')
 
 router.get('/', async (req,res)=>{
+  const {page,size} = req.query;
   try {
-    let producto = await getAllProducto()
-    res.status(200).send(producto)
+    let producto = await getAllProducto(page,size)
+    res.status(200).send({
+      paginas: Math.ceil(producto.count / size),
+      productos: producto.rows      
+    })
   } catch (error) {
     res.status(400).send(error.message)
   }
