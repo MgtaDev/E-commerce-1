@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     descripcion: {
       type: DataTypes.TEXT,
@@ -41,6 +42,11 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    activa: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    }
     // tamañoId: {
     //   type: DataTypes.INTEGER,
     //   allowNull: false,
