@@ -7,10 +7,11 @@ import bellIcon from '../../assets/img/-icon-bell.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import style from './NavBar.module.css';
 import LoginButton from '../LoginComponents/Login';
-import LogoutButton from '../LoginComponents/Logout';
 import Profile from '../LoginComponents/Profile/Profile'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = ({ initialLanguage }) => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [showMenu, setShowMenu] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [language, setLanguage] = useState(initialLanguage || 'en');
@@ -87,8 +88,9 @@ const Navbar = ({ initialLanguage }) => {
 
           <Profile/>
           <LoginButton/>
-          <LogoutButton/>
-        
+          {isAuthenticated && <p>{user.name}</p> }
+      
+
         </div>
 
       </nav>
