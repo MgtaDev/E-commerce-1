@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 // Luego le inyectamos la conexión a sequelize.
 module.exports = (sequelize) => {
   // Defino el modelo
-  sequelize.define('color', {
+  const Color = sequelize.define('Color', {
     id:{
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,4 +24,6 @@ module.exports = (sequelize) => {
   },
   { tableName: 'color',timestamps: false }
   );
+
+  return Color
 };
