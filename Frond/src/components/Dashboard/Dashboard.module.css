@@ -1,4 +1,13 @@
 .dashboard{
-    padding: 10rem;
-    padding-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 2rem;
 }
+
+.graficos{
+    margin: 0;
+    width: 50rem;
+}
+
