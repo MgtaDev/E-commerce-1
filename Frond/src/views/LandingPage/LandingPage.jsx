@@ -67,7 +67,6 @@ const LandingPage = () => {
         </>
 
       </Container>
-   
       <ChatBotComponent language={language} />
       <Footer />
     </>
