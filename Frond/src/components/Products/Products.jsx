@@ -36,8 +36,9 @@ font-size:40px;
 const Products = () => {
   const navigate = useNavigate()
   const goDetail = () => {
-    navigate('/detail')
-    }
+    let id = 1;
+  navigate(`/detail/${id}`)
+  }
   
 
 return (

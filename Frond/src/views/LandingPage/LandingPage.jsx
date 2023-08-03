@@ -10,7 +10,7 @@ import Products from '../../components/Products/Products'
 import Footer from '../../components/Footer/Footer';
 import ChatBotComponent from '../../components/ChatBot/ChatBot';
 import Reviews from '../../components/Reviews/Reviews'
-import ChooseUs from '../../components/ChooseUsSection/Choose'
+import ChooseUs from '../../components/ChooseUsSection/Choose';
 
 
 const Container = styled.div`
@@ -68,7 +68,7 @@ const Card = styled.div`
   transition: all 0.3s ease;
   &:hover {
     transform: translateY(-0.5rem);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2)`;
 
 
 
@@ -93,9 +93,6 @@ const LandingPage = () => {
     }
   };
 
-  const goDetail = () => {
-  navigate('/detail')
-  }
 
   return (
     <>
