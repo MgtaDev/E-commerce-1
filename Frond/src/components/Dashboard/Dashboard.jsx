@@ -7,7 +7,7 @@ const Dashboard = () => {
   const data1 = [
     ['Venta de producto', 'Cantidad'],
     ['Labial',  40],
-    ['Pinta Uñas',  20],
+    ['Pinta Uñas',  10],
     ['Rimel',  10],
     ['Base',  20]
   ];
@@ -32,9 +32,11 @@ const Dashboard = () => {
 
     return (
     <div className={style.dashboard}>
-      <div>
-        SIDEBAR
-      </div>
+      <section>
+        <div>Dashboard
+          <h3>Prueba</h3>
+        </div>
+      </section>
       <div>
         <Graficos
         type="PieChart"
