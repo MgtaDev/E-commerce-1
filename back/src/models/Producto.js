@@ -41,6 +41,11 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    activa: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    }
     // tamañoId: {
     //   type: DataTypes.INTEGER,
     //   allowNull: false,
