@@ -4,9 +4,11 @@ import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import bagIcon from '../../assets/img/baghandle.svg'
 import bellIcon from '../../assets/img/-icon-bell.svg';
-import vector from '../../assets/img/vector.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import style from './NavBar.module.css';
+import LoginButton from '../LoginComponents/Login';
+import LogoutButton from '../LoginComponents/Logout';
+import Profile from '../LoginComponents/Profile/Profile'
 
 const Navbar = ({ initialLanguage }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -82,12 +84,12 @@ const Navbar = ({ initialLanguage }) => {
         <div className={style.icons}>
           <button className={style.btnb}><img src={bagIcon} alt="bag icon" /></button>
           <button className={style.btnb}><img src={bellIcon} alt="bell icon" /></button>
-  
-          <img className={style.vector} alt="" src={vector} />
-          <NavLink to="" lang={initialLanguage === 'en' ? 'en' : 'es'} 
-          className={`${style.menuItem} ${style.login}`}>
-           {initialLanguage === 'en' ? 'Login/SignUp' : 'Ingresar / Crear cuenta'}
-           </NavLink>
+
+          <Profile/>
+          <LoginButton/>
+          /
+          <LogoutButton/>
+        
         </div>
 
       </nav>

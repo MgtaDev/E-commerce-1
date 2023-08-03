@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup"; // Importa yup para validar
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer'
 
 import style from "./Form.module.css";
 
@@ -315,7 +316,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-    </form></>
+    </form><Footer/></>
   );
 };
 
