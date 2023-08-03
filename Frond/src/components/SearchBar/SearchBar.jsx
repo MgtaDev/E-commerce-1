@@ -8,8 +8,8 @@ const SearchBar = ({ placeholder, history }) => {
 	background: var(--clr-white);
 	border: 2px solid var(--clr-primary); 
 	border-radius: 99em;
-	min-width: 400px;
-	max-width: 600px;
+	min-width: 300px;
+	max-width: 500px;
 	display: flex;
 	justify-content: space-between;
 	padding: 0 .7em;

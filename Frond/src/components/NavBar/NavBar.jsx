@@ -83,12 +83,15 @@ const Navbar = ({ initialLanguage }) => {
 
 
         <div className={style.icons}>
-          <button className={style.btnb}><img src={bagIcon} alt="bag icon" className={style.imageIcon}/></button>
-          <button className={style.btnb}><img src={bellIcon} alt="bell icon" className={style.imageIcon}/></button>
+          <button className={style.btnb}><img src={bagIcon} alt="bag icon" /></button>
+          <button className={style.btnb}><img src={bellIcon} alt="bell icon" /></button>
           <img className={style.vector} alt="" src={vector} />
+          
+          <div className={style.menuItem}>
           <Profile/>
           <LoginButton/>
           <LogoutButton/>
+          </div>
         
         </div>
 

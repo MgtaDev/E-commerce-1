@@ -3,7 +3,6 @@ import avatar1 from '../../assets/img/avatar1.png';
 import avatar2 from '../../assets/img/avatar2.png';
 import avatar3 from '../../assets/img/avatar3.png';
 import NavBar from '../../components/NavBar/NavBar';
-import footer from '../../components/Footer/Footer'
 import Footer from '../../components/Footer/Footer';
 
 

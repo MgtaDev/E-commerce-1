@@ -1,0 +1,78 @@
+.container {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . ."
+    ". tittleAbout tittleAbout tittleAbout tittleAbout tittleAbout tittleAbout . icon1 txtBx1 txtBx1 txtBx1 txtBx1 ."
+    ". tittleAbout tittleAbout tittleAbout tittleAbout tittleAbout tittleAbout . . txtBx1 txtBx1 txtBx1 txtBx1 ."
+    ". logo logo logo logo logo logo . . txtBx1 txtBx1 txtBx1 txtBx1 ."
+    ". logo logo logo logo logo logo . . txtBx1 txtBx1 txtBx1 txtBx1 ."
+    ". logo logo logo logo logo logo . . . . . . ."
+    ". logo logo logo logo logo logo . icon2 txtBx2 txtBx2 txtBx2 txtBx2 ."
+    ". logo logo logo logo logo logo . . txtBx2 txtBx2 txtBx2 txtBx2 ."
+    ". logo logo logo logo logo logo . . txtBx2 txtBx2 txtBx2 txtBx2 ."
+    ". aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt . . txtBx2 txtBx2 txtBx2 txtBx2 ."
+    ". aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt . . . . . . ."
+    ". aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt . icon3 txtBx3 txtBx3 txtBx3 txtBx3 ."
+    ". aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt . . txtBx3 txtBx3 txtBx3 txtBx3 ."
+    ". aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt . . txtBx3 txtBx3 txtBx3 txtBx3 ."
+    ". aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt aboutTxt . . txtBx3 txtBx3 txtBx3 txtBx3 ."
+    ". . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . .";
+}
+
+.tittleAbout { 
+  grid-area: tittleAbout; 
+  height: 2rem;
+  background-color: aqua;
+}
+
+.logo { 
+  grid-area: logo; 
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  background-color: bisque;
+
+}
+
+.aboutTxt { 
+  grid-area: aboutTxt; 
+  height: 10rem;
+  background-color: greenyellow;
+}
+
+.txtBx1 { 
+  grid-area: txtBx1; 
+  background-color: blue;
+}
+
+.txtBx2 { 
+  grid-area: txtBx2; 
+  background-color: pink;
+}
+
+.txtBx3 { 
+  grid-area: txtBx3; 
+  background-color: orange;
+}
+
+.icon1 { 
+  grid-area: icon1; 
+  background-color: yellow;
+}
+
+.icon2 { 
+  grid-area: icon2; 
+  background-color: peru;
+}
+
+.icon3 { 
+  grid-area: icon3;
+  background-color: brown;
+}
+
+

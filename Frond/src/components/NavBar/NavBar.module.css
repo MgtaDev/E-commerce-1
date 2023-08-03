@@ -20,7 +20,7 @@
   font-weight: bold;
   font-size: 15px;
   text-decoration: none;
-  margin-right: 1rem;
+  margin-right: .6rem;
   margin-left: 0;
   padding-left: 0;
 }  
@@ -30,7 +30,7 @@
 
 
 .logo {
-  width: 250px; 
+  width: 350px; 
   height: auto; 
   justify-content: center;
   margin-bottom: 2rem;
@@ -41,7 +41,7 @@
   margin-left: 1rem;
   margin-right: 0px;
   padding-right: 0px;
-  width: 43px;
+  width: 23px;
   height: auto;
 }
 
@@ -60,7 +60,7 @@
 
 .btnb {
   font-size: 17px;
-  padding: .8em .9em;
+  padding: .6em .8em;
   border: transparent;
   box-shadow: 2px 2px 4px rgba(102, 101, 101, 0.4);
   background: #EECAFA;
@@ -83,7 +83,7 @@
   
 }
 
-.imageIcon{
-  width: 60px;
+.btnb img{
+  width: 40px;
   height: auto;
 }
