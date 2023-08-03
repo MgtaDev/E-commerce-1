@@ -12,8 +12,11 @@ import Chatbot from "react-chatbot-kit";
 import Form from "./views/Form/Form";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
+import 'tailwindcss/tailwind.css';
+
 
 import Detail from "../src/views/Detail/Detail";
+
 import Dashboard from "./components/Dashboard/Dashboard";
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
@@ -34,7 +37,7 @@ function App () {
         <Route path="/form" element={<Form />} />
 
         <Route path="/detail/:id" element={<Detail />} />
-=======
+
         <Route path="/dashboard" element = {<Dashboard/>}/>
 
       </Routes>
