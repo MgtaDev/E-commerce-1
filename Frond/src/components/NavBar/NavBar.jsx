@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
+import vector from '../../assets/img/vector.svg'
 import bagIcon from '../../assets/img/baghandle.svg'
 import bellIcon from '../../assets/img/-icon-bell.svg';
 import SearchBar from '../SearchBar/SearchBar';
@@ -82,9 +83,9 @@ const Navbar = ({ initialLanguage }) => {
 
 
         <div className={style.icons}>
-          <button className={style.btnb}><img src={bagIcon} alt="bag icon" /></button>
-          <button className={style.btnb}><img src={bellIcon} alt="bell icon" /></button>
-
+          <button className={style.btnb}><img src={bagIcon} alt="bag icon" className={style.imageIcon}/></button>
+          <button className={style.btnb}><img src={bellIcon} alt="bell icon" className={style.imageIcon}/></button>
+          <img className={style.vector} alt="" src={vector} />
           <Profile/>
           <LoginButton/>
           <LogoutButton/>
