@@ -87,7 +87,6 @@ const Navbar = ({ initialLanguage }) => {
 
           <Profile/>
           <LoginButton/>
-          /
           <LogoutButton/>
         
         </div>

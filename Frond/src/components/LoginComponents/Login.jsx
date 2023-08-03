@@ -13,7 +13,7 @@ const LoginButton = () => {
     )
   }
 
-  return <button className="mr-2" onClick={() => loginWithRedirect()}><strong>Log in</strong></button>;
+  return <button className="mr-2" onClick={() => loginWithRedirect()}><strong>Iniciar Sesion</strong></button>;
 };
 
 export default LoginButton;
