@@ -12,7 +12,6 @@ import Chatbot from "react-chatbot-kit";
 import Form from "./views/Form/Form";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
-
 import Detail from "../src/views/Detail/Detail";
 import Dashboard from "./components/Dashboard/Dashboard";
 
