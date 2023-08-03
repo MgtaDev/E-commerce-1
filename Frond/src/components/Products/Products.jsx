@@ -152,7 +152,7 @@ return (
           </div>
           <div class="flex space-x-4 mb-5 text-sm font-medium">
             <div class="flex-auto flex space-x-4">
-              <button class="h-10 px-6 font-semibold rounded-full bg-pink-600 text-white" type="submit">
+            <button onClick={goDetail} class="h-10 px-6 font-semibold rounded-full bg-pink-600 text-white" type="submit">
                 Comprar Ahora
               </button>
               <button class="h-10 px-6 font-semibold rounded-full border border-slate-200 text-slate-900" type="button">
