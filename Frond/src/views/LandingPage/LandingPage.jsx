@@ -19,57 +19,6 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-const Title = styled.h1`
-  font-family: 'Manrope', sans-serif;
-  font-size: 3rem;
-  margin-bottom: 1rem;
-`;
-
-const Subtitle = styled.p`
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.2rem;
-`;
-
-const Button = styled.button`
-  background-color: ${props => props.primary ? '#eecafa' : '#fff'};
-  color: ${props => props.primary ? '#333' : '#8d8af1'};
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 2rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.primary ? '#fff' : '#8d8af1'};
-    color: ${props => props.primary ? '#eecafa' : '#fff'};
-  }
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom:5%;
-  margin-top:3%;
-`;
-
-const Card = styled.div`
-  background-color: #fff;
-  border-radius: 2rem;
-  display:flex;
-  padding:1rem;
-  flex-direction:row;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  margin: 4rem;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s ease;
-  &:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2)`;
-
 
 
 

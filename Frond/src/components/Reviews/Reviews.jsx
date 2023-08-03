@@ -37,7 +37,7 @@ const AvatarImage = styled.img`
   margin-right: 10px; /* Ajusta el valor según tus preferencias */
 `;
 
-const AvatarTitle = styled.h3`
+const DevTitle = styled.h3`
   color: #000;
   font-family: Galdeano;
   font-size: 20px;
@@ -84,7 +84,7 @@ const Reviews = () => {
               <ReviewText>"El producto es de alta calidad y cumple con mis expectativas. 100% satisfecha"</ReviewText>
               <AvatarContainer>
                   <AvatarImage src={imageLink} alt="user avatar" />
-                  <AvatarTitle>María</AvatarTitle>
+                  <DevTitle>María</DevTitle>
               </AvatarContainer>
           </Review>
 
@@ -92,7 +92,7 @@ const Reviews = () => {
               <ReviewText>"Completamente satisfecha. El envío se realizó en el tiempo acordado."</ReviewText>
               <AvatarContainer>
                   <AvatarImage src={imageLink} alt="user avatar" />
-                  <AvatarTitle>Roxana</AvatarTitle>
+                  <DevTitle>Roxana</DevTitle>
               </AvatarContainer>
           </Review>
 
@@ -100,7 +100,7 @@ const Reviews = () => {
               <ReviewText>"Compré un labial y me llegó antes de lo acordado. 100% recomendado."</ReviewText>
               <AvatarContainer>
                   <AvatarImage src={imageLink} alt="user avatar" />
-                  <AvatarTitle>Mónica</AvatarTitle>
+                  <DevTitle>Mónica</DevTitle>
               </AvatarContainer>
           </Review>
       </ReviewContainer>

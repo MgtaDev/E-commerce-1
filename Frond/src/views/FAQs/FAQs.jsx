@@ -3,7 +3,8 @@ import avatar1 from '../../assets/img/avatar1.png';
 import avatar2 from '../../assets/img/avatar2.png';
 import avatar3 from '../../assets/img/avatar3.png';
 import NavBar from '../../components/NavBar/NavBar';
-
+import footer from '../../components/Footer/Footer'
+import Footer from '../../components/Footer/Footer';
 
 
 
@@ -42,18 +43,18 @@ const FAQs = () => {
   };
 
   return (
-    <div className="py-8">
-    <NavBar/>
+    <><div className="py-8">
+      <NavBar />
       {/* Primer container */}
       <div className="container mx-auto max-w-[1280px] px-32 flex items-center gap-10 justify-center">
-      <div className="w-[1280px] h-[94px] px-8 flex-col justify-start items-start gap-8 inline-flex">
-    <div className="self-stretch h-[94px] flex-col justify-start items-center gap-12 flex">
-        <div className="h-[94px] flex-col justify-start items-center gap-5 flex">
-            <div className="self-stretch text-center text-gray-900 text-4xl font-semibold leading-[44px]">Preguntas frecuentes?</div>
-            <div className="self-stretch text-center text-gray-500 text-xl font-normal leading-[30px]">Resuelve cualquier dudad que tengas sobre nosotros en esta seccion de FAQ’S</div>
+        <div className="w-[1280px] h-[94px] px-8 flex-col justify-start items-start gap-8 inline-flex">
+          <div className="self-stretch h-[94px] flex-col justify-start items-center gap-12 flex">
+            <div className="h-[94px] flex-col justify-start items-center gap-5 flex">
+              <div className="self-stretch text-center text-gray-900 text-4xl font-semibold leading-[44px]">Preguntas frecuentes?</div>
+              <div className="self-stretch text-center text-gray-500 text-xl font-normal leading-[30px]">Resuelve cualquier dudad que tengas sobre nosotros en esta seccion de FAQ’S</div>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
       </div>
 
       {/* Segundo container */}
@@ -84,13 +85,13 @@ const FAQs = () => {
       <div className="container mx-auto mt-20 text-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-        
-        <div className="w-[120px] h-14 relative flex justify-center mx-auto ">
-          <img className="w-12 h-12 left-0 top-[8px] absolute rounded-[200px] border border-white" src={avatar1} />
-          <img className="w-12 h-12 left-[72px] top-[8px] absolute rounded-[200px] border border-white" src={avatar2} />
-          <img className="w-14 h-14 left-[32px] top-0 absolute rounded-[200px] border border-white" src={avatar3} />
-        </div>
-        
+
+          <div className="w-[120px] h-14 relative flex justify-center mx-auto ">
+            <img className="w-12 h-12 left-0 top-[8px] absolute rounded-[200px] border border-white" src={avatar1} />
+            <img className="w-12 h-12 left-[72px] top-[8px] absolute rounded-[200px] border border-white" src={avatar2} />
+            <img className="w-14 h-14 left-[32px] top-0 absolute rounded-[200px] border border-white" src={avatar3} />
+          </div>
+
 
         </div>
         <p className="text-lg text-gray-600 mt-6">¿Aún tienes dudas sin resolver?</p>
@@ -99,8 +100,8 @@ const FAQs = () => {
           Contactar equipo
         </button>
       </div>
-      
-    </div>
+
+    </div><Footer /></>
   );
 };
 

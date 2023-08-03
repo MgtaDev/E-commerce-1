@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
 import Offers from '../../components/offers/offers'
+import ofertas from '../../assets/img/Ofertas img.jpeg'
 
 
 const Carousel = () => {
@@ -29,13 +30,15 @@ const Carousel = () => {
     <CarouselContainer>
       <CarouselWrapper {...settings}>
         <div>
-        <Offers></Offers>
+        <img src={ofertas} alt="ofertas" />
         </div>
+
         <div>
-        <Offers></Offers>
+        <img src={ofertas} alt="ofertas" />
         </div>
+
         <div>
-        <Offers></Offers>
+        <img src={ofertas} alt="ofertas" />
         </div>
       </CarouselWrapper>
     </CarouselContainer>
