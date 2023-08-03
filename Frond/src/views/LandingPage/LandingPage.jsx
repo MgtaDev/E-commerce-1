@@ -10,7 +10,7 @@ import Products from '../../components/Products/Products'
 import Footer from '../../components/Footer/Footer';
 import ChatBotComponent from '../../components/ChatBot/ChatBot';
 import Reviews from '../../components/Reviews/Reviews'
-import ChooseUs from '../../components/ChooseUsSection/Choose'
+import ChooseUs from '../../components/ChooseUsSection/Choose';
 
 
 const Container = styled.div`
@@ -41,7 +41,6 @@ const LandingPage = () => {
       return buttonLanguage === 'es' ? 'Spanish' : 'English';
     }
   };
-
 
 
   return (
