@@ -12,7 +12,6 @@ import ChatBotComponent from '../../components/ChatBot/ChatBot';
 import Reviews from '../../components/Reviews/Reviews'
 import ChooseUs from '../../components/ChooseUsSection/Choose'
 
-import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   background-color: ${props => props.darkMode ? '#1a1a1a' : '#fff'};
@@ -20,61 +19,10 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-const Title = styled.h1`
-  font-family: 'Manrope', sans-serif;
-  font-size: 3rem;
-  margin-bottom: 1rem;
-`;
 
-const Subtitle = styled.p`
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.2rem;
-`;
-
-const Button = styled.button`
-  background-color: ${props => props.primary ? '#eecafa' : '#fff'};
-  color: ${props => props.primary ? '#333' : '#8d8af1'};
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 2rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.primary ? '#fff' : '#8d8af1'};
-    color: ${props => props.primary ? '#eecafa' : '#fff'};
-  }
-`;
-
-
-
-
-const LanguageSelector = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-
-  button {
-    background-color: transparent;
-    border: none;
-    color: ${props => props.active ? '#8d8af1' : '#333'};
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      color: #8d8af1;
-    }
-  }
-`;
 
 
 const LandingPage = () => {
-  const navigate = useNavigate()
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState('en'); 
 
@@ -94,9 +42,7 @@ const LandingPage = () => {
     }
   };
 
-  const goDetail = () => {
-  navigate('/detail')
-  }
+
 
   return (
     <>

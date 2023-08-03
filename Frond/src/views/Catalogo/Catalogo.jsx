@@ -1,6 +1,7 @@
 import Cards from "../../components/CatalogoComponen/Cards";
 import Catalogfilters from "../../components/CatalogoComponen/Catalogfilters";
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer'
 const Catalogo = () => {
     return (
       <><NavBar /><section>
@@ -21,7 +22,8 @@ const Catalogo = () => {
           </div>
         </div>
         <div>paginacion</div>
-      </section></>
+      </section>
+      <Footer></Footer></>
     );
   };
   
