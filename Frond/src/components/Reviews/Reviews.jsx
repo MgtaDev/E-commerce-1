@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'; // Importa Styled Components
+
 import style from './reviews.module.css'
 
 
@@ -117,5 +117,4 @@ const Reviews = () => {
     };
     
   
-
 export default Reviews;
