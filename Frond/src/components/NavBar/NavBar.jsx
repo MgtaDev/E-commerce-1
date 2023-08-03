@@ -92,8 +92,8 @@ const Navbar = ({ initialLanguage }) => {
           <Profile/>
           <LoginButton/>
           {isAuthenticated && <p>{user.name}</p> }
-        
-        </div>
+          </div>
+          </div>
 
       </nav>
     </>
