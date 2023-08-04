@@ -1,0 +1,603 @@
+[
+    {
+      "name": "Labial Glamour",
+      "descripcion": "Labial de larga duración y acabado mate",
+      "precio_compra": 7.50,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 10.50,
+      "referencia_proveedor": "REF123",
+      "marcaId": 15,
+      "categoriaId": 3
+    },
+    {
+      "name": "Paleta Sombras Deluxe",
+      "descripcion": "Paleta de sombras con tonos brillantes y mate",
+      "precio_compra": 12.75,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 16.58,
+      "referencia_proveedor": "REF456",
+      "marcaId": 8,
+      "categoriaId": 2
+    },
+    {
+      "name": "Mascara Volumen Intenso",
+      "descripcion": "Mascara de pestañas que proporciona volumen intenso",
+      "precio_compra": 6.80,
+      "porcentaje_ganancia": 50,
+      "precio_venta": 10.20,
+      "referencia_proveedor": "REF789",
+      "marcaId": 20,
+      "categoriaId": 1
+    },
+    {
+      "name": "Base de Maquillaje Pro Cover",
+      "descripcion": "Base de maquillaje de alta cobertura y larga duración",
+      "precio_compra": 14.25,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 19.24,
+      "referencia_proveedor": "REF246",
+      "marcaId": 12,
+      "categoriaId": 3
+    },
+    {
+      "name": "Delineador Preciso",
+      "descripcion": "Delineador líquido con punta precisa para un acabado perfecto",
+      "precio_compra": 5.60,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 8.12,
+      "referencia_proveedor": "REF753",
+      "marcaId": 5,
+      "categoriaId": 1
+    },
+    {
+      "name": "Rubor Suave",
+      "descripcion": "Rubor en polvo con tonos suaves y naturales",
+      "precio_compra": 9.20,
+      "porcentaje_ganancia": 25,
+      "precio_venta": 11.50,
+      "referencia_proveedor": "REF902",
+      "marcaId": 10,
+      "categoriaId": 2
+    },
+    {
+      "name": "Brochas Profesionales Set",
+      "descripcion": "Set de brochas profesionales para maquillaje",
+      "precio_compra": 25.80,
+      "porcentaje_ganancia": 60,
+      "precio_venta": 41.28,
+      "referencia_proveedor": "REF342",
+      "marcaId": 18,
+      "categoriaId": 3
+    },
+    {
+      "name": "Labial Líquido Mate",
+      "descripcion": "Labial líquido de acabado mate y larga duración",
+      "precio_compra": 8.90,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 12.02,
+      "referencia_proveedor": "REF657",
+      "marcaId": 9,
+      "categoriaId": 1
+    },
+    {
+      "name": "Sombra de Ojos Brillante",
+      "descripcion": "Sombra de ojos en crema con acabado brillante",
+      "precio_compra": 6.50,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 9.10,
+      "referencia_proveedor": "REF123",
+      "marcaId": 23,
+      "categoriaId": 2
+    },
+    {
+      "name": "Polvo Traslúcido",
+      "descripcion": "Polvo traslúcido para fijar el maquillaje",
+      "precio_compra": 10.30,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 13.39,
+      "referencia_proveedor": "REF567",
+      "marcaId": 6,
+      "categoriaId": 3
+    },
+    {
+      "name": "Pestañas Postizas Naturales",
+      "descripcion": "Pestañas postizas de aspecto natural",
+      "precio_compra": 4.20,
+      "porcentaje_ganancia": 50,
+      "precio_venta": 6.30,
+      "referencia_proveedor": "REF124",
+      "marcaId": 13,
+      "categoriaId": 1
+    },
+    {
+      "name": "Delineador en Gel",
+      "descripcion": "Delineador en gel de larga duración y resistente al agua",
+      "precio_compra": 9.80,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 13.72,
+      "referencia_proveedor": "REF347",
+      "marcaId": 17,
+      "categoriaId": 2
+    },
+    {
+      "name": "Corrector de Ojeras",
+      "descripcion": "Corrector de ojeras con alta cobertura",
+      "precio_compra": 6.90,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 9.32,
+      "referencia_proveedor": "REF789",
+      "marcaId": 11,
+      "categoriaId": 3
+    },
+    {
+      "name": "Labial Hidratante",
+      "descripcion": "Labial hidratante con extractos naturales",
+      "precio_compra": 5.40,
+      "porcentaje_ganancia": 25,
+      "precio_venta": 6.75,
+      "referencia_proveedor": "REF432",
+      "marcaId": 2,
+      "categoriaId": 1
+    },
+    {
+      "name": "Iluminador en Crema",
+      "descripcion": "Iluminador en crema para resaltar los rasgos faciales",
+      "precio_compra": 8.20,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 10.66,
+      "referencia_proveedor": "REF243",
+      "marcaId": 25,
+      "categoriaId": 2
+    },
+    {
+      "name": "Mascara Resistente Agua",
+      "descripcion": "Mascara de pestañas resistente al agua para un look duradero",
+      "precio_compra": 7.90,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 11.46,
+      "referencia_proveedor": "REF542",
+      "marcaId": 4,
+      "categoriaId": 1
+    },
+    {
+      "name": "Brocha para Base Líquida",
+      "descripcion": "Brocha para aplicar base de maquillaje líquida",
+      "precio_compra": 4.50,
+      "porcentaje_ganancia": 60,
+      "precio_venta": 7.20,
+      "referencia_proveedor": "REF873",
+      "marcaId": 21,
+      "categoriaId": 3
+    },
+    {
+      "name": "Labial Metálico",
+      "descripcion": "Labial con acabado metálico de alta pigmentación",
+      "precio_compra": 6.20,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 8.68,
+      "referencia_proveedor": "REF625",
+      "marcaId": 7,
+      "categoriaId": 1
+    },
+    {
+      "name": "Set de Brochas de Ojos",
+      "descripcion": "Set de brochas para maquillaje de ojos",
+      "precio_compra": 18.90,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 24.57,
+      "referencia_proveedor": "REF671",
+      "marcaId": 19,
+      "categoriaId": 2
+    },
+    {
+      "name": "Spray Fijador de Maquillaje",
+      "descripcion": "Spray fijador de maquillaje para una larga duración",
+      "precio_compra": 11.40,
+      "porcentaje_ganancia": 25,
+      "precio_venta": 14.25,
+      "referencia_proveedor": "REF238",
+      "marcaId": 1,
+      "categoriaId": 3
+    },
+    {
+      "name": "Sombra de Ojos Mate",
+      "descripcion": "Sombra de ojos en polvo con acabado mate",
+      "precio_compra": 6.90,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 9.32,
+      "referencia_proveedor": "REF465",
+      "marcaId": 14,
+      "categoriaId": 2
+    },
+    {
+      "name": "Labial Voluminizador",
+      "descripcion": "Labial que proporciona volumen a los labios",
+      "precio_compra": 9.50,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 12.35,
+      "referencia_proveedor": "REF832",
+      "marcaId": 3,
+      "categoriaId": 1
+    },
+    {
+      "name": "Delineador en Plumón",
+      "descripcion": "Delineador en plumón para trazos precisos",
+      "precio_compra": 8.20,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 11.48,
+      "referencia_proveedor": "REF104",
+      "marcaId": 16,
+      "categoriaId": 2
+    },
+    {
+      "name": "Set de Esponjas Blender",
+      "descripcion": "Set de esponjas blender para aplicar maquillaje",
+      "precio_compra": 11.80,
+      "porcentaje_ganancia": 50,
+      "precio_venta": 17.70,
+      "referencia_proveedor": "REF429",
+      "marcaId": 22,
+      "categoriaId": 3
+    },
+    {
+      "name": "Labial Hidratante Mate",
+      "descripcion": "Labial hidratante con acabado mate",
+      "precio_compra": 7.20,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 9.72,
+      "referencia_proveedor": "REF567",
+      "marcaId": 24,
+      "categoriaId": 1
+    },
+    {
+      "name": "Máscara de Cejas",
+      "descripcion": "Máscara para cejas que da forma y volumen",
+      "precio_compra": 5.30,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 7.69,
+      "referencia_proveedor": "REF897",
+      "marcaId": 9,
+      "categoriaId": 2
+    },
+    {
+      "name": "Brocha para Contorno",
+      "descripcion": "Brocha para contornear el rostro",
+      "precio_compra": 9.90,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 12.87,
+      "referencia_proveedor": "REF321",
+      "marcaId": 7,
+      "categoriaId": 3
+    },
+    {
+      "name": "Labial Larga Duración",
+      "descripcion": "Labial de larga duración y acabado satinado",
+      "precio_compra": 8.40,
+      "porcentaje_ganancia": 25,
+      "precio_venta": 10.50,
+      "referencia_proveedor": "REF903",
+      "marcaId": 5,
+      "categoriaId": 1
+    },
+    {
+      "name": "Delineador Líquido Colores",
+      "descripcion": "Delineador líquido en diferentes colores",
+      "precio_compra": 7.10,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 9.94,
+      "referencia_proveedor": "REF239",
+      "marcaId": 18,
+      "categoriaId": 2
+    },
+    {
+      "name": "Kit Maquillaje Completo",
+      "descripcion": "Kit completo de maquillaje para todas las ocasiones",
+      "precio_compra": 28.50,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 37.05,
+      "referencia_proveedor": "REF984",
+      "marcaId": 13,
+      "categoriaId": 3
+    },
+    {
+      "name": "Delineador en Gel Resistente Agua",
+      "descripcion": "Delineador en gel resistente al agua para un look duradero",
+      "precio_compra": 10.50,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 15.23,
+      "referencia_proveedor": "REF672",
+      "marcaId": 11,
+      "categoriaId": 1
+    },
+    {
+      "name": "Brocha para Difuminar",
+      "descripcion": "Brocha para difuminar sombras de ojos",
+      "precio_compra": 6.80,
+      "porcentaje_ganancia": 50,
+      "precio_venta": 10.20,
+      "referencia_proveedor": "REF953",
+      "marcaId": 25,
+      "categoriaId": 2
+    },
+    {
+      "name": "Labial Gloss",
+      "descripcion": "Labial gloss con brillo y efecto volumen",
+      "precio_compra": 5.80,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 7.83,
+      "referencia_proveedor": "REF789",
+      "marcaId": 16,
+      "categoriaId": 3
+    },
+    {
+      "name": "Brocha Kabuki",
+      "descripcion": "Brocha kabuki para aplicación de polvos",
+      "precio_compra": 7.30,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 9.49,
+      "referencia_proveedor": "REF672",
+      "marcaId": 12,
+      "categoriaId": 1
+    },
+    {
+      "name": "Delineador Líquido Cat Eye",
+      "descripcion": "Delineador líquido para un efecto cat eye",
+      "precio_compra": 7.90,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 11.06,
+      "referencia_proveedor": "REF537",
+      "marcaId": 10,
+      "categoriaId": 2
+    },
+    {
+      "name": "Sombra de Ojos Duo",
+      "descripcion": "Sombra de ojos en duo con tonos complementarios",
+      "precio_compra": 6.20,
+      "porcentaje_ganancia": 25,
+      "precio_venta": 7.75,
+      "referencia_proveedor": "REF402",
+      "marcaId": 23,
+      "categoriaId": 3
+    },
+    {
+      "name": "Esponja Maquillaje",
+      "descripcion": "Esponja para aplicación de maquillaje",
+      "precio_compra": 3.50,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 5.08,
+      "referencia_proveedor": "REF753",
+      "marcaId": 4,
+      "categoriaId": 1
+    },
+    {
+      "name": "Set de Pinceles",
+      "descripcion": "Set de pinceles para maquillaje profesional",
+      "precio_compra": 19.20,
+      "porcentaje_ganancia": 60,
+      "precio_venta": 30.72,
+      "referencia_proveedor": "REF129",
+      "marcaId": 20,
+      "categoriaId": 2
+    },
+    {
+      "name": "Labial Mate Larga Duración",
+      "descripcion": "Labial de acabado mate y larga duración",
+      "precio_compra": 8.80,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 11.44,
+      "referencia_proveedor": "REF674",
+      "marcaId": 17,
+      "categoriaId": 3
+    },
+    {
+      "name": "Brocha Abanico",
+      "descripcion": "Brocha abanico para aplicar iluminador",
+      "precio_compra": 6.10,
+      "porcentaje_ganancia": 35,
+      "precio_venta": 8.24,
+      "referencia_proveedor": "REF318",
+      "marcaId": 21,
+      "categoriaId": 1
+    },
+    {
+      "name": "Paleta Contorno e Iluminación",
+      "descripcion": "Paleta de contorno e iluminadores",
+      "precio_compra": 13.90,
+      "porcentaje_ganancia": 40,
+      "precio_venta": 19.46,
+      "referencia_proveedor": "REF567",
+      "marcaId": 8,
+      "categoriaId": 2
+    },
+    {
+      "name": "Máscara de Pestañas Colores",
+      "descripcion": "Máscara de pestañas en colores divertidos",
+      "precio_compra": 7.40,
+      "porcentaje_ganancia": 25,
+      "precio_venta": 9.25,
+      "referencia_proveedor": "REF901",
+      "marcaId": 19,
+      "categoriaId": 3
+    },
+    {
+      "name": "Rubor en Crema",
+      "descripcion": "Rubor en crema de larga duración",
+      "precio_compra": 8.10,
+      "porcentaje_ganancia": 30,
+      "precio_venta": 10.53,
+      "referencia_proveedor": "REF879",
+      "marcaId": 6,
+      "categoriaId": 1
+    },
+    {
+      "name": "Delineador Líquido Waterproof",
+      "descripcion": "Delineador líquido resistente al agua",
+      "precio_compra": 9.70,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 14.08,
+      "referencia_proveedor": "REF702",
+      "marcaId": 22,
+      "categoriaId": 2
+    },
+    {
+      "name": "Labial Efecto Volumen",
+      "descripcion": "Labial con efecto volumen y brillo",
+      "precio_compra": 6.60,
+      "porcentaje_ganancia": 50,
+      "precio_venta": 9.90,
+      "referencia_proveedor": "REF463",
+      "marcaId": 14,
+      "categoriaId": 3
+    },
+    {
+        "name": "Paleta de Sombras Smokey",
+        "descripcion": "Paleta de sombras para un look smokey",
+        "precio_compra": 11.20,
+        "porcentaje_ganancia": 35,
+        "precio_venta": 15.12,
+        "referencia_proveedor": "REF376",
+        "marcaId": 3,
+        "categoriaId": 1
+      },
+      {
+        "name": "Delineador en Gel Colorido",
+        "descripcion": "Delineador en gel en colores vibrantes",
+        "precio_compra": 8.60,
+        "porcentaje_ganancia": 40,
+        "precio_venta": 12.04,
+        "referencia_proveedor": "REF927",
+        "marcaId": 17,
+        "categoriaId": 2
+      },
+      {
+        "name": "Brocha Abanico Extra Grande",
+        "descripcion": "Brocha abanico de gran tamaño para aplicación de iluminador",
+        "precio_compra": 9.90,
+        "porcentaje_ganancia": 25,
+        "precio_venta": 12.37,
+        "referencia_proveedor": "REF732",
+        "marcaId": 11,
+        "categoriaId": 3
+      },
+      {
+        "name": "Labial Líquido Mate de Larga Duración",
+        "descripcion": "Labial líquido de acabado mate y larga duración",
+        "precio_compra": 8.70,
+        "porcentaje_ganancia": 30,
+        "precio_venta": 11.31,
+        "referencia_proveedor": "REF429",
+        "marcaId": 2,
+        "categoriaId": 1
+      },
+      {
+        "name": "Set de Pinceles para Ojos",
+        "descripcion": "Set de pinceles para maquillaje de ojos",
+        "precio_compra": 14.40,
+        "porcentaje_ganancia": 45,
+        "precio_venta": 20.88,
+        "referencia_proveedor": "REF537",
+        "marcaId": 24,
+        "categoriaId": 2
+      },
+      {
+        "name": "Delineador Líquido con Purpurina",
+        "descripcion": "Delineador líquido con toque de purpurina",
+        "precio_compra": 7.80,
+        "porcentaje_ganancia": 50,
+        "precio_venta": 11.70,
+        "referencia_proveedor": "REF128",
+        "marcaId": 6,
+        "categoriaId": 3
+      },
+      {
+        "name": "Máscara de Pestañas Waterproof",
+        "descripcion": "Máscara de pestañas resistente al agua",
+        "precio_compra": 6.90,
+        "porcentaje_ganancia": 30,
+        "precio_venta": 8.97,
+        "referencia_proveedor": "REF645",
+        "marcaId": 9,
+        "categoriaId": 1
+      },
+      {
+        "name": "Iluminador Líquido",
+        "descripcion": "Iluminador líquido para un glow natural",
+        "precio_compra": 9.30,
+        "porcentaje_ganancia": 35,
+        "precio_venta": 12.56,
+        "referencia_proveedor": "REF926",
+        "marcaId": 13,
+        "categoriaId": 2
+      },
+      {
+        "name": "Brocha Doble Uso",
+        "descripcion": "Brocha de doble uso para base y corrector",
+        "precio_compra": 6.40,
+        "porcentaje_ganancia": 40,
+        "precio_venta": 8.96,
+        "referencia_proveedor": "REF302",
+        "marcaId": 10,
+        "categoriaId": 3
+      },
+      {
+        "name": "Labial en Polvo",
+        "descripcion": "Labial en polvo con acabado aterciopelado",
+        "precio_compra": 7.50,
+        "porcentaje_ganancia": 25,
+        "precio_venta": 9.38,
+        "referencia_proveedor": "REF746",
+        "marcaId": 20,
+        "categoriaId": 1
+      },
+      {
+        "name": "Sombra de Ojos Shimmer",
+        "descripcion": "Sombra de ojos en polvo con efecto shimmer",
+        "precio_compra": 6.60,
+        "porcentaje_ganancia": 30,
+        "precio_venta": 8.58,
+        "referencia_proveedor": "REF642",
+        "marcaId": 5,
+        "categoriaId": 2
+      },
+      {
+        "name": "Máscara de Pestañas Extra Volumen",
+        "descripcion": "Máscara de pestañas para un volumen extra",
+        "precio_compra": 8.90,
+        "porcentaje_ganancia": 45,
+        "precio_venta": 12.91,
+        "referencia_proveedor": "REF925",
+        "marcaId": 18,
+        "categoriaId": 3
+      },
+      {
+        "name": "Brocha Angular",
+        "descripcion": "Brocha angular para contornear el rostro",
+        "precio_compra": 6.70,
+        "porcentaje_ganancia": 50,
+        "precio_venta": 10.05,
+        "referencia_proveedor": "REF839",
+        "marcaId": 21,
+        "categoriaId": 1
+      },
+      {
+        "name": "Paleta de Iluminadores",
+        "descripcion": "Paleta de iluminadores en diferentes tonos",
+        "precio_compra": 12.30,
+        "porcentaje_ganancia": 35,
+        "precio_venta": 16.61,
+        "referencia_proveedor": "REF468",
+        "marcaId": 7,
+        "categoriaId": 2
+      },
+      {
+        "name": "Rubor en Crema Mate",
+        "descripcion": "Rubor en crema de acabado mate",
+        "precio_compra": 7.80,
+        "porcentaje_ganancia": 40,
+        "precio_venta": 10.92,
+        "referencia_proveedor": "REF143",
+        "marcaId": 12,
+        "categoriaId": 3
+      }
+  ]
+  

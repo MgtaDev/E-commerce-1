@@ -22,14 +22,14 @@ router.get('/', async (req, res) => {
 // Ruta para crear un solo descuento o varios descuentos
 router.post('/', async (req, res) => {
   try {
-    const { nombre, porcentaje, codigo, condiciones } = req.body;
+    const { name, porcentaje, codigo, condiciones } = req.body;
 
     if (Array.isArray(req.body)) {
       const descuentos = await postDescuentoArray(req.body);
       res.status(200).json(descuentos);
     } else {
       const descuento = await postDescuento(
-        nombre,
+        name,
         porcentaje,
         codigo,
         condiciones
