@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FormSearchBar } from './Styled_SearchBar';
+import Loupe from '../../assets/img/Loupe.svg';
 import loupe from '../../assets/img/Loupe.svg';
 import styled from 'styled-components';
 
@@ -69,7 +71,7 @@ const SearchBar = ({ placeholder, history }) => {
 		<FormSearchBar onSubmit={handleSubmit}>
 			<input onChange={handleChange} type="text" placeholder={placeholder} value={inputText} />
 			<button type="submit">
-				<img src={loupe} alt="" />
+				<img src={Loupe} alt="" />
 			</button>
 		</FormSearchBar>
 	);
