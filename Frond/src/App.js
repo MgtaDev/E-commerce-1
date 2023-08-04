@@ -10,6 +10,7 @@ import FAQs from "./views/FAQs/FAQs"
 import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Chatbot from "react-chatbot-kit";
 import Form from "./views/Form/Form";
+import Profile from "./views/Profile/Profile";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
 import 'tailwindcss/tailwind.css';
@@ -35,7 +36,7 @@ function App () {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/devTeam" element={<DevTeam />} />
         <Route path="/form" element={<Form />} />
-
+        <Route path="/profile" element={<Profile />} />
         <Route path="/detail/:id" element={<Detail />} />
 
         <Route path="/dashboard" element = {<Dashboard/>}/>
