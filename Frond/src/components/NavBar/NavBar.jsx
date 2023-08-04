@@ -3,12 +3,9 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import vector from '../../assets/img/vector.svg'
-import { AiFillHeart } from 'react-icons/ai';
-import {AiFillShopping} from 'react-icons/ai'
 import SearchBar from '../SearchBar/SearchBar';
 import { AiFillHeart } from 'react-icons/ai';
 import {AiFillShopping} from 'react-icons/ai'
-import SearchBar from '../SearchBar/SearchBar';
 import style from './NavBar.module.css';
 import LoginButton from '../LoginComponents/Login';
 import LogoutButton from '../LoginComponents/Logout';

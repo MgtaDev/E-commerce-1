@@ -25,7 +25,36 @@ const Form = () => {
   });
 
   const [userName, setUserName] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
+
+  const handleImageChange = async (event) => {
+    const imageFile = event.target.files[0];
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append('image', imageFile);
+  
+      try {
+        const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          params: {
+            key: 'cf44a253679320997c892d7e7a273f04',
+          },
+        });
+  
+        if (response.data && response.data.data && response.data.data.url) {
+          setSelectedImage(response.data.data.url);
+          console.log('Imagen subida exitosamente:', response.data.data.url);
+        } else {
+          console.error('Hubo un problema al subir la imagen.');
+        }
+      } catch (error) {
+        console.error('Error al subir la imagen:', error);
+      }
+    }
+  };
 
   const handleFormSubmit = (values) => {
     // Crear un objeto con los datos a guardar
@@ -64,6 +93,66 @@ const Form = () => {
           <div className="w-2/3">
             <h1 className={style.mainContainer}>Mi Perfil:</h1>
 
+            <div>
+              <label htmlFor="productName">Nombre del Usuario</label>
+              <div>
+                <input
+                  type="text"
+                  className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
+                  placeholder="Ingrese el nombre del usuario"
+                  id="userName"
+                  name="userName"
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                    formik.handleChange(e);
+                  } }
+                  onBlur={formik.handleBlur}
+                  value={formik.values.userName} />
+                {formik.touched.userName && formik.errors.userName ? (
+                  <div className={style.error}>{formik.errors.userName}</div>
+                ) : null}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="productName">Nombre del Usuario</label>
+              <div>
+                <input
+                  type="text"
+                  className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
+                  placeholder="Ingrese el nombre del usuario"
+                  id="userName"
+                  name="userName"
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                    formik.handleChange(e);
+                  } }
+                  onBlur={formik.handleBlur}
+                  value={formik.values.userName} />
+                {formik.touched.userName && formik.errors.userName ? (
+                  <div className={style.error}>{formik.errors.userName}</div>
+                ) : null}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="productName">Nombre del Usuario</label>
+              <div>
+                <input
+                  type="text"
+                  className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
+                  placeholder="Ingrese el nombre del usuario"
+                  id="userName"
+                  name="userName"
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                    formik.handleChange(e);
+                  } }
+                  onBlur={formik.handleBlur}
+                  value={formik.values.userName} />
+                {formik.touched.userName && formik.errors.userName ? (
+                  <div className={style.error}>{formik.errors.userName}</div>
+                ) : null}
+              </div>
+            </div>
             <div>
               <label htmlFor="productName">Nombre del Usuario</label>
               <div>
