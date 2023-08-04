@@ -1,6 +1,11 @@
-
+import { useFormik } from "formik";
 const Contact = () => {
-
+  const formik = useFormik({
+    initialValues : {
+      email:'',
+    },
+    onSubmit: values  => {}
+  })
   return ( 
     <section className="grid grid-cols-2">
       <div className=" col-span-1">
