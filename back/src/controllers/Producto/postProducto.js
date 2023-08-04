@@ -64,18 +64,13 @@ module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, p
       proveedorId,
     });
 
-// Asociar subcategorias al producto
-if (subcategoriaId && Array.isArray(subcategoriaId)) {
-  const subcategoriaInstances = await Subcategoria.findAll({
-    where: {
-      id: subcategoriaId,
-    },
-  });
-
-  if (subcategoriaInstances.length > 0) {
-    await nuevoProducto.addSubcategorias(subcategoriaInstances); // Utiliza addSubcategorias en lugar de setSubcategorias
-  }
-}
+    const subcategoria = await Subcategoria.findAll(
+      {where:{ 
+        id: subcategoriaId,
+        activa:true,
+        categoriaId: categoriaId
+     }})
+    await nuevoProducto.addSubcategoria(subcategoria)
 
     // Asignar un identificador personalizado (opcional)
     nuevoProducto.dataValues.id = `prod-${nuevoProducto.dataValues.id}`;
