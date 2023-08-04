@@ -1,59 +1,82 @@
-import { useState } from "react";
-import axios from "axios";
-
+import { useFormik } from "formik";
+import * as yup from "yup";
 const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post("/api/contact", {
-        name,
-        email,
-        subject,
-        message,
-      });
-
-      if (response.status === 200) {
-        setStatus("success");
-        setName("");
-        setEmail("");
-        setSubject("");
-        setMessage("");
-      }
-    } catch (error) {
-      setStatus("error");
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      message: ""
+    },
+    validationSchema: yup.object({
+      email: yup.string().email("invalid email address").required("requered"),
+      name: yup
+        .string()
+        .max(15, "Must be 20 characters or less")
+        .required("required"),
+      message: yup.string().max(500, "maximum characters").required("required")
+    }),
+    onSubmit: values => {
+      alert("aca pa enviar al back");
     }
-  };
-
+  });
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Contacto</h2>
-      {status === "success" && <p>¡Gracias por contactarnos!</p>}
-      {status === "error" && <p>Ha ocurrido un error. Inténtalo de nuevo más tarde.</p>}
-      <div>
-        <label htmlFor="name">Nombre:</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+    <section className="grid grid-cols-2 grid-rows-1 justify-items-center w-[80%] h-[80%] m-auto bg-fuchsia-800">
+      <div className="col-span-1 w-[50%]">
+        <img className="w-full"
+          src="https://cdn.create.vista.com/api/media/small/530382968/stock-photo-nude-eye-shadow-palette-brush"
+          alt="logo"
+        />
       </div>
-      <div>
-        <label htmlFor="email">Correo electrónico:</label>
-        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <div className="col-span-1">
+        <form
+          className="grid grid-cols-1 gap-10"
+          onSubmit={formik.handleSubmit}
+        >
+          <label htmlFor="your name">tu nombre:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="enter your name"
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+            onChange={formik.handleChange}
+          />
+          {formik.touched.name && formik.errors.name
+            ? <div>
+                {formik.errors.name}
+              </div>
+            : null}
+          <label htmlFor="tu email">tu email:</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="ingrese su email"
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+          />
+          {formik.touched.email && formik.errors.email
+            ? <div>
+                {formik.errors.email}
+              </div>
+            : null}
+          <label htmlFor="message">message</label>
+          <textarea
+            name="message"
+            placeholder="ingrese un mensaje"
+            onBlur={formik.handleBlur}
+            value={formik.values.message}
+            onChange={formik.handleChange}
+            rows={10}
+          />
+          {formik.touched.message && formik.errors.message
+            ? <div>
+                {formik.errors.message}
+              </div>
+            : null}
+        </form>
       </div>
-      <div>
-        <label htmlFor="subject">Asunto:</label>
-        <input type="text" id="subject" value={subject} onChange={(e) => setSubject(e.target.value)} required />
-      </div>
-      <div>
-        <label htmlFor="message">Mensaje:</label>
-        <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
-      </div>
-      <button type="submit">Enviar</button>
-    </form>
+    </section>
   );
 };
 
