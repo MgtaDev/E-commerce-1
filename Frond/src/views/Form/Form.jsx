@@ -27,7 +27,7 @@ const Form = () => {
     "TRAVEL LOOKBOOK",
   ];
 
-  const colors = ["BLUE", "YELLOW", "RED", "GREEN", "PURPLE", "PINK"];
+  const colors = ["BLUE", "YELLOW", "RED", "GREEN", "PURPLE", "PINK","BLACK"];
 
   const categories = [
     "LABIAL",
