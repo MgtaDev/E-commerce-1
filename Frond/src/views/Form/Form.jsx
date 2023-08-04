@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup"; // Importa yup para validar
+import axios from 'axios';
+import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer'
 
 import style from "./Form.module.css";
 
@@ -82,13 +85,34 @@ const Form = () => {
     setSelectedCategories(updatedCategories);
   };
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const imageFile = event.target.files[0];
     if (imageFile) {
-      const imageUrl = URL.createObjectURL(imageFile);
-      setSelectedImage(imageUrl);
+      const formData = new FormData();
+      formData.append('image', imageFile);
+  
+      try {
+        const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          params: {
+            key: 'cf44a253679320997c892d7e7a273f04',
+          },
+        });
+  
+        if (response.data && response.data.data && response.data.data.url) {
+          setSelectedImage(response.data.data.url);
+          console.log('Imagen subida exitosamente:', response.data.data.url);
+        } else {
+          console.error('Hubo un problema al subir la imagen.');
+        }
+      } catch (error) {
+        console.error('Error al subir la imagen:', error);
+      }
     }
   };
+  
 
   const handleFormSubmit = (values) => {
     // Crear un objeto con los datos a guardar
@@ -130,7 +154,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <><NavBar></NavBar><form onSubmit={formik.handleSubmit}>
       <div className={style.formContainer}>
         <div className={`flex justify-center ${style.leftSection}`}>
           <div className="w-2/3">
@@ -148,10 +172,9 @@ const Form = () => {
                   onChange={(e) => {
                     setProductName(e.target.value);
                     formik.handleChange(e);
-                  }}
+                  } }
                   onBlur={formik.handleBlur}
-                  value={formik.values.productName}
-                />
+                  value={formik.values.productName} />
                 {formik.touched.productName && formik.errors.productName ? (
                   <div className={style.error}>{formik.errors.productName}</div>
                 ) : null}
@@ -169,10 +192,9 @@ const Form = () => {
                   onChange={(e) => {
                     setProductPrice(e.target.value);
                     formik.handleChange(e);
-                  }}
+                  } }
                   onBlur={formik.handleBlur}
-                  value={formik.values.productPrice}
-                />
+                  value={formik.values.productPrice} />
                 {formik.touched.productPrice && formik.errors.productPrice ? (
                   <div className={style.error}>
                     {formik.errors.productPrice}
@@ -218,9 +240,8 @@ const Form = () => {
                 onChange={(e) => {
                   setProductDescription(e.target.value);
                   formik.handleChange(e);
-                }}
-                onBlur={formik.handleBlur}
-              />
+                } }
+                onBlur={formik.handleBlur} />
             </div>
             <div>
               <label htmlFor="productCategories">Categorias</label>
@@ -270,8 +291,7 @@ const Form = () => {
                     value={color}
                     checked={selectedColors.includes(color)}
                     onChange={() => handleCheckboxChange(color)}
-                    className="mr-2"
-                  />
+                    className="mr-2" />
                   {color}
                 </label>
               ))}
@@ -287,16 +307,14 @@ const Form = () => {
                 <img
                   src={selectedImage}
                   alt="Imagen seleccionada"
-                  className="w-full h-full object-cover"
-                />
+                  className="w-full h-full object-cover" />
               </div>
             )}
             <input
               type="file"
               accept="image/*"
               onChange={handleImageChange}
-              className="mb-4"
-            />
+              className="mb-4" />
             <div className="flex gap-2">
               <button
                 type="button"
@@ -307,13 +325,11 @@ const Form = () => {
               <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                disabled={
-                  formik.isSubmitting ||
+                disabled={formik.isSubmitting ||
                   !formik.isValid ||
                   Object.keys(formik.touched).length !==
-                    Object.keys(formik.values).length ||
-                  Object.keys(formik.errors).length !== 0
-                }
+                  Object.keys(formik.values).length ||
+                  Object.keys(formik.errors).length !== 0}
                 onClick={handleFormSubmit} // Llamar a la función de guardado en clic del botón
               >
                 Guardar Producto
@@ -322,7 +338,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-    </form>
+    </form><Footer/></>
   );
 };
 

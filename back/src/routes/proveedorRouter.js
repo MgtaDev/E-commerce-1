@@ -34,14 +34,14 @@ router.get('/:proveedorId', async (req, res) => {
 // Ruta para agregar un proveedor
 router.post('/', async (req, res) => {
   try {
-    const { nombre, link_catalogo, asesor, telefono, direccion, celular, correo_electronico, condiciones_pago } = req.body;
+    const { name, link_catalogo, asesor, telefono, direccion, celular, correo_electronico, condiciones_pago } = req.body;
 
     if (Array.isArray(req.body)) {
       const proveedores = await postArrayProveedor(req.body);
       res.status(200).json(proveedores);
     } else {
       const proveedor = await postProveedor({
-        nombre,
+        name,
         link_catalogo,
         asesor,
         telefono,
@@ -60,11 +60,11 @@ router.post('/', async (req, res) => {
 
 router.put('/:proveedorId', async (req, res) => {
   const { proveedorId } = req.params;
-  const { nombre, link_catalogo, asesor, telefono, direccion, celular, correo_electronico, condiciones_pago } = req.body;
+  const { name, link_catalogo, asesor, telefono, direccion, celular, correo_electronico, condiciones_pago } = req.body;
   
   try {
     const proveedor = await putPropsProveedores(proveedorId, {
-      nombre,
+      name,
       link_catalogo,
       asesor,
       telefono,

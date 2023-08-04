@@ -1,6 +1,6 @@
 const { Descuento } = require('../../db');
 
-module.exports = async (nombre, porcentaje, codigo, condiciones) => {
+module.exports = async (name, porcentaje, codigo, condiciones) => {
 
   
   try {
@@ -19,7 +19,7 @@ module.exports = async (nombre, porcentaje, codigo, condiciones) => {
 
     // Si no existe un descuento con el mismo código, crear el nuevo descuento
     const newDescuento = await Descuento.create({
-      nombre,
+      name,
       porcentaje,
       codigo,
       condiciones,
