@@ -21,7 +21,6 @@ axios.defaults.baseURL = "http://localhost:3001/"
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 
-
 function App () {
   return (
     <div>
@@ -34,9 +33,7 @@ function App () {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/devTeam" element={<DevTeam />} />
         <Route path="/form" element={<Form />} />
-
         <Route path="/detail/:id" element={<Detail />} />
-=======
         <Route path="/dashboard" element = {<Dashboard/>}/>
 
       </Routes>
