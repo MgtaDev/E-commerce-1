@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup"; // Importa yup para validar
-import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer'
+import axios from 'axios';
+
 
 import style from "./Form.module.css";
 
