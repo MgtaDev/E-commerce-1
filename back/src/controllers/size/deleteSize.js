@@ -2,7 +2,6 @@ const { Size } = require('../../db');
 
 module.exports = async (sizeId) => {
   try {
-    //prueba
     // Buscar el tamaño por su ID
     const size = await Size.findByPk(sizeId);
 
