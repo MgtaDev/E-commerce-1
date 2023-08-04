@@ -85,34 +85,37 @@ const Detail = () => {
                     </p>
                     <h6 className='text-2xl font-semibold'>$ 3000.00</h6>
                     <div className='flex flex-row items-center gap-12'>
-
-                    <div className='flex flex-row gap-3'>
-                <div className='relative'>
-                    <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
-                </div>
-                <div className='relative'>
-                    <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
-                </div>
-                <div className='relative'>
-                    <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
-                </div>
-                <div className='relative'>
-                    <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
-                </div>
-                <div className='relative'>
-                    <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
-                </div>
-            </div>
-                        <div className='flex flex-row items-center'>
-                            <button className='bg-gray-200 py-2 px-5 rounded-lg text-customColor text-3xl' onClick={handleDecrement}>-</button>
-                            <span className='py-4 px-6 rounded-lg'>{amount}</span>
-                            <button className='bg-gray-200 py-2 px-4 rounded-lg text-customColor text-3xl' onClick={handleIncrement}>+</button>
-                        </div>
-                        <button className='bg-customColor text-white font-semibold py-3 px-16 rounded-xl h-full flex items-center gap-2'>
-                            <img src={bagIcon} alt="bag icon" className="w-6 h-6 " />
-                            Agregar al carrito
-                        </button>
+                <div className='flex flex-row gap-3'>
+                    <div className='relative'>
+                        <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
                     </div>
+                    <div className='relative'>
+                        <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
+                    </div>
+                    <div className='relative'>
+                        <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
+                    </div>
+                    <div className='relative'>
+                        <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
+                    </div>
+                    <div className='relative'>
+                        <img src={colorIcon} alt="colorIcon" className="w-6 h-6 z-10" style={{ zIndex: 10 }} />
+                    </div>
+                </div>
+
+              
+            </div>
+            <div className='flex flex-row items-center'>
+                    <button className='bg-gray-200 py-2 px-5 rounded-lg text-customColor text-3xl' onClick={handleDecrement}>-</button>
+                    <span className='py-4 px-6 rounded-lg'>{amount}</span>
+                    <button className='bg-gray-200 py-2 px-4 rounded-lg text-customColor text-3xl' onClick={handleIncrement}>+</button>
+              
+            <button className='bg-customColor text-white font-semibold py-3 px-16 rounded-xl h-full flex items-center gap-2'>
+                <img src={bagIcon} alt="bag icon" className="w-6 h-6 " />
+                Agregar al carrito
+            </button>
+            </div>
+
                 </div>
             </div>
 
