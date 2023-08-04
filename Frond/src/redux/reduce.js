@@ -1,4 +1,4 @@
-import { ALLPRODUCTS } from "./action-types";
+import { ALLPRODUCTS, SELECTEDCATEGORY} from "./action-types";
 
 
 const InitialState = {
@@ -12,6 +12,11 @@ const reducer = (state = InitialState, {type, payload}) => {
                 ...state,
                 Allproducts: payload
             }
+        case SELECTEDCATEGORY:
+            return{
+                ...state,
+                SELECTEDCATEGORY:payload
+            }   
         default:
             return state
     }
