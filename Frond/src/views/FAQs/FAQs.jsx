@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import avatar1 from '../../assets/img/avatar1.png';
 import avatar2 from '../../assets/img/avatar2.png';
 import avatar3 from '../../assets/img/avatar3.png';
-import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
 
 
@@ -43,7 +42,6 @@ const FAQs = () => {
 
   return (
     <><div className="py-8">
-      <NavBar />
       {/* Primer container */}
       <div className="container mx-auto max-w-[1280px] px-32 flex items-center gap-10 justify-center">
         <div className="w-[1280px] h-[94px] px-8 flex-col justify-start items-start gap-8 inline-flex">
