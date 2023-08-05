@@ -23,12 +23,11 @@ const Cards = () => {
   // Utilizamos directamente el estado "stateProducts" proveniente de Redux
   return (
     <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-auto-rows grid-rows-1 gap-5">
-      {stateProducts.map(({ name, descripcion, precio_venta}) => {
+      {stateProducts.map(({ name, precio_venta}) => {
         return (
           <Card
             key={name}
             name={name}
-            descripcion={descripcion}
             precio={precio_venta}
           />
         );

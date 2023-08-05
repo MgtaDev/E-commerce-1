@@ -86,8 +86,6 @@ const Navbar = ({ initialLanguage }) => {
         <div className={style.icons}>
           <button className={style.btnb}><AiFillShopping /></button>
           <button className={style.btnb}><AiFillHeart /></button>
-          <img className={style.vector} alt="" src={vector} />
-          
           <div className={style.menuItem}>
           <Profile/>
           <LoginButton/>
