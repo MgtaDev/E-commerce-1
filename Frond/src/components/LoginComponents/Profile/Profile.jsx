@@ -17,6 +17,7 @@ const Profile = () => {
     isAuthenticated && (
       <div>
         <img className={style.imgProfile} src={user.picture} alt={user.name} />
+        <div className={style.onlineIndicator}>.</div>
       </div>
     )
   );

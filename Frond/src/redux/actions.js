@@ -11,31 +11,35 @@ export const products = () => async dispatch => {
     payload: data
  })
 };
-export const categories = () => async dispatch => {
+  export const categories = () => async dispatch => {
    const {data} =await axios.get("/categoria")
    dispatch({
       type: ALLPRODUCTS,
       payload: data
    })
-  };export const subcategories = () => async dispatch => {
+  };
+  export const subcategories = () => async dispatch => {
    const {data} =await axios.get("/subcategoria")
    dispatch({
       type: ALLPRODUCTS,
       payload: data
    })
-  };export const brands = () => async dispatch => {
+  };
+  export const brands = () => async dispatch => {
    const {data} =await axios.get("/marca")
    dispatch({
       type: ALLPRODUCTS,
       payload: data
    })
-  };export const sizes = () => async dispatch => {
+  };
+  export const sizes = () => async dispatch => {
    const {data} =await axios.get("/size")
    dispatch({
       type: ALLSIZES,
       payload: data
    })
-  };export const colors = () => async dispatch => {
+  };
+  export const colors = () => async dispatch => {
    const {data} =await axios.get("/color")
    dispatch({
       type: ALLCOLORS,
