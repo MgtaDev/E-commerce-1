@@ -1,7 +1,31 @@
-const { Producto, Categoria, Marca } = require('../../db');
+const { Producto, Categoria, Marca, Size, Proveedor, Subcategoria } = require('../../db');
 
-module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId) => {
+module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId) => {
   try {
+    // Verificar si el proveedor existe y está activo
+    const proveedorExistente = await Proveedor.findOne({
+      where: {
+        id: proveedorId,
+        activa: true,
+      },
+    });
+
+    if (!proveedorExistente) {
+      throw new Error(`El proveedor con ID ${proveedorId} no existe o no está activo`);
+    }
+
+    // Verificar si el tamaño existe y está activo
+    const tamañoExistente = await Size.findOne({
+      where: {
+        id: tamañoId,
+        activa: true,
+      },
+    });
+
+    if (!tamañoExistente) {
+      throw new Error(`El tamaño con ID ${tamañoId} no existe o no está activo`);
+    }
+
     // Verificar si la categoría existe y está activa
     const categoriaExistente = await Categoria.findOne({
       where: {
@@ -36,7 +60,17 @@ module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, p
       referencia_proveedor,
       marcaId,
       categoriaId,
+      tamañoId,
+      proveedorId,
     });
+
+    const subcategoria = await Subcategoria.findAll(
+      {where:{ 
+        id: subcategoriaId,
+        activa:true,
+        categoriaId: categoriaId
+     }})
+    await nuevoProducto.addSubcategoria(subcategoria)
 
     // Asignar un identificador personalizado (opcional)
     nuevoProducto.dataValues.id = `prod-${nuevoProducto.dataValues.id}`;
