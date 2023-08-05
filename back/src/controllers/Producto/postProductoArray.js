@@ -1,4 +1,4 @@
-const { Producto, Marca } = require('../../db');
+const { Producto, Marca, Size, Proveedor, Categoria } = require('../../db');
 
 module.exports = async (array) => {
   const productos = [];
@@ -28,6 +28,45 @@ module.exports = async (array) => {
         throw new Error(`La marca con ID ${producto.marcaId} no existe o no está activa`);
       }
 
+      // Verificar si el proveedor existe y está activo
+      const proveedorExistente = await Proveedor.findOne({
+        where: {
+          id: producto.proveedorId,
+          activa: true,
+        },
+      });
+
+      if (!proveedorExistente) {
+        // Si el proveedor no existe o no está activo, lanzar un error
+        throw new Error(`El proveedor con ID ${producto.proveedorId} no existe o no está activo`);
+      }
+
+      // Verificar si el tamaño existe y está activo
+      const tamañoExistente = await Size.findOne({
+        where: {
+          id: producto.tamañoId,
+          activa: true,
+        },
+      });
+
+      if (!tamañoExistente) {
+        // Si el tamaño no existe o no está activo, lanzar un error
+        throw new Error(`El tamaño con ID ${producto.tamañoId} no existe o no está activo`);
+      }
+
+      // Verificar si la categoría existe y está activa
+      const categoriaExistente = await Categoria.findOne({
+        where: {
+          id: producto.categoriaId,
+          activa: true,
+        },
+      });
+
+      if (!categoriaExistente) {
+        // Si la categoría no existe o no está activa, lanzar un error
+        throw new Error(`La categoría con ID ${producto.categoriaId} no existe o no está activa`);
+      }
+
       // Crear el producto en la base de datos
       const nuevoProducto = await Producto.create({
         name: producto.name,
@@ -38,6 +77,8 @@ module.exports = async (array) => {
         referencia_proveedor: producto.referencia_proveedor,
         marcaId: producto.marcaId,
         categoriaId: producto.categoriaId,
+        tamañoId: producto.tamañoId,
+        proveedorId: producto.proveedorId,
       });
 
       nuevoProducto.dataValues.id = `prod-${nuevoProducto.dataValues.id}`;

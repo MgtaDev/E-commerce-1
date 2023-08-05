@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
-import vector from '../../assets/img/vector.svg'
+import bagIcon from '../../assets/img/baghandle.svg'
+import bellIcon from '../../assets/img/icon-bell.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import { AiFillHeart } from 'react-icons/ai';
 import {AiFillShopping} from 'react-icons/ai'
