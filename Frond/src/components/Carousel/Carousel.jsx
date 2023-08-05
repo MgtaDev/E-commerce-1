@@ -50,7 +50,7 @@ const CarouselContainer = styled.div`
 `;
 
 const CarouselWrapper = styled(Slider)`
-  position: relative;
+  position: relative;;
   width: 100%;
   height: 210%;
 
