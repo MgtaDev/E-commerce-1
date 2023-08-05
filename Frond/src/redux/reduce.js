@@ -1,8 +1,13 @@
-import { ALLPRODUCTS, SELECTEDCATEGORY} from "./action-types";
+import { ALLCATEGORIES, ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES } from "./action-types";
 
 
 const InitialState = {
     Allproducts: [],
+    Allcategories: [],
+    Allsubcategories: [],
+    Allbrands: [],
+    Allsizes: [],
+    Allcolors: []
 }
 
 const reducer = (state = InitialState, {type, payload}) => {
@@ -12,13 +17,34 @@ const reducer = (state = InitialState, {type, payload}) => {
                 ...state,
                 Allproducts: payload
             }
-        case SELECTEDCATEGORY:
+        case ALLCATEGORIES :
             return{
                 ...state,
-                SELECTEDCATEGORY:payload
-            }   
+                Allcategories: payload
+            }
+        case ALLSUBCATEGORIES :
+            return{
+                ...state,
+                Allsubcategories: payload
+            }
+        case ALLBRANDS :
+            return{
+                 ...state,
+                Allbrands: payload
+            }
+        case ALLCOLORS :
+            return{
+                ...state,
+                Allcolors: payload
+            }
+        case ALLSIZES :
+            return{
+                ...state,
+                Allsizes: payload
+            }
+            
         default:
-            return state
+        return state
     }
 }
 

@@ -2,17 +2,17 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
-import bagIcon from '../../assets/img/baghandle.svg'
-import bellIcon from '../../assets/img/icon-bell.svg';
-import SearchBar from '../SearchBar/SearchBar';
+import vector from '../../assets/img/vector.svg'
 import { AiFillHeart } from 'react-icons/ai';
 import {AiFillShopping} from 'react-icons/ai'
+import SearchBar from '../SearchBar/SearchBar';
 import style from './NavBar.module.css';
 import LoginButton from '../LoginComponents/Login';
-import LogoutButton from '../LoginComponents/Logout';
 import Profile from '../LoginComponents/Profile/Profile'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = ({ initialLanguage }) => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [showMenu, setShowMenu] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [language, setLanguage] = useState(initialLanguage || 'en');
@@ -86,15 +86,12 @@ const Navbar = ({ initialLanguage }) => {
         <div className={style.icons}>
           <button className={style.btnb}><AiFillShopping /></button>
           <button className={style.btnb}><AiFillHeart /></button>
-          <img className={style.vector} alt="" src={vector} />
-          
           <div className={style.menuItem}>
           <Profile/>
           <LoginButton/>
-          <LogoutButton/>
+          {isAuthenticated && <p>{user.name}</p> }
           </div>
-        
-        </div>
+          </div>
 
       </nav>
     </>

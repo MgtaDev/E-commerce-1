@@ -2,7 +2,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 
-const Card = ({name, descripcion, precio_venta }) => {
+const Card = ({name, precio_venta }) => {
   //agregar la ruta de los detalles de cada card
   //en la to = "ruta de detalle"
   return (

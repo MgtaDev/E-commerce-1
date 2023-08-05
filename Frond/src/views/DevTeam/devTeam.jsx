@@ -307,7 +307,7 @@ const Reviews = () => {
      
       <DevContainer>
           <AvatarImage src={imageLink} alt="user avatar" />
-          <CardTitle>Esteban Lopez</CardTitle>
+          <CardTitle>Esteban Lopez.</CardTitle>
       </DevContainer>
     </Card>
 
