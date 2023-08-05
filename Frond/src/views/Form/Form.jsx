@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as yup from "yup"; // Importa yup para validar
 import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer'
+import axios from 'axios';
+
 
 import style from "./Form.module.css";
 
@@ -26,7 +28,7 @@ const Form = () => {
     "TRAVEL LOOKBOOK",
   ];
 
-  const colors = ["BLUE", "YELLOW", "RED", "GREEN", "PURPLE", "PINK"];
+  const colors = ["BLUE", "YELLOW", "RED", "GREEN", "PURPLE", "PINK","BLACK"];
 
   const categories = [
     "LABIAL",
@@ -84,13 +86,34 @@ const Form = () => {
     setSelectedCategories(updatedCategories);
   };
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const imageFile = event.target.files[0];
     if (imageFile) {
-      const imageUrl = URL.createObjectURL(imageFile);
-      setSelectedImage(imageUrl);
+      const formData = new FormData();
+      formData.append('image', imageFile);
+  
+      try {
+        const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          params: {
+            key: 'cf44a253679320997c892d7e7a273f04',
+          },
+        });
+  
+        if (response.data && response.data.data && response.data.data.url) {
+          setSelectedImage(response.data.data.url);
+          console.log('Imagen subida exitosamente:', response.data.data.url);
+        } else {
+          console.error('Hubo un problema al subir la imagen.');
+        }
+      } catch (error) {
+        console.error('Error al subir la imagen:', error);
+      }
     }
   };
+  
 
   const handleFormSubmit = (values) => {
     // Crear un objeto con los datos a guardar
