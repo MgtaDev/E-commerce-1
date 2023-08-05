@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
-import bagIcon from '../../assets/img/baghandle.svg'
-import bellIcon from '../../assets/img/icon-bell.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import { AiFillHeart } from 'react-icons/ai';
 import {AiFillShopping} from 'react-icons/ai'
@@ -86,8 +84,6 @@ const Navbar = ({ initialLanguage }) => {
         <div className={style.icons}>
           <button className={style.btnb}><AiFillShopping /></button>
           <button className={style.btnb}><AiFillHeart /></button>
-          <img className={style.vector} alt="" src={vector} />
-          
           <div className={style.menuItem}>
           <Profile/>
           <LoginButton/>
