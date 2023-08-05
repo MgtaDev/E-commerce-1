@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
-import bagIcon from '../../assets/img/baghandle.svg'
-import bellIcon from '../../assets/img/icon-bell.svg';
 import SearchBar from '../SearchBar/SearchBar';
+import { AiFillHeart } from 'react-icons/ai';
+import {AiFillShopping} from 'react-icons/ai'
 import style from './NavBar.module.css';
 import LoginButton from '../LoginComponents/Login';
 import LogoutButton from '../LoginComponents/Logout';
@@ -82,12 +82,13 @@ const Navbar = ({ initialLanguage }) => {
 
 
         <div className={style.icons}>
-          <button className={style.btnb}><img src={bagIcon} alt="bag icon" /></button>
-          <button className={style.btnb}><img src={bellIcon} alt="bell icon" /></button>
-
+          <button className={style.btnb}><AiFillShopping /></button>
+          <button className={style.btnb}><AiFillHeart /></button>
+          <div className={style.menuItem}>
           <Profile/>
           <LoginButton/>
           <LogoutButton/>
+          </div>
         
         </div>
 
