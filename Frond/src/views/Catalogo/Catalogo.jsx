@@ -1,9 +1,10 @@
 import Cards from "../../components/CatalogoComponen/Cards";
 import Catalogfilters from "../../components/CatalogoComponen/Catalogfilters";
+import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer'
 const Catalogo = () => {
     return (
-      <><section>
+      <><NavBar /><section>
         <div className="grid grid-cols-5 gap-4">
           <div className="col-span-1 px-10">
             <Catalogfilters />
@@ -22,7 +23,7 @@ const Catalogo = () => {
         </div>
         <div>paginacion</div>
       </section>
-    </>
+      <Footer></Footer></>
     );
   };
   
