@@ -16,7 +16,7 @@ const Carousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 5200,
     cssEase: 'linear',
     prevArrow: <ArrowIcon className="fa fa-chevron-left" />,
     nextArrow: <ArrowIcon className="fa fa-chevron-right" />,
