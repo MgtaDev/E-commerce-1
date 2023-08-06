@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
-import Navbar from "../../components/NavBar/NavBar";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
-import Footer from "../../components/Footer/Footer";
 import colorIcon from '../../assets/img/colorIcon.svg'
 //import { useDispatch, useSelector } from "react-redux";
 
@@ -58,18 +56,31 @@ const Detail = () => {
     // el stock disponible (que en este caso es 10);
     // border border-blue-500 border-5 rounded-lg'
 
+/*
+ {
+      "name": "Delineador Preciso",
+      "descripcion": "Delineador líquido con punta precisa para un acabado perfecto",
+      "precio_compra": 5.60,
+      "porcentaje_ganancia": 45,
+      "precio_venta": 8.12,
+      "referencia_proveedor": "REF753",
+      "marcaId": 5,
+      "categoriaId": 1
+    },
 
+*/
     return (
         <div>
-            <Navbar />
+            
             <div className="m-15">
                 <Button primary onClick={() => back('/')}>
                     Atrás
                 </Button>
             </div>
             <div className='flex flex-col justify-between ml-60 mr-60 lg:flex-row gap-16 lg:items-center'>
-            <div className='flex flex-col gap-6 lg:w-1/3 items-center mx-auto'>
-                <img src={activeImg} alt="" className='w-40% h-40% aspect-square object-cover rounded-xl ml-1'/>
+                <div className='flex flex-col gap-6 lg:w-1/3 items-center mx-auto'>
+
+                    <img src={activeImg} alt="" className='w-40% h-40% aspect-square object-cover rounded-xl ml-1' />
                     <div className='flex flex-row justify-between h-24'>
                         <img src={images.img1} alt="" className='w-36 h-36 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img1)} />
                         <img src={images.img2} alt="" className='w-36 h-36 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img2)} />
@@ -80,13 +91,20 @@ const Detail = () => {
 
                 <div className='flex flex-col gap-4 lg:w-2/4'>
                     <div>
+                        {/*
+                        <div>
+                        {products?.map((item) => (
+                            <p key={item.id}>{item.name.toUpperCase()}</p
+                            ))}
+                            </div>
+                            */}
                         <p className='font-semibold text-customColor text-2xl'>Lipstick 24 hs</p>
-                        <h1 className='text-5xl font-bold'>MAYBELLINE NEW YORK</h1>
+                        <h1 className='text-5xl font-bold'> {/* products.name */}MAYBELLINE NEW YORK</h1>
                     </div>
-                    <p className='text-gray-700 text-3xl'>
+                    <p className='text-gray-700 text-3xl'> {/* products.description */}
                         Pintalabios mate de larga duración SuperStay Matte Ink
                     </p>
-                    <h6 className='text-3xl font-semibold'>$ 3000.00</h6>
+                    <h6 className='text-3xl font-semibold'> {/* products.precio_venta */}$ 3000.00</h6>
                     <div className='flex flex-row items-center gap-12'>
                         <div className='flex flex-row gap-3'>
                             <div className='relative'>
@@ -119,9 +137,7 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-60'>
-                <Footer />
-            </div>
+            
         </div>
     )
 };
