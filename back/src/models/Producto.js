@@ -87,12 +87,8 @@ module.exports = (sequelize) => {
         name: 'proveedorId',
       }
     });
+  
 
-    Producto.belongsToMany(models.Subcategoria, {
-      through: 'producto_subcategoria',
-      foreignKey: 'productoId',
-      otherKey: 'subcategoriaId',
-    });
   };
 
   return Producto;

@@ -1,6 +1,12 @@
 const { Producto, Categoria, Marca, Size, Proveedor, Subcategoria } = require('../../db');
 
 module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId) => {
+
+  function primerLetraMayuscula(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+
+  name = primerLetraMayuscula(name);
   try {
     // Verificar si el proveedor existe y está activo
     const proveedorExistente = await Proveedor.findOne({
@@ -50,6 +56,16 @@ module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, p
       throw new Error(`La marca con ID ${marcaId} no existe o no está activa`);
     }
 
+    const productoExistente = await Producto.findOne({
+      where: {
+        name,
+      },
+    });
+
+    if (productoExistente) {
+      throw new Error(`Ya existe un producto con el nombre ${name}`);
+    }
+
     // Crear el producto en la base de datos
     const nuevoProducto = await Producto.create({
       name,
@@ -64,21 +80,31 @@ module.exports = async (name, descripcion, precio_compra, porcentaje_ganancia, p
       proveedorId,
     });
 
-// Asociar subcategorias al producto
-if (subcategoriaId && Array.isArray(subcategoriaId)) {
-  const subcategoriaInstances = await Subcategoria.findAll({
-    where: {
-      id: subcategoriaId,
-    },
-  });
 
-  if (subcategoriaInstances.length > 0) {
-    await nuevoProducto.addSubcategorias(subcategoriaInstances); // Utiliza addSubcategorias en lugar de setSubcategorias
-  }
-}
+    const subcategorias = await Subcategoria.findAll({
+      where: {
+        id: subcategoriaId,
+      },
+    });
+
+    const subcategoriasIncorrectas = subcategorias.filter(subcategoria => !subcategoria.activa);
+
+    if (subcategoriasIncorrectas.length > 0) {
+      
+      const productoExistente = await Producto.findOne({
+        where: {
+          name,
+        },
+      });
+      await productoExistente.destroy() 
+      
+      throw new Error(`Las subcategorías ${subcategoriasIncorrectas.map(sub => sub.id).join(', ')} no pertenecen a la misma categoría que el producto o están inactivas.`);
+    }
 
     // Asignar un identificador personalizado (opcional)
     nuevoProducto.dataValues.id = `prod-${nuevoProducto.dataValues.id}`;
+    nuevoProducto.dataValues.subcategoriaId = subcategoriaId
+
 
     return nuevoProducto;
   } catch (error) {
