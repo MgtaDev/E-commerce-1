@@ -1,27 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { brands, colors, products, sizes } from "../../redux/actions";
+import { brands, colors, sizes } from "../../redux/actions";
 
 const Catalogfilters = () => {
-  const productos = useSelector((state) => state.Allproducts.productos)
+  const stateProducts = useSelector(state => state.Allproducts);
   const tallas = useSelector((state)=> state.Allsizes)
   const marcas = useSelector((state) => state.Allbrands)
   const colores = useSelector((state)=> state.Allcolors)
   const dispatch = useDispatch()
   useEffect(()=>{
-    dispatch(products())
     dispatch(sizes())
     dispatch(colors())
     dispatch(brands())
-    dispatch(products())
 }, [dispatch])
-console.log(productos)
+
+    const total  = stateProducts.paginas * 10
 
 
     return (
       <div className="grid grid-cols-1 m-auto w-[90%] bg-white text-black py-10 text-lg capitalize justify-items-start">
         <h2 className="font-bold text-2xl">todos</h2>
-        <p>{productos.length}productos</p>
+        <p>productos {total}</p>
        
         {/* talla */}
         <div className="pt-5">

@@ -16,7 +16,7 @@ const Catalogo = () => {
 
   const dispatch = useDispatch();
   console.log(disableTF)
-  const handlerNext = () => {
+   const handlerNext = () => {
     pageNumberNx < stateProducts.paginas -1 ? setPageNumberNx(prevNext => prevNext + 1) : setDisableTF(false)
   };
 
@@ -62,9 +62,23 @@ const Catalogo = () => {
           </div>
           <Cards stateProducts={stateProducts} />
         </div>
-        <div>paginacion</div>
+        <div className="grid grid-cols-2 justify-items-center w-[30%] m-auto py-10">
+        <button
+          onClick={handlerPrev}
+          className="mx-1 text-3xl"
+        >
+          <BsFillArrowLeftSquareFill />
+        </button>
+        <button
+          onClick={handlerNext}
+        
+          className="mx-1 text-3xl"
+        >
+          <BsFillArrowRightSquareFill />
+        </button>
+      </div>
+      </div>
       </section>
-    </>
     );
   };
   
