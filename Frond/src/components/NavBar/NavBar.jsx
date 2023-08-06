@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import { AiFillHeart } from 'react-icons/ai';
 import { FiChevronDown } from 'react-icons/fi';
@@ -9,14 +9,23 @@ import style from './NavBar.module.css';
 import LoginButton from '../LoginComponents/Login';
 import Profile from '../LoginComponents/Profile/Profile';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch, useSelector } from 'react-redux'
+import { categories } from '../../redux/actions';
 
 const Navbar = ({ initialLanguage }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [isOpenSub, setIsOpenSub] = useState(false)
+  const dispatch = useDispatch()
+  const categorias = useSelector((state) => state.Allcategories)
+  console.log(categorias)
   const [showMenu, setShowMenu] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [language, setLanguage] = useState(initialLanguage || 'en');
+
+  useEffect(()=>{
+    dispatch(categories())
+}, [dispatch])
 
   const toggleLanguageMenu = () => {
     setShowLanguageMenu(!showLanguageMenu);
@@ -33,6 +42,34 @@ const Navbar = ({ initialLanguage }) => {
   const hideCategories = () => {
     setIsOpen(false);
   };
+  const showSub = () => {
+    setIsOpenSub(true);
+  };
+  const hideSub = () => {
+    setIsOpenSub(false);
+  };
+  const navigate = useNavigate()
+
+  const filterByCategories = (event) => {
+   const categoryToFilter = event.target.textContent
+   switch (categoryToFilter) {
+    case 'Maquillaje':
+      navigate('/catalogo')
+      break;
+
+    case 'Skincare':
+      navigate('/catalogo')
+      break;
+
+    case 'Accesorios':
+      navigate('/catalogo')
+      break;
+      
+   
+    default:
+      break;
+   }
+  }
 
   return (
     <>
@@ -62,37 +99,28 @@ const Navbar = ({ initialLanguage }) => {
         </div>
 
         <div className="flex justify-between items-center ml-10">
-          <div className="flex items-center">
+          <div onClick={showCategories} onMouseEnter={showCategories} className="flex items-center mr-5">
             <h2>Categorias</h2>
             <FiChevronDown />
-            {isOpen && (
+          </div>
+          {isOpen && (
               <div
-                onMouseEnter={showCategories}
                 onMouseLeave={hideCategories}
-                className="absolute top-12 right-4 z-20 w-48 bg-white border rounded-md shadow-lg pt-20 mt-9"
+                className="absolute top-30 z-20 w-48 right-50 bg-white border rounded-md shadow-lg mt-20"
               >
-                <a
-                  href="#perfil"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                >
-                  Maquillaje
-                </a>
-                <a
-                  href="#compras"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                >
-                  SkinCare
-                </a>
-                <a
-                  href="#carrito"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                >
-                  Accesorios
-                </a>
+
+              <ul>
+              {categorias && (
+                categorias.map((categoria) => {
+                  return  <li onClick={filterByCategories} onMouseEnter={showSub} onMouseLeave={hideSub} key={categoria.id} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer border-b border-b-2 border-solid ">{categoria.name}</li>
+
+                })
+              )}
+              </ul>
               </div>
             )}
-          </div>
 
+         
           <div className={`${style.categoriesMenu}`}>
             <ul className={`${style.menu} ${showMenu ? style.show : ''}`}>
               <li>
