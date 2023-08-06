@@ -7,8 +7,9 @@
 }
 
 .off{
-    width: 30px;
+    width: 20px;
     opacity: 70%;
+    margin: 1rem;
 }
 .unloguedUser{
     margin: 1rem;

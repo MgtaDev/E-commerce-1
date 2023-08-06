@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup"; // Importa yup para validar
-import NavBar from '../../components/NavBar/NavBar';
-import Footer from '../../components/Footer/Footer'
 import axios from 'axios';
 
 
@@ -155,7 +153,7 @@ const Form = () => {
   };
 
   return (
-    <><NavBar></NavBar><form onSubmit={formik.handleSubmit}>
+    <><form onSubmit={formik.handleSubmit}>
       <div className={style.formContainer}>
         <div className={`flex justify-center ${style.leftSection}`}>
           <div className="w-2/3">
@@ -339,7 +337,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-    </form><Footer/></>
+    </form></>
   );
 };
 

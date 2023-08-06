@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom'
 const Sidebar = ({ filters, onFilterChange, isHomePage }) => {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [isOpen, setIsOpen] = useState(false);

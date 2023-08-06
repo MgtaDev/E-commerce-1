@@ -62,23 +62,11 @@ const Catalogo = () => {
           </div>
           <Cards stateProducts={stateProducts} />
         </div>
-      </div>
-      <div className="grid grid-cols-2 justify-items-center w-[30%] m-auto py-10">
-        <button
-          onClick={handlerPrev}
-          className="mx-1 text-3xl"
-        >
-          <BsFillArrowLeftSquareFill />
-        </button>
-        <button
-          onClick={handlerNext}
-          className="mx-1 text-3xl"
-        >
-          <BsFillArrowRightSquareFill />
-        </button>
-      </div>
-    </section>
-  );
-};
-
-export default Catalogo;
+        <div>paginacion</div>
+      </section>
+    </>
+    );
+  };
+  
+  export default Catalogo;
+  
