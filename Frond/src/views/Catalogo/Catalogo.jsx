@@ -22,7 +22,7 @@ const Catalogo = () => {
         </div>
         <div>paginacion</div>
       </section>
-      <Footer></Footer></>
+    </>
     );
   };
   
