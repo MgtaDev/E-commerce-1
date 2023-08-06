@@ -84,6 +84,7 @@ margin-left:1%;
 text-align:center;
 font-size:32px;
 opacity:70%;
+margin-top:5%
 `
 
 const ButtonsDiv = styled.div`
@@ -396,7 +397,6 @@ const Reviews = () => {
     </Card>
 
 </ContainerTeam>
-<Footer/>
       </>
   );
 };
