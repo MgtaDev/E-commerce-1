@@ -101,7 +101,7 @@ const Navbar = ({ initialLanguage }) => {
         <div className="flex justify-between items-center ml-10">
           <div onClick={showCategories} onMouseEnter={showCategories} className="flex items-center mr-5">
             <h2>Categorias</h2>
-            <FiChevronDown />
+            {/* <FiChevronDown /> */}
           </div>
           {isOpen && (
               <div
