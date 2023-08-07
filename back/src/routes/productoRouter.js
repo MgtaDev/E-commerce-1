@@ -3,6 +3,7 @@ const router = express.Router();
 
 const getAllProducto = require('../controllers/Producto/getAllProductos')
 const getIdProducto = require('../controllers/Producto/getIdProducto')
+const getProductos = require('../controllers/Producto/getProductos')
 const getNameProducto = require('../controllers/Producto/getNameProductos')
 const postProducto = require('../controllers/Producto/postProducto')
 const postProductoArray = require('../controllers/Producto/postProductoArray')
@@ -22,6 +23,9 @@ router.get('/', async (req,res)=>{
       paginas: Math.ceil(producto.count / size),
       productos: producto.rows      
     }) 
+  }else{
+    let producto = await getProductos()
+      res.status(200).send(producto)
   }
   } catch (error) {
     res.status(400).send(error.message)
