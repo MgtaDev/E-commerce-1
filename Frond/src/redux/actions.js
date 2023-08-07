@@ -70,7 +70,7 @@ export const categories = () => async dispatch => {
       payload: data
    })
   };
-  export const getproductsByDetail = (id) =>{
+  export const getProductsByDetail = (id) =>{
    return async (dispatch) => {
      try {
        const { data } = await axios.get(`???`);
