@@ -112,7 +112,7 @@ const Detail = () => {
                         <div>
                         {products?.map((item) => (
                             <p key={item.id}>{item.name.toUpperCase()}</p
-                            ))}
+                            s  ))}
                             </div>
                             */}
                         <p className='font-semibold text-customColor text-2xl'>Lipstick 24 hs</p>
