@@ -73,7 +73,7 @@ export const categories = () => async dispatch => {
   export const getProductsByDetail = (id) =>{
    return async (dispatch) => {
      try {
-       const { data } = await axios.get(`???`);
+       const { data } = await axios.get(`/producto/${id}`);
          return dispatch({
            type: PRODUCTS_DETAIL,
            payload: data,
