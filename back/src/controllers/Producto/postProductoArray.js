@@ -5,7 +5,7 @@ module.exports = async (array) => {
 
   async function crearProducto(producto) {
 
-    let {name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId } = producto
+    let {name, descripcion, precio_compra, imagenes, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId } = producto
 
     function primerLetraMayuscula(str) {
       return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -77,6 +77,7 @@ module.exports = async (array) => {
         descripcion,
         precio_compra,
         porcentaje_ganancia,
+        imagenes,
         precio_venta,
         referencia_proveedor,
         marcaId,

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const getAllProducto = require('../controllers/Producto/getAllProductos')
+const getIdProducto = require('../controllers/Producto/getIdProducto')
 const postProducto = require('../controllers/Producto/postProducto')
 const postProductoArray = require('../controllers/Producto/postProductoArray')
 const putProducto = require('../controllers/Producto/putProducto')
@@ -16,6 +17,16 @@ router.get('/', async (req,res)=>{
       paginas: Math.ceil(producto.count / size),
       productos: producto.rows      
     })
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
+})
+
+router.get('/:productoId', async (req,res)=>{
+  const { productoId } = req.params
+  try {
+    let producto = await getIdProducto(productoId)
+    res.status(200).send(producto)
   } catch (error) {
     res.status(400).send(error.message)
   }
