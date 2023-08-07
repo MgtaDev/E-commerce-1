@@ -62,15 +62,15 @@ const Profile = () => {
       <img className={style.drop} src={user.picture} alt={user.name} />
       <OnlineDrop>.</OnlineDrop>
 
-    <a href="#perfil" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+    <a href="#perfil" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
     <IoSettingsSharp className="inline-block mr-2" />
       Mi perfil
     </a>
-    <a href="#compras" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+    <a href="#compras" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
     <IoBagHandleSharp className="inline-block mr-2" />
       Mis compras
     </a>
-    <a href="#carrito" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+    <a href="#carrito" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
     <FaShoppingCart className="inline-block mr-2" />
     Mi carrito
     </a>

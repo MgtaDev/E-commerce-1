@@ -33,7 +33,7 @@ const Contact = () => {
     }
   });
   return (
-  <section className="w-full bg-fuchsia-800 h-[100vh]">
+  <section className="w-full bg-white mt-8 h-[100vh]">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center items-center w-80% m-auto">
     <div className="w-full md:w-[50%] h-max">
       <img
