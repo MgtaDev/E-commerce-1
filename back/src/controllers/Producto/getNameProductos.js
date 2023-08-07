@@ -1,23 +1,24 @@
 const { Producto, Subcategoria } = require('../../db');
 const { Sequelize } = require('sequelize');
 
-
 module.exports = async (name) => {
-
-  let producto = await Producto.findAll({
-    where:{
-      name:{
-        [Sequelize.Op.like]: `%${name.toLowerCase()}%`,
+  try {
+    const productos = await Producto.findAll({
+      where: {
+        name: {
+          [Sequelize.Op.like]: `%${name.toLowerCase()}%`,
+        },
       },
-      include: 
-      {
+      include: {
         model: Subcategoria,
         attributes: ['name'],
         through: { attributes: [] },
       },
-    }
-  })
+    });
 
-  return producto
+    return productos;
+  } catch (error) {
+    console.error('Error al obtener los productos:', error.message);
+    throw error;
+  }
 };
-

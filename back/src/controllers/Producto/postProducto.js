@@ -2,11 +2,8 @@ const { Producto, Categoria, Marca, Size, Proveedor, Subcategoria } = require('.
 
 module.exports = async (name, descripcion, precio_compra, imagenes, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId) => {
 
-  function primerLetraMayuscula(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  }
-
-  name = primerLetraMayuscula(name);
+  
+  name = name.toLowerCase();
   try {
     // Verificar si el proveedor existe y está activo
     const proveedorExistente = await Proveedor.findOne({

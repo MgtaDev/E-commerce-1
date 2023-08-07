@@ -3,6 +3,7 @@ const router = express.Router();
 
 const getAllProducto = require('../controllers/Producto/getAllProductos')
 const getIdProducto = require('../controllers/Producto/getIdProducto')
+const getNameProducto = require('../controllers/Producto/getNameProductos')
 const postProducto = require('../controllers/Producto/postProducto')
 const postProductoArray = require('../controllers/Producto/postProductoArray')
 const putProducto = require('../controllers/Producto/putProducto')
@@ -10,13 +11,18 @@ const putActiveProducto = require('../controllers/Producto/putActiveProducto')
 const deleteProducto = require('../controllers/Producto/deleteProducto')
 
 router.get('/', async (req,res)=>{
-  const {page,size} = req.query;
+  const {page,size,name} = req.query;
   try {
+    if (name) {
+      let producto = await getNameProducto(name)
+      res.status(200).send(producto)
+  } else if (page,size) {
     let producto = await getAllProducto(page,size)
     res.status(200).send({
       paginas: Math.ceil(producto.count / size),
       productos: producto.rows      
-    })
+    }) 
+  }
   } catch (error) {
     res.status(400).send(error.message)
   }
