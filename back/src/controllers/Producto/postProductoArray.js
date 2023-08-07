@@ -92,6 +92,8 @@ module.exports = async (array) => {
           id: subcategoriaId,
         },
       });
+
+      await nuevoProducto.addSubcategoria(subcategorias);
   
       const subcategoriasIncorrectas = subcategorias.filter(subcategoria => !subcategoria.activa);
   

@@ -1,8 +1,18 @@
-const { Producto } = require('../../db');
+const { Producto, Subcategoria } = require('../../db');
 
 module.exports = async (productoId) => {
   try {
-    const producto = await Producto.findByPk(productoId);
+    const producto = await Producto.findOne({
+      where:{
+        id: productoId
+      },
+      include: 
+      {
+          model: Subcategoria,
+          attributes: ['name'],
+          through: { attributes: [] },
+        },
+    });
 
     if (!producto) {
       const error = new Error('producto no encontrado.');

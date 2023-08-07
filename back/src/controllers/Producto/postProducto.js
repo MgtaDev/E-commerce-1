@@ -88,6 +88,8 @@ module.exports = async (name, descripcion, precio_compra, imagenes, porcentaje_g
       },
     });
 
+    await nuevoProducto.addSubcategoria(subcategorias);
+
     const subcategoriasIncorrectas = subcategorias.filter(subcategoria => !subcategoria.activa);
 
     if (subcategoriasIncorrectas.length > 0) {
