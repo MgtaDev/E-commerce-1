@@ -4,6 +4,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { sizes, categories, brands } from "../../redux/actions";
+
 import style from "./Form.module.css";
 
 const validationSchema = yup.object({
@@ -188,6 +189,7 @@ const Form = () => {
                   ) : null}
                 </div>
               </div>
+
 
               {/* campo Porcentaje De Ganancia*/}
               <div>
