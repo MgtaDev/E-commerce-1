@@ -10,13 +10,34 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-  },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    
+    fecha_nacimiento: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    telefono: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    correo_electronico: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    contraseña: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     activa: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
