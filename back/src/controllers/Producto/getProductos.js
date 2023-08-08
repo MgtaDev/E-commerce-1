@@ -14,7 +14,7 @@ module.exports = async () => {
     console.log(productos);
 
     productos.forEach((producto) => {
-      producto.dataValues.id = `col-${producto.dataValues.id}`;
+      producto.dataValues.id = `prod-${producto.dataValues.id}`;
     });
 
     return productos;
