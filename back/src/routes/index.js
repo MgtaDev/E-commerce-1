@@ -9,6 +9,7 @@ const colorRouter = require('./colorRouter')
 const productoRouter = require('./productoRouter')
 const imagenRouter = require('./imagenRouter')
 const clienteRouter = require('./clienteRouter')
+const favoritoRouter = require('./favoritoRouter')
 
 const router = Router();
 
@@ -23,6 +24,7 @@ router.use('/color',colorRouter)
 router.use('/producto',productoRouter)
 router.use('/imagen',imagenRouter)
 router.use('/cliente',clienteRouter)
+router.use('/favorito',favoritoRouter)
 
 
 
