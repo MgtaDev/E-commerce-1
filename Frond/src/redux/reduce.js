@@ -1,4 +1,5 @@
 import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES } from "./action-types";
+import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, ADD_TOCART } from "./action-types";
 
 const InitialState = {
     Allproducts: [],
@@ -11,7 +12,8 @@ const InitialState = {
     productsDetail: [],
     productsFiltered: [],
     favorites: [],
-    localFavorites: []
+    localFavorites: [],
+    cartProducts: []
 }
 
 const reducer = (state = InitialState, {type, payload}) => {
@@ -114,6 +116,12 @@ const reducer = (state = InitialState, {type, payload}) => {
                 ...state,
                 productsFiltered: productosFiltrados
             }
+
+            case ADD_TOCART:
+                return {
+                    ...state,
+                    cartProducts: payload
+                };
         
         default:
         return state

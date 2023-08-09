@@ -44,13 +44,13 @@ router.get('/:productoId', async (req,res)=>{
 
 router.post('/', async (req, res) => {
   try {
-    const { name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId } = req.body;
+    const { name, descripcion, precio_compra, imagenPrincipal, imagenes, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId } = req.body;
 
     if (Array.isArray(req.body)) {
       const Productos = await postProductoArray(req.body);
       res.status(200).json(Productos);
     } else {
-      const Producto = await postProducto(name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId);
+      const Producto = await postProducto(name, descripcion, precio_compra, imagenPrincipal, imagenes, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId);
       res.status(200).json(Producto);
     }
   } catch (error) {
