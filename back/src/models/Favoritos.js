@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    clienteId: {
+    correo_electronico: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
