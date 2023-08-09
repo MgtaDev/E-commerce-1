@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES } from "./action-types";
 
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
 
@@ -32,8 +32,6 @@ export const productsCopy = () => async (dispatch) => {
   });
 
 };
-
-
 
 export const categories = () => async dispatch => {
    const {data} =await axios.get("/categoria")
@@ -96,3 +94,76 @@ export const categories = () => async dispatch => {
       payload: filtros
   }
   }
+
+  export const addFavoriteAPI = (favorito)=>{
+    try {
+      return async (dispatch) => {
+        await axios.post('/favorito', favorito);
+        const {data} = axios.get('/favorito')
+            return dispatch({
+            type: POST_FAVORITES_API,
+            payload: data,
+          });
+        };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  export const addFavoriteLS = (favorito)=>{
+    return {
+      type: POST_FAVORITES_LS,
+      payload: favorito
+    }
+  }
+
+  export const deleteFavoriteAPI = (idFav) =>{
+    try {
+      return async (dispatch) => {
+        await axios.delete('/favorito', idFav);
+        const {data} = axios.get('/favorito')
+        return dispatch({
+          type: POST_FAVORITES_API,
+          payload: data,
+        });
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  export const deleteFavoriteLS = (idFav) =>{
+    return {
+      type: DELETE_FAVORITES,
+      payload: idFav
+    }
+  }
+  
+  export const clearLocalFavorites = () => {
+    return {
+      type: POST_FAVORITES_LS,
+      payload: [],
+    };
+  };
+  
+  export const syncFavoritesWithAPI = () => {
+    return async (dispatch, getState) => {
+      const localFavorites = getState().localFavorites;
+      
+      try {
+        // Enviar los favoritos locales a la API
+        await axios.post(`/favorito`, localFavorites);
+        const {data} = axios.get('/favorito')
+        // Actualizar el estado con los datos de la API
+        dispatch({
+          type: POST_FAVORITES_API,
+          payload: data,
+        });
+  
+        // Limpiar los favoritos locales después de sincronizar con la API
+        dispatch(clearLocalFavorites());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };
