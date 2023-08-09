@@ -1,4 +1,4 @@
-import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED } from "./action-types";
+import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES } from "./action-types";
 
 const InitialState = {
     Allproducts: [],
@@ -9,7 +9,9 @@ const InitialState = {
     Allsizes: [],
     Allcolors: [],
     productsDetail: [],
-    productsFiltered: []
+    productsFiltered: [],
+    favorites: [],
+    localFavorites: []
 }
 
 const reducer = (state = InitialState, {type, payload}) => {
@@ -60,6 +62,22 @@ const reducer = (state = InitialState, {type, payload}) => {
             return {
                 ...state,
                productsDetail: []
+            }
+        case POST_FAVORITES_API:
+            return {
+                ...state,
+                favorites: payload
+            }
+        
+        case POST_FAVORITES_LS:
+            return {
+                ...state,
+                favorites: payload
+            }
+        case DELETE_FAVORITES:
+            return {
+                ...state,
+                favorites: state.localFavorites.filter(({ id }) => id!== payload),
             }
         
         case PRODUCTS_FILTERED:

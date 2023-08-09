@@ -14,6 +14,7 @@ import Profile from "./views/Profile/Profile";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
 import Detail from "../src/views/Detail/Detail";
+import Favoritos from "../src/views/Favoritos/Favoritos"
 
 import Dashboard from "./components/Dashboard/Dashboard";
 import axios from "axios"
@@ -43,7 +44,9 @@ function App () {
         <Route path="/devTeam" element={<DevTeam />} />
         <Route path="/form" element={<Form />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/catalogo/detail/:id" element={<Detail />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+        {/* <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
+        <Route path="/detail/:id" element={<Detail />} />
 
         <Route path="/dashboard" element = {<Dashboard/>}/>
 
