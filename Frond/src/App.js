@@ -45,7 +45,7 @@ function App () {
         <Route path="/form" element={<Form />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/favoritos" element={<Favoritos />} />
-        {/* <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
+        {/* Esta era la ruta anterior <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
         <Route path="/detail/:id" element={<Detail />} />
 
         <Route path="/dashboard" element = {<Dashboard/>}/>
