@@ -53,6 +53,11 @@ const Form = () => {
   const categoriesOptions = useSelector((state) => state.Allcategories);
   const brandsOptions = useSelector((state) => state.Allbrands);
 
+  const [imageUrl, setImageUrl] = useState("");
+
+  const imgbbApiKey = "cf44a253679320997c892d7e7a273f04";
+  const imgbbUploadUrl = "https://api.imgbb.com/1/upload";
+
   useEffect(() => {
     dispatch(sizes());
   }, [dispatch]);
@@ -83,22 +88,37 @@ const Form = () => {
     initialValues: {
       name: "",
       descripcion: "",
+      imagenPrincipal: null,
       precio_compra: "",
-      porcentaje_ganancia: "",
+      porcentaje_ganancia: 10,
       precio_venta: "",
       referencia_proveedor: "",
       marcaId: "",
       categoriaId: "",
       tamañoId: "",
       proveedorId: "",
+      subcategoriaId: [ 12, 9, 19, 16 ],
+      imagenes: [8,38,36,14,4,27],
     },
     validationSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       console.log("Valores enviados:", values);
 
       try {
-        const response = await axios.post("/producto", values);
-        console.log("Producto creado:", response.data);
+        const imageUrl = await handleImageUpload(values.imagenPrincipal);
+
+        console.log(imageUrl);
+        // Actualiza los valores con la URL de la imagen subida
+        const updatedValues = {
+          ...values,
+          imagenPrincipal: imageUrl,
+        };
+
+        console.log(updatedValues);
+        // Realiza la solicitud al servidor para crear el producto
+        const responseProducto = await axios.post("/producto", updatedValues);
+
+        console.log("Producto creado:", responseProducto.data);
         resetForm();
       } catch (error) {
         console.error("Error al crear el producto:", error);
@@ -112,6 +132,20 @@ const Form = () => {
   const [selectedCategories, setSelectedCategories] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleImageUpload = async (imageFile) => {
+    try {
+      const formData = new FormData();
+      formData.append("key", imgbbApiKey);
+      formData.append("image", imageFile);
+
+      const response = await axios.post(imgbbUploadUrl, formData);
+      return response.data.data.url;
+    } catch (error) {
+      console.error("Error al subir la imagen a imgbb:", error);
+      throw error;
+    }
+  };
 
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
@@ -184,6 +218,7 @@ const Form = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.name}
+                    style={{ borderColor: "rgb(222, 190, 234)" }}
                   />
                   {formik.touched.name && formik.errors.name ? (
                     <div className="text-red-500 text-sm mt-1">
@@ -338,8 +373,8 @@ const Form = () => {
                   rows="4"
                   className={`w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
                     formik.touched.descripcion && formik.errors.descripcion
-                      ? 'border-red-500' 
-                      : 'border-gray-300'
+                      ? "border-red-500"
+                      : "border-gray-300"
                   }`}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -443,21 +478,33 @@ const Form = () => {
               </div>
 
               {/* campo imagen del producto */}
-              {/* {selectedImage && (
-                <div className="w-full h-64 border border-gray-300 rounded-lg overflow-hidden">
-                  <img
-                    src={selectedImage}
-                    alt="Imagen seleccionada"
-                    className="w-full h-full object-cover"
-                  />
+              <div className="w-full h-80 border border-gray-300 rounded-lg overflow-hidden flex items-center justify-center">
+                {/* Círculo más grande */}
+                <div className="w-64 h-64 bg-gray-200 rounded-full flex items-center justify-center">
+                  {formik.values.imagenPrincipal ? (
+                    <img
+                      src={URL.createObjectURL(formik.values.imagenPrincipal)}
+                      alt="Imagen seleccionada"
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  ) : (
+                    <span className="text-gray-600">Cargar imagen</span>
+                  )}
                 </div>
-              )}
+              </div>
               <input
                 type="file"
+                id="imagenPrincipal"
+                name="imagenPrincipal"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={(event) => {
+                  formik.setFieldValue(
+                    "imagenPrincipal",
+                    event.currentTarget.files[0]
+                  );
+                }}
                 className="mb-4"
-              /> */}
+              />
 
               {/* Botones del Form */}
               <div className="flex gap-2">
