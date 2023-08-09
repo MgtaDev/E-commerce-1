@@ -99,7 +99,7 @@ export const categories = () => async dispatch => {
     try {
       return async (dispatch) => {
         await axios.post('/favorito', favorito);
-        const {data} = axios.get('/favorito')
+        const {data} = await axios.get('/favorito')
             return dispatch({
             type: POST_FAVORITES_API,
             payload: data,
@@ -121,7 +121,7 @@ export const categories = () => async dispatch => {
     try {
       return async (dispatch) => {
         await axios.delete('/favorito', idFav);
-        const {data} = axios.get('/favorito')
+        const {data} = await axios.get('/favorito')
         return dispatch({
           type: POST_FAVORITES_API,
           payload: data,
@@ -153,7 +153,7 @@ export const categories = () => async dispatch => {
       try {
         // Enviar los favoritos locales a la API
         await axios.post(`/favorito`, localFavorites);
-        const {data} = axios.get('/favorito')
+        const {data} = await axios.get('/favorito')
         // Actualizar el estado con los datos de la API
         dispatch({
           type: POST_FAVORITES_API,
