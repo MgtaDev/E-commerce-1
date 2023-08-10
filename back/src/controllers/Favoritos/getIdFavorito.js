@@ -3,7 +3,7 @@ const { Favoritos } = require('../../db');
 module.exports = async (correo_electronico) => {
   try {
     
-    const favoritos = await Cliente.findAll({
+    const favoritos = await Favoritos.findAll({
       where: {
         correo_electronico,
       },
@@ -13,7 +13,7 @@ module.exports = async (correo_electronico) => {
     const favoritoIds = favoritos.map((favorito) => {
         return {
             id: `fav-${favorito.id}`,
-            correo_electronico: `cli-${favorito.correo_electronico}`,
+            correo_electronico: `${favorito.correo_electronico}`,
             productoId: `prod-${favorito.productoId}`
         }
     });
