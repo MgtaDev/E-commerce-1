@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './App.css';
 import {Route, Routes, useLocation } from "react-router-dom";
 import LandingPage from "./views/LandingPage/LandingPage";
@@ -21,14 +21,24 @@ import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import AddToCart from "./views/Cart/AddToCart";
 import Carrito from "./views/Cart/Carrito";
+import { productosSinPag } from "./redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 axios.defaults.baseURL = "http://localhost:3001/"
+
+
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 
 function App () {
   const location = useLocation()
+  const dispatch = useDispatch()
+  const localFavorites = useSelector(state => state.localFavorites)
+  console.log(localFavorites)
+  useEffect(()=>{
+    dispatch(productosSinPag())
+  }, [])
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES, CART_PRODUCTS } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES, ADD_TOCART, PRODUCTOS } from "./action-types";
+
 
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
 
@@ -32,6 +33,14 @@ export const productsCopy = () => async (dispatch) => {
   });
 
 };
+
+export const productosSinPag = () => async (dispatch) =>{
+  const { data } = await axios.get("/producto");
+  dispatch({
+    type: PRODUCTOS,
+    payload: data,
+  });
+}
 
 export const categories = () => async dispatch => {
    const {data} =await axios.get("/categoria")
@@ -169,7 +178,7 @@ export const categories = () => async dispatch => {
   };
   export const addToCartFunction = (id, quantity) => {
     return {
-      type: 'ADD_TO_CART',
+      type: ADD_TOCART,
       payload: {
         id,
         quantity,

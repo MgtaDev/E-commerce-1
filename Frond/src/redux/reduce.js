@@ -1,5 +1,6 @@
-import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES } from "./action-types";
-import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, ADD_TOCART } from "./action-types";
+import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES, ADD_TOCART, PRODUCTOS } from "./action-types";
+const storedLocalFavorites = localStorage.getItem("localFavorites");
+const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
 
 const InitialState = {
     Allproducts: [],
@@ -11,8 +12,9 @@ const InitialState = {
     Allcolors: [],
     productsDetail: [],
     productsFiltered: [],
+    productos: [],
     favorites: [],
-    localFavorites: [],
+    localFavorites: initialLocalFavorites,
     cartProducts: []
 }
 
@@ -22,6 +24,11 @@ const reducer = (state = InitialState, {type, payload}) => {
             return{
                 ...state,
                 Allproducts: payload
+            }
+        case PRODUCTOS:
+            return{
+                ...state,
+                productos: payload
             }
         //case provisional
         case COPY_ALLPRODUCTS:
@@ -70,18 +77,38 @@ const reducer = (state = InitialState, {type, payload}) => {
                 ...state,
                 favorites: payload
             }
-        
+
         case POST_FAVORITES_LS:
-            return {
-                ...state,
-                favorites: payload
+            const productsFav = (id) => {
+                return state.productos.find((prod) => prod.id === id);
+            };
+
+            if (payload.length > 0) {
+                const newLocalFavorites = [...state.localFavorites, productsFav(payload)];
+                // Actualiza el Local Storage con la nueva lista de favoritos
+                localStorage.setItem("localFavorites", JSON.stringify(newLocalFavorites));
+    
+                return {
+                    ...state,
+                    localFavorites: newLocalFavorites,
+                };
+            } else {
+                return {
+                    ...state,
+                    localFavorites: payload
+                }
             }
+
         case DELETE_FAVORITES:
+            const newLocalFavoritesAfterDelete = state.localFavorites.filter((item) => item.id !== payload);
+            // Actualiza el Local Storage con la nueva lista de favoritos después de eliminar
+            localStorage.setItem("localFavorites", JSON.stringify(newLocalFavoritesAfterDelete));
+      
             return {
-                ...state,
-                favorites: state.localFavorites.filter(({ id }) => id!== payload),
-            }
-        
+              ...state,
+              localFavorites: newLocalFavoritesAfterDelete,
+            };
+                
         case PRODUCTS_FILTERED:
             const filtrarProductos = (productos, filtro) => {
                 return productos.filter((producto) => {
