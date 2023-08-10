@@ -48,6 +48,7 @@ const Navbar = ({ initialLanguage }) => {
     setIsOpenSub(false);
   };
   const navigate = useNavigate()
+  const {loginWithRedirect} = useAuth0()
 
   const filterByCategories = (event) => {
    const categoryToFilter = event.target.textContent
@@ -181,9 +182,6 @@ const Navbar = ({ initialLanguage }) => {
             </ul>
           </div>
 
-          <Link to="#" className='ml-40'>
-            Crear cuenta
-          </Link>
         </div>
       </nav>
     </>
