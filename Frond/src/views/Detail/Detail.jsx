@@ -121,7 +121,7 @@ const Detail = () => {
                                 <p key={item.id}>{item.name.toUpperCase()}</p>
                             ))}
                         </div>
-                        <p className='font-semibold text-customColor text-2xl'>Lipstick 24 hs</p>
+               {/*<p className='font-semibold text-customColor text-2xl'>Lipstick 24 hs</p>*/ }
 
 
                         <h1 className='text-5xl font-bold'>{stateProducts.name}</h1>
