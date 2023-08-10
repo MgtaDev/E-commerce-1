@@ -21,11 +21,12 @@ const OtherMoreProductsContainer = () => {
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
               <Slider>
                 <div id="slider" className="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
-                  <Slide index={0}>
+                 
+                 <Slide index={0}>
                     <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/ZX5Tqs4/img1260.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
+                      <img src= "https://i.ibb.co/ZX5Tqs4/img1260.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
                       <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="texlg:t-xl le leading-4 text-basealg:ding-tight text-white"></h2>
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
                         <div className="flex h-full items-end pb-6">
                           <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
                         </div>
@@ -34,7 +35,7 @@ const OtherMoreProductsContainer = () => {
                   </Slide>
                   <Slide index={1}>
                     <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/YNczvML/img2632.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <img src="https://i.ibb.co/hD0vx7C/img2382.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
                       <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
                         <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
                         <div className="flex h-full items-end pb-6">
@@ -45,7 +46,7 @@ const OtherMoreProductsContainer = () => {
                   </Slide>
                   <Slide index={2}>
                     <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/0tsFck5/img2798.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <img src="https://i.ibb.co/fnkDxRQ/img1932.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
                       <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
                         <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
                         <div className="flex h-full items-end pb-6">
@@ -55,6 +56,94 @@ const OtherMoreProductsContainer = () => {
                     </div>
                   </Slide>
                   <Slide index={3}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/DYLjGHD/img2396.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={4}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/74xX5kQ/img271.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={5}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/gZX0zvJ/img1384.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={6}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/B2VnhML/img2693.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={7}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/mBJBnBF/img306.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={8}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/ZX5Tqs4/img1260.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="texlg:t-xl le leading-4 text-basealg:ding-tight text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={9}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/YNczvML/img2632.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={10}>
+                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
+                      <img src="https://i.ibb.co/0tsFck5/img2798.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
+                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
+                        <div className="flex h-full items-end pb-6">
+                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
+                        </div>
+                      </div>
+                    </div>
+                  </Slide>
+                  <Slide index={11}>
                     <div className="flex flex-shrink-0 relative w-full sm:w-auto">
                       <img src="https://i.ibb.co/FB9DG1p/img3428.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
                       <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
@@ -67,95 +156,6 @@ const OtherMoreProductsContainer = () => {
                   </Slide>
                 </div>
               </Slider>
-
-              <Slide index={4}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src= "https://i.ibb.co/YNczvML/img2632.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={5}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/NKh10gM/img1299.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={6}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/LZJ5ScX/img169.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={7}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/c29F8j8/img261.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={8}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/74xX5kQ/img271.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={9}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/gZX0zvJ/img1384.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={10}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/B2VnhML/img2693.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
-                  <Slide index={11}>
-                    <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/mBJBnBF/img306.jpg" alt="sitting area" className="object-cover object-center w-[320px] h-[220px]" />
-                      <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 text-white"></h2>
-                        <div className="flex h-full items-end pb-6">
-                          <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white"></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </Slide>
             </div>
             <ButtonNext role="button" aria-label="slide forward" className="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
               <svg width={8} height={14} viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">

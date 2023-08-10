@@ -111,7 +111,7 @@ const MoreProductsCardContainer = () => {
                   </Slide>
                   <Slide index={8}>
                     <div className="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/ZX5Tqs4/img1260.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
+                      <img src="https://i.ibb.co/ctpR3L1/img158.jpg" alt="black chair and white table" className="object-cover object-center w-[320px] h-[220px]" />
                       <div className="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
                         <h2 className="texlg:t-xl le leading-4 text-basealg:ding-tight text-white"></h2>
                         <div className="flex h-full items-end pb-6">
@@ -169,49 +169,3 @@ const MoreProductsCardContainer = () => {
 }
 
 export default MoreProductsCardContainer;
-
-
-/* import { useSelector, useDispatch } from "react-redux";
-import MoreProductsCard from "./MoreProductsCard";
-import { useEffect } from "react";
-import { products } from "../../redux/actions";
-// Asegúrate de importar la acción adecuadamente
-
-const MoreProductsContainer = () => {
-    const dispatch = useDispatch;
-
-  // Utilizamos directamente el estado "stateProducts" proveniente de Redux
-const productos = useSelector((state)=> state.allProducts)
-useEffect(() => {
-    dispatch(products()) 
-}); // despacha cuando se monta
-
-  return (
-    <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-auto-rows grid-rows-1 gap-5">
-      {productos.length>0? productos.map(({id, name, descripcion, precio_venta}) => {
-        return (
-          <MoreProductsCard
-            id={id}
-            key={id}
-            name={name}
-            descripcion={descripcion}
-            precio={precio_venta}
-          />
-        );
-      }): productos.productos?.map(({id, name, descripcion, precio_venta}) => {
-        return (
-          <MoreProductsCard
-            id={id}
-            key={id}
-            name={name}
-            descripcion={descripcion}
-            precio={precio_venta}
-          />
-        );
-      })}
-    </div>
-  );
-};
-
-export default MoreProductsContainer;
-*/
