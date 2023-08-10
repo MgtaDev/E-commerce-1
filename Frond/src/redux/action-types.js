@@ -10,6 +10,7 @@ export const PRODUCTS_DETAIL = 'PRODUCTS_DETAIL'
 export const PRODUCTS_FILTERED = 'PRODUCTS_FILTERED'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const CART_PRODUCTS = 'CART_PRODUCTS'
+export const GETPRODUCT_BYNAME = 'GETPRODUCT_BYNAME'
 
 
 //provisional

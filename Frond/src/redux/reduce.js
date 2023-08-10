@@ -1,4 +1,4 @@
-import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, ADD_TO_CART, CART_PRODUCTS } from "./action-types";
+import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, GETPRODUCT_BYNAME, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, ADD_TO_CART, CART_PRODUCTS } from "./action-types";
 
 const InitialState = {
     Allproducts: [],
@@ -11,6 +11,7 @@ const InitialState = {
     productsDetail: [],
     productsFiltered: [],
     cartProducts: [],
+    searchResults: [],
     addProductsToCart: []
 }
 
@@ -111,7 +112,13 @@ const reducer = (state = InitialState, {type, payload}) => {
                     ...state,
                     addProductsToCart: payload
                 };
-        
+
+                case GETPRODUCT_BYNAME:
+                return {
+                    ...state,
+                    searchResults: payload
+                }
+    
         default:
         return state
     }
