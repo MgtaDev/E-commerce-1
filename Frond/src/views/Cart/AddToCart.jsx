@@ -43,9 +43,15 @@ const AddToCart = () => {
             </div>
 
           </div>
+
+          <div>
           <p className='text-1xl font-bold'>{(stateProducts.name)}</p>
-          <p className='text-green font-semibold'>fue agregado al carrito exitosamente</p>
+          <p className='text-green-500 font-semibold'>fue agregado al carrito exitosamente</p>
+          </div>
+
           <p> Hay {amount} __ producto(s) en tu carrito </p>
+
+          <div className="flex space-x-4">
           <button onClick={addToCart} className='bg-customColor text-white font-semibold py-1 px-4 rounded-xl flex items-center gap-2'>
             Ver carrito
           </button>
@@ -53,6 +59,7 @@ const AddToCart = () => {
           <button onClick={addToCart} className='bg-customLightColor text-white font-semibold py-1 px-4 rounded-xl flex items-center gap-2'>
             Comprar carrito
           </button>
+        </div>
         </div>
 
         <div className='flex flex-row gap-2 m-10 rounded-lg bg-fuchsia-200 p-10 justify-center items-center'>
