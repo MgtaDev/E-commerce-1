@@ -96,13 +96,26 @@ export const categories = () => async dispatch => {
       payload: filtros
   }
   }
+  
+  export const getCartProducts = (id) =>{
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.get(`/producto/${id}`);
+          return dispatch({
+            type: CART_PRODUCTS,
+            payload: data,
+          });
+        } catch (error) {
+        alert("Error: " + error.response.data.error);
+      }
+    }}
 
-  export const addToCartFunction = (id, quantity) => {
+  export const addToCartFunction = (id, amount) => {
     return {
       type: 'ADD_TO_CART',
       payload: {
         id,
-        quantity,
+        amount,
       },
     };
   };

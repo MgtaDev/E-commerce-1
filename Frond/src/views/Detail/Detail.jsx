@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import bagIcon from '../../assets/img/baghandleWhite.svg';
 import colorIcon from '../../assets/img/colorIcon.svg'
-import { getProductsByDetail, cleanDetail } from "../../redux/actions";
+import { getProductsByDetail, cleanDetail, addToCartFunction } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -39,10 +39,10 @@ const Detail = () => {
     console.log(stateProducts)
 
     useEffect(() => {
-        dispatch(getProductsByDetail(id)); // despacha cuando se monta
+        dispatch(getProductsByDetail(id)); 
 
         return () => {
-            dispatch(cleanDetail()); // despacha cuando se desmonta
+            dispatch(cleanDetail()); 
         };
     }, [dispatch, id]);
 
@@ -90,7 +90,8 @@ const Detail = () => {
     */
 
         const addToCart = () => {
-            const carritotUrl = `/itemadded/${id}?quantity=${amount}`; 
+             dispatch(addToCartFunction(id, amount));
+            const carritotUrl = `/itemadded/${id}?amount=${amount}`; 
             navigate(carritotUrl);
           };
 

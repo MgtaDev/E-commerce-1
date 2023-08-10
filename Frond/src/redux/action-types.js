@@ -9,6 +9,7 @@ export const CLEAN_DETAIL = 'CLEAN_DETAIL'
 export const PRODUCTS_DETAIL = 'PRODUCTS_DETAIL'
 export const PRODUCTS_FILTERED = 'PRODUCTS_FILTERED'
 export const ADD_TOCART = 'ADD_TOCART'
+export const CART_PRODUCTS = 'CART_PRODUCTS'
 
 //provisional
 export const COPY_ALLPRODUCTS = 'COPY_ALLPRODUCTS'
