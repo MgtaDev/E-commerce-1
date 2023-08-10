@@ -5,7 +5,9 @@ import Navbar from "../../components/NavBar/NavBar";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
 import Footer from "../../components/Footer/Footer";
 import colorIcon from '../../assets/img/colorIcon.svg'
-//import { useDispatch, useSelector } from "react-redux";
+import { getProductsByDetail, cleanDetail } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Button = styled.button`
   display: flex;
@@ -32,8 +34,20 @@ const Button = styled.button`
 
 const Detail = () => {
     const back = useNavigate();
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
     const { id } = useParams();
-    // const products = useSelector ((state) => state.Allproducts: 
+    const stateProducts = useSelector(state => state.productsDetail);
+    console.log(stateProducts)
+
+    useEffect(() => {
+        dispatch(getProductsByDetail(id)); // despacha cuando se monta
+
+        return () => {
+            dispatch(cleanDetail()); // despacha cuando se desmonta
+        };
+    }, [dispatch, id]);
+
 
     const [images, setImages] = useState({
         img1: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML19241_1_1c53.webp",
@@ -44,7 +58,7 @@ const Detail = () => {
 
     const [activeImg, setActiveImage] = useState(images.img1)
 
-    const [amount, setAmount] = useState(1);
+    const [amount, setAmount] = useState(0);
 
     const handleDecrement = () => {
         setAmount((prev) => Math.max(prev - 1, 0));
@@ -54,10 +68,33 @@ const Detail = () => {
         setAmount((prev) => Math.min(prev + 1, 10));
     };
 
-    // La cantidad del stock no puede ser menor a cero y como maximo tiene que ser
-    // el stock disponible (que en este caso es 10);
     // border border-blue-500 border-5 rounded-lg'
 
+    /*
+     {
+           "productos": [
+        {
+          "id": "col-16",
+          "name": "Spray fijador de maquillaje",
+          "descripcion": "Spray fijador de maquillaje para una larga duración",
+          "precio_compra": "11.40",
+          "porcentaje_ganancia": 25,
+          "precio_venta": "14.25",
+          "referencia_proveedor": "REF238",
+          "marcaId": 1,
+          "categoriaId": 3,
+          "tamañoId": 3,
+          "proveedorId": 6,
+          "activa": true
+        }
+        },
+    
+    */
+
+        const addToCart = () => {
+            const carritotUrl = `/itemadded/${id}?quantity=${amount}`; 
+            navigate(carritotUrl);
+          };
 
     return (
         <div>
@@ -112,7 +149,7 @@ const Detail = () => {
                         <span className='py-2 px-4 rounded-lg'>{amount}</span>
                         <button className='bg-gray-200 py-2 px-4 mr-4 rounded-lg text-customColor text-3xl' onClick={handleIncrement}>+</button>
 
-                        <button className='bg-customColor text-white font-semibold py-3 px-14 rounded-xl h-full flex items-center gap-2'>
+                        <button onClick={addToCart} className='bg-customColor text-white font-semibold py-3 px-14 rounded-xl h-full flex items-center gap-2'>
                             <img src={bagIcon} alt="bag icon" className="w-6 h-6 " />
                             Agregar al carrito
                         </button>
