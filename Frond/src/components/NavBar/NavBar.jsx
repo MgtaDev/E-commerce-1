@@ -183,13 +183,6 @@ const Navbar = ({ initialLanguage }) => {
             </ul>
           </div>
 
-          <Link onClick={() => 
-            !isAuthenticated 
-            ? loginWithRedirect()
-            :''
-          } to="#" className='ml-40'>
-            Crear cuenta
-          </Link>
         </div>
       </nav>
     </>

@@ -8,6 +8,7 @@ import colorIcon from '../../assets/img/colorIcon.svg'
 import { getProductsByDetail, cleanDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import axios from "axios";
 
 const Button = styled.button`
   display: flex;
@@ -47,6 +48,13 @@ const Detail = () => {
             dispatch(cleanDetail()); // despacha cuando se desmonta
         };
     }, [dispatch, id]);
+
+    const productToPay = {
+        nombre: stateProducts.name,
+        precio: stateProducts.precio_venta,
+        descripcion: stateProducts.descripcion,
+    }
+
 
 
     const [images, setImages] = useState({
@@ -153,6 +161,10 @@ const Detail = () => {
                             <img src={bagIcon} alt="bag icon" className="w-6 h-6 " />
                             Agregar al carrito
                         </button>
+                        <button className='bg-customColor text-white font-semibold py-3 px-14 rounded-xl h-full flex items-center gap-2' onClick={() => {
+                        axios.post('http://localhost:3001/pago', productToPay).then((res)=>window.location.href = res.data.response.body.init_point)}}>Comprar ahora
+                         </button>
+
                     </div>
                 </div>
             </div>
