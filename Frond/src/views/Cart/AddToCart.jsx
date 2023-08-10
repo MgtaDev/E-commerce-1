@@ -11,21 +11,21 @@ let image = "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5
 const AddToCart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //const location = useLocation();
+  const location = useLocation();
   const stateProducts = useSelector(state => state.cartProducts);
   console.log(stateProducts);
-  const { id, amount } = useParams();
-  /* const searchParams = new URLSearchParams(location.search);
+  const { id, amount = 0 } = useParams();
+  const searchParams = new URLSearchParams(location.search);
  
-   const id = searchParams.get("id");
-   const amount = searchParams.get("amount"); */
+ //  const id = searchParams.get("id");
+   //const amount = /*searchParams.get("amount") */ 2 ; 
 
   useEffect(() => {
-    dispatch(getCartProducts(id));
-  }, [dispatch, id]);
+    dispatch(getCartProducts(id, amount));
+  }, [dispatch, id, amount]);
 
   const addToCart = () => {
-    // dispatch(addToCartFunction(id, amount)); 
+    dispatch(addToCartFunction(id, amount)); 
     const carritotUrl = `/carrito/${id}`;
     navigate(carritotUrl);
   };
