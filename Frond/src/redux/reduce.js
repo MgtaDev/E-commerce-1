@@ -1,7 +1,6 @@
-import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES, ADD_TOCART, PRODUCTOS } from "./action-types";
+import { ALLCATEGORIES, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLBRANDS, ALLCOLORS, ALLSIZES, ALLSUBCATEGORIES, PRODUCTS_DETAIL, CLEAN_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, ADD_TOCART, PRODUCTOS } from "./action-types";
 const storedLocalFavorites = localStorage.getItem("localFavorites");
 const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
-
 const InitialState = {
     Allproducts: [],
     copyAllProducts: [],
@@ -15,10 +14,11 @@ const InitialState = {
     productos: [],
     favorites: [],
     localFavorites: initialLocalFavorites,
+    favoritesRaw: [],
     cartProducts: []
 }
 
-const reducer = (state = InitialState, {type, payload}) => {
+const reducer = (state = InitialState, {type, payload, data}) => {
     switch (type) {
         case ALLPRODUCTS :
             return{
@@ -73,9 +73,27 @@ const reducer = (state = InitialState, {type, payload}) => {
                productsDetail: []
             }
         case POST_FAVORITES_API:
+            const productosFav = (id) =>{
+                return state.productos.find((product)=>product.id===id)
+            }
+            const {productoId} = payload
+            const newFavorites = [...state.favorites, productosFav(`prod-${productoId}`)]
             return {
                 ...state,
-                favorites: payload
+                favorites: newFavorites,
+                favoritesRaw: data
+            }
+        
+        case POST_FAVORITES_API_INICIO:
+            const productsFavI = (ids) => {
+                return state.productos.filter((prod) => ids.includes(prod.id));
+              };
+
+              const favoritesInicio = productsFavI(payload);
+            return {
+                ...state,
+                favorites: favoritesInicio, 
+                favoritesRaw: data
             }
 
         case POST_FAVORITES_LS:
@@ -107,6 +125,13 @@ const reducer = (state = InitialState, {type, payload}) => {
             return {
               ...state,
               localFavorites: newLocalFavoritesAfterDelete,
+            };
+        case DELETE_FAVORITES_API:
+            const newFavoritesAfterDelete = state.favorites.filter((item) => item.id !== payload);
+            return {
+                ...state,
+                favorites: newFavoritesAfterDelete,
+                favoritesRaw: data
             };
                 
         case PRODUCTS_FILTERED:

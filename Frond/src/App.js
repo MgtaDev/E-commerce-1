@@ -21,8 +21,10 @@ import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import AddToCart from "./views/Cart/AddToCart";
 import Carrito from "./views/Cart/Carrito";
-import { productosSinPag } from "./redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
+import { useDispatch} from "react-redux";
+
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 axios.defaults.baseURL = "http://localhost:3001/"
 
@@ -34,11 +36,17 @@ axios.defaults.baseURL = "http://localhost:3001/"
 function App () {
   const location = useLocation()
   const dispatch = useDispatch()
-  const localFavorites = useSelector(state => state.localFavorites)
-  console.log(localFavorites)
+  const {user, isAuthenticated} = useAuth0()
+
   useEffect(()=>{
     dispatch(productosSinPag())
   }, [])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(syncFavoritesWithAPI(user.email));
+    }
+  }, [user]);
 
   return (
     <div>

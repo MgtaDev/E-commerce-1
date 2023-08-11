@@ -1,15 +1,13 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Card from "../../components/CatalogoComponen/Card";
 import Offers from "../../components/offers/offers"
 
 const Favoritos = () => {
-const favoritos = useSelector(state => state.localFavorites);
+const favoritosLS = useSelector(state => state.localFavorites);
+const favoritosAPI = useSelector (state => state.favorites)
 const { user, isAuthenticated} = useAuth0();
-const dispatch = useDispatch()
 const saludo = ()=> {
     return (
         <div className="text-xl">
@@ -17,6 +15,10 @@ const saludo = ()=> {
         </div>
     )
 }
+const categorias = useSelector((state) => state.Allcategories)
+console.log(categorias)
+
+const favoritos = isAuthenticated? favoritosAPI: favoritosLS;
 
 console.log(useAuth0())
 console.log(favoritos)

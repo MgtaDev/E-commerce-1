@@ -8,23 +8,58 @@ import { useEffect, useState } from "react";
 const Card = ({ id, name, precio_venta }) => {
   const dispatch = useDispatch();
   const localFavorites = useSelector(state => state.localFavorites);
-  const [isFavorite, setIsFavorite] = useState(localFavorites.some(item => item.id === id));
+  const favorites = useSelector(state => state.favorites)
+  const favoritesRaw = useSelector(state=> state.favoritesRaw)
   const {user, isAuthenticated} = useAuth0()
-  // const correo_electronico = user.email
+  const [isFavorite, setIsFavorite] = useState(localFavorites.some(item => item.id === id));
+  const extractNumber = (string) => {
+    const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
+    return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
+  };
+  const productoId = extractNumber(id)
+  const correo_electronico = user?.email
+  const favorito = {
+    productoId,
+    correo_electronico
+  }
+  console.log(favoritesRaw)
+  console.log(favorites)
+  console.log(localFavorites)
   const handleFavoriteClick = () => {
     if (isFavorite) {
-      dispatch(deleteFavoriteLS(id));
-      // dispatch(deleteFavoriteAPI(id))
+      if (isAuthenticated) {
+        if (favoritesRaw.length > 0) {
+          const resultado = favoritesRaw.find(objeto => objeto.productoId === id);
+          if (resultado) {
+            const idFav = resultado.id;
+            const favoritoR = {
+              correo_electronico,
+              idFav,
+              id
+            };
+            dispatch(deleteFavoriteAPI(favoritoR));
+          }
+      }
+      } else {
+        dispatch(deleteFavoriteLS(id));
+      }
     } else {
-      // dispatch(addFavoriteAPI({productoId: id, correo_electronico}))
-      dispatch(addFavoriteLS(id));
+      if (isAuthenticated) {
+        dispatch(addFavoriteAPI(favorito))
+      } else {
+        dispatch(addFavoriteLS(id));
+      }
     }
     setIsFavorite(!isFavorite); 
   };
 
   useEffect(() => {
-    setIsFavorite(localFavorites.some(item => item.id === id));
-  }, [localFavorites, id]);
+    if (isAuthenticated) {
+      setIsFavorite(favorites.some(objeto => objeto.id === id));
+    } else {
+      setIsFavorite(localFavorites.some(item => item.id === id));
+    }
+  }, [localFavorites, favorites, id, isAuthenticated]);
 
   return (
     <div className="grid grid-cols-1 rounded-lg bg-white px-5 py-10 relative shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">

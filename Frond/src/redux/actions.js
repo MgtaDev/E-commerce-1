@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_LS, DELETE_FAVORITES, ADD_TOCART, PRODUCTOS } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, ADD_TOCART, PRODUCTOS } from "./action-types";
 
 
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
@@ -104,14 +104,19 @@ export const categories = () => async dispatch => {
   }
   }
 
-  export const addFavoriteAPI = (favorito)=>{
+  export const addFavoriteAPI = ({productoId, correo_electronico})=>{
     try {
       return async (dispatch) => {
-        await axios.post('/favorito', favorito);
-        const {data} = await axios.get('/favorito')
+        const requestData = {
+          productoId: productoId,
+          correo_electronico: correo_electronico,
+        };
+        await axios.post('/favorito', requestData);
+        const {data} = await axios.get(`/favorito/${correo_electronico}`)
             return dispatch({
             type: POST_FAVORITES_API,
-            payload: data,
+            payload: requestData,
+            data: data
           });
         };
     } catch (error) {
@@ -126,14 +131,15 @@ export const categories = () => async dispatch => {
     }
   }
 
-  export const deleteFavoriteAPI = (idFav) =>{
+  export const deleteFavoriteAPI = ({idFav, correo_electronico, id}) =>{
     try {
       return async (dispatch) => {
-        await axios.delete('/favorito', idFav);
-        const {data} = await axios.get('/favorito')
+        await axios.delete(`/favorito/${idFav}`);
+        const {data} = await axios.get(`/favorito/${correo_electronico}`)
         return dispatch({
-          type: POST_FAVORITES_API,
-          payload: data,
+          type: DELETE_FAVORITES_API,
+          payload: id,
+          data: data
         });
       };
     } catch (error) {
@@ -155,22 +161,31 @@ export const categories = () => async dispatch => {
     };
   };
   
-  export const syncFavoritesWithAPI = () => {
+  export const syncFavoritesWithAPI = (correo_electronico) => {
     return async (dispatch, getState) => {
       const localFavorites = getState().localFavorites;
+      const extractNumber = (string) => {
+        const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
+        return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
+      };
+      const transformedFavorites = localFavorites.map(item => ({
+        correo_electronico,
+        productoId: extractNumber(item.id)
+      }));
       
+      localStorage.removeItem("localFavorites")
+      dispatch(clearLocalFavorites());
       try {
-        // Enviar los favoritos locales a la API
-        await axios.post(`/favorito`, localFavorites);
-        const {data} = await axios.get('/favorito')
+        await axios.post(`/favorito`, transformedFavorites);
+        const {data} = await axios.get(`/favorito/${correo_electronico}`)
         // Actualizar el estado con los datos de la API
         dispatch({
-          type: POST_FAVORITES_API,
-          payload: data,
+          type: POST_FAVORITES_API_INICIO,
+          payload: data.map(item => item.productoId),
+          data: data
         });
   
         // Limpiar los favoritos locales después de sincronizar con la API
-        dispatch(clearLocalFavorites());
       } catch (error) {
         console.log(error);
       }
