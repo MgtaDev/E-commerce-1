@@ -41,6 +41,10 @@ const postArrayCliente = require('./src/controllers/cliente/postArrayCliente');
 const ClienteData = require('../json/cliente.json')
 const postArrayFavorito = require('./src/controllers/Favoritos/postArrayFavorito')
 const FavoritoData = require('../json/Favoritos.json')
+const postColorArray = require('./src/controllers/Color/postColorArray')
+const ColorData = require('../json/color.json')
+const postArrayInventario = require('./src/controllers/Inventario/postArrayInventario')
+const InventarioData = require('../json/inventario.json')
 
 async function loadCategoriaData() {
   try {
@@ -59,6 +63,9 @@ async function loadCategoriaData() {
       await postArrayProveedor(ProveedorData);
       console.log('proveedor data loaded.');
 
+      await postColorArray(ColorData);
+      console.log('Color data loaded.');
+
       await postArrayImagen(ImagenData);
       console.log('Imagen data loaded.');
 
@@ -69,10 +76,13 @@ async function loadCategoriaData() {
       console.log('Cliente data loaded.');
 
       await postArrayFavorito(FavoritoData);
-      console.log('Favorito data loaded.');
+      console.log('Favorito data loaded.'); 
+      
+      await postArrayInventario(InventarioData);
+      console.log('Inventario data loaded.'); 
 
   } catch (error) {
-    console.error('Error loading categoría data:', error.message);
+    console.error('Error loading data:', error.message);
   }
 }
 
@@ -89,7 +99,7 @@ async function startServer() {
     server.listen(PORT, () => {
       console.log('Server listening on port', PORT);
     });
-  } catch (error) {
+  } catch (error) {{}
     console.error('Error starting server:', error.message);
     process.exit(1); // Salimos con un código de error en caso de un problema
   }
