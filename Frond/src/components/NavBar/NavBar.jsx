@@ -10,7 +10,7 @@ import LoginButton from '../LoginComponents/Login';
 import Profile from '../LoginComponents/Profile/Profile';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux'
-import { categories, filtrarPorCategoria, productsCopy } from '../../redux/actions';
+import { categories, productsCopy } from '../../redux/actions';
 import Swal from 'sweetalert2';
 
 const Navbar = ({ initialLanguage }) => {
@@ -60,19 +60,14 @@ const Navbar = ({ initialLanguage }) => {
    switch (categoryToFilter) {
     case 'Maquillaje':
       navigate('/catalogo')
-      filtrarPorCategoria(categoryToFilter)
       break;
 
     case 'Skincare':
       navigate('/catalogo')
-      filtrarPorCategoria(categoryToFilter)
-
       break;
 
     case 'Accesorios':
       // navigate('/catalogo')
-      filtrarPorCategoria(categoryToFilter)
-
       break;
       
    
