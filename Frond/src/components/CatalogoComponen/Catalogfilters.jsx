@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { brands, colors, sizes, productFilter, productsCopy} from "../../redux/actions";
-import { useNavigate } from "react-router-dom";
 
 const Catalogfilters = () => {
   const stateProducts = useSelector(state => state.Allproducts);
   const tallas = useSelector((state)=> state.Allsizes)
   const marcas = useSelector((state) => state.Allbrands)
   const categorias = useSelector((state)=> state.Allcategories)
-  const productosFiltrados = useSelector((state)=> state.productsFiltered)
-  const navigate = useNavigate()
+  const productosFiltrados = useSelector((state)=> state.productos)
   const [selectedFilters, setSelectedFilters] = useState(
     {
       precio_venta: "",
@@ -26,54 +24,56 @@ const Catalogfilters = () => {
   const [minPrice, setMinPrice] = useState(""); 
   const [maxPrice, setMaxPrice] = useState("");
   const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(sizes())
-    dispatch(colors())
-    dispatch(brands())
-    dispatch(productsCopy())
-}, [dispatch])
 
-useEffect(() => {
-  console.log(selectedFilters);
-  console.log(productosFiltrados)
-}, [selectedFilters]);
-    const total  = stateProducts.paginas * 10
+    useEffect(()=>{
+      dispatch(sizes())
+      dispatch(colors())
+      dispatch(brands())
+      dispatch(productsCopy())
+    }, [dispatch])
 
-    const handleFilterClick = () => {
-    const minPriceValue = parseFloat(minPrice);
-    const maxPriceValue = parseFloat(maxPrice);
-
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      precio_venta: {
-        min: isNaN(minPriceValue) ? "" : minPriceValue,
-        max: isNaN(maxPriceValue) ? "" : maxPriceValue,
-      },
-    }));
-      console.log(selectedFilters)
+    useEffect(() => {
+      console.log(selectedFilters);
+      console.log(productosFiltrados)
       dispatch(productFilter(selectedFilters))
-    };
+    }, [selectedFilters]);
 
-    const handleMultipleOptionChange = (propertyName, optionId) => {
-      setSelectedFilters((prevFilters) => {
-        const isAlreadySelected = prevFilters[propertyName].includes(optionId);
-  
-        if (isAlreadySelected) {
-          return {
-            ...prevFilters,
-            [propertyName]: prevFilters[propertyName].filter((id) => id !== optionId),
-          };
-        } else {
-          return {
-            ...prevFilters,
-            [propertyName]: [...prevFilters[propertyName], optionId],
-          };
-        }
-      });
-    }
-    const handleReset = ()=>{
-      window.location.reload();
-    }
+    useEffect(() => {
+      const minPriceValue = parseFloat(minPrice);
+      const maxPriceValue = parseFloat(maxPrice);
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        precio_venta: {
+          min: isNaN(minPriceValue) ? "" : minPriceValue,
+          max: isNaN(maxPriceValue) ? "" : maxPriceValue,
+        },
+      }));
+    }, [minPrice, maxPrice]);
+
+  const total  = stateProducts.paginas * 10;
+
+  const handleMultipleOptionChange = (propertyName, optionId) => {
+    setSelectedFilters((prevFilters) => {
+      const isAlreadySelected = prevFilters[propertyName].includes(optionId);
+
+      if (isAlreadySelected) {
+        return {
+          ...prevFilters,
+          [propertyName]: prevFilters[propertyName].filter((id) => id !== optionId),
+        };
+      } else {
+        return {
+          ...prevFilters,
+          [propertyName]: [...prevFilters[propertyName], optionId],
+        };
+      }
+    });
+  }
+
+  const handleReset = ()=>{
+    window.location.reload();
+  }
+
     return (
       <div className="grid grid-cols-1 m-auto w-[90%] bg-white text-black py-10 text-lg capitalize justify-items-start">
         <h2 className="font-bold text-2xl">todos</h2>
@@ -164,13 +164,6 @@ useEffect(() => {
           onChange={(e) => {const value = parseFloat(e.target.value);
             setMaxPrice(isNaN(value) || value < 0 ? 0 : value)}}/>
         </div>
-
-        <button 
-        class=" h-10 px-10 font-semibold rounded-md bg-black mt-5  text-white" 
-        type="submit"
-        onClick={handleFilterClick}>
-           Filtrar 
-        </button>
         <button 
         class=" h-10 px-10 font-semibold rounded-md bg-black mt-5  text-white" 
         onClick={handleReset}>
