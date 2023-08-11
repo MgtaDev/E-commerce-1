@@ -79,7 +79,7 @@ async function loadCategoriaData() {
 async function startServer() {
   try {
     // Sincronizamos la base de datos y forzamos la creación de tablas
-    await conn.sync({ force: false });
+    await conn.sync({ force: true });
     console.log('Database synchronized.');
 
     // Cargamos los datos de categoría desde el archivo JSON

@@ -37,7 +37,7 @@ const Detail = () => {
     const navigate = useNavigate()
     const { id } = useParams();
     const stateProducts = useSelector(state => state.productsDetail);
-    console.log(stateProducts)
+    console.log(stateProducts.imagenPrincipal)
 
     useEffect(() => {
         dispatch(getProductsByDetail(id));
@@ -49,7 +49,7 @@ const Detail = () => {
 
 
     const [images, setImages] = useState({
-        img1: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML19241_1_1c53.webp",
+        img1: "https://i.ibb.co/kxJxXtT/Iluminador-en-Crema.jpg",
         img2: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML21209_1_ac93.webp",
         img3: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22532_1_1d09.webp",
         img4: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22533_1_22cb.webp"
