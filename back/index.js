@@ -86,7 +86,7 @@ async function loadCategoriaData() {
   } catch (error) {
     console.error('Error loading data:', error.message);
   }
-}postArrayInventario
+}
 
 async function startServer() {
   try {
