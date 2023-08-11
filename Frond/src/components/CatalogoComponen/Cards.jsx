@@ -7,7 +7,7 @@ const Cards = ({stateProducts}) => {
 const productosFiltrados = useSelector((state)=> state.productsFiltered)
   return (
     <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-auto-rows grid-rows-1 gap-5">
-      {productosFiltrados.length>0? productosFiltrados.map(({id, name, descripcion, precio_venta}) => {
+      {productosFiltrados.length>0? productosFiltrados.map(({id, name, descripcion, precio_venta,imagenPrincipal}) => {
         return (
           <Card
             id={id}
@@ -15,9 +15,10 @@ const productosFiltrados = useSelector((state)=> state.productsFiltered)
             name={name}
             descripcion={descripcion}
             precio={precio_venta}
+            imagenPrincipal={imagenPrincipal}
           />
         );
-      }): stateProducts.productos?.map(({id, name, descripcion, precio_venta}) => {
+      }): stateProducts.productos?.map(({id, name, descripcion, precio_venta,imagenPrincipal}) => {
         return (
           <Card
             id={id}
@@ -25,6 +26,7 @@ const productosFiltrados = useSelector((state)=> state.productsFiltered)
             name={name}
             descripcion={descripcion}
             precio={precio_venta}
+            imagenPrincipal={imagenPrincipal}
           />
         );
       })}

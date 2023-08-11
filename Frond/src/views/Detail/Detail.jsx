@@ -55,7 +55,7 @@ const Detail = () => {
         img4: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22533_1_22cb.webp"
     })
 
-    const [activeImg, setActiveImage] = useState(images.img1)
+    const [activeImg, setActiveImage] = useState(stateProducts.img1)
 
     const [amount, setAmount] = useState(0);
 

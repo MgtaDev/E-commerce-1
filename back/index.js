@@ -36,7 +36,7 @@ const ProveedorData = require('../json/Proveedores.json')
 const postArrayImagen = require('./src/controllers/Imagen/postImagenArray');
 const ImagenData = require('../json/imagen.json')
 const postArrayProducto = require('./src/controllers/Producto/postProductoArray');
-const ProductoData = require('../json/Producto.json')
+const ProductoData = require('../json/ProductoConImagenes.json')
 const postArrayCliente = require('./src/controllers/cliente/postArrayCliente');
 const ClienteData = require('../json/cliente.json')
 const postArrayFavorito = require('./src/controllers/Favoritos/postArrayFavorito')
@@ -79,7 +79,7 @@ async function loadCategoriaData() {
 async function startServer() {
   try {
     // Sincronizamos la base de datos y forzamos la creación de tablas
-    await conn.sync({ force: true });
+    await conn.sync({ force: false });
     console.log('Database synchronized.');
 
     // Cargamos los datos de categoría desde el archivo JSON
