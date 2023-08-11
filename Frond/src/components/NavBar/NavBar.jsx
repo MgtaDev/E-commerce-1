@@ -22,7 +22,6 @@ const Navbar = ({ initialLanguage }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [language, setLanguage] = useState(initialLanguage || 'en');
-
   useEffect(()=>{
     dispatch(categories())
 }, [dispatch])
@@ -88,7 +87,7 @@ const Navbar = ({ initialLanguage }) => {
             <button className={style.btnb}>
               <AiFillShopping />
             </button>
-            <button className={style.btnb}>
+            <button className={style.btnb} onClick={()=>navigate('/favoritos')}>
               <AiFillHeart />
             </button>
             <div className={style.menuItem}>
