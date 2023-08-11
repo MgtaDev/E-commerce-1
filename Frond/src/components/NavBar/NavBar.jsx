@@ -10,7 +10,7 @@ import LoginButton from '../LoginComponents/Login';
 import Profile from '../LoginComponents/Profile/Profile';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux'
-import { categories, productFilter } from '../../redux/actions';
+import { categories } from '../../redux/actions';
 
 const Navbar = ({ initialLanguage }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -24,6 +24,7 @@ const Navbar = ({ initialLanguage }) => {
   const [language, setLanguage] = useState(initialLanguage || 'en');
   useEffect(()=>{
     dispatch(categories())
+    dispatch(productsCopy())
 }, [dispatch])
 
   const toggleLanguageMenu = () => {
@@ -52,27 +53,55 @@ const Navbar = ({ initialLanguage }) => {
 
   const filterByCategories = (event) => {
    const categoryToFilter = event.target.textContent
+   const categoriaId = event.target.id
+   console.log(categoriaId)
+   console.log(categoryToFilter)
    switch (categoryToFilter) {
     case 'Maquillaje':
       navigate('/catalogo')
-      dispatch(productFilter({categoriaId: [1]}))
-       break;
- 
-     case 'Skincare':
-       navigate('/catalogo')
-       dispatch(productFilter({categoriaId: [2]}))
-       break;
- 
-     case 'Accesorios':
-       navigate('/catalogo')
-       dispatch(productFilter({categoriaId: [3]}))
-       break;
-       
+      break;
+
+    case 'Skincare':
+      navigate('/catalogo')
+      break;
+
+    case 'Accesorios':
+      navigate('/catalogo')
+      break;
+      
    
     default:
       break;
    }
   }
+
+
+  //Condicionales de logueo
+  const mustBeLogedCarrito = () =>{
+    if(!isAuthenticated){
+      return Swal.fire(
+        'Estas registrado?',
+        'Inicia sesion para ver tu carrito',
+        'error'
+      )
+    }else{
+      navigate('/carrito/:id')
+    }
+  }
+
+  const mustBeLogedFavoritos = () =>{
+    if(!isAuthenticated){
+      return Swal.fire(
+        'Estas registrado?',
+        'Inicia sesion para ver tus favoritos',
+        'error'
+      )
+    }else{
+      navigate('/favoritos')
+    }
+  }
+
+  
 
   return (
     <>
@@ -87,10 +116,10 @@ const Navbar = ({ initialLanguage }) => {
           </div>
 
           <div className={style.icons}>
-            <button className={style.btnb}>
+            <button onClick={mustBeLogedCarrito} className={style.btnb}>
               <AiFillShopping />
             </button>
-            <button className={style.btnb} onClick={()=>navigate('/favoritos')}>
+            <button  onClick={mustBeLogedFavoritos} className={style.btnb}>
               <AiFillHeart />
             </button>
             <div className={style.menuItem}>
@@ -115,11 +144,12 @@ const Navbar = ({ initialLanguage }) => {
               <ul>
               {categorias && (
                 categorias.map((categoria) => {
-                  return  <li onClick={filterByCategories} onMouseEnter={showSub} onMouseLeave={hideSub} key={categoria.id} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer border-b border-b-2 border-solid ">{categoria.name}</li>
+                  return  <li onClick={filterByCategories} onMouseEnter={showSub} id={categoria.id} onMouseLeave={hideSub} key={categoria.id} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer border-b border-b-2 border-solid ">{categoria.name}</li>
 
                 })
               )}
               </ul>
+              
               </div>
             )}
 
