@@ -10,7 +10,7 @@ import LoginButton from '../LoginComponents/Login';
 import Profile from '../LoginComponents/Profile/Profile';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux'
-import { categories } from '../../redux/actions';
+import { categories, productFilter } from '../../redux/actions';
 
 const Navbar = ({ initialLanguage }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -55,16 +55,19 @@ const Navbar = ({ initialLanguage }) => {
    switch (categoryToFilter) {
     case 'Maquillaje':
       navigate('/catalogo')
-      break;
-
-    case 'Skincare':
-      navigate('/catalogo')
-      break;
-
-    case 'Accesorios':
-      navigate('/catalogo')
-      break;
-      
+      dispatch(productFilter({categoriaId: [1]}))
+       break;
+ 
+     case 'Skincare':
+       navigate('/catalogo')
+       dispatch(productFilter({categoriaId: [2]}))
+       break;
+ 
+     case 'Accesorios':
+       navigate('/catalogo')
+       dispatch(productFilter({categoriaId: [3]}))
+       break;
+       
    
     default:
       break;
