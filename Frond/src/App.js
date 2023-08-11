@@ -25,6 +25,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
 import { useDispatch} from "react-redux";
 
+import { useParams } from "react-router-dom"; 
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 axios.defaults.baseURL = "http://localhost:3001/"
 
@@ -47,6 +48,7 @@ function App () {
       dispatch(syncFavoritesWithAPI(user.email));
     }
   }, [user]);
+  const params = useParams();
 
   return (
     <div>
