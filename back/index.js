@@ -32,8 +32,6 @@ const postArraySize = require('./src/controllers/size/postArraySize');
 const SizeData = require('../json/Size.json')
 const postArrayProveedor = require('./src/controllers/Proveedor/postArrayProveedor');
 const ProveedorData = require('../json/Proveedores.json')
-const postArrayImagen = require('./src/controllers/Imagen/postImagenArray');
-const ImagenData = require('../json/imagen.json')
 const postArrayProducto = require('./src/controllers/Producto/postProductoArray');
 const ProductoData = require('../json/Producto.json')
 const postArrayCliente = require('./src/controllers/cliente/postArrayCliente');
@@ -64,9 +62,6 @@ async function loadCategoriaData() {
 
       await postColorArray(ColorData);
       console.log('Color data loaded.');
-
-      await postArrayImagen(ImagenData);
-      console.log('Imagen data loaded.');
 
       await postArrayProducto(ProductoData);
       console.log('Producto data loaded.');
