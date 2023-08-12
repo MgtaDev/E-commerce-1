@@ -22,9 +22,6 @@ const Card = ({ id, name, precio_venta }) => {
     productoId,
     correo_electronico
   }
-  console.log(favoritesRaw)
-  console.log(favorites)
-  console.log(localFavorites)
   const handleFavoriteClick = () => {
     if (isFavorite) {
       if (isAuthenticated) {

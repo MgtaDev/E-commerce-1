@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { brands, colors, sizes, productFilter, productsCopy} from "../../redux/actions";
+import { brands, colors, sizes, productFilter} from "../../redux/actions";
 
 const Catalogfilters = () => {
   const stateProducts = useSelector(state => state.Allproducts);
   const tallas = useSelector((state)=> state.Allsizes)
   const marcas = useSelector((state) => state.Allbrands)
   const categorias = useSelector((state)=> state.Allcategories)
-  const productosFiltrados = useSelector((state)=> state.productos)
+  const productosFiltrados = useSelector((state)=> state.productsFiltered)
+  const [filterChanged, setFilterChanged] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState(
     {
       precio_venta: "",
@@ -15,7 +16,8 @@ const Catalogfilters = () => {
       categoriaId: [],
       tamañoId: [],
     });
-
+  console.log(productosFiltrados)
+  console.log(selectedFilters)
   const extractNumber = (string) => {
   const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
     return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
@@ -29,15 +31,9 @@ const Catalogfilters = () => {
       dispatch(sizes())
       dispatch(colors())
       dispatch(brands())
-      dispatch(productsCopy())
     }, [dispatch])
 
-    useEffect(() => {
-      console.log(selectedFilters);
-      console.log(productosFiltrados)
-      dispatch(productFilter(selectedFilters))
-    }, [selectedFilters]);
-
+    
     useEffect(() => {
       const minPriceValue = parseFloat(minPrice);
       const maxPriceValue = parseFloat(maxPrice);
@@ -48,14 +44,14 @@ const Catalogfilters = () => {
           max: isNaN(maxPriceValue) ? "" : maxPriceValue,
         },
       }));
+      setFilterChanged(true);
     }, [minPrice, maxPrice]);
-
-  const total  = stateProducts.paginas * 10;
-
-  const handleMultipleOptionChange = (propertyName, optionId) => {
-    setSelectedFilters((prevFilters) => {
+    
+    const total  = stateProducts.paginas * 10;
+    
+    const handleMultipleOptionChange = (propertyName, optionId) => {
+      setSelectedFilters((prevFilters) => {
       const isAlreadySelected = prevFilters[propertyName].includes(optionId);
-
       if (isAlreadySelected) {
         return {
           ...prevFilters,
@@ -68,8 +64,44 @@ const Catalogfilters = () => {
         };
       }
     });
+    setFilterChanged(true);
   }
+  useEffect(() => {
 
+    if (productosFiltrados.length > 0) {
+      const filteredCategoriaId = productosFiltrados.map(producto => producto.categoriaId);
+      
+      setSelectedFilters(prevFilters => ({
+        ...prevFilters,
+        categoriaId: filteredCategoriaId,
+
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (
+      (!selectedFilters.tamañoId.length &&
+      !selectedFilters.marcaId.length &&
+      !selectedFilters.categoriaId.length &&
+      selectedFilters.precio_venta.min === "" &&
+      selectedFilters.precio_venta.max === "") 
+    ) {
+      dispatch(productFilter({
+          precio_venta: {
+            min: null,
+            max: null,
+          },
+          marcaId: [],
+          categoriaId: [],
+          tamañoId: [],
+      }))
+    } else if (filterChanged) {
+      dispatch(productFilter(selectedFilters));
+      setFilterChanged(false);
+    } 
+  }, [selectedFilters, filterChanged]);
+  
   const handleReset = ()=>{
     window.location.reload();
   }
