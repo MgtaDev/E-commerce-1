@@ -10,6 +10,10 @@ module.exports = async () => {
       },
     });
 
+    productos.forEach(producto => {
+      producto.dataValues.id = `prod-${producto.dataValues.id}`;
+    });
+    
     return productos;
   } catch (error) {
     console.error('Error al obtener los productos:', error.message);
