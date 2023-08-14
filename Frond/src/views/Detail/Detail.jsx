@@ -13,7 +13,6 @@ import MoreProductsContainer from "../../components/MoreProducts/MoreProductsCon
 
 const Detail = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const { loginWithRedirect } = useAuth0()
     const back = useNavigate();
     const dispatch = useDispatch();
     const navigate = useNavigate()
