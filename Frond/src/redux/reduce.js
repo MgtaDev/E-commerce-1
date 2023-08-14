@@ -1,6 +1,8 @@
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME  } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART } from "./action-types";
 const storedLocalFavorites = localStorage.getItem("localFavorites");
 const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
+const storedLocalCart = localStorage.getItem("localCart");
+const initialLocalCart = storedLocalCart ? JSON.parse(storedLocalCart) : [];
 
 const InitialState = {
     Allproducts: [],
@@ -18,7 +20,8 @@ const InitialState = {
     favoritesRaw: [],
     cartProducts: [],
     searchResults: [],
-    addProductsToCart: []
+    addProductsToCart: [],
+    localCart: initialLocalCart
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {
@@ -190,6 +193,34 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                     ...state,
                     searchResults: payload
                 }
+                case POST_CART_LS:
+                    const itemsInCart = (id) =>{
+                        return state.productos.find((prod)=>prod.id===id);
+                    };
+                    const { id, amount } = payload;
+                    console.log(`id y amount de reduce ${id} y ${amount}`);               
+                    if (amount>0){
+                        const newItem = {...itemsInCart(id), amount}
+                        const newItemsInCart = [...state.localCart, newItem];
+                        localStorage.setItem("localCart", JSON.stringify(newItemsInCart));
+                        console.log(`newItem ${newItem}`);
+                        return{
+                            ...state,
+                            localCart: newItemsInCart,
+                        };
+                    } else {
+                        return {
+                            ...state,
+                            localCart:[]
+                        }
+                    }
+    
+                case EMPTY_LOCAL_CART:
+                    localStorage.removeItem("localCart");
+                    return {
+                        ...state,
+                        localCart:[]
+                };
     
         default:
         return state
