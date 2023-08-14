@@ -12,33 +12,14 @@ import { FaCircle } from "react-icons/fa";
 import MoreProductsContainer from "../../components/MoreProducts/MoreProductsContainer";
 
 const Detail = () => {
-
-     /*
-     {
-           "productos": [
-        {
-          "id": "col-16",
-          "name": "Spray fijador de maquillaje",
-          "descripcion": "Spray fijador de maquillaje para una larga duración",
-          "precio_compra": "11.40",
-          "porcentaje_ganancia": 25,
-          "precio_venta": "14.25",
-          "referencia_proveedor": "REF238",
-          "marcaId": 1,
-          "categoriaId": 3,
-          "tamañoId": 3,
-          "proveedorId": 6,
-          "activa": true
-        }
-        },
-    
-    */
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const { loginWithRedirect } = useAuth0()
     const back = useNavigate();
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const { id } = useParams();
     const stateProducts = useSelector(state => state.productsDetail);
+    console.log(stateProducts)
 
     const [userInfo, setUserInfo] = useState({
          nombre: 'Daniel',
@@ -62,6 +43,7 @@ const Detail = () => {
 
     const handleProceedToPayment = () => {
         if (!isAuthenticated) {
+            // Si el usuario no está autenticado, mostrar una alerta
             Swal.fire('Debes iniciar sesión para continuar', 'error');
             return;
         }
@@ -104,17 +86,9 @@ const Detail = () => {
         };
     }, [dispatch, id]);
 
-    useEffect(() => {
-        if (stateProducts.imagenPrincipal) {
-            setImages(prevImages => ({
-                ...prevImages,
-                img1: stateProducts.imagenPrincipal
-            }));
-        }
-    }, [stateProducts.imagenPrincipal]);
 
     const [images, setImages] = useState({
-        img1: '',
+        img1: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML19241_1_1c53.webp",
         img2: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML21209_1_ac93.webp",
         img3: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22532_1_1d09.webp",
         img4: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22533_1_22cb.webp"
@@ -125,10 +99,11 @@ const Detail = () => {
     const colorIcon3 = "#EF3A57";
     const colorIcon4 = "#C81819";
 
-    const [activeImg, setActiveImage] = useState(images.img1) //(stateProducts.imagenPrincipal)
+    const [activeImg, setActiveImage] = useState(images.img1) //stateProducts
 
     const [amount, setAmount] = useState(1);
     const [color, setColor] = useState(colorIcon1);
+
     const handleDecrement = () => {
         setAmount((prev) => Math.max(prev - 1, 1));
     };
@@ -138,6 +113,27 @@ const Detail = () => {
     };
 
     // border border-blue-500 border-5 rounded-lg'
+
+    /*
+     {
+           "productos": [
+        {
+          "id": "col-16",
+          "name": "Spray fijador de maquillaje",
+          "descripcion": "Spray fijador de maquillaje para una larga duración",
+          "precio_compra": "11.40",
+          "porcentaje_ganancia": 25,
+          "precio_venta": "14.25",
+          "referencia_proveedor": "REF238",
+          "marcaId": 1,
+          "categoriaId": 3,
+          "tamañoId": 3,
+          "proveedorId": 6,
+          "activa": true
+        }
+        },
+    
+    */
 
     const productToPay = {
         nombre: stateProducts.name,
@@ -159,9 +155,8 @@ const Detail = () => {
             </button>
 
             <div className='flex flex-col justify-between ml-60 mr-60 lg:flex-row gap-16 lg:items-center'>
-
+                <div className='flex flex-col gap-6 lg:w-1/3 items-center mx-auto'>
                     <img src={activeImg} alt="" className='w-40% h-40% aspect-square object-cover rounded-xl ml-1' />
-
                     <div className='flex flex-row justify-between h-24'>
                         <img src={images.img1} alt="" className='w-20 h-30 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img1)} />
                         <img src={images.img2} alt="" className='w-20 h-30 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img2)} />
