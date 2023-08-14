@@ -12,7 +12,7 @@ module.exports = async (clienteId) => {
     });
 
     if (!carritoExistente) {
-      throw new Error(`No existe un carrito para el cliente con ID ${clienteId}.`);
+      throw new Error(`No existe un carrito para el el cliente con ID ${clienteId}.`);
     }
 
     
