@@ -10,6 +10,7 @@ const productoRouter = require('./productoRouter')
 const clienteRouter = require('./clienteRouter')
 const favoritoRouter = require('./favoritoRouter')
 const inventarioRouter = require('./inventarioRouter')
+const carritoRouter = require('./carritoRouter')
 
 const router = Router();
 
@@ -25,6 +26,7 @@ router.use('/producto',productoRouter)
 router.use('/cliente',clienteRouter)
 router.use('/favorito',favoritoRouter)
 router.use('/inventario',inventarioRouter)
+router.use('/carrito',carritoRouter)
 
 
 
