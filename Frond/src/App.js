@@ -70,6 +70,7 @@ function App () {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/itemadded/:id" element={<AddToCart />} />
         <Route path="/carrito/:id" element={<Carrito />} />
+        <Route path="/carrito" element={<Carrito />} />
         <Route path="/dashboard" element = {<Dashboard/>}/>
 
       </Routes>
