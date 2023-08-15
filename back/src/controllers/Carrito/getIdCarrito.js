@@ -15,7 +15,7 @@ module.exports = async (clienteId) => {
       throw new Error(`No existe un carrito para el el cliente con ID ${clienteId}.`);
     }
 
-    carritoExistente.dataValues.id = `prod-${carritoExistente.dataValues.id}`;
+    carritoExistente.dataValues.id = `carr-${carritoExistente.dataValues.id}`;
     
 
     return carritoExistente;
