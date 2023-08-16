@@ -7,54 +7,39 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Catalogfilters from "../../components/CatalogoComponen/Catalogfilters";
 import { products } from "../../redux/actions";
-
 const Catalogo = () => {
   const stateProducts = useSelector(state => state.Allproducts);
   const [disableTF, setDisableTF] = useState(true);
-  const [pageNumberNx, setPageNumberNx] = useState(0);
+  const [pageNumberNx, setPageNumberNx] = useState(0); // Corregir nombre de variable
   const numberSize = 10;
+  console.log(stateProducts);
 
   const dispatch = useDispatch();
-
-  const handlerNext = () => {
-    pageNumberNx < stateProducts.paginas - 1 ? setPageNumberNx(prevNext => prevNext + 1) : setDisableTF(false)
+  console.log(disableTF)
+   const handlerNext = () => {
+    pageNumberNx < stateProducts.paginas -1 ? setPageNumberNx(prevNext => prevNext + 1) : setDisableTF(false)
   };
 
   const handlerPrev = () => {
     pageNumberNx > 0 ? setPageNumberNx(pageNumberNx - 1) : setDisableTF(false);
   };
 
-  useEffect(() => {
-    const fetchData = () => {
-      const queries = {
-        page: pageNumberNx,
-        size: numberSize
+  useEffect(
+    () => {
+      const fetchData = () => {
+        const queries = {
+          page: pageNumberNx,
+          size: numberSize
+        };
+
+        dispatch(products(queries));
       };
 
-      dispatch(products(queries));
-    };
-
-    fetchData();
-    setDisableTF(pageNumberNx <= 0 || pageNumberNx >= stateProducts.paginas - 1);
-  }, [dispatch, pageNumberNx, numberSize, stateProducts.paginas]);
-
-  const renderPageButtons = () => {
-    const pages = [];
-    for (let i = 0; i < stateProducts.paginas; i++) {
-      const pageNum = i + 1;
-      const isActive = pageNum === pageNumberNx + 1;
-      pages.push(
-        <button
-          key={i}
-          className={`font-bold text-lg mx-2 px-2 py-0.5 rounded hover:bg-gray-200 focus:outline-none ${isActive ? "bg-gray-300" : "bg-white"}`}
-          onClick={() => setPageNumberNx(i)}
-        >
-          {pageNum}
-        </button>
-      );
-    }
-    return pages;
-  };
+      fetchData();
+      setDisableTF(pageNumberNx <= 0 || pageNumberNx >= stateProducts.paginas - 1);
+    },
+    [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
+  );
 
   return (
     <section>
@@ -77,26 +62,25 @@ const Catalogo = () => {
           </div>
           <Cards stateProducts={stateProducts} />
         </div>
-        <div className="col-span-5 flex justify-center py-10">
-          <button
-            onClick={handlerPrev}
-            className="text-3xl mr-5 focus:outline-none"
-            disabled={!disableTF}
-          >
-            <BsFillArrowLeftSquareFill />
-          </button>
-          {renderPageButtons()}
-          <button
-            onClick={handlerNext}
-            className="text-3xl ml-5 focus:outline-none"
-            disabled={!disableTF}
-          >
-            <BsFillArrowRightSquareFill />
-          </button>
-        </div>
+        <div className="grid grid-cols-2 justify-items-center w-[30%] m-auto py-10">
+        <button
+          onClick={handlerPrev}
+          className="mx-1 text-3xl"
+        >
+          <BsFillArrowLeftSquareFill />
+        </button>
+        <button
+          onClick={handlerNext}
+        
+          className="mx-1 text-3xl"
+        >
+          <BsFillArrowRightSquareFill />
+        </button>
       </div>
-    </section>
-  );
-};
-
-export default Catalogo;
+      </div>
+      </section>
+    );
+  };
+  
+  export default Catalogo;
+  
