@@ -21,6 +21,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
+    fechaCompra: {
+      type: DataTypes.STRING,
+      allowNull: true, // Permitir valores nulos
+      defaultValue: null, // Valor por defecto
+    },
   },
   { 
     tableName: 'carrito',
