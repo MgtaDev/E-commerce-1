@@ -199,17 +199,16 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                     const itemsInCart = (id) =>{
                         return state.productos.find((prod)=>prod.id===id);
                     };
-                    const { id, amount } = payload;
-                    console.log(`id y amount de reduce ${id} y ${amount}`);               
-                    if (amount>0){
-                        const newItem = {...itemsInCart(id), amount}
-                        const newItemsInCart = [...state.localCart, newItem];
-                        localStorage.setItem("localCart", JSON.stringify(newItemsInCart));
-                        console.log(`newItem ${newItem}`);
-                        return{
-                            ...state,
-                            localCart: newItemsInCart,
-                        };
+                    const { id, amount, color } = payload;  
+                    console.log("color en reduce",color);               
+                    if (amount>0){                                                           
+                            const newItem = {...itemsInCart(id), color, amount}                                
+                            const newItemsInCart = [...state.localCart, newItem];                                
+                            localStorage.setItem("localCart", JSON.stringify(newItemsInCart));                                                 
+                            return{
+                                ...state,
+                                localCart: newItemsInCart,
+                            };                    
                     } else {
                         return {
                             ...state,
