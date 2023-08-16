@@ -3,6 +3,12 @@ const { Carrito, Cliente, Inventario } = require('../../db');
 module.exports = async ({ clienteId, productos }) => {
   try {
 
+    const clienteExistente = await Cliente.findByPk(clienteId);
+    
+    if (!clienteExistente) {
+      throw new Error(`El cliente con ID ${clienteId} no existe.`);
+    }
+
     // Verificar si ya existe un carrito para el cliente
     const carritoExistente = await Carrito.findOne({
       where: {
@@ -16,10 +22,7 @@ module.exports = async ({ clienteId, productos }) => {
     }
 
     // Verificar si el cliente existe
-    const clienteExistente = await Cliente.findByPk(clienteId);
-    if (!clienteExistente) {
-      throw new Error(`El cliente con ID ${clienteId} no existe.`);
-    }
+    
 
     // Verificar y actualizar el carrito con inventario y cantidad disponibles
     const carritoProductos = [];

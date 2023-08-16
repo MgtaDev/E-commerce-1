@@ -7,6 +7,12 @@ module.exports = async (carritos) => {
     async function crearCarrito(carrito) {
       const { clienteId, productos } = carrito;
 
+      // Verificar si el cliente existe
+      const clienteExistente = await Cliente.findByPk(clienteId);
+      if (!clienteExistente) {
+        throw new Error(`El cliente con ID ${clienteId} no existe.`);
+      }
+      
       const carritoExistente = await Carrito.findOne({
         where: {
           clienteId,
@@ -16,13 +22,6 @@ module.exports = async (carritos) => {
   
       if (carritoExistente) {
         throw new Error(`Ya existe un carrito para el cliente con ID ${clienteId}.`);
-      }
-  
-
-      // Verificar si el cliente existe
-      const clienteExistente = await Cliente.findByPk(clienteId);
-      if (!clienteExistente) {
-        throw new Error(`El cliente con ID ${clienteId} no existe.`);
       }
 
       const carritoProductos = [];
