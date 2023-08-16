@@ -11,6 +11,11 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    imagen: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,11 +23,11 @@ module.exports = (sequelize) => {
     },
     fecha_nacimiento: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     telefono: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     correo_electronico: {
       type: DataTypes.STRING,
@@ -31,17 +36,21 @@ module.exports = (sequelize) => {
     },
     direccion: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     contraseña: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
     },
     activa: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
+    },
+    admin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   { tableName: 'cliente',timestamps: false }
