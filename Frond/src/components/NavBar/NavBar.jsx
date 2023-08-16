@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import vector from '../../assets/img/vector.svg'
+import { FiChevronDown } from "react-icons/fi";
 import { AiFillHeart } from 'react-icons/ai';
 import {AiFillShopping} from 'react-icons/ai'
 import SearchBar from '../SearchBar/SearchBar';
@@ -81,29 +82,13 @@ const Navbar = ({ initialLanguage }) => {
 
 
   //Condicionales de logueo
-  const mustBeLogedCarrito = () =>{
-    if(!isAuthenticated){
-      return Swal.fire(
-        'Estas registrado?',
-        'Inicia sesion para ver tu carrito',
-        'error'
-      )
-    }else{
-      navigate('/carrito/:id')
-    }
-  }
 
-  const mustBeLogedFavoritos = () =>{
-    if(!isAuthenticated){
-      return Swal.fire(
-        'Estas registrado?',
-        'Inicia sesion para ver tus favoritos',
-        'error'
-      )
-    }else{
-      navigate('/favoritos')
-    }
-  }
+const navigateFavoritos = () => {
+  navigate('/favoritos')
+}
+const navigateCarrito = () => {
+  navigate('/carrito/:id')
+}
 
   
 
@@ -120,10 +105,10 @@ const Navbar = ({ initialLanguage }) => {
           </div>
 
           <div className={style.icons}>
-            <button onClick={mustBeLogedCarrito} className={style.btnb}>
+            <button onClick={navigateCarrito} className={style.btnb}>
               <AiFillShopping />
             </button>
-            <button  onClick={mustBeLogedFavoritos} className={style.btnb}>
+            <button  onClick={navigateFavoritos} className={style.btnb}>
               <AiFillHeart />
             </button>
             <div className={style.menuItem}>
@@ -137,7 +122,7 @@ const Navbar = ({ initialLanguage }) => {
         <div className="flex justify-between items-center ml-10">
           <div onClick={showCategories} onMouseEnter={showCategories} className="flex items-center mr-5">
             <h2>Categorias</h2>
-            {/* <FiChevronDown /> */}
+            <FiChevronDown />
           </div>
           {isOpen && (
               <div
