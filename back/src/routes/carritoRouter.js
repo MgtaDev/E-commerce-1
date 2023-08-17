@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const getIdCarrito = require('../controllers/Carrito/getIdCarrito')
-const historialCarrito = require('../controllers/Carrito/historialCarritos')
+const getIdCarrito = require('../controllers/Carrito/getIdCarrito');
+const historialCarrito = require('../controllers/Carrito/historialCarritos');
+const historialProductos = require('../controllers/Carrito/historialCompras');
 const postCarrito = require('../controllers/Carrito/postCarrito');
-const postArrayCarrito = require('../controllers/Carrito/postArrayCarrito')
-const putProdCarrito = require('../controllers/Carrito/putProdCarrito')
-const putPagadoCarrito = require('../controllers/Carrito/putPagadoCarrito')
-const deleteProdCarrito = require('../controllers/Carrito/deleteProdCarrito')
+const postArrayCarrito = require('../controllers/Carrito/postArrayCarrito');
+const putProdCarrito = require('../controllers/Carrito/putProdCarrito');
+const putPagadoCarrito = require('../controllers/Carrito/putPagadoCarrito');
+const deleteProdCarrito = require('../controllers/Carrito/deleteProdCarrito');
+
 
 router.get('/:clientesId', async (req, res) => {
   const { clientesId } = req.params;
@@ -23,6 +25,16 @@ router.get('/historial/:clientesId', async (req, res) => {
   const { clientesId } = req.params;
   try {
     const carrito = await historialCarrito(clientesId);
+    res.status(200).json(carrito);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
+router.get('/historialproducto/:clientesId', async (req, res) => {
+  const { clientesId } = req.params;
+  try {
+    const carrito = await historialProductos(clientesId);
     res.status(200).json(carrito);
   } catch (error) {
     res.status(500).json(error.message);
@@ -59,7 +71,7 @@ router.put('/:clienteId', async (req, res) => {
     const updatedCarrito = await putProdCarrito(clienteId, productos);
     return res.status(200).json(updatedCarrito);
   } catch (error) {
-    return res.status(500).json({ error: 'Error al actualizar el carrito' });
+    return res.status(500).json(error.message);
   }
 });
 
@@ -71,7 +83,7 @@ router.put('/pagado/:clienteId', async (req, res) => {
     const updatedCarrito = await putPagadoCarrito(clienteId, req.body);
     return res.status(200).json(updatedCarrito);
   } catch (error) {
-    return res.status(500).json({ error: 'Error al pagar el carrito' });
+    return res.status(500).json(error.message);
   }
 });
 
@@ -83,7 +95,7 @@ router.delete('/:clienteId', async (req, res) => {
     const updatedCarrito = await deleteProdCarrito(clienteId, req.body);
     return res.status(200).json(updatedCarrito);
   } catch (error) {
-    return res.status(500).json({ error: 'Error al actualizar el carrito' });
+    return res.status(500).json(error.message);
   }
 });
 
