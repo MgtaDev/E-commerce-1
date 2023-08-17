@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux'
@@ -8,8 +9,8 @@ const Miperfil = () => {
   const { user, isLoading } = useAuth0();
   const [showPassword, setShowPassword] = useState(false);
   const [buttonSwitch, setButtonSwitch] = useState(false);
-  // const userInforDatabase = useSelector((state) => state.userInfo)
   const [userInfo, setUserInfo] = useState({
+    // Comentar las siguientes líneas si no utilizas Redux
     // nombre: userInforDatabase.nombre,
     // apellido: userInforDatabase.apellido,
     // correoElectronico: userInforDatabase.email,
@@ -21,11 +22,11 @@ const Miperfil = () => {
   });
   const SeeIcon = showPassword ? FaEye : FaEye;
   const SeeSlashIcon = showPassword ? FaEye : FaEyeSlash;
+
   const handleToggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
   console.log(userInfo)
-
 
   const handleChange = (event) => {
     const target = event.target;
@@ -39,129 +40,129 @@ const Miperfil = () => {
   }
 
   const handleSubmit = () => {
-    axios.put()
+    axios.put() // Agregar aquí la petición PUT para actualizar los datos de usuario en la base de datos
     console.log(userInfo); // Solo para demostración
-    // Esta funcion es la que se encargara de enviar un put a la base de datos para actualizar los datos del cliente en base de datos
-    // mediante los inputs
   }
 
   return (
     <div className="h-screen flex max-w-full">
-      <div className=" flex-shrink-0">
-        <div className="  shadow-lg  p-5  h-full ">
-          <div className="flex flex-col items-center justify-center space-y-4">
+      {/* Columna izquierda */}
+      <div className="w-1/3 flex-shrink-0">
+        <div className="p-5 h-full">
+          <div className="flex mt-5 flex-col items-center justify-center space-y-4">
             <img
-              style={{ width: '270px' }}
-              className="rounded-full object-cover ml-10 mr-10"
+              style={{ width: '270px', height: '270px' }}
+              className="rounded-full object-cover ml-10 mr-10 border-solid border-4 border-gray-200"
               src={!isLoading ? user.picture : 'Loading...'}
-              alt="Profile Picture"
+              alt="Profile"
             />
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-4xl font-bold mb-2 text-gray-600">
               {!isLoading ? user.name : 'Loading...'}
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-400 text-lg mb-5">
               {!isLoading ? user.email : 'Loading...'}
             </p>
-            
-            <p className="text-gray-600"></p>
             {!buttonSwitch ? (
               <button
-                className="m-5 bg-blue-500 text-white px-3 flex items-center justify-center py-1 rounded-md hover:bg-blue-700"
+                className="bg-purple-600 text-white px-3 flex items-center justify-center py-2 rounded-md  w-56 mb-10"
                 onClick={() => setButtonSwitch(true)}
               >
-                Edit profile
+                Editar perfil
               </button>
             ) : (
               <>
                 <button
-                  className="m-5 bg-green-500 text-white px-3 flex items-center justify-center py-1 rounded-md hover:bg-green-600"
+                  className="bg-green-500 text-white px-3 flex items-center justify-center py-2 rounded-md hover:bg-green-600 w-56 mb-10"
                   onClick={() => {
                     setButtonSwitch(false);
                     handleSubmit();
                   }}
                 >
-                  Guardar Cambios
+                  Guardar cambios
                 </button>
                 <button
-                  className="m-5 bg-gray-500 text-white px-3 flex items-center justify-center py-1 rounded-md "
+                  className="bg-gray-500 text-white px-3 flex items-center justify-center py-2 rounded-md w-56 mb-10"
                   onClick={() => setButtonSwitch(false)}
                 >
-                  Cancel
+                  Cancelar
                 </button>
               </>
             )}
 
           </div>
-
         </div>
       </div>
 
-      <div className=" m-5 flex-shrink-0">
-        <div className="shadow-lg p-5 rounded-lg h-full ">
-          <div className="w-1/2 inline-block">
-            <dl className="form-group">
-              <label htmlFor="nombre" className="font-bold">
-                Nombre
-              </label>
-              <input
-                className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
-                type="text"
-                placeholder="Ingresa tu nombre"
-                name="nombre"
-                value={userInfo.nombre}
-                onChange={handleChange}
-                disabled={!buttonSwitch}
-              />
-              <p className="note text-gray-500 text-sm">
-                Ingresa aqui tu direccion de envio
-              </p>
-            </dl>
-
-            <dl className="form-group mt-5">
-              <dt>
-                <label htmlFor="correoElectronico" className="font-bold">
-                  Correo Electronico
+      {/* Columna derecha */}
+      <div className="w-2/3 m-5 flex-shrink-0">
+      <h1 className=" flex ml-20 text-4xl font-bold mb-2 text-gray-600">Mi Perfil</h1>
+        <div className="pt-5 pb-10 px-20 flex flex-col items-center  bg-white rounded-lg shadow-lg h-full">
+          <div className="w-full flex justify-between">
+            {/* Columna izquierda de la derecha */}
+            <div className="w-5/12">
+              <dl className="form-group">
+                <label htmlFor="nombre" className="font-bold text-gray-600 mb-1">
+                  Nombre
                 </label>
-              </dt>
-              <dd className="d-inline-block">
-                <div>
+                <input
+                  className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
+                  type="text"
+                  placeholder="Ingresa tu nombre"
+                  name="nombre"
+                  value={userInfo.nombre}
+                  onChange={handleChange}
+                  disabled={!buttonSwitch}
+                />
+              </dl>
+
+              <dl className="form-group mt-5">
+                <dt>
+                  <label htmlFor="correoElectronico" className="font-bold text-gray-600 mb-1">
+                    Correo electrónico
+                  </label>
+                </dt>
+                <dd className="d-inline-block">
                   <input
-                    className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
+                    className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
                     type="text"
-                    placeholder="Ingresa tu correo electronico"
+                    placeholder="Ingresa tu correo electrónico"
                     name="correoElectronico"
                     value={userInfo.correoElectronico}
                     onChange={handleChange}
                     disabled={!buttonSwitch}
                   />
-                  <p className="note text-gray-500 text-sm">
-                    Ingresa aqui tu correo electronico
-                  </p>
-                  <br />
+                </dd>
+              </dl>
 
-                  <label htmlFor="numeroTelefono" className="font-bold">
-                    Numero telefonico
+              <dl className="form-group mt-5">
+                <dt>
+                  <label htmlFor="numeroTelefono" className="font-bold text-gray-600 mb-1">
+                    Número telefónico
                   </label>
+                </dt>
+                <dd className="d-inline-block">
                   <input
-                    className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
+                    className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
                     type="text"
-                    placeholder="Ingresa tu número telefonico"
+                    placeholder="Ingresa tu número telefónico"
                     name="numeroTelefono"
                     value={userInfo.numeroTelefono}
                     onChange={handleChange}
                     disabled={!buttonSwitch}
                   />
-                  <p className="note text-gray-500 text-sm">
-                    Ingresa aqui tu numero telefonico
-                  </p>
-                  <br />
+                </dd>
+              </dl>
 
-                  <label htmlFor="contraseña" className="font-bold">
+              <dl className="form-group mt-5">
+                <dt>
+                  <label htmlFor="contraseña" className="font-bold text-gray-600 mb-1">
                     Contraseña
                   </label>
+                </dt>
+                <dd className="d-inline-block">
                   <div className="relative">
                     <input
-                      className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
+                      className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
                       type={showPassword ? "text" : "password"}
                       placeholder="Ingresa tu contraseña"
                       name="contraseña"
@@ -170,88 +171,87 @@ const Miperfil = () => {
                       disabled={!buttonSwitch}
                     />
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={handleToggleShowPassword}>
-                      {showPassword ? <SeeIcon /> : <SeeSlashIcon />}
+                      {showPassword ? <SeeIcon className="text-gray-400" /> : <SeeSlashIcon className="text-gray-400" />}
                     </div>
                   </div>
-                  <p className="note text-gray-500 text-sm">
-                    Ingresa aqui tu contraseña
-                  </p>
-                  <br />
+                </dd>
+              </dl>
+            </div>
 
-                </div>
-              </dd>
-            </dl>
-          </div>
-          <div className="w-1/2 inline-block">
-            <dl className="form-group ml-10">
-              <label htmlFor="apellido" className="font-bold">
-                Apellido
-              </label>
-              <input
-                className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
-                type="text"
-                placeholder="Ingresa tu apellido"
-                name="apellido"
-                value={userInfo.apellido}
-                onChange={handleChange}
-                disabled={!buttonSwitch}
-              />
-              <p className="note text-gray-500 text-sm">
-                Ingresa aqui tu apellido
-              </p>
-              <br />
+            {/* Columna derecha de la derecha */}
+            <div className="w-7/12 ml-10">
+              <dl className="form-group">
+                <label htmlFor="apellido" className="font-bold text-gray-600 mb-1">
+                  Apellido
+                </label>
+                <input
+                  className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
+                  type="text"
+                  placeholder="Ingresa tu apellido"
+                  name="apellido"
+                  value={userInfo.apellido}
+                  onChange={handleChange}
+                  disabled={!buttonSwitch}
+                />
+              </dl>
 
-              <label htmlFor="ciudad" className="font-bold">
-                Ciudad
-              </label>
-              <input
-                className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
-                type="text"
-                placeholder="Ingresa tu ciudad"
-                name="ciudad"
-                value={userInfo.ciudad}
-                onChange={handleChange}
-                disabled={!buttonSwitch}
-              />
-              <p className="note text-gray-500 text-sm">
-                Ingresa tu ciudad
-              </p>
-              <br />
+              <dl className="form-group mt-5">
+                <dt>
+                  <label htmlFor="ciudad" className="font-bold text-gray-600 mb-1">
+                    Ciudad
+                  </label>
+                </dt>
+                <dd className="d-inline-block">
+                  <input
+                    className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
+                    type="text"
+                    placeholder="Ingresa tu ciudad"
+                    name="ciudad"
+                    value={userInfo.ciudad}
+                    onChange={handleChange}
+                    disabled={!buttonSwitch}
+                  />
+                </dd>
+              </dl>
 
-              <label htmlFor="provincia" className="font-bold">
-                Provincia
-              </label>
-              <input
-                className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
-                type="text"
-                placeholder="Ingresa tu provincia"
-                name="provincia"
-                value={userInfo.provincia}
-                onChange={handleChange}
-                disabled={!buttonSwitch}
-              />
-              <p className="note text-gray-500 text-sm">
-                Ingresa aqui tu provincia
-              </p>
-              <br />
+              <dl className="form-group mt-5">
+                <dt>
+                  <label htmlFor="provincia" className="font-bold text-gray-600 mb-1">
+                    Provincia
+                  </label>
+                </dt>
+                <dd className="d-inline-block">
+                  <input
+                    className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
+                    type="text"
+                    placeholder="Ingresa tu provincia"
+                    name="provincia"
+                    value={userInfo.provincia}
+                    onChange={handleChange}
+                    disabled={!buttonSwitch}
+                  />
+                </dd>
+              </dl>
 
-              <label htmlFor="codigoPostal" className="font-bold">
-                Codigo postal
-              </label>
-              <input
-                className="form-control bg-white border border-gray-400 rounded-md p-2 w-full mb-2"
-                type="text"
-                placeholder="Ingresa tu codigo postal"
-                name="codigoPostal"
-                value={userInfo.codigoPostal}
-                onChange={handleChange}
-                disabled={!buttonSwitch}
-              />
-              <p className="note text-gray-500 text-sm">
-                Ingresa aqui tu codigo postal
-              </p>
-              <br />
-            </dl>
+              <dl className="form-group mt-5">
+                <dt>
+                  <label htmlFor="codigoPostal" className="font-bold text-gray-600 mb-1">
+                    Código postal
+                  </label>
+                </dt>
+                <dd className="d-inline-block">
+                  <input
+                    className="form-control bg-gray-100 border border-gray-300 rounded-md p-2 w-full mb-2"
+                    type="text"
+                    placeholder="Ingresa tu código postal"
+                    name="codigoPostal"
+                    value={userInfo.codigoPostal}
+                    onChange={handleChange}
+                    disabled={!buttonSwitch}
+                  />
+                </dd>
+              </dl>
+            </div>
           </div>
         </div>
       </div>
