@@ -2,6 +2,19 @@ const { Producto, Categoria, Marca } = require('../../db');
 
 module.exports = async (productoId, name, descripcion, precio_compra, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId) => {
   try {
+    
+    function extractNumberFromString(inputString) {
+      const match = inputString.match(/\d+/); // Busca uno o más dígitos en la cadena
+    
+      if (match) {
+        return parseInt(match[0]); // Convierte el valor coincidente en un número entero
+      }
+    
+      return null; // Si no se encuentra un número, devuelve null o algún valor predeterminado
+    }
+
+    productoId = extractNumberFromString(productoId)
+
     // Verificar si el producto existe
     const productoExistente = await Producto.findByPk(productoId);
 
