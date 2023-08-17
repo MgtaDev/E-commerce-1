@@ -6,7 +6,6 @@ import greentick from '../../assets/img/greentick.png';
 import MoreProductsCardContainer from "../../components/MoreProducts/MoreProductsContainer";
 import OtherMoreProductsContainer from "../../components/MoreProducts/OtherMoreProductsContariner";
 
-let image = "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML19241_1_1c53.webp";
 
 const AddToCart = () => {
   const navigate = useNavigate();
@@ -14,8 +13,8 @@ const AddToCart = () => {
   const location = useLocation();
   const stateProducts = useSelector(state => state.cartProducts);
   console.log(stateProducts);
-  const { id, amount = 0, color } = useParams();
-  const searchParams = new URLSearchParams(location.search);
+  const { id, amount, color } = useParams();
+ // const searchParams = new URLSearchParams(location.search);
  
  //  const id = searchParams.get("id");
    //const amount = /*searchParams.get("amount") */ 2 ; 
@@ -26,7 +25,7 @@ const AddToCart = () => {
 
   const addToCart = () => {
     dispatch(addToCartFunction(id, amount, color)); 
-    const carritotUrl = `/carrito/${id}?amount=${amount}?color=${color}`;
+    const carritotUrl = `/carrito/${id}?amount=${amount}&color=${color}`;
     navigate(carritotUrl);
   };
 
@@ -40,7 +39,7 @@ const AddToCart = () => {
           ))}
           <div className='flex items-center'>
             <div className='relative'>
-              <img src={image /* stateProducts.imagen */} alt="Productimage" className='border border-green-500 w-20 h-20 object-cover rounded-full ml-10 mr-2' />
+              <img src={stateProducts.imagenPrincipal} alt="Productimage" className='border border-green-500 w-20 h-20 object-cover rounded-full ml-10 mr-2' />
               <img src={greentick} alt="tick-image" className='w-10 h-10 object-cover rounded-full absolute bottom-0 right-0 m-0' />
             </div>
           </div>
