@@ -9,6 +9,7 @@ const postArrayCarrito = require('../controllers/Carrito/postArrayCarrito');
 const putProdCarrito = require('../controllers/Carrito/putProdCarrito');
 const putPagadoCarrito = require('../controllers/Carrito/putPagadoCarrito');
 const deleteProdCarrito = require('../controllers/Carrito/deleteProdCarrito');
+const gettodoelhistorial = require ('../controllers/Carrito/todoelhistorial')
 
 
 router.get('/:clientesId', async (req, res) => {
@@ -35,6 +36,16 @@ router.get('/historialproducto/:clientesId', async (req, res) => {
   const { clientesId } = req.params;
   try {
     const carrito = await historialProductos(clientesId);
+    res.status(200).json(carrito);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
+router.get('/Todohistorial/:clientesId', async (req, res) => {
+  const { clientesId } = req.params;
+  try {
+    const carrito = await gettodoelhistorial(clientesId);
     res.status(200).json(carrito);
   } catch (error) {
     res.status(500).json(error.message);
