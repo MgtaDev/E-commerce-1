@@ -198,9 +198,3 @@ export default Carrito;
 
 
 
-
-
-
-
-
-

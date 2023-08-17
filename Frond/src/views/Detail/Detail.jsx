@@ -13,29 +13,7 @@ import { FaCircle } from "react-icons/fa";
 import MoreProductsContainer from "../../components/MoreProducts/MoreProductsContainer";
 
 const Detail = () => {
-
-     /*
-     {
-           "productos": [
-        {
-          "id": "col-16",
-          "name": "Spray fijador de maquillaje",
-          "descripcion": "Spray fijador de maquillaje para una larga duración",
-          "precio_compra": "11.40",
-          "porcentaje_ganancia": 25,
-          "precio_venta": "14.25",
-          "referencia_proveedor": "REF238",
-          "marcaId": 1,
-          "categoriaId": 3,
-          "tamañoId": 3,
-          "proveedorId": 6,
-          "activa": true
-        }
-        },
-    
-    */
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    const { loginWithRedirect } = useAuth0()
+    const { isAuthenticated } = useAuth0();
     const back = useNavigate();
     const dispatch = useDispatch();
     const navigate = useNavigate()
