@@ -257,11 +257,11 @@ export const categories = () => async dispatch => {
     }
   }
   
-  export const deleteArtLS = (ArtId, ArtColor, cantidad) => {
-    console.log(`actions -> id:${ArtId}, color:${ArtColor}, cantidad:${cantidad}`);
+  export const deleteArtLS = (ArtId, ArtColor) => {
+    console.log(`actions -> id:${ArtId}, color:${ArtColor}`);
     return{
     type: DELETE_ART_LS,
-    payload: {ArtId, ArtColor, cantidad}
+    payload: {ArtId, ArtColor}
     }
   }
 
@@ -282,17 +282,23 @@ export const categories = () => async dispatch => {
         const cartData = {
             productos: localCart.map((item) => ({
             productoId: extractNumber(item.id),
-            colorId: 7 /*item.color*/,
+            colorId: 1 /*item.color*/,
             cantidad: item.amount,
           })),
         };
-  
         console.log("cartData en actions", cartData);
+
+      cartData.productos.forEach((producto) => {
+        console.log("cartData productoId:", producto.productoId);
+        console.log("cartData colorId:", producto.colorId);
+        console.log("cartData cantidad:", producto.cantidad);
+      });
+  
   
         await axios.put(`/carrito/${user}`, cartData);
   
         const { data } = await axios.get(`/carrito/${user}`);
-  
+        
         return dispatch({
           type: POST_CART_API,
           payload: cartData,
