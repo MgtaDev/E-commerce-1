@@ -1,7 +1,6 @@
 const { Carrito } = require('../../db');
 const postCarrito = require('./postCarrito')
 const putVentasInventario = require('../Inventario/putVentaInventario');
-const { put } = require('../../routes/subCategoriaRouter');
 
 module.exports = async (clienteId, { pagado }) => {
   try {
