@@ -292,7 +292,9 @@ const SearchBar = ({ placeholder }) => {
         value={inputText} 
       />
 			<button type="submit">
-				<img src={loupe} alt="seeker"/>
+
+				<img src={Loupe} alt="" />
+
 			</button>
 		</FormSearchBar>
     {errorMessage && <ErrorMessage> {errorMessage} </ErrorMessage>}
