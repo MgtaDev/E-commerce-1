@@ -1,4 +1,4 @@
-const { Carrito, Producto, Color } = require('../../db');
+const { Carrito, Producto, Color, Cliente } = require('../../db');
 
 module.exports = async () => {
   try {    
@@ -12,10 +12,15 @@ module.exports = async () => {
       throw new Error(`No existe un historial`);
     }
 
-
     const productos = [];
 
     for (const carrito of carritoExistente) {
+      const clienteId = carrito.clienteId; // Obtener el clienteId del carrito
+
+      const clienteDetalles = await Cliente.findByPk(clienteId, {
+        attributes: ['name'], // Ajusta esto según los campos de tu modelo Cliente
+      });
+
       for (const producto of carrito.dataValues.productos) {
         const productoDetalles = await Producto.findByPk(producto.productoId, {
           attributes: ['name', 'precio_venta'],
@@ -26,6 +31,8 @@ module.exports = async () => {
 
         if (productoDetalles) {
           productos.push({
+            clienteId: clienteId,
+            clienteName: clienteDetalles.name, // Agregar el nombre del cliente
             colorId: producto.colorId,
             colorName: colorDetalles.name,
             cantidad: producto.cantidad,
@@ -38,7 +45,6 @@ module.exports = async () => {
         }
       }
     }
-
 
     return productos;
   } catch (error) {
