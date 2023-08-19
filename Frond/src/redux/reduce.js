@@ -22,7 +22,7 @@ const InitialState = {
     searchResults: [],
     addProductsToCart: [],
     localCart: initialLocalCart, apiCart:[],
-    allClients: []
+    Allclients: []
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {
@@ -56,7 +56,7 @@ const reducer = (state = InitialState, {type, payload, data}) => {
             case GET_ALL_CLIENTS :
                 return{
                     ...state,
-                    allClients: payload
+                    Allclients: payload
                 }
         case ALLBRANDS :
             return{

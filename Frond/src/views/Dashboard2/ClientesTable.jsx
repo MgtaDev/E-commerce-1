@@ -28,6 +28,7 @@ const ClientesTable = () => {
     }
   );
   
+  console.log(stateClients)
   //Admin
   const makeAdminAlert = (id) => {
     const makeUserAdmin = (id) => {
