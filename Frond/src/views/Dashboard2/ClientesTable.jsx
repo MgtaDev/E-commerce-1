@@ -4,7 +4,7 @@ import { products } from "../../redux/actions";
 import { BsCheckCircle } from 'react-icons/bs';
 import { BsXCircle } from 'react-icons/bs';
 import axios from "axios";
-import { clients } from '../../redux/actions.js'
+import { clientes } from '../../redux/actions.js'
 
 import Swal from 'sweetalert2'
 
@@ -24,7 +24,7 @@ const ClientesTable = () => {
 
   useEffect (
     () => {
-      dispatch(clients())
+      dispatch(clientes())
     }
   );
   

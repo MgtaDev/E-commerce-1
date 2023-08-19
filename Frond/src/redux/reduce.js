@@ -1,4 +1,4 @@
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS,POST_CART_API, DEL_ART_API } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS,POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS } from "./action-types";
 const storedLocalFavorites = localStorage.getItem("localFavorites");
 const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
 const storedLocalCart = localStorage.getItem("localCart");
@@ -21,7 +21,8 @@ const InitialState = {
     cartProducts: [],
     searchResults: [],
     addProductsToCart: [],
-    localCart: initialLocalCart, apiCart:[]
+    localCart: initialLocalCart, apiCart:[],
+    allClients: []
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {
@@ -52,6 +53,11 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                 ...state,
                 Allsubcategories: payload
             }
+            case GET_ALL_CLIENTS :
+                return{
+                    ...state,
+                    allClients: payload
+                }
         case ALLBRANDS :
             return{
                  ...state,
