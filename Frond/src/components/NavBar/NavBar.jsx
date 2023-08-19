@@ -53,32 +53,32 @@ const Navbar = ({ initialLanguage }) => {
   const navigate = useNavigate()
   const {loginWithRedirect} = useAuth0()
 
-  const filterByCategories = (event) => {
-   const categoryToFilter = event.target.textContent
-   const categoriaId = event.target.id
-   console.log(categoriaId)
-   console.log(categoryToFilter)
-   switch (categoryToFilter) {
-    case 'Maquillaje':
-      navigate('/catalogo')
-      dispatch(productFilter({categoriaId: [1]}))
-       break;
+  // const filterByCategories = (event) => {
+  //  const categoryToFilter = event.target.textContent
+  //  const categoriaId = event.target.id
+  //  console.log(categoriaId)
+  //  console.log(categoryToFilter)
+  //  switch (categoryToFilter) {
+  //   case 'Maquillaje':
+  //     navigate('/catalogo')
+  //     dispatch(productFilter({categoriaId: [1]}))
+  //      break;
  
-     case 'Skincare':
-       navigate('/catalogo')
-       dispatch(productFilter({categoriaId: [2]}))
-       break;
+  //    case 'Skincare':
+  //      navigate('/catalogo')
+  //      dispatch(productFilter({categoriaId: [2]}))
+  //      break;
  
-     case 'Accesorios':
-       navigate('/catalogo')
-       dispatch(productFilter({categoriaId: [3]}))
-       break;
+  //    case 'Accesorios':
+  //      navigate('/catalogo')
+  //      dispatch(productFilter({categoriaId: [3]}))
+  //      break;
        
    
-    default:
-      break;
-   }
-  }
+  //   default:
+  //     break;
+  //  }
+  // }
 
 
   //Condicionales de logueo
@@ -120,28 +120,6 @@ const navigateCarrito = () => {
         </div>
 
         <div className="flex justify-between items-center ml-10">
-          <div onClick={showCategories} onMouseEnter={showCategories} className="flex items-center mr-5">
-            <h2>Categorias</h2>
-            <FiChevronDown />
-          </div>
-          {isOpen && (
-              <div
-                onMouseLeave={hideCategories}
-                className="absolute top-30 z-20 w-48 right-50 bg-white border rounded-md shadow-lg mt-20"
-              >
-
-              <ul>
-              {categorias && (
-                categorias.map((categoria) => {
-                  return  <li onClick={filterByCategories} onMouseEnter={showSub} id={categoria.id} onMouseLeave={hideSub} key={categoria.id} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 cursor-pointer border-b border-b-2 border-solid ">{categoria.name}</li>
-
-                })
-              )}
-              </ul>
-              
-              </div>
-            )}
-
          
           <div className={`${style.categoriesMenu}`}>
             <ul className={`${style.menu} ${showMenu ? style.show : ''}`}>

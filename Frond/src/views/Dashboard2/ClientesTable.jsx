@@ -6,11 +6,10 @@ import { BsXCircle } from 'react-icons/bs';
 import axios from "axios";
 import { clients } from '../../redux/actions.js'
 
+import Swal from 'sweetalert2'
+
 const ClientesTable = () => {
-  useEffect(
-    () => {
-        dispatch(clients());
-      },[])
+
 
   const dispatch = useDispatch()
   const stateClients = useSelector(state => state.Allclients);
@@ -23,34 +22,156 @@ const ClientesTable = () => {
     setPageNumber(index);
   };
 
-  useEffect(
+  useEffect (
     () => {
-      const fetchData = () => {
-        const queries = {
-          page: pageNumber,
-          size: numberSize
-        };
-
-        dispatch(products(queries));
-      };
-
-      fetchData();
-      setDisableTF(pageNumber <= 0 || pageNumber >= stateClients.paginas - 1);
-    },
-    [dispatch, pageNumber, numberSize, stateClients.paginas]
+      dispatch(clients())
+    }
   );
   
-  const deleteProduct = (id) => {
-    axios
-      .delete(`/api/products/${id}`)
+  //Admin
+  const makeAdminAlert = (id) => {
+    const makeUserAdmin = (id) => {
+      const extractIdNumber = (id) => {
+        const idParts = id.split('-'); // Separa el string en partes utilizando el carácter "-"
+        return parseInt(idParts[1]); // Convierte la segunda parte a un número entero y lo retorna
+      };
+      const idNumber = extractIdNumber(id); 
+      axios.put(`/cliente/${idNumber}`, { admin: true })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "Al aceptar, haras a este usuario administrador de la pagina",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, continuar!'
+    }).then((result) => {
+      makeUserAdmin(id)
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Hecho!',
+          'Este usuario ahora es administrador',
+          'success'
+        )
+      }
+    })
+  }
+  const unmakeAdminAlert = (id) => {
+    const unmakeUserAdmin = (id) => {
+      const extractIdNumber = (id) => {
+        const idParts = id.split('-'); // Separa el string en partes utilizando el carácter "-"
+        return parseInt(idParts[1]); // Convierte la segunda parte a un número entero y lo retorna
+      };
+      const idNumber = extractIdNumber(id); 
+      axios.put(`/cliente/${idNumber}`, { admin: false })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "Al aceptar,le quitaras acceso de administrador a este usuario",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, continuar!'
+    }).then((result) => {
+      unmakeUserAdmin(id)
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Hecho!',
+          'Este usuario ya no es administrador',
+          'success'
+        )
+      }
+    })
+  }
+
+  //Ban
+  const banAlert = (id) => {
+  const banUser = (id) => {
+    const extractIdNumber = (id) => {
+      const idParts = id.split('-'); // Separa el string en partes utilizando el carácter "-"
+      return parseInt(idParts[1]); // Convierte la segunda parte a un número entero y lo retorna
+    };
+    const idNumber = extractIdNumber(id); // Extrae el número del id
+    axios.delete(`/cliente/${idNumber}`)
       .then((response) => {
-        console.log(response.data); 
-        dispatch(products({ page: 0, size: numberSize }));
+        console.log(response.data);
+
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  Swal.fire({
+    title: 'Estas seguro?',
+    text: "Le prohibiras el acceso a la pagina a este usuario!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, banear'
+  }).then((result) => {
+    banUser(id)
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Baneado!',
+        'Este usuario ha sido baneado de manera indefinida.',
+        'success'
+      )
+    }
+  })
+  }
+  const  unbanAlert = (id) => {
+    const unbanUser = (id) => {
+      const extractIdNumber = (id) => {
+        const idParts = id.split('-'); // Separa el string en partes utilizando el carácter "-"
+        return parseInt(idParts[1]); // Convierte la segunda parte a un número entero y lo retorna
+      };
+      const idNumber = extractIdNumber(id); // Extrae el número del id
+      axios.put(`/cliente/${idNumber}`, { activa: true })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "Al aceptar le concederas acceso de nuevo a la pagina a este usuario",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      unbanUser(id)
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Acceso renovado!',
+          'Este usuario tiene acceso de nuevo a la pagina',
+          'success'
+        )
+      }
+    })
+    }
+
+
+
+
 
   return (
     <>
@@ -79,21 +200,23 @@ const ClientesTable = () => {
                 </div>
               ) : (
                 <>
-                  <span>Baneado</span>
-                  <BsXCircle className="pr-3 relative bottom-4" />
+
+                  <span className="ml-3">Baneado</span>
+                  <BsXCircle className="mr-5 relative bottom-4" />
               </>
               )}</td>
               <td className="px-6 text-center py-4">
-                <button className="bg-indigo-900 text-white font-bold py-2 px-4 rounded hover:bg-gray-700">
-                  Hacer admin
-                </button>
+              {client.admin === false 
+              ? <button onClick={()=> makeAdminAlert(client.id)} className="bg-indigo-800 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Hacer admin</button>
+              : <button onClick={()=> unmakeAdminAlert(client.id)} className="bg-purple-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Quitar admin</button>
+              }
               </td>
               <td className="px-6 text-center py-4">
-                <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Banear
-                </button>
+              {client.activa === true
+              ? <button onClick={()=> banAlert(client.id)} className="bg-red-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Banear</button>
+              : <button onClick={()=> unbanAlert(client.id)} className="bg-green-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Quitar baneo</button>
+              }
+
               </td>
             </tr>
           ))}
