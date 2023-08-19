@@ -1,4 +1,4 @@
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS,POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS } from "./action-types";
 const storedLocalFavorites = localStorage.getItem("localFavorites");
 const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
 const storedLocalCart = localStorage.getItem("localCart");
@@ -21,7 +21,8 @@ const InitialState = {
     cartProducts: [],
     searchResults: [],
     addProductsToCart: [],
-    localCart: initialLocalCart
+    localCart: initialLocalCart, apiCart:[],
+    Allclients: []
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {
@@ -52,6 +53,11 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                 ...state,
                 Allsubcategories: payload
             }
+            case GET_ALL_CLIENTS :
+                return{
+                    ...state,
+                    Allclients: payload
+                }
         case ALLBRANDS :
             return{
                  ...state,
@@ -199,17 +205,16 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                     const itemsInCart = (id) =>{
                         return state.productos.find((prod)=>prod.id===id);
                     };
-                    const { id, amount } = payload;
-                    console.log(`id y amount de reduce ${id} y ${amount}`);               
-                    if (amount>0){
-                        const newItem = {...itemsInCart(id), amount}
-                        const newItemsInCart = [...state.localCart, newItem];
-                        localStorage.setItem("localCart", JSON.stringify(newItemsInCart));
-                        console.log(`newItem ${newItem}`);
-                        return{
-                            ...state,
-                            localCart: newItemsInCart,
-                        };
+                    const { id, amount, color } = payload;  
+                    console.log("color en reduce",color);               
+                    if (amount>0){                                                           
+                            const newItem = {...itemsInCart(id), color, amount}                                
+                            const newItemsInCart = [...state.localCart, newItem];                                
+                            localStorage.setItem("localCart", JSON.stringify(newItemsInCart));                                                 
+                            return{
+                                ...state,
+                                localCart: newItemsInCart,
+                            };                    
                     } else {
                         return {
                             ...state,
@@ -223,6 +228,34 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                         ...state,
                         localCart:[]
                 };
+
+            case DELETE_ART_LS:        
+            const { ArtId, ArtColor, cantidad } = payload;
+            const indexToDelete = state.localCart.findIndex(
+                item => item.id === ArtId && item.color === ArtColor);  
+               
+              if (indexToDelete !== -1) {
+                const newLocalCart = [...state.localCart.slice(0, indexToDelete), ...state.localCart.slice(indexToDelete + 1)];                
+                console.log("newLocalCart", newLocalCart);
+                return {
+                  ...state,
+                  localCart: newLocalCart
+                };
+              }
+              return state;
+
+        case POST_CART_API:
+            return {
+                ...state,
+                apiCart: data,
+            };
+
+        case DEL_ART_API:
+            return{
+                  ...state,
+                  apiCart: data
+            }
+
     
         default:
         return state

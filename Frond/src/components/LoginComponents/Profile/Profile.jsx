@@ -10,17 +10,17 @@ import LogoutButton from '../Logout';
 import { useState } from 'react';
 import off from '../../../assets/img/off.png';
 import { useNavigate } from 'react-router-dom';
+import { FaUserShield } from 'react-icons/fa';
 
 const Online = styled.div`
   background-color: greenyellow;
   border-radius: 50%;
-  padding: .rem .6rem;
+  padding: 4rem .6rem;
   width: 15px;
   height:15px;
   position: absolute;
   left:85.5%;
   bottom: 38%;
-  z-index: 100;
 `;
 
 const OnlineDrop = styled.div`
@@ -42,6 +42,9 @@ const Profile = () => {
 
   const goCart = () => {
     navigate('/carrito/:id');
+  };
+  const goDash = () => {
+    navigate('/dashboard2');
   };
   const goPerfil = () => {
     navigate('/perfil');
@@ -77,6 +80,15 @@ const Profile = () => {
               <FaShoppingCart className="inline-block mr-2" />
               Mi carrito
             </div>
+           {
+            user.email === 'passantinodev@gmail.com'
+            ?  <div onClick={goDash} className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
+            <FaUserShield className="inline-block mr-2" />
+            Administrar
+            </div> 
+            :''
+           }
+
             <div className='flex'>
               <img className={style.off} src={off} alt="off" />
               <LogoutButton />
