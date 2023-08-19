@@ -6,13 +6,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { clients } from '../../redux/actions';
+import { clientes } from '../../redux/actions';
 
 const Miperfil = () => {
   const dispatch = useDispatch()
   useEffect(
     () => {
-        dispatch(clients());
+        dispatch(clientes());
       },[])
   const { user, isLoading } = useAuth0();
   const [showPassword, setShowPassword] = useState(false);

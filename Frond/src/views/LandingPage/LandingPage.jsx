@@ -12,7 +12,7 @@ import ChatBotComponent from '../../components/ChatBot/ChatBot';
 import Reviews from '../../components/Reviews/Reviews'
 import ChooseUs from '../../components/ChooseUsSection/Choose';
 import { useDispatch, useSelector } from 'react-redux';
-import { clients, products } from '../../redux/actions';
+import { clientes, products } from '../../redux/actions';
 
 
 const Container = styled.div`
@@ -25,7 +25,7 @@ const Container = styled.div`
 const LandingPage = () => {
   useEffect(
     () => {
-        dispatch(clients());
+        dispatch(clientes());
       },[])
   const stateProducts = useSelector(state => state.Allproducts);
 const [pageNumberNx, setPageNumberNx] = useState(0);

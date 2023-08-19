@@ -23,6 +23,7 @@ export const EMPTY_LOCAL_CART = 'EMPTY_LOCAL_CART';
 export const DELETE_ART_LS = "DELETE_ART_LS";
 export const POST_CART_API = 'POST_CART_API';
 export const DEL_ART_API = 'DEL_ART_API';
+export const GET_ALL_CLIENTS = 'GET_ALL_CLIENTS'
 
 
 
