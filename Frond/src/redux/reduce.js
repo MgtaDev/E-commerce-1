@@ -22,7 +22,7 @@ const InitialState = {
     searchResults: [],
     addProductsToCart: [],
     localCart: initialLocalCart, apiCart:[],
-    allClients: []
+    Allclients: []
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {

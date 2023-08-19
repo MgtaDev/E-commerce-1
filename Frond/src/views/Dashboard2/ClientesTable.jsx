@@ -12,7 +12,7 @@ const ClientesTable = () => {
 
 
   const dispatch = useDispatch()
-  const stateClients = useSelector(state => state.allClients);
+  const stateClients = useSelector(state => state.Allclients);
   console.log(stateClients);
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
