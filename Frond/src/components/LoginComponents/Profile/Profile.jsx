@@ -88,6 +88,7 @@ const Profile = () => {
             </div> 
             :''
            }
+
             <div className='flex'>
               <img className={style.off} src={off} alt="off" />
               <LogoutButton />

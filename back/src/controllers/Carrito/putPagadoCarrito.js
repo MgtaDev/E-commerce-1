@@ -3,6 +3,19 @@ const postCarrito = require('./postCarrito')
 
 module.exports = async (clienteId,{ pagado }) => {
   try {
+
+    function extractNumberFromString(inputString) {
+      const match = inputString.match(/\d+/);
+    
+      if (match) {
+        return parseInt(match[0]);
+      }
+    
+      return null;
+    }
+    
+    clienteId = extractNumberFromString(clienteId);
+
     const carritoExistente = await Carrito.findOne({
       where: {
         clienteId,

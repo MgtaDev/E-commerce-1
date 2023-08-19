@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import ProductosTable from "./Productos";
 import ClientesTable from "./ClientesTable";
@@ -10,6 +11,7 @@ const Dashboard = () => {
   const [Productos, setProductos] = useState(true);
   const [Clientes, setClientes] = useState(false);
   const [Ventas, setVentas] = useState(false);
+
   const [FormCreacion, setFormCreacion] = useState(false)
   const [navStyles, setNavStyles] = useState([
     "bg-yellow-400 text-gray-900",
@@ -22,6 +24,8 @@ const Dashboard = () => {
     setClientes(false);
     setVentas(false);
     setFormCreacion(false)
+
+
     setNavStyles(["bg-yellow-400 text-gray-900", "text-gray-900", "text-gray-900"]);
   };
   const handleNav2 = () => {
@@ -29,6 +33,8 @@ const Dashboard = () => {
     setClientes(true);
     setVentas(false);
     setFormCreacion(false)
+
+
     setNavStyles(["bg-white text-gray-900", "bg-yellow-400 text-gray-900", "text-gray-900"]);
   };
   const handleNav3 = () => {
@@ -36,6 +42,7 @@ const Dashboard = () => {
     setProductos(false);
     setVentas(true);
     setFormCreacion(false)
+
     setNavStyles(["bg-white text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900"]);
   };
   const handleNav4 = () => {
@@ -43,8 +50,10 @@ const Dashboard = () => {
     setProductos(false);
     setVentas(false);
     setFormCreacion(true)
+
     setNavStyles(["bg-white text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900"]);
   };
+
 
 
 
@@ -56,6 +65,7 @@ const Dashboard = () => {
            Admin Dashboard</h1>
         </div>
         <ul className="flex-grow pb-5 mb-4">
+
           <li
             className={`text-lg font-bold p-3 cursor-pointer shadow-md bg-gray-100 transition duration-500 ${navStyles[0]} hover:bg-gray-300`}
             onClick={handleNav}>
@@ -83,6 +93,8 @@ const Dashboard = () => {
         {Clientes ? <ClientesTable /> : ""}
         {Ventas ? <VentasTable /> : ""}
         {FormCreacion ? <Form></Form> : ""}
+
+
       </div>
     </div>
   );

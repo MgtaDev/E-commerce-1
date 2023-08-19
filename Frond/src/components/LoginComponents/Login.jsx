@@ -2,7 +2,6 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
   const { isAuthenticated, user, isLoading } = useAuth0();
@@ -39,6 +38,7 @@ const LoginButton = () => {
         </button>
       )}
     </>
+
   );
 };
 

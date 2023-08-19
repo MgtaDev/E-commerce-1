@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -20,6 +21,7 @@ const VentasTable = () => {
   const handleCloseModal = (e) => {
       setSelectedVenta(null);
 
+
   };
 
   return (
@@ -27,6 +29,7 @@ const VentasTable = () => {
       <table className="w-full rounded-lg overflow-hidden">
         <thead className="bg-gray-100 uppercase text-sm leading-normal">
           <tr className="text-gray-600">
+
             <th className="border-0 px-6 py-4 font-bold">Cliente</th>
             <th className="border-0 px-6 py-4 font-bold">Producto</th>
             <th className="border-0 px-6 py-4 font-bold">Precio</th>
@@ -47,12 +50,14 @@ const VentasTable = () => {
                   onClick={() => handleVerClick(venta)}
                 >
                   Ver
+
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
       
       {selectedVenta && (
         <div className="fixed z-50 inset-0 overflow-y-auto">
@@ -91,6 +96,7 @@ const VentasTable = () => {
       )}
     </>
   );
+
 };
 
 export default VentasTable;

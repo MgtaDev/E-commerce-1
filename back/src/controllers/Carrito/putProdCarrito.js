@@ -58,7 +58,7 @@ module.exports = async (clienteId, nuevosProductos) => {
 
       if (productoExistente) {
         if (cantidad <= 0 || cantidad > inventarioExistente.cantidad) {
-          throw new Error(`La cantidad para el inventario con ID ${inventarioExistente.id} no es válida.`);
+          throw new Error(`La cantidad para el inventario con ID ${inventarioExistente.id} no es válida, la cantidad maxima permitida es ${inventarioExistente.cantidad}`);
         }
         for (let i = 0; i < productosEnCarrito.length; i++) {
           if (productosEnCarrito[i].inventarioId === inventarioExistente.id) {
@@ -69,7 +69,7 @@ module.exports = async (clienteId, nuevosProductos) => {
       }else{
          // Verificar si la cantidad solicitada es válida
       if (cantidad <= 0 || cantidad > inventarioExistente.cantidad) {
-        throw new Error(`La cantidad para el inventario con ID ${inventarioExistente.id} no es válida.`);
+        throw new Error(`La cantidad para el inventario con ID ${inventarioExistente.id} no es válida.la cantidad maxima permitida es ${inventarioExistente.cantidad}`);
       }
       productosEnCarrito.push({
         inventarioId: inventarioExistente.id,

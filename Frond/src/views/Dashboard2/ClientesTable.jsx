@@ -5,9 +5,11 @@ import { BsCheckCircle } from 'react-icons/bs';
 import { BsXCircle } from 'react-icons/bs';
 import axios from "axios";
 import { clients } from '../../redux/actions.js'
+
 import Swal from 'sweetalert2'
 
 const ClientesTable = () => {
+
 
   const dispatch = useDispatch()
   const stateClients = useSelector(state => state.Allclients);
@@ -107,6 +109,7 @@ const ClientesTable = () => {
     axios.delete(`/cliente/${idNumber}`)
       .then((response) => {
         console.log(response.data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -169,6 +172,7 @@ const ClientesTable = () => {
 
 
 
+
   return (
     <>
       <table className="w-full rounded-lg overflow-hidden">
@@ -196,6 +200,7 @@ const ClientesTable = () => {
                 </div>
               ) : (
                 <>
+
                   <span className="ml-3">Baneado</span>
                   <BsXCircle className="mr-5 relative bottom-4" />
               </>
@@ -211,6 +216,7 @@ const ClientesTable = () => {
               ? <button onClick={()=> banAlert(client.id)} className="bg-red-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Banear</button>
               : <button onClick={()=> unbanAlert(client.id)} className="bg-green-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Quitar baneo</button>
               }
+
               </td>
             </tr>
           ))}

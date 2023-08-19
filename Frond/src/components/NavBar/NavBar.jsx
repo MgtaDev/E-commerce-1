@@ -121,7 +121,6 @@ const navigateCarrito = () => {
 
         <div className="flex justify-between items-center ml-10">
          
-         
           <div className={`${style.categoriesMenu}`}>
             <ul className={`${style.menu} ${showMenu ? style.show : ''}`}>
               <li>

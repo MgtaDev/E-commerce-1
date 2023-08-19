@@ -2,7 +2,18 @@ const { Carrito } = require('../../db');
 
 module.exports = async (clienteId) => {
   try {
+    function extractNumberFromString(inputString) {
+      const match = inputString.match(/\d+/); // Busca uno o más dígitos en la cadena
+    
+      if (match) {
+        return parseInt(match[0]); // Convierte el valor coincidente en un número entero
+      }
+    
+      return null; // Si no se encuentra un número, devuelve null o algún valor predeterminado
+    }
 
+    clienteId = extractNumberFromString(clienteId)
+    
     // Verificar si ya existe un carrito para el cliente
     const carritoExistente = await Carrito.findAll({
       where: {

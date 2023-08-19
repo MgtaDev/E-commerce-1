@@ -4,17 +4,20 @@ import { products } from "../../redux/actions";
 import { BsCheckCircle } from 'react-icons/bs';
 import { BsXCircle } from 'react-icons/bs';
 import axios from "axios";
+
 import Swal from 'sweetalert2'
 
 
 const ProductosTable = () => {
   const dispatch = useDispatch()
   const stateProducts = useSelector(state => state.Allproducts);
+
   const stock = 'stock'
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumberNx, setPageNumberNx] = useState(0);
   const numberSize = 20;
   console.log(stateProducts)
+
   const handlerPageNumber = (index) => {
     setPageNumberNx(index);
   };
@@ -36,6 +39,7 @@ const ProductosTable = () => {
     [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
   );
   
+
   //delete or add product
   const deleteProductAlert = (id) => {
     const deleteProduct = (id) => {
@@ -291,6 +295,7 @@ const ProductosTable = () => {
   }
   
 
+
   return (
     <>
       <table className="w-full rounded-lg overflow-hidden">
@@ -314,6 +319,7 @@ const ProductosTable = () => {
               {product.activa === true ? (
                 <div className="d-flex align-items-center">
                   <span>Activo</span>
+
                   <BsCheckCircle className="mr-3 relative bottom-4" />
                 </div>
               ) : (
@@ -324,14 +330,17 @@ const ProductosTable = () => {
               )}</td>
               <td className="px-6 text-center py-4">
                 <button onClick={()=>editProductAlert(product.id)} className="bg-gray-800 text-white font-bold py-2 px-4 rounded hover:bg-gray-700">
+
                   Editar
                 </button>
               </td>
               <td className="px-6 text-center py-4">
+
               {product.activa === true
               ? <button onClick={()=> deleteProductAlert(product.id)} className="bg-red-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Borrar</button>
               : <button onClick={()=> addProductAlert(product.id)} className="bg-green-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Añadir</button>
               }
+
               </td>
             </tr>
           ))}
