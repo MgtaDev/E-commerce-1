@@ -1,4 +1,4 @@
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS,POST_CART_API, DEL_ART_API } from "./action-types";
 const storedLocalFavorites = localStorage.getItem("localFavorites");
 const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
 const storedLocalCart = localStorage.getItem("localCart");
@@ -21,7 +21,7 @@ const InitialState = {
     cartProducts: [],
     searchResults: [],
     addProductsToCart: [],
-    localCart: initialLocalCart
+    localCart: initialLocalCart, apiCart:[]
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {
@@ -222,6 +222,34 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                         ...state,
                         localCart:[]
                 };
+
+            case DELETE_ART_LS:        
+            const { ArtId, ArtColor, cantidad } = payload;
+            const indexToDelete = state.localCart.findIndex(
+                item => item.id === ArtId && item.color === ArtColor);  
+               
+              if (indexToDelete !== -1) {
+                const newLocalCart = [...state.localCart.slice(0, indexToDelete), ...state.localCart.slice(indexToDelete + 1)];                
+                console.log("newLocalCart", newLocalCart);
+                return {
+                  ...state,
+                  localCart: newLocalCart
+                };
+              }
+              return state;
+
+        case POST_CART_API:
+            return {
+                ...state,
+                apiCart: data,
+            };
+
+        case DEL_ART_API:
+            return{
+                  ...state,
+                  apiCart: data
+            }
+
     
         default:
         return state
