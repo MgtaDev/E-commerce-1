@@ -1,56 +1,25 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { products } from "../../redux/actions";
-import { BsCheckCircle } from 'react-icons/bs';
-import { BsXCircle } from 'react-icons/bs';
-import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const VentasTable = () => {
-  const dispatch = useDispatch()
-  const stateProducts = useSelector(state => state.Allproducts);
-  const [disableTF, setDisableTF] = useState(true);
-  const [pageNumberNx, setPageNumberNx] = useState(0);
-  const numberSize = 20;
+  const [selectedVenta, setSelectedVenta] = useState(null);
+  const stateVentas = useSelector(state => state.Allventas);
+  console.log(stateVentas);
 
-  const handlerNext = () => {
-    pageNumberNx < stateProducts.paginas -1 ? setPageNumberNx(prevNext => prevNext + 1) : setDisableTF(false)
+  const ventasData = [
+    { cliente: 'Juan', producto: 'Camisa', precio: '$20', fecha: '22/10/2021' },
+    { cliente: 'Maria', producto: 'Pantalón', precio: '$30', fecha: '23/10/2021' },
+    { cliente: 'Pedro', producto: 'Zapatos', precio: '$50', fecha: '24/10/2021' },
+    // ... más datos de ventas aquí
+  ];
+
+  const handleVerClick = (venta) => {
+    setSelectedVenta(venta);
   };
 
-  const handlerPrev = () => {
-    pageNumberNx > 0 ? setPageNumberNx(pageNumberNx - 1) : setDisableTF(false);
-  };
+  const handleCloseModal = (e) => {
+      setSelectedVenta(null);
 
-  const handlerPageNumber = (index) => {
-    setPageNumberNx(index);
-  };
-
-  useEffect(
-    () => {
-      const fetchData = () => {
-        const queries = {
-          page: pageNumberNx,
-          size: numberSize
-        };
-
-        dispatch(products(queries));
-      };
-
-      fetchData();
-      setDisableTF(pageNumberNx <= 0 || pageNumberNx >= stateProducts.paginas - 1);
-    },
-    [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
-  );
-  
-  const deleteProduct = (id) => {
-    axios
-      .delete(`/api/products/${id}`)
-      .then((response) => {
-        console.log(response.data); 
-        dispatch(products({ page: 0, size: numberSize }));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (
@@ -58,65 +27,70 @@ const VentasTable = () => {
       <table className="w-full rounded-lg overflow-hidden">
         <thead className="bg-gray-100 uppercase text-sm leading-normal">
           <tr className="text-gray-600">
-            <th className="border-0 px-6 py-4 font-bold">ID</th>
-            <th className="border-0 px-6 py-4 font-bold">Nombre</th>
-            <th className="border-0 px-6 py-4 font-bold">Stock</th>
-            <th className="border-0 px-6 py-4 font-bold">Estado</th>
-            <th className="border-0 px-6 py-4 font-bold">Editar</th>
-            <th className="border-0 px-6 py-4 font-bold">Borrar</th>
+            <th className="border-0 px-6 py-4 font-bold">Cliente</th>
+            <th className="border-0 px-6 py-4 font-bold">Producto</th>
+            <th className="border-0 px-6 py-4 font-bold">Precio</th>
+            <th className="border-0 px-6 py-4 font-bold">Fecha de compra</th>
+            <th className="border-0 px-6 py-4 font-bold">Acción</th>
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
-          {stateProducts.productos.sort((a, b) => a.id - b.id).map((product) => (
-            <tr key={product.id} className="border-t">
-              <td className="px-6 text-center py-10">{product.id}</td>
-              <td className="px-6 text-center py-10">{product.name}</td>
-              <td className="px-6 text-center py-10">{product.stock}</td>
-              <td className="px-6 l text-center py-10">
-              {product.activa === true ? (
-                <div className="d-flex align-items-center">
-                  <span>Activo</span>
-                  <BsCheckCircle className="ml-5 relative bottom-4" />
-                </div>
-              ) : (
-                <>
-                  <span>Activo</span>
-                  <BsXCircle className="pr-3 relative bottom-4" />
-              </>
-              )}</td>
-              <td className="px-6 text-center py-4">
-                <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded hover:bg-gray-700">
-                  Editar
-                </button>
-              </td>
-              <td className="px-6 text-center py-4">
+          {ventasData.map((venta) => (
+            <tr key={venta.cliente + venta.fecha} className="border-t">
+              <td className="px-6 text-center py-10">{venta.cliente}</td>
+              <td className="px-6 text-center py-10">{venta.producto}</td>
+              <td className="px-6 text-center py-10">{venta.precio}</td>
+              <td className="px-6 text-center py-10">{venta.fecha}</td>
+              <td className="px-6 text-center py-10">
                 <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => deleteProduct(product.id)}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => handleVerClick(venta)}
                 >
-                  Borrar
+                  Ver
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      
+      {selectedVenta && (
+        <div className="fixed z-50 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen px-4" onMouseDown={handleCloseModal}>
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75"></div>
 
-      <div className="flex py-30 justify-center items-center space-x-2 mt-4 mb-10">
-    
-      {Array.from(Array(stateProducts.paginas), (_, i) => (
-        <button
-          key={i}
-          className={`px-4 py-2 rounded hover:bg-gray-700 ${pageNumberNx=== i ? 'bg-gray-800 text-white font-bold' : 'bg-white text-gray-600'}`}
-          onClick={() => handlerPageNumber(i)}
-        >
-          {i + 1}
-        </button>
-      ))}
-    
-    </div>
-        </>
-      );
+            <div className="bg-white rounded-lg overflow-hidden shadow-xl max-w-lg w-full max-h-screen z-10">
+              <div className="px-4 py-5 sm:px-6">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">{selectedVenta.producto}</h3>
+                <p className="mt-1 max-w-2xl text-sm text-gray-500">{selectedVenta.cliente}</p>
+              </div>
+              <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+                <dl className="sm:divide-y sm:divide-gray-200">
+                  <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                    <dt className="text-sm font-medium text-gray-500">Cliente</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{selectedVenta.cliente}</dd>
+                  </div>
+                  <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                    <dt className="text-sm font-medium text-gray-500">Producto</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{selectedVenta.producto}</dd>
+                  </div>
+                  <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                    <dt className="text-sm font-medium text-gray-500">Precio</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{selectedVenta.precio}</dd>
+                  </div>
+                  <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                    <dt className="text-sm font-medium text-gray-500">Fecha de compra</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{selectedVenta.fecha}</dd>
+                  </div>
+                  {/* ... más datos de ventas aquí */}
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default VentasTable;

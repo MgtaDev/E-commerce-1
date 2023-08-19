@@ -80,10 +80,14 @@ const Profile = () => {
               <FaShoppingCart className="inline-block mr-2" />
               Mi carrito
             </div>
-            <div onClick={goDash} className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
-              <FaUserShield className="inline-block mr-2" />
-              Administrar
-            </div>
+           {
+            user.email === 'passantinodev@gmail.com'
+            ?  <div onClick={goDash} className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
+            <FaUserShield className="inline-block mr-2" />
+            Administrar
+            </div> 
+            :''
+           }
             <div className='flex'>
               <img className={style.off} src={off} alt="off" />
               <LogoutButton />

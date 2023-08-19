@@ -4,10 +4,12 @@
     margin: 0 1rem;
     cursor: pointer;
     margin-bottom: -.7rem;
+    border: 3px solid rgb(56, 192, 108);
 }
 .imgProfile:hover{
     transform: translateY(-0.2rem);
     transition: .5s;
+    
 }
 
 .off{
