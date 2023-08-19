@@ -12,7 +12,7 @@ const ClientesTable = () => {
 
 
   const dispatch = useDispatch()
-  const stateClients = useSelector(state => state.Allclients);
+  const stateClients = useSelector(state => state.allClients);
   console.log(stateClients);
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
@@ -28,6 +28,7 @@ const ClientesTable = () => {
     }
   );
   
+  console.log(stateClients)
   //Admin
   const makeAdminAlert = (id) => {
     const makeUserAdmin = (id) => {
