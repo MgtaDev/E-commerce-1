@@ -1,7 +1,6 @@
 const { Carrito } = require('../../db');
 const postCarrito = require('./postCarrito')
 const putVentasInventario = require('../Inventario/putVentaInventario');
-const { put } = require('../../routes/subCategoriaRouter');
 
 module.exports = async (clienteId, { pagado }) => {
   try {
@@ -40,7 +39,7 @@ module.exports = async (clienteId, { pagado }) => {
 
     // Verificar si el carrito tiene productos
     if (carritoenviar.productos.length === 0) {
-      throw new Error(`El carrito está vacío.`);
+      throw new Error(`El carrito está vacío no se puede pagar un carrito vacio.`);
     }
 
     let error = false;
