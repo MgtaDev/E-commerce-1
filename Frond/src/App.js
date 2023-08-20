@@ -34,9 +34,8 @@ import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom"; 
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 // axios.defaults.baseURL = "http://localhost:3001/"
-axios.defaults.baseURL = "bonitaandlovely-back-git-main-natisalvarez.vercel.app/"
-
-
+//Acá va el link del back
+axios.defaults.baseURL = "bonitaandlovely-production-a643.up.railway.app"
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 
