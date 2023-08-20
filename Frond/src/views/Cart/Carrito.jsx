@@ -12,13 +12,11 @@ const Carrito = () => {
     const isAuthenticated = false;
     const userid = "cli-29";
     const extractNumber = (string) => {
-        const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
-        return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
+        const match = string.match(/\d+/); 
+        return match ? parseInt(match[0]) : 0; 
     };
     const NumUserId = extractNumber(userid);
-    // if (isAuthenticated) {
-    //     window.location.href = `/carrito/${NumUserId}`;
-    // }   
+     
     const [userInfo, setUserInfo] = useState({
         nombre: 'Daniel',
         apellido: 'Apellido',
@@ -93,18 +91,20 @@ const Carrito = () => {
             }
         }
     };
-
+    
     useEffect(() => {
         if (isAuthenticated === true) {
+            console.log("con esto sabemos que se sta haciendo el dispatch");
             dispatchCartToApi();
             dispatch(emptyCartLS());
-        } else {
+        } else {            
             return
         }
     }, [isAuthenticated]);
 
 
     const cartApi = useSelector(state => state.apiCart);
+
 
     console.log("cartApi en carrito ", cartApi);
 
@@ -119,7 +119,7 @@ const Carrito = () => {
 
 
     const cartToRender = isAuthenticated ? cartApi : cartUnificado;
-
+console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuthenticated); console.log("cartApi", cartApi); console.log("cartUnificado", cartUnificado);
     const handleEmptyCart = () => {
         dispatch(emptyCartLS());
     }
@@ -167,16 +167,39 @@ const Carrito = () => {
         <>
             <div class="grid grid-cols-3 grid-rows-6 gap-5 mx-8 mt-6">
                 {/* columna izquierda detallar productos en carrito */}
-                {cartToRender && cartToRender.productos ? (
+                
+                
+                {cartToRender ? (
                     <>
-                        {cartToRender.productos.map((item, index) => (
+                        {isAuthenticated ? (
+                            cartToRender.productos.map((item, index) =>(
+                            <div key={index} className="col-span-2 grid grid-cols-6 px-6 mx-6 shadow-lg rounded-lg bg-white">
+                                <img src={item.imagenPrincipal} alt="fotoProducto" className="col-start-1 col-span-1 w-16 h-16 place-self-center object-cover border-2 border-indigo-200 rounded-full" />
+                                <div class="col-start-2 col-span-2 place-self-center grid grid-rows-2">
+                                    <div className="grid-row-1 font-medium">
+                                        {item.name}
+                                    </div>
+                                    <div className="grid-row-2 text-xs">
+                                        {item.color}
+                                    </div>
+                                </div>
+                                <div className="col-start-4 col-span-1 flex items-center justify-center font-medium ">
+                                    <p class="text-xs mr-1">Cantidad: </p> {item.cantidad}
+                                </div>
+                                <div className="col-start-5 col-span-1 flex items-center justify-end font-medium ">
+                                    <p class="text-xs mr-1">Costo: </p>{item.precio_venta * item.cantidad}
+                                </div>
+                            </div>
+                        ))
+                       ) : (
+                            cartToRender.map((item, index) => (
                             <div key={index} className="col-span-2 grid grid-cols-6 px-6 mx-6 shadow-lg rounded-lg bg-white">
 
-                                <img src={isAuthenticated ? item.imagenPrincipal : item.objeto.imagenPrincipal} alt="fotoProducto" className="col-start-1 col-span-1 w-16 h-16 place-self-center object-cover border-2 border-indigo-200 rounded-full" />
+                                <img src={item.objeto.imagenPrincipal} alt="fotoProducto" className="col-start-1 col-span-1 w-16 h-16 place-self-center object-cover border-2 border-indigo-200 rounded-full" />
 
                                 <div class="col-start-2 col-span-2 place-self-center grid grid-rows-2">
                                     <div className="grid-row-1 font-medium">
-                                        {isAuthenticated ? item.name : item.objeto.name}
+                                        {item.objeto.name}
                                     </div>
                                     <div className="grid-row-2 text-xs">
                                         {item.color}
@@ -187,29 +210,17 @@ const Carrito = () => {
                                     <p class="text-xs mr-1">Cantidad: </p> {item.cantidad}
                                 </div>
                                 <div className="col-start-5 col-span-1 flex items-center justify-end font-medium ">
-                                    <p class="text-xs mr-1">Costo: </p>{isAuthenticated ? item.precio_venta * item.cantidad : item.objeto.precio_venta * item.cantidad}
+                                    <p class="text-xs mr-1">Costo: </p>{item.objeto.precio_venta * item.cantidad}
                                 </div>
-                                {!isAuthenticated && (
-                                    <button
-                                        onClick={() => handleDeleteArtLS(item)}
-                                        className="col-start-6 rounded-md place-self-center px-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100"
-                                    >
-                                        X
-                                    </button>
-                                )}
-                            </div>
-                        ))}
-                        <div class="col-start-2 flex justify-end h-6">
-                            {isAuthenticated ? null : (
                                 <button
-                                    onClick={() => handleEmptyCart()}
-                                    class="rounded-md mx-6 px-2 text-gray-400 bg-gray-200 hover:bg-gray-100 font-small"
+                                    onClick={() => handleDeleteArtLS(item)}
+                                    className="col-start-6 rounded-md place-self-center px-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100"
                                 >
-                                    Limpiar Carrito
+                                    X
                                 </button>
-                            )}
-                        </div>
-
+                            </div>
+                        ))
+                        )}                                                                    
                     </>
                 ) : (
                     <div className="col-span-2 grid grid-cols-5 px-6 mx-6 shadow-md rounded-lg bg-fuchsia-100">
@@ -217,8 +228,7 @@ const Carrito = () => {
                             No hay artículos en su carrito
                         </div>
                     </div>
-                )}
-
+                )}                                            
 
                 {/* columna derecha, total y boton a pasarela */}
                 <div class="col-start-3 row-start-1 row-end-4 px-6 mx-6 shadow-lg rounded-lg bg-white">
