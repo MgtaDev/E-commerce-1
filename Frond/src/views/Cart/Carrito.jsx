@@ -78,27 +78,18 @@ const Carrito = () => {
         console.log("cartUnificado item.amount", item.objeto.amount);
     })
 
-    // enviamos el cartLS a cartApi
-    const dispatchCartToApi = async () => {
-        try {
-            console.log("esto es lo que se esta enviando",NumUserId,cartLS);
-            await dispatch(addCartLSToApi({ user: NumUserId, localCart: cartLS }));
-        } catch (error) {
-            if (error.response) {
-                console.log("Error en el backend:", error.response.data.error);
-            } else {
-                console.log("Error desconocido:", error.message);
-            }
-        }
-    };
-    
     useEffect(() => {
-        if (isAuthenticated === true) {
-            console.log("con esto sabemos que se sta haciendo el dispatch");
-            dispatchCartToApi();
-            dispatch(emptyCartLS());
-        } else {            
-            return
+        if (isAuthenticated) {
+          dispatch(addCartLSToApi({ user: NumUserId, localCart: cartLS }))
+            .catch(error => {             
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response?.data || 'Hubo un error en la solicitud.',
+              });
+            });
+        } else {
+          return;
         }
     }, [isAuthenticated]);
 
@@ -169,10 +160,10 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
                 {/* columna izquierda detallar productos en carrito */}
                 
                 
-                {cartToRender ? (
+                {cartApi || cartUnificado.productos ? ( 
                     <>
-                        {isAuthenticated ? (
-                            cartToRender.productos.map((item, index) =>(
+                        {isAuthenticated && cartApi.productos ? (
+                            cartApi.productos.map((item, index) =>(
                             <div key={index} className="col-span-2 grid grid-cols-6 px-6 mx-6 shadow-lg rounded-lg bg-white">
                                 <img src={item.imagenPrincipal} alt="fotoProducto" className="col-start-1 col-span-1 w-16 h-16 place-self-center object-cover border-2 border-indigo-200 rounded-full" />
                                 <div class="col-start-2 col-span-2 place-self-center grid grid-rows-2">
@@ -192,7 +183,7 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
                             </div>
                         ))
                        ) : (
-                            cartToRender.map((item, index) => (
+                            cartUnificado.map((item, index) => (
                             <div key={index} className="col-span-2 grid grid-cols-6 px-6 mx-6 shadow-lg rounded-lg bg-white">
 
                                 <img src={item.objeto.imagenPrincipal} alt="fotoProducto" className="col-start-1 col-span-1 w-16 h-16 place-self-center object-cover border-2 border-indigo-200 rounded-full" />
@@ -228,7 +219,7 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
                             No hay artículos en su carrito
                         </div>
                     </div>
-                )}                                            
+                ) }                                              
 
                 {/* columna derecha, total y boton a pasarela */}
                 <div class="col-start-3 row-start-1 row-end-4 px-6 mx-6 shadow-lg rounded-lg bg-white">
