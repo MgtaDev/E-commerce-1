@@ -115,7 +115,6 @@ function App () {
 
       </Routes>
       <div className="chatbot-container">
-      <FaWhatsapp/>
         {/* <Chatbot
           config={Configs}
           messageParser={MessageParser}

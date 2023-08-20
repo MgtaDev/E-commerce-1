@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -7,58 +6,52 @@ const VentasTable = () => {
   const stateVentas = useSelector(state => state.Allventas);
   console.log(stateVentas);
 
-  const ventasData = [
-    { cliente: 'Juan', producto: 'Camisa', precio: '$20', fecha: '22/10/2021' },
-    { cliente: 'Maria', producto: 'Pantalón', precio: '$30', fecha: '23/10/2021' },
-    { cliente: 'Pedro', producto: 'Zapatos', precio: '$50', fecha: '24/10/2021' },
-    // ... más datos de ventas aquí
-  ];
-
   const handleVerClick = (venta) => {
     setSelectedVenta(venta);
   };
 
   const handleCloseModal = (e) => {
       setSelectedVenta(null);
-
-
   };
 
   return (
     <>
-      <table className="w-full rounded-lg overflow-hidden">
-        <thead className="bg-gray-100 uppercase text-sm leading-normal">
-          <tr className="text-gray-600">
-
-            <th className="border-0 px-6 py-4 font-bold">Cliente</th>
-            <th className="border-0 px-6 py-4 font-bold">Producto</th>
-            <th className="border-0 px-6 py-4 font-bold">Precio</th>
-            <th className="border-0 px-6 py-4 font-bold">Fecha de compra</th>
-            <th className="border-0 px-6 py-4 font-bold">Acción</th>
-          </tr>
-        </thead>
-        <tbody className="text-gray-600 text-sm font-light">
-          {ventasData.map((venta) => (
-            <tr key={venta.cliente + venta.fecha} className="border-t">
-              <td className="px-6 text-center py-10">{venta.cliente}</td>
-              <td className="px-6 text-center py-10">{venta.producto}</td>
-              <td className="px-6 text-center py-10">{venta.precio}</td>
-              <td className="px-6 text-center py-10">{venta.fecha}</td>
-              <td className="px-6 text-center py-10">
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleVerClick(venta)}
-                >
-                  Ver
-
-                </button>
-              </td>
+      {stateVentas.length === 0 ? (
+        <div className="flex justify-center items-center h-full">
+          <div className="text-3xl text-gray-500 font-bold">No hay ventas aun...</div>
+        </div>
+      ) : (
+        <table className="w-full rounded-lg overflow-hidden">
+          <thead className="bg-gray-100 uppercase text-sm leading-normal">
+            <tr className="text-gray-600">
+              <th className="border-0 px-6 py-4 font-bold">Cliente</th>
+              <th className="border-0 px-6 py-4 font-bold">Producto</th>
+              <th className="border-0 px-6 py-4 font-bold">Precio</th>
+              <th className="border-0 px-6 py-4 font-bold">Fecha de compra</th>
+              <th className="border-0 px-6 py-4 font-bold">Acción</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-gray-600 text-sm font-light">
+            {stateVentas.map((venta) => (
+              <tr key={venta.cliente + venta.fecha} className="border-t">
+                <td className="px-6 text-center py-10">{venta.cliente}</td>
+                <td className="px-6 text-center py-10">{venta.producto}</td>
+                <td className="px-6 text-center py-10">{venta.precio}</td>
+                <td className="px-6 text-center py-10">{venta.fecha}</td>
+                <td className="px-6 text-center py-10">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleVerClick(venta)}
+                  >
+                    Ver
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
 
-      
       {selectedVenta && (
         <div className="fixed z-50 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen px-4" onMouseDown={handleCloseModal}>
@@ -96,7 +89,6 @@ const VentasTable = () => {
       )}
     </>
   );
-
 };
 
 export default VentasTable;
