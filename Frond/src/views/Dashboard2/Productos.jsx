@@ -11,8 +11,6 @@ import Swal from 'sweetalert2'
 const ProductosTable = () => {
   const dispatch = useDispatch()
   const stateProducts = useSelector(state => state.Allproducts);
-
-  const stock = 'stock'
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumberNx, setPageNumberNx] = useState(0);
   const numberSize = 20;
@@ -51,6 +49,8 @@ const ProductosTable = () => {
       axios.delete(`/producto/${idNumber}`)
         .then((response) => {
           console.log(response.data);
+          dispatch(products({page: pageNumberNx, size: numberSize}));
+          setDisableTF(pageNumberNx <= 0 || pageNumberNx >= response.data.paginas - 1);
         })
         .catch((error) => {
           console.log(error);
@@ -85,6 +85,8 @@ const ProductosTable = () => {
         axios.put(`/producto/activate/${idNumber}`)
           .then((response) => {
             console.log(response.data);
+            dispatch(products({page: pageNumberNx, size: numberSize}));
+            setDisableTF(pageNumberNx <= 0 || pageNumberNx >= response.data.paginas - 1);
           })
           .catch((error) => {
             console.log(error);
@@ -279,6 +281,8 @@ const ProductosTable = () => {
                 'El producto ha sido editado exitosamente',
                 'success'
               );
+              dispatch(products({page: pageNumberNx, size: numberSize}));
+              setDisableTF(pageNumberNx <= 0 || pageNumberNx >= response.data.paginas - 1);
               // Resto del código aquí...
             }).catch((error) => {
               Swal.fire(
@@ -314,7 +318,7 @@ const ProductosTable = () => {
             <tr key={product.id} className="border-t">
               <td className="px-6 text-center py-10">{product.id}</td>
               <td className="px-6 text-center py-10">{product.name}</td>
-              <td className="px-6 text-center py-10">{product.stock}</td>
+              <td className="px-6 text-center py-10">{product.cantidad} unidades</td>
               <td className="px-6 l text-center py-10">
               {product.activa === true ? (
                 <div className="d-flex align-items-center">
@@ -365,3 +369,4 @@ const ProductosTable = () => {
 };
 
 export default ProductosTable;
+

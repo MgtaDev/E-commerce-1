@@ -111,25 +111,19 @@ function App() {
             <Route path="/miscompras" element={<MisCompras />} />
             <Route path="/confirmedpayment" element={<PagoExitoso />} />
 
-
-
-          </Routes>
-          <div className="chatbot-container">
-            <FaWhatsapp />
-            {/* <Chatbot
+      </Routes>
+      <div className="chatbot-container">
+        {/* <Chatbot
           config={Configs}
           messageParser={MessageParser}
           // actionProvider={ActionProvider}
         /> */}
-
-          </div>
-          {
-            location.pathname !== "/" ? <Footer /> : null
-          }
-        </div>
+        />
       </div>
+      {
+            location.pathname !== "/" ? <Footer /> : null
+         }
     </div>
-
   );
 }
 

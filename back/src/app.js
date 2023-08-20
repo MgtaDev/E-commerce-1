@@ -103,7 +103,7 @@ server.post("/pago", (req, res) => {
         title: producto.nombre,
         unit_price: Number(producto.precio),
         description: producto.descripcion,
-        quantity: 1
+        quantity: producto.quantity
       },
     ],
     back_urls: {
