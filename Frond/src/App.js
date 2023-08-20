@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FaWhatsapp } from 'react-icons/fa';
 import './App.css';
-import {Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
@@ -28,23 +28,23 @@ import Carrito from "./views/Cart/Carrito";
 import PagoExitoso from "./views/PagoExitoso/PagoExitoso.jsx"
 import { useAuth0 } from "@auth0/auth0-react";
 import { productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { useParams } from "react-router-dom"; 
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
-axios.defaults.baseURL = "http://localhost:3001/"
-
-
-
+// axios.defaults.baseURL = "http://localhost:3001/"
+//Acá va el link del back
+axios.defaults.baseURL = "bonitaandlovely-production-a643.up.railway.app"
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 
-function App () {
+function App() {
   const location = useLocation()
   const dispatch = useDispatch()
-  const {user, isAuthenticated} = useAuth0()
-  
-  useEffect(()=>{
+  const { user, isAuthenticated } = useAuth0()
+
+  useEffect(() => {
     dispatch(productosSinPag())
   }, [])
 
@@ -83,35 +83,33 @@ function App () {
           <Chatbot
             config={Configs}
             messageParser={MessageParser}
-            // actionProvider={ActionProvider}
+          // actionProvider={ActionProvider}
           />
         </div>
-    <div>
-      {
+        <div>
+          {
             location.pathname !== "/" ? <Navbar /> : null
-         }
-      <Routes>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/catalogo" element={<Catalogo />} />
-        <Route path="/faqs" element={<FAQs />} />
-        <Route path="/devTeam" element={<DevTeam />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/favoritos" element={<Favoritos />} />
-        {/* Esta era la ruta anterior <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/itemadded/:id" element={<AddToCart />} />
-        <Route path="/carrito/:id" element={<Carrito />} />
-        <Route path="/carrito" element={<Carrito />} />
-        <Route path="/perfil" element = {<Profile/>}/>
-        <Route path="/dashboard2" element = {<Dashboard2/>}/>
-        <Route path="/miscompras" element = {<MisCompras/>}/>
-        <Route path="/confirmedpayment" element = {<PagoExitoso/>}/>
-        
-        
+          }
+          <Routes>
+            <Route exact path="/" element={<LandingPage />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/catalogo" element={<Catalogo />} />
+            <Route path="/faqs" element={<FAQs />} />
+            <Route path="/devTeam" element={<DevTeam />} />
+            <Route path="/form" element={<Form />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/favoritos" element={<Favoritos />} />
+            {/* Esta era la ruta anterior <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/itemadded/:id" element={<AddToCart />} />
+            <Route path="/carrito/:id" element={<Carrito />} />
+            <Route path="/carrito" element={<Carrito />} />
+            <Route path="/perfil" element={<Profile />} />
+            <Route path="/dashboard2" element={<Dashboard2 />} />
+            <Route path="/miscompras" element={<MisCompras />} />
+            <Route path="/confirmedpayment" element={<PagoExitoso />} />
 
       </Routes>
       <div className="chatbot-container">

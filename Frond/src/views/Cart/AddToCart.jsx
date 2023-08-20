@@ -13,19 +13,19 @@ const AddToCart = () => {
   const location = useLocation();
   const stateProducts = useSelector(state => state.cartProducts);
   console.log(stateProducts);
-  const { id, amount, color } = useParams();
- // const searchParams = new URLSearchParams(location.search);
+  const { id, amount } = useParams();
+  const searchParams = new URLSearchParams(location.search);
  
  //  const id = searchParams.get("id");
    //const amount = /*searchParams.get("amount") */ 2 ; 
 
   useEffect(() => {
-    dispatch(getCartProducts(id, amount, color));
-  }, [dispatch, id, amount, color]);
+    dispatch(getCartProducts(id, amount));
+  }, [dispatch, id, amount]);
 
   const addToCart = () => {
-    dispatch(addToCartFunction(id, amount, color)); 
-    const carritotUrl = `/carrito/${id}?amount=${amount}&color=${color}`;
+    dispatch(addToCartFunction(id, amount)); 
+    const carritotUrl = `/carrito/${id}?amount=${amount}`;
     navigate(carritotUrl);
   };
 
