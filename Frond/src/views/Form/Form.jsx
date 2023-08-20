@@ -1,346 +1,678 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import * as yup from "yup"; // Importa yup para validar
-import NavBar from '../../components/NavBar/NavBar';
-import Footer from '../../components/Footer/Footer'
-import axios from 'axios';
-
-
-import style from "./Form.module.css";
+import * as yup from "yup";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { sizes, categories, brands } from "../../redux/actions";
 
 const validationSchema = yup.object({
-  productName: yup.string().required("El nombre del producto es obligatorio"),
-  productPrice: yup
+  name: yup
+    .string()
+    .required("El nombre del producto es obligatorio")
+    .min(5, "El nombre debe tener al menos 5 caracteres")
+    .max(50, "El nombre no debe exceder los 50 caracteres"),
+  descripcion: yup
+    .string()
+    .required("La descripción es obligatoria")
+    .min(10, "La descripción debe tener al menos 10 caracteres")
+    .max(200, "La descripción no debe exceder los 200 caracteres"),
+  precio_compra: yup
     .number()
-    .typeError("El precio del producto debe ser un número válido")
     .required("El precio del producto es obligatorio")
     .positive("El precio debe ser un número positivo")
-    .min(0.01, "El precio mínimo es 0.01")
-    .max(9999.99, "El precio máximo es 9999.99"),
+    .min(1000, "El precio mínimo es 1000")
+    .max(1000000, "El precio máximo es 1000000"),
+  porcentaje_ganancia: yup
+    .number()
+    .required("El porcentaje de ganancia es obligatorio")
+    .min(10, "El porcentaje mínimo de ganancia es 10")
+    .max(100, "El porcentaje máximo de ganancia es 100"),
+  precio_venta: yup
+    .number()
+    .required("El precio de venta es obligatorio")
+    .positive("El precio de venta debe ser un número positivo")
+    .min(0.01, "El precio mínimo de venta es 0.01")
+    .max(99999.99, "El precio máximo de venta es 99999.99"),
+  referencia_proveedor: yup
+    .string()
+    .required("La referencia del proveedor es obligatoria"),
+  marcaId: yup.number().required("Selecciona una marca"),
+  categoriaId: yup.number().required("Selecciona una categoría"),
+  tamañoId: yup.number().required("Selecciona un tamaño"),
+  proveedorId: yup.number().required("Selecciona un proveedor"),
 });
 
 const Form = () => {
-  const providers = [
-    "GRAPHIC STUDIO",
-    "S. SALVA ART DIRECTOR",
-    "GOLDEN STUDIO",
-    "FURNITURE DESIGN",
-    "TRAVEL LOOKBOOK",
-  ];
+  const dispatch = useDispatch();
+  const sizesOptions = useSelector((state) => state.Allsizes);
+  const categoriesOptions = useSelector((state) => state.Allcategories);
+  const brandsOptions = useSelector((state) => state.Allbrands);
 
-  const colors = ["BLUE", "YELLOW", "RED", "GREEN", "PURPLE", "PINK","BLACK"];
+  const [imageUrl, setImageUrl] = useState("");
 
-  const categories = [
-    "LABIAL",
-    "RUBOR",
-    "PINTA UÑAS",
-    "BRILLO",
-    "PESTAÑINA",
-    "QUITA ESMALTE",
-  ];
+  const imgbbApiKey = "cf44a253679320997c892d7e7a273f04";
+  const imgbbUploadUrl = "https://api.imgbb.com/1/upload";
+
+  useEffect(() => {
+    dispatch(sizes());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(categories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(brands());
+  }, [dispatch]);
+
+  //obtener proveedores
+  const [providers, setProviders] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/proveedor")
+      .then((response) => {
+        setProviders(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los proveedores:", error);
+      });
+  }, []);
 
   const formik = useFormik({
     initialValues: {
-      productName: "",
-      productPrice: "",
-      productDescription: "",
+      name: "",
+      descripcion: "",
+      imagenPrincipal: null,
+      precio_compra: "",
+      porcentaje_ganancia: 10,
+      precio_venta: "",
+      referencia_proveedor: "",
+      marcaId: "",
+      categoriaId: "",
+      tamañoId: "",
+      proveedorId: "",
+      subcategoriaId: [ 12, 9, 19, 16 ],
+      imagenes: [8,38,36,14,4,27],
     },
     validationSchema,
-    onSubmit: (values) => {
-      // Aquí puedes manejar la lógica cuando el formulario se envía
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
       console.log("Valores enviados:", values);
+
+      try {
+        const imageUrl = await handleImageUpload(values.imagenPrincipal);
+
+        console.log(imageUrl);
+        // Actualiza los valores con la URL de la imagen subida
+        const updatedValues = {
+          ...values,
+          imagenPrincipal: imageUrl,
+        };
+
+        console.log(updatedValues);
+        // Realiza la solicitud al servidor para crear el producto
+        const responseProducto = await axios.post("/producto", updatedValues);
+
+        console.log("Producto creado:", responseProducto.data);
+        resetForm();
+      } catch (error) {
+        console.error("Error al crear el producto:", error);
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [selectedProvider, setSelectedProvider] = useState("");
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedProvider, setSelectedProvider] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleImageUpload = async (imageFile) => {
+    try {
+      const formData = new FormData();
+      formData.append("key", imgbbApiKey);
+      formData.append("image", imageFile);
+
+      const response = await axios.post(imgbbUploadUrl, formData);
+      return response.data.data.url;
+    } catch (error) {
+      console.error("Error al subir la imagen a imgbb:", error);
+      throw error;
+    }
+  };
 
   const handleSelectChange = (event) => {
-    setSelectedProvider(event.target.value);
-  };
-
-  const handleCheckboxChange = (color) => {
-    if (selectedColors.includes(color)) {
-      setSelectedColors(selectedColors.filter((c) => c !== color));
-    } else {
-      setSelectedColors([...selectedColors, color]);
-    }
-  };
-
-  const handleCategoryChange = (event) => {
-    const selectedCategory = event.target.value;
-    if (!selectedCategories.includes(selectedCategory)) {
-      setSelectedCategories([...selectedCategories, selectedCategory]);
-    }
-  };
-
-  const handleRemoveCategory = (categoryToRemove) => {
-    const updatedCategories = selectedCategories.filter(
-      (category) => category !== categoryToRemove
+    const selectedValue = event.target.value;
+    const selectedProviderObj = providers.find(
+      (option) => option.id === Number(selectedValue)
     );
-    setSelectedCategories(updatedCategories);
-  };
-
-  const handleImageChange = async (event) => {
-    const imageFile = event.target.files[0];
-    if (imageFile) {
-      const formData = new FormData();
-      formData.append('image', imageFile);
-  
-      try {
-        const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          params: {
-            key: 'cf44a253679320997c892d7e7a273f04',
-          },
-        });
-  
-        if (response.data && response.data.data && response.data.data.url) {
-          setSelectedImage(response.data.data.url);
-          console.log('Imagen subida exitosamente:', response.data.data.url);
-        } else {
-          console.error('Hubo un problema al subir la imagen.');
-        }
-      } catch (error) {
-        console.error('Error al subir la imagen:', error);
-      }
+    if (selectedProviderObj) {
+      setSelectedProvider(selectedProviderObj);
+      formik.setFieldValue("proveedorId", selectedProviderObj.id);
     }
   };
-  
 
-  const handleFormSubmit = (values) => {
-    // Crear un objeto con los datos a guardar
-    const dataToSave = {
-      productName,
-      productPrice,
-      productDescription,
-      selectedProvider,
-      selectedColors,
-      selectedCategories,
-      selectedImage,
-    };
+  const handleSelectChangeBrands = (event) => {
+    const selectedValue = event.target.value;
+    const splitValues = selectedValue.split("-");
+    const selectedBrandId = splitValues[1];
+    const selectedBrandsObj = brandsOptions.find(
+      (option) => option.id === selectedValue
+    );
+    if (selectedBrandsObj) {
+      setSelectedBrand(selectedBrandsObj);
+      formik.setFieldValue("marcaId", selectedBrandId);
+    }
+  };
 
-    // Convertir el objeto en formato JSON
-    const jsonData = JSON.stringify(dataToSave, null, 2);
+  const handleSelectChangeCategories = (event) => {
+    const selectedValue = event.target.value;
+    const splitValues = selectedValue.split("-");
+    const selectedCategoriesId = splitValues[1];
+    const selectedCategoriesObj = categoriesOptions.find(
+      (option) => option.id === selectedValue
+    );
+    if (selectedCategoriesObj) {
+      setSelectedCategories(selectedCategoriesObj);
+      formik.setFieldValue("categoriaId", selectedCategoriesId);
+    }
+  };
 
-    // Crear un Blob (objeto binario) con los datos JSON
-    const blob = new Blob([jsonData], { type: "application/json" });
-
-    // Crear una URL para el Blob
-    const url = URL.createObjectURL(blob);
-
-    // Crear un enlace de descarga
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "productData.json";
-    a.textContent = "Descargar JSON";
-
-    // Agregar el enlace al documento y hacer clic en él para iniciar la descarga
-    document.body.appendChild(a);
-    a.click();
-
-    // Restablecer el formulario después de guardar los datos
-    formik.resetForm();
-    setSelectedProvider("");
-    setSelectedColors([]);
-    setSelectedImage(null);
-    setSelectedCategories([]);
+  const handleSelectChangeSize = (event) => {
+    const selectedValue = event.target.value;
+    const splitValues = selectedValue.split("-");
+    const selectedSizeId = splitValues[1];
+    const selectedSizeObj = sizesOptions.find(
+      (option) => option.id === selectedValue
+    );
+    if (selectedSizeObj) {
+      setSelectedSize(selectedSizeObj);
+      formik.setFieldValue("tamañoId", selectedSizeId);
+    }
   };
 
   return (
-    <><NavBar></NavBar><form onSubmit={formik.handleSubmit}>
-      <div className={style.formContainer}>
-        <div className={`flex justify-center ${style.leftSection}`}>
-          <div className="w-2/3">
-            <h1 className={style.mainContainer}>Crear Producto:</h1>
+    <div className="bg-gray-100 min-h-screen flex justify-center items-center">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="bg-white w-full md:w-4/5 lg:w-3/5 font-medium rounded-md shadow-md px-10 pt-8 pb-6 flex"
+      >
+        <div className="flex-1 pr-10">
+          <h1 className="text-3xl text-gray-800 mb-4 ">
+            Crear Producto
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Nombre del Producto */}
+            <div>
+              <label
+                htmlFor="productName"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Nombre del Producto
+              </label>
+              <input
+                type="text"
+                className={`border rounded-md p-11 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                  formik.touched.name && formik.errors.name
+                    ? "border-red-500"
+                    : ""
+                }`}
+                id="productName"
+                name="name"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+                required
+              />
+              {formik.touched.name && formik.errors.name && (
+                <div className="text-red-500 text-sm mt-1 font-medium">
+                  {formik.errors.name}
+                </div>
+              )}
+            </div>
 
+            {/* Descripción del Producto */}
             <div>
-              <label htmlFor="productName">Nombre del Producto</label>
-              <div>
-                <input
-                  type="text"
-                  className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
-                  placeholder="Ingrese el nombre del producto"
-                  id="productName"
-                  name="productName"
-                  onChange={(e) => {
-                    setProductName(e.target.value);
-                    formik.handleChange(e);
-                  } }
-                  onBlur={formik.handleBlur}
-                  value={formik.values.productName} />
-                {formik.touched.productName && formik.errors.productName ? (
-                  <div className={style.error}>{formik.errors.productName}</div>
-                ) : null}
-              </div>
-            </div>
-            <div>
-              <label htmlFor="productPrice">Precio del Producto</label>
-              <div>
-                <input
-                  type="text"
-                  className="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
-                  placeholder="Ingrese el precio del producto"
-                  id="productPrice"
-                  name="productPrice"
-                  onChange={(e) => {
-                    setProductPrice(e.target.value);
-                    formik.handleChange(e);
-                  } }
-                  onBlur={formik.handleBlur}
-                  value={formik.values.productPrice} />
-                {formik.touched.productPrice && formik.errors.productPrice ? (
-                  <div className={style.error}>
-                    {formik.errors.productPrice}
-                  </div>
-                ) : null}
-              </div>
-            </div>
-            <div>
-              <label htmlFor="productProviders">Proveedor</label>
-              <div>
-                <select
-                  id="productProviders"
-                  value={selectedProvider}
-                  onChange={handleSelectChange}
-                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300"
-                >
-                  <option value="">Seleccionar</option>
-                  {providers.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <strong>Proveedor Seleccionado:</strong>{" "}
-                {selectedProvider.length > 0 ? selectedProvider : "Ninguno"}
-              </div>
-            </div>
-            <div className="mb-4">
               <label
                 htmlFor="productDescription"
-                className="block font-medium text-gray-700"
+                className="font-medium text-gray-700 block mb-1"
               >
                 Descripción del Producto
               </label>
               <textarea
                 id="productDescription"
-                name="productDescription"
-                placeholder="Escriba una breve descripcion del producto"
+                name="descripcion"
+                placeholder="Escriba una breve descripción del producto"
                 rows="4"
-                className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300"
-                onChange={(e) => {
-                  setProductDescription(e.target.value);
-                  formik.handleChange(e);
-                } }
-                onBlur={formik.handleBlur} />
+                className={`border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                  formik.touched.descripcion && formik.errors.descripcion
+                    ? "border-red-500"
+                    : ""
+                }`}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.descripcion}
+                required
+              ></textarea>
+              {formik.touched.descripcion && formik.errors.descripcion && (
+                <div className="text-red-500 text-sm mt-1 font-medium">
+                  {formik.errors.descripcion}
+                </div>
+              )}
             </div>
+
+            {/* Precio de Compra */}
             <div>
-              <label htmlFor="productCategories">Categorias</label>
-              <div>
+              <label
+                htmlFor="productPrice"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Precio de Compra
+              </label>
+              <div className="flex items-center">
+                <span className="mr-2">$</span>
+                <input
+                  type="text"
+                  className={`border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                    formik.touched.precio_compra &&
+                    formik.errors.precio_compra
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  id="productPrice"
+                  name="precio_compra"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.precio_compra}
+                  required
+                  inputMode="numeric"
+                />
+              </div>
+              {formik.touched.precio_compra && formik.errors.precio_compra && (
+                <div className="text-red-500 text-sm mt-1 font-medium">
+                  {formik.errors.precio_compra}
+                </div>
+              )}
+            </div>
+
+            {/* Porcentaje de Ganancia */}
+            <div>
+              <label
+                htmlFor="percentageOfProfit"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Porcentaje de Ganancia
+              </label>
+              <div className="flex items-center">
+                <input
+                  type="range"
+                  min="10"
+                  max="100"
+                  step="10"
+                  className="w-full"
+                  id="percentageOfProfit"
+                  name="porcentaje_ganancia"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.porcentaje_ganancia}
+                />
+                <span className="ml-2 font-medium">
+                  {formik.values.porcentaje_ganancia}%
+                </span>
+              </div>
+              {formik.touched.porcentaje_ganancia &&
+                formik.errors.porcentaje_ganancia && (
+                  <div className="text-red-500 text-sm mt-1 font-medium">
+                    {formik.errors.porcentaje_ganancia}
+                  </div>
+                )}
+            </div>
+
+            {/* Precio de Venta */}
+            <div>
+              <label
+                htmlFor="salePrice"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Precio de Venta
+              </label>
+              <div className="flex items-center">
+                <span className="mr-2">$</span>
+                <input
+                  type="text"
+                  className={`border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                    formik.touched.precio_venta && formik.errors.precio_venta
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  id="salePrice"
+                  name="precio_venta"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.precio_venta}
+                  required
+                />
+              </div>
+              {formik.touched.precio_venta && formik.errors.precio_venta && (
+                <div className="text-red-500 text-sm mt-1 font-medium">
+                  {formik.errors.precio_venta}
+                </div>
+              )}
+            </div>
+
+            {/* Proveedor */}
+            <div>
+              <label
+                htmlFor="productProvider"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Proveedor
+              </label>
+              <div className="relative">
                 <select
-                  value=""
-                  onChange={handleCategoryChange}
-                  className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300"
+                  id="productProvider"
+                  value={
+                    selectedProvider && selectedProvider.id
+                      ? selectedProvider.id
+                      : ""
+                  }
+                  onChange={handleSelectChange}
+                  name="proveedorId"
+                  className={`appearance-none w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                    formik.touched.proveedorId && formik.errors.proveedorId
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  required
                 >
-                  <option value="" disabled>
-                    Seleccionar
-                  </option>
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
+                  <option value="">Seleccionar</option>
+                  {providers.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
                     </option>
                   ))}
                 </select>
-                <div className="mt-4">
-                  <h2>Categorías seleccionadas:</h2>
-                  <ul>
-                    {selectedCategories.map((category, index) => (
-                      <li key={index}>
-                        {category}
-                        <button
-                          className="ml-2 text-red-500"
-                          onClick={() => handleRemoveCategory(category)}
-                        >
-                          Eliminar
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg
+                    className="h-4 w-4 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </div>
               </div>
+              {formik.touched.proveedorId && formik.errors.proveedorId && (
+                <div className="text-red-500 text-sm mt-1 font-medium">
+                  {formik.errors.proveedorId}
+                </div>
+              )}
             </div>
-          </div>
-        </div>
-        <div className={`flex justify-center ${style.rightSection}`}>
-          <div className="w-2/3">
-            <div>
-              <h3>Selecciona colores:</h3>
-              {colors.map((color) => (
-                <label key={color} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    value={color}
-                    checked={selectedColors.includes(color)}
-                    onChange={() => handleCheckboxChange(color)}
-                    className="mr-2" />
-                  {color}
-                </label>
-              ))}
-              <div>
-                <strong>Colores seleccionados:</strong>{" "}
-                {selectedColors.length > 0
-                  ? selectedColors.join(", ")
-                  : "Ninguno"}
-              </div>
-            </div>
-            {selectedImage && (
-              <div className="w-full h-64 border border-gray-300 rounded-lg overflow-hidden">
-                <img
-                  src={selectedImage}
-                  alt="Imagen seleccionada"
-                  className="w-full h-full object-cover" />
-              </div>
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="mb-4" />
-            <div className="flex gap-2">
-              <button
-                type="button"
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-red-300"
-              >
-                Cancelar
-              </button>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                disabled={formik.isSubmitting ||
-                  !formik.isValid ||
-                  Object.keys(formik.touched).length !==
-                  Object.keys(formik.values).length ||
-                  Object.keys(formik.errors).length !== 0}
-                onClick={handleFormSubmit} // Llamar a la función de guardado en clic del botón
-              >
-                Guardar Producto
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form><Footer/></>
-  );
-};
 
-export default Form;
+            {/* Referencia del Proveedor */}
+            <div>
+              <label
+                htmlFor="refProv"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Referencia del Proveedor
+              </label>
+              <input
+                type="text"
+                className={`border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                  formik.touched.referencia_proveedor &&
+                  formik.errors.referencia_proveedor
+                    ? "border-red-500"
+                    : ""
+                }`}
+                id="refProv"
+                name="referencia_proveedor"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.referencia_proveedor}
+                required
+              />
+              {formik.touched.referencia_proveedor &&
+                formik.errors.referencia_proveedor && (
+                  <div className="text-red-500 text-sm mt-1 font-medium">
+                    {formik.errors.referencia_proveedor}
+                  </div>
+                )}
+            </div>
+
+            {/* Marca */}
+            <div>
+              <label
+                htmlFor="productBrand"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Marca
+              </label>
+              <div className="relative">
+                <select
+                  id="productBrand"
+                  value={
+                    selectedBrand && selectedBrand.id ? selectedBrand.id : ""
+                  }
+                  onChange={handleSelectChangeBrands}
+                  name="marcaId"
+                  className={`appearance-none w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                    formik.touched.marcaId && formik.errors.marcaId
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  required
+                >
+                  <option value="">Seleccionar</option>
+                  {brandsOptions.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg
+                    className="h-4 w-4 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {formik.touched.marcaId && formik.errors.marcaId && (
+                <div className="text-red-500 text-sm mt-1 font-medium">
+                  {formik.errors.marcaId}
+                </div>
+              )}
+            </div>
+
+            {/* Categoría */}
+            <div>
+              <label
+                htmlFor="productCategory"
+                className="font-medium text-gray-700 block mb-1"
+              >
+                Categoría
+              </label>
+              <div className="relative">
+                <select
+                  id="productCategory"
+                  value={
+                    selectedCategories && selectedCategories.id
+                      ? selectedCategories.id
+                      : ""
+                  }
+                  onChange={handleSelectChangeCategories}
+                  name="categoriaId"
+                  className={`appearance-none w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                    formik.touched.categoriaId && formik.errors.categoriaId
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  required
+                >
+                  <option value="">Seleccionar</option>
+                  {categoriesOptions.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg
+                    className="h-4 w-4 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                {formik.touched.categoriaId && formik.errors.categoriaId && (
+                  <div className="text-red-500 text-sm mt-1 font-medium">
+                    {formik.errors.categoriaId}
+                  </div>
+                )}
+              </div>
+
+              {/* Tamaño */}
+              <div>
+                <label
+                  htmlFor="productSize"
+                  className="font-medium text-gray-700 block mb-1"
+                >
+                  Tamaño
+                </label>
+                <div className="relative">
+                  <select
+                    id="productSize"
+                    value={
+                      selectedSize && selectedSize.id ? selectedSize.id : ""
+                    }
+                    onChange={handleSelectChangeSize}
+                    name="tamañoId"
+                    className={`appearance-none w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300 ${
+                      formik.touched.tamañoId && formik.errors.tamañoId
+                        ? "border-red-500"
+                        : ""
+                    }`}
+                    required
+                  >
+                    <option value="">Seleccionar</option>
+                    {sizesOptions.map((option) => (
+                      <option key={option.id} value={option.id}>
+                        {option.name}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                    <svg
+                      className="h-4 w-4 text-gray-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                {formik.touched.tamañoId && formik.errors.tamañoId && (
+                  <div className="text-red-500 text-sm mt-1 font-medium">
+                    {formik.errors.tamañoId}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center md:items-start pt-6 md:pt-8">
+            {/* Imagen */}
+            <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-64 bg-gray-200 rounded-lg overflow-hidden mb-6 md:mb-0">
+              <label
+                htmlFor="imageUpload"
+                className="cursor-pointer flex items-center justify-center w-full h-full"
+              >
+                {formik.values.imagenPrincipal ? (
+                  <img
+                    src={URL.createObjectURL(formik.values.imagenPrincipal)}
+                    alt="Imagen seleccionada"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <svg
+                    className="h-20 w-20 text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M10 15v4h4v-4m5-8l2 2m-2-2l-2 2m2-2V3a1 1 0 00-1-1H4a1 1 0 00-1 1v18a1 1 0 001 1h18a1 1 0 001-1V7l-6-6z"
+                    />
+                  </svg>
+                )}
+              </label>
+              <input
+                type="file"
+                id="imageUpload"
+                name="imagenPrincipal"
+                accept="image/*"
+                className="hidden"
+                onChange={(event) => {
+                  formik.setFieldValue(
+                    "imagenPrincipal",
+                    event.currentTarget.files[0]
+                  );
+                }}
+              />
+              {formik.touched.imagenPrincipal &&
+                formik.errors.imagenPrincipal && (
+                  <div className="text-red-500 text-sm mt-1 font-medium">
+                    {formik.errors.imagenPrincipal}
+                  </div>
+                )}
+            </div>
+            {/* Botón de crear */}
+            <button
+              type="submit"
+              className="px-6 mt-3 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+            >
+              Crear Producto
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  };
+
+  export default Form;

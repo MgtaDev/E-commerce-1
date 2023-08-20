@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { FaWhatsapp } from 'react-icons/fa';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {Route, Routes, useLocation } from "react-router-dom";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
@@ -12,20 +13,48 @@ import Chatbot from "react-chatbot-kit";
 import ProductList from './components/ProducList/ProductList';
 import Sidebar from './components/Sidebar/sidebar';
 import Form from "./views/Form/Form";
-import Profile from "./views/Profile/Profile";
+import Profile from "./views/Profile/MiPerfil.jsx";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
 import Detail from "../src/views/Detail/Detail";
-
-import Dashboard from "./components/Dashboard/Dashboard";
+import Favoritos from "../src/views/Favoritos/Favoritos"
+import Dashboard2 from "./views/Dashboard2/dashboard";
 import axios from "axios"
+import Navbar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
+import AddToCart from "./views/Cart/AddToCart";
+import MisCompras from '../../Frond/src/views/Mis compras/misCompras.jsx'
+import Carrito from "./views/Cart/Carrito";
+import PagoExitoso from "./views/PagoExitoso/PagoExitoso.jsx"
+import { useAuth0 } from "@auth0/auth0-react";
+import { productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
+import { useDispatch} from "react-redux";
+
+import { useParams } from "react-router-dom"; 
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 axios.defaults.baseURL = "http://localhost:3001/"
+
+
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 
 function App () {
+  const location = useLocation()
+  const dispatch = useDispatch()
+  const {user, isAuthenticated} = useAuth0()
+  
+  useEffect(()=>{
+    dispatch(productosSinPag())
+  }, [])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(syncFavoritesWithAPI(user.email));
+    }
+  }, [user]);
+  const params = useParams();
+
   return (
     <div className="flex">
       <div className="w-1/5 h-screen bg-gray-100">
@@ -58,6 +87,9 @@ function App () {
           />
         </div>
     <div>
+      {
+            location.pathname !== "/" ? <Navbar /> : null
+         }
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/products" element={<Products />} />
@@ -68,19 +100,32 @@ function App () {
         <Route path="/devTeam" element={<DevTeam />} />
         <Route path="/form" element={<Form />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+        {/* Esta era la ruta anterior <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
         <Route path="/detail/:id" element={<Detail />} />
-
-        <Route path="/dashboard" element = {<Dashboard/>}/>
+        <Route path="/itemadded/:id" element={<AddToCart />} />
+        <Route path="/carrito/:id" element={<Carrito />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/perfil" element = {<Profile/>}/>
+        <Route path="/dashboard2" element = {<Dashboard2/>}/>
+        <Route path="/miscompras" element = {<MisCompras/>}/>
+        <Route path="/confirmedpayment" element = {<PagoExitoso/>}/>
+        
+        
 
       </Routes>
       <div className="chatbot-container">
-        <Chatbot
+      <FaWhatsapp/>
+        {/* <Chatbot
           config={Configs}
           messageParser={MessageParser}
           // actionProvider={ActionProvider}
+        /> */}
         />
-
       </div>
+      {
+            location.pathname !== "/" ? <Footer /> : null
+         }
     </div>
   );
 }

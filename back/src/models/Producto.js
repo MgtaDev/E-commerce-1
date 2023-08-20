@@ -14,12 +14,20 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
+    imagenPrincipal: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imagenes: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+    },
     descripcion: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
     precio_compra: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     porcentaje_ganancia: {
@@ -27,7 +35,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     precio_venta: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     referencia_proveedor: {
@@ -67,7 +75,7 @@ module.exports = (sequelize) => {
       }
     });
 
-    Producto.belongsTo(models.Marca, {
+   Producto.belongsTo(models.Marca, {
       foreignKey: {
         allowNull: false,
         name: 'marcaId',
@@ -86,6 +94,9 @@ module.exports = (sequelize) => {
         allowNull: false,
         name: 'proveedorId',
       }
+    });
+    Producto.hasMany(models.Reviwers, {
+      foreignKey: 'productoId',
     });
   
 

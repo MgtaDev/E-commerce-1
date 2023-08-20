@@ -1,87 +1,115 @@
-const { Producto, Marca, Size, Proveedor, Categoria } = require('../../db');
+const { Producto, Marca, Size, Proveedor, Categoria, Subcategoria,Imagen } = require('../../db');
 
 module.exports = async (array) => {
   const productos = [];
 
   async function crearProducto(producto) {
-    function primerLetraMayuscula(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-    }
 
-    producto.name = primerLetraMayuscula(producto.name);
+    let {name, descripcion, precio_compra, imagenPrincipal, imagenes, porcentaje_ganancia, precio_venta, referencia_proveedor, marcaId, categoriaId, tamañoId, proveedorId, subcategoriaId } = producto
 
+    name = name.toLowerCase();
+    
     try {
-      if (!producto.name) {
-        throw new Error('El nombre del producto es inválido.');
-      }
-
-      // Verificar si la marca existe y está activa
-      const marcaExistente = await Marca.findOne({
-        where: {
-          id: producto.marcaId,
-          activa: true,
-        },
-      });
-
-      if (!marcaExistente) {
-        // Si la marca no existe o no está activa, lanzar un error
-        throw new Error(`La marca con ID ${producto.marcaId} no existe o no está activa`);
-      }
-
       // Verificar si el proveedor existe y está activo
       const proveedorExistente = await Proveedor.findOne({
         where: {
-          id: producto.proveedorId,
+          id: proveedorId,
           activa: true,
         },
       });
-
+  
       if (!proveedorExistente) {
-        // Si el proveedor no existe o no está activo, lanzar un error
-        throw new Error(`El proveedor con ID ${producto.proveedorId} no existe o no está activo`);
+        throw new Error(`El proveedor con ID ${proveedorId} no existe o no está activo`);
       }
-
+  
       // Verificar si el tamaño existe y está activo
       const tamañoExistente = await Size.findOne({
         where: {
-          id: producto.tamañoId,
+          id: tamañoId,
           activa: true,
         },
       });
-
+  
       if (!tamañoExistente) {
-        // Si el tamaño no existe o no está activo, lanzar un error
-        throw new Error(`El tamaño con ID ${producto.tamañoId} no existe o no está activo`);
+        throw new Error(`El tamaño con ID ${tamañoId} no existe o no está activo`);
       }
-
+  
       // Verificar si la categoría existe y está activa
       const categoriaExistente = await Categoria.findOne({
         where: {
-          id: producto.categoriaId,
+          id: categoriaId,
           activa: true,
         },
       });
-
+  
       if (!categoriaExistente) {
-        // Si la categoría no existe o no está activa, lanzar un error
-        throw new Error(`La categoría con ID ${producto.categoriaId} no existe o no está activa`);
+        throw new Error(`La categoría con ID ${categoriaId} no existe o no está activa`);
       }
-
+  
+      // Verificar si la marca existe y está activa
+      const marcaExistente = await Marca.findOne({
+        where: {
+          id: marcaId,
+          activa: true,
+        },
+      });
+  
+      if (!marcaExistente) {
+        throw new Error(`La marca con ID ${marcaId} no existe o no está activa`);
+      }
+  
+      const productoExistente = await Producto.findOne({
+        where: {
+          name,
+        },
+      });
+  
+      if (productoExistente) {
+        throw new Error(`Ya existe un producto con el nombre ${name}`);
+      }
+      
       // Crear el producto en la base de datos
       const nuevoProducto = await Producto.create({
-        name: producto.name,
-        descripcion: producto.descripcion,
-        precio_compra: producto.precio_compra,
-        porcentaje_ganancia: producto.porcentaje_ganancia,
-        precio_venta: producto.precio_venta,
-        referencia_proveedor: producto.referencia_proveedor,
-        marcaId: producto.marcaId,
-        categoriaId: producto.categoriaId,
-        tamañoId: producto.tamañoId,
-        proveedorId: producto.proveedorId,
+      name,
+      descripcion,
+      imagenPrincipal,
+      imagenes,
+      precio_compra,
+      porcentaje_ganancia,
+      precio_venta,
+      referencia_proveedor,
+      marcaId,
+      categoriaId,
+      tamañoId,
+      proveedorId,
+      });
+  
+  
+      const subcategorias = await Subcategoria.findAll({
+        where: {
+          id: subcategoriaId,
+        },
       });
 
+      await nuevoProducto.addSubcategoria(subcategorias);
+  
+      const subcategoriasIncorrectas = subcategorias.filter(subcategoria => !subcategoria.activa);
+  
+      if (subcategoriasIncorrectas.length > 0) {
+        
+        const productoExistente = await Producto.findOne({
+          where: {
+            name,
+          },
+        });
+        await productoExistente.destroy() 
+        
+        throw new Error(`Las subcategorías ${subcategoriasIncorrectas.map(sub => sub.id).join(', ')} no pertenecen a la misma categoría que el producto o están inactivas.`);
+      }
+  
+      // Asignar un identificador personalizado (opcional)
       nuevoProducto.dataValues.id = `prod-${nuevoProducto.dataValues.id}`;
+      nuevoProducto.dataValues.subcategoriaId = subcategoriaId
 
       productos.push(nuevoProducto);
     } catch (error) {

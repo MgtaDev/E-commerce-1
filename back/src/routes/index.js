@@ -7,6 +7,11 @@ const proveedorRouter = require('./proveedorRouter')
 const descuentoRouter = require('./descuentoRouter')
 const colorRouter = require('./colorRouter')
 const productoRouter = require('./productoRouter')
+const clienteRouter = require('./clienteRouter')
+const favoritoRouter = require('./favoritoRouter')
+const inventarioRouter = require('./inventarioRouter')
+const carritoRouter = require('./carritoRouter')
+const reviewrRouter = require('./reviewrRouter')
 
 const router = Router();
 
@@ -19,6 +24,11 @@ router.use('/proveedor',proveedorRouter)
 router.use('/descuento',descuentoRouter)
 router.use('/color',colorRouter)
 router.use('/producto',productoRouter)
+router.use('/cliente',clienteRouter)
+router.use('/favorito',favoritoRouter)
+router.use('/inventario',inventarioRouter)
+router.use('/carrito',carritoRouter)
+router.use('/reviewr',reviewrRouter)
 
 
 

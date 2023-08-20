@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RiMoonClearLine, RiSunLine } from 'react-icons/ri';
 import NavBar from "../../components/NavBar/NavBar";
@@ -11,18 +11,44 @@ import Footer from '../../components/Footer/Footer';
 import ChatBotComponent from '../../components/ChatBot/ChatBot';
 import Reviews from '../../components/Reviews/Reviews'
 import ChooseUs from '../../components/ChooseUsSection/Choose';
+import { useDispatch, useSelector } from 'react-redux';
+import { clientes, products } from '../../redux/actions';
 
 
 const Container = styled.div`
-  background-color: ${props => props.darkMode ? '#1a1a1a' : '#fff'};
+  background-color: ${props => props.darkMode ? '#1a1a1a' : '#ebeaea'};
   color: ${props => props.darkMode ? '#fff' : '#333'};
-  padding: 2rem;
+  padding: 0rem;
+
 `;
 
-
-
-
 const LandingPage = () => {
+  useEffect(
+    () => {
+        dispatch(clientes());
+      },[])
+  const stateProducts = useSelector(state => state.Allproducts);
+const [pageNumberNx, setPageNumberNx] = useState(0);
+const numberSize = 20;
+console.log(stateProducts)
+
+const dispatch = useDispatch()
+useEffect(
+  () => {
+    const fetchData = () => {
+      const queries = {
+        page: pageNumberNx,
+        size: numberSize
+      };
+
+      dispatch(products(queries));
+    };
+
+    fetchData();
+  },
+  [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
+);
+
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState('en'); 
 
@@ -45,10 +71,10 @@ const LandingPage = () => {
 
   return (
     <>
-      <Container darkMode={isDarkMode}>
         <NavBar />
-        <div style={{ height: '800px', overflowX: 'scroll', marginTop: '-2%' }}>
-          <Carousel />
+      <Container darkMode={isDarkMode}>
+        <div style={{ height: '500px', overflowX: 'scroll', marginTop: '-2%' }}>
+          <CarouselMid />
         </div>
         
         <Proveedores/>
@@ -67,7 +93,6 @@ const LandingPage = () => {
         </>
 
       </Container>
-      <ChatBotComponent language={language} />
       <Footer />
     </>
   );

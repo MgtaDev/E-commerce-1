@@ -1,129 +1,225 @@
+
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styled from 'styled-components';
-import Navbar from "../../components/NavBar/NavBar";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
-import Footer from "../../components/Footer/Footer";
-import colorIcon from '../../assets/img/colorIcon.svg'
-//import { useDispatch, useSelector } from "react-redux";
-
-const Button = styled.button`
-  display: flex;
-  justify-content: left;
-  background-color: ${props => props.primary ? '#B061B2;' : '#fff'};
-  color: ${props => props.primary ? '#fff' : '#B061B2'};
-  padding: 1rem 2rem;
-
-  margin-top: 80px;
-  margin-left: 60px;
-  margin-bottom: 50px;
-  border: none;
-  border-radius: 1rem;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${props => props.primary ? '#fff' : '#8d8af1'};
-    color: ${props => props.primary ? '#B061B2;' : '#fff'};
-  }
-`;
+//import colorIcon from '../../assets/img/colorIcon.svg'
+import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
+import { FaCircle } from "react-icons/fa";
+import MoreProductsContainer from "../../components/MoreProducts/MoreProductsContainer";
 
 const Detail = () => {
+
+     /*
+     {
+           "productos": [
+        {
+          "id": "col-16",
+          "name": "Spray fijador de maquillaje",
+          "descripcion": "Spray fijador de maquillaje para una larga duración",
+          "precio_compra": "11.40",
+          "porcentaje_ganancia": 25,
+          "precio_venta": "14.25",
+          "referencia_proveedor": "REF238",
+          "marcaId": 1,
+          "categoriaId": 3,
+          "tamañoId": 3,
+          "proveedorId": 6,
+          "activa": true
+        }
+        },
+    
+    */
+    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { loginWithRedirect } = useAuth0()
     const back = useNavigate();
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
     const { id } = useParams();
-    // const products = useSelector ((state) => state.Allproducts: 
+    const stateProducts = useSelector(state => state.productsDetail);
 
-    const [images, setImages] = useState({
-        img1: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML19241_1_1c53.webp",
-        img2: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML21209_1_ac93.webp",
-        img3: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22532_1_1d09.webp",
-        img4: "https://cdn2.primor.eu/media/catalog/product/cache/8d3aba296f7a18b5251ee30fa5db42b2/0/M/0ML22533_1_22cb.webp"
-    })
+    const [userInfo, setUserInfo] = useState({
+         nombre: 'Daniel',
+        apellido: 'Apellido',
+        correoElectronico: 'daniel@gmail.com',
+        numeroTelefono: '031934123',
+        ciudad: 'miami',
+        provincia: 'florida',
+        codigoPostal: '6301',
+        contraseña: 'djqdijqw' 
 
-    const [activeImg, setActiveImage] = useState(images.img1)
+        /*    nombre: '',
+        apellido: '',
+        correoElectronico: '',
+        numeroTelefono: '',
+        ciudad: '',
+        provincia: '',
+        codigoPostal: '',
+        contraseña: '' */
+    });
+
+    const handleProceedToPayment = () => {
+        if (!isAuthenticated) {
+            Swal.fire('Debes iniciar sesión para continuar', 'error', 'error');
+            return;
+        }
+        if (
+            !userInfo.nombre ||
+            !userInfo.apellido ||
+            !userInfo.correoElectronico ||
+            !userInfo.numeroTelefono ||
+            !userInfo.ciudad ||
+            !userInfo.provincia ||
+            !userInfo.codigoPostal ||
+            !userInfo.contraseña
+        ) {
+
+            Swal.fire('Completa tu información de perfil antes de continuar', 'error');
+            return;
+        }
+
+        axios.post('http://localhost:3001/pago', productToPay)
+            .then((res) => (window.location.href = res.data.response.body.init_point));
+    };
+
+    const updateNombre = (nombre) => {
+        setUserInfo((prevUserInfo) => ({ ...prevUserInfo, nombre }));
+      };
+      
+      const updateApellido = (apellido) => {
+        setUserInfo((prevUserInfo) => ({ ...prevUserInfo, apellido }));
+      };
+
+      
+    useEffect(() => {
+        dispatch(getProductsByDetail(id));
+    
+
+        return () => {
+            dispatch(cleanDetail());
+        };
+    }, [dispatch, id]);
+
+
+  /* const [images, setImages] = useState({
+        img1: stateProducts.imagenPrincipal,
+       // img2: stateProducts.imagenes && stateProducts.imagenes[0] ? stateProducts.imagenes[0] : null,
+        //img3: stateProducts.imagenes && stateProducts.imagenes[1] ? stateProducts.imagenes[1] : null,
+        //img4: stateProducts.imagenes && stateProducts.imagenes[2] ? stateProducts.imagenes[2] : null
+    }); 
+    */
+
+    const colorIcon1 = "#EBC9BB";
+    const colorIcon2 = "#800040";
+    const colorIcon3 = "#EF3A57";
+    const colorIcon4 = "#C81819";
+
+  // const [activeImg, setActiveImage] = useState(images.img1) //stateProducts
 
     const [amount, setAmount] = useState(1);
+    const [color, setColor] = useState(colorIcon1);
+
 
     const handleDecrement = () => {
-        setAmount((prev) => Math.max(prev - 1, 0));
+        setAmount((prev) => Math.max(prev - 1, 1));
     };
 
     const handleIncrement = () => {
         setAmount((prev) => Math.min(prev + 1, 10));
     };
 
-    // La cantidad del stock no puede ser menor a cero y como maximo tiene que ser
-    // el stock disponible (que en este caso es 10);
-    // border border-blue-500 border-5 rounded-lg'
+    const productToPay = {
+        nombre: stateProducts.name,
+        precio: stateProducts.precio_venta,
+        descripcion: stateProducts.descripcion,
+    }
 
+    const addToCart = () => {
+        dispatch(addItemToCartLS(id, amount, color))
+        dispatch(addToCartFunction(id, amount, color));
+        const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
+        navigate(carritotUrl);
+    }
 
     return (
-        <div>
-            <Navbar />
-            <div className="m-15">
-                <Button primary onClick={() => back('/')}>
-                    Atrás
-                </Button>
-            </div>
+        <div className="mt-40 mb-40">
+
+            <button className="ml-40 bg-customColor text-white text-1xl font-semibold py-2 px-2 rounded-xl flex items-center gap-2" onClick={() => back('/catalogo')}>
+                Atrás
+            </button>
+
             <div className='flex flex-col justify-between ml-60 mr-60 lg:flex-row gap-16 lg:items-center'>
-            <div className='flex flex-col gap-6 lg:w-1/3 items-center mx-auto'>
-                <img src={activeImg} alt="" className='w-40% h-40% aspect-square object-cover rounded-xl ml-1'/>
+                <div className='flex flex-col gap-6 lg:w-1/3 items-center mx-auto'>
+                    <img src={stateProducts.imagenPrincipal} alt="" className='w-40% h-40% aspect-square object-cover rounded-xl ml-1' />
                     <div className='flex flex-row justify-between h-24'>
-                        <img src={images.img1} alt="" className='w-36 h-36 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img1)} />
-                        <img src={images.img2} alt="" className='w-36 h-36 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img2)} />
-                        <img src={images.img3} alt="" className='w-36 h-36 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img3)} />
-                        <img src={images.img4} alt="" className='w-36 h-36 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img4)} />
-                    </div>
+                    { /* <img src={images.img1} alt="" className='w-20 h-30 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img1)} />
+                      <img src={images.img2} alt="" className='w-20 h-30 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img2)} />
+                        <img src={images.img3} alt="" className='w-20 h-30 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img3)} />
+                        <img src={images.img4} alt="" className='w-20 h-30 p-2 m-3rounded-md cursor-pointer border border-grey-500 border-5 rounded-lg' onClick={() => setActiveImage(images.img4)} />
+    */  }  </div>
                 </div>
 
                 <div className='flex flex-col gap-4 lg:w-2/4'>
                     <div>
-                        <p className='font-semibold text-customColor text-2xl'>Lipstick 24 hs</p>
-                        <h1 className='text-5xl font-bold'>MAYBELLINE NEW YORK</h1>
+                        <div>
+                            {stateProducts.productos && stateProducts.productos.map((item) => (
+                                <p key={item.id}> {item.name.toUpperCase()}</p>
+                            ))}
+                        </div>
+                        <h1 className='text-4xl font-bold'>{stateProducts.name}</h1>
                     </div>
-                    <p className='text-gray-700 text-3xl'>
-                        Pintalabios mate de larga duración SuperStay Matte Ink
-                    </p>
-                    <h6 className='text-3xl font-semibold'>$ 3000.00</h6>
+                    <p className='text-gray-700 text-2xl'> {stateProducts.descripcion}</p>
+                    <h3 className='text-3xl font-semibold'> $ {stateProducts.precio_venta}</h3>
                     <div className='flex flex-row items-center gap-12'>
                         <div className='flex flex-row gap-3'>
-                            <div className='relative'>
-                                <img src={colorIcon} alt="colorIcon" className="w-11 h-11 z-10" style={{ zIndex: 10 }} />
+                          <div className='relative'>
+                                <FaCircle color={colorIcon1} alt="colorIcon" className="w-7 h-7 z-10" style={{ zIndex: 10 }} onClick={() => { setColor(colorIcon1) /*; setActiveImage(images.img1); */ }}  />
                             </div>
                             <div className='relative'>
-                                <img src={colorIcon} alt="colorIcon" className="w-11 h-11 z-10" style={{ zIndex: 10 }} />
+                                <FaCircle color={colorIcon2} alt="colorIcon" className="w-7 h-7 z-10" style={{ zIndex: 10 }} onClick={() => { setColor(colorIcon2) /* ; setActiveImage(images.img2); */ }} />
                             </div>
                             <div className='relative'>
-                                <img src={colorIcon} alt="colorIcon" className="w-11 h-11 z-10" style={{ zIndex: 10 }} />
+                                <FaCircle color={colorIcon3} alt="colorIcon" className="w-7 h-7 z-10" style={{ zIndex: 10 }} onClick={() => { setColor(colorIcon3) /* ; setActiveImage(images.img3); */ }}  />
                             </div>
                             <div className='relative'>
-                                <img src={colorIcon} alt="colorIcon" className="w-11 h-11 z-10" style={{ zIndex: 10 }} />
-                            </div>
-                            <div className='relative'>
-                                <img src={colorIcon} alt="colorIcon" className="w-11 h-11 z-10" style={{ zIndex: 10 }} />
-                            </div>
+                                <FaCircle color={colorIcon4} alt="colorIcon" className="w-7 h-7 z-10" style={{ zIndex: 10 }} onClick={() => { setColor(colorIcon4) /*; setActiveImage(images.img4);*/ }} />
+                            </div> 
                         </div>
-
                     </div>
-                    <div className='flex flex-row items-center gap-2'>
-                        <button className='bg-gray-200 py-2 px-5 rounded-lg text-customColor text-3xl' onClick={handleDecrement}>-</button>
+                    <div className='flex flex-row items-center gap-2 mb-10'>
+                        <button className='bg-gray-200 py-2 px-2 rounded-lg text-customColor text-1xl' onClick={handleDecrement}>-</button>
                         <span className='py-2 px-4 rounded-lg'>{amount}</span>
-                        <button className='bg-gray-200 py-2 px-4 mr-4 rounded-lg text-customColor text-3xl' onClick={handleIncrement}>+</button>
+                        <button className='bg-gray-200 py-2 px-2 mr-4 rounded-lg text-customColor text-1xl' onClick={handleIncrement}>+</button>
 
-                        <button className='bg-customColor text-white font-semibold py-3 px-14 rounded-xl h-full flex items-center gap-2'>
+                        <button onClick={addToCart} className='bg-customColor text-white text-1xl font-semibold py-2 px-2 rounded-xl flex items-center gap-2' style={{ width: 'auto' }}>
                             <img src={bagIcon} alt="bag icon" className="w-6 h-6 " />
                             Agregar al carrito
+                        </button>
+
+                        <button
+                            className="bg-customColor text-white text-1xl font-semibold py-2 px-2 rounded-xl flex items-center gap-2"
+                            onClick={() => {
+                                handleProceedToPayment();
+                                updateNombre(userInfo.nombre);
+                                updateApellido(userInfo.apellido);
+                              }}
+                            >
+                            Comprar ahora
                         </button>
                     </div>
                 </div>
             </div>
-            <div className='mt-60'>
-                <Footer />
-            </div>
+            <div className='flex flex-row gap-2 mt-20 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
+          <MoreProductsContainer/>
         </div>
-    )
-};
+        
+        </div>
+    );
+}
 
 export default Detail;
+
