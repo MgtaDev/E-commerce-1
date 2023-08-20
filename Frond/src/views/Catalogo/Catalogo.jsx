@@ -1,45 +1,91 @@
 import Cards from "../../components/CatalogoComponen/Cards";
 import { useEffect, useState } from "react";
-import {
-  BsFillArrowLeftSquareFill,
-  BsFillArrowRightSquareFill
-} from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import Catalogfilters from "../../components/CatalogoComponen/Catalogfilters";
 import { products } from "../../redux/actions";
+import { FaBorderAll, FaThList } from "react-icons/fa"; // Importar los iconos que se utilizarán
+
 const Catalogo = () => {
   const stateProducts = useSelector(state => state.Allproducts);
-  const [disableTF, setDisableTF] = useState(true);
-  const [pageNumberNx, setPageNumberNx] = useState(0); // Corregir nombre de variable
-  const numberSize = 10;
-  console.log(stateProducts);
+  const [disablePrev, setDisablePrev] = useState(true);
+  const [disableNext, setDisableNext] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [cardLayout, setCardLayout] = useState(true); // Variable para el layout de las cartas
+  const numberSize = 20;
+  console.log(stateProducts)
 
   const dispatch = useDispatch();
-  console.log(disableTF)
-   const handlerNext = () => {
-    pageNumberNx < stateProducts.paginas -1 ? setPageNumberNx(prevNext => prevNext + 1) : setDisableTF(false)
-  };
 
-  const handlerPrev = () => {
-    pageNumberNx > 0 ? setPageNumberNx(pageNumberNx - 1) : setDisableTF(false);
-  };
-
-  useEffect(
-    () => {
-      const fetchData = () => {
-        const queries = {
-          page: pageNumberNx,
-          size: numberSize
-        };
-
-        dispatch(products(queries));
+  useEffect(() => {
+    setPageNumber(0);
+    const fetchData = () => {
+      const queries = {
+        page: 0,
+        size: numberSize
       };
+      dispatch(products(queries));
+    };
+    fetchData();
+  }, [dispatch, numberSize]);
 
-      fetchData();
-      setDisableTF(pageNumberNx <= 0 || pageNumberNx >= stateProducts.paginas - 1);
-    },
-    [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
-  );
+  useEffect(() => {
+    setDisablePrev(pageNumber <= 0);
+    setDisableNext(pageNumber >= stateProducts.paginas - 1);
+  }, [pageNumber, stateProducts.paginas]);
+
+  const handlePageClick = (newPageNumber) => {
+    setPageNumber(newPageNumber);
+    const queries = {
+      page: newPageNumber,
+      size: numberSize
+    };
+    dispatch(products(queries));
+  };
+
+  const renderPageButtons = () => {
+    const pages = [];
+    for (let i = 0; i < stateProducts.paginas; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`border-solid rounded border border-[255 255 255] px-2 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
+            i === pageNumber ? "bg-slate-950 text-white" : ""
+          }`}
+          disabled={i === pageNumber || stateProducts.loading}
+          onClick={() => handlePageClick(i)}
+        >
+          {i + 1}
+        </button>
+      );
+    }
+    return pages;
+  };
+
+  const handleCardLayoutChange = () => {
+    setCardLayout(!cardLayout);
+  };
+
+  const renderCatalogLayoutButton = () => {
+    if (cardLayout) {
+      return (
+        <button
+          className="mx-1"
+          onClick={handleCardLayoutChange}
+        >
+          <FaThList size={20} /> {/* Icono para cambiar a layout de lista */}
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className="mx-1"
+          onClick={handleCardLayoutChange}
+        >
+          <FaBorderAll size={20} /> {/* Icono para cambiar a layout de galería */}
+        </button>
+      );
+    }
+  };
 
   return (
     <section>
@@ -47,40 +93,69 @@ const Catalogo = () => {
         <div className="col-span-1 px-10">
           <Catalogfilters />
         </div>
-        <div className="col-span-4 py-10 px-10">
-          <div className="grid grid-cols-2 pb-10 justify-items-center	">
-            <p className="col-span-1 px-3 text-lg">
-              <span className="font-bold">300</span> resultados para --
-            </p>
-            <select className="col-span-1 text-lg border-solid rounded border border-[255 255 255] px-2 py-[0.2rem] text-slate-400 focus:text-slate-950 focus:border-slate-950">
-              <option value="selecciona una opcion">
-                selecciona una opcion.
-              </option>
-              <option value="a">a</option>
-              <option value="a">a</option>
-            </select>
+        <div className="col-span-4 py-2 px-10">
+          <div className="flex justify-center py-10">
+            <button
+              disabled={disablePrev || stateProducts.loading}
+              onClick={() => handlePageClick(pageNumber - 1)}
+              className="mx-1 text-3xl"
+            >
+              {"<"}
+            </button>
+            {renderPageButtons()}
+            <button
+              disabled={disableNext || stateProducts.loading}
+              onClick={() => handlePageClick(pageNumber + 1)}
+              className="mx-1 text-3xl"
+            >
+              {">"}
+            </button>
+
+         
           </div>
-          <Cards stateProducts={stateProducts} />
+          <div className="flex justify-center mb-5">
+          <button
+          className="mx-1"
+          onClick={handleCardLayoutChange}
+        >
+          <FaThList size={20} /> {/* Icono para cambiar a layout de lista */}
+        </button>
+        <button
+          className="mx-1"
+          onClick={handleCardLayoutChange}
+        >
+          <FaBorderAll size={20} /> {/* Icono para cambiar a layout de galería */}
+        </button>
+          </div>
+      
+          {cardLayout ? (
+            <Cards stateProducts={stateProducts} />
+          ) : (
+            <div className="flex flex-col">
+    {stateProducts.productos.map((producto) => (
+    <div key={producto.id} className="p-4 my-4 bg-white rounded-md shadow-md">
+      <div className="flex flex-row items-center">
+        <img src={producto.imagenPrincipal} alt={producto.name} className="h-24 w-24 object-cover border-2 border-indigo-200 rounded-md mr-4" />
+        <div className="flex flex-row items-center justify-between w-full">
+          <h1 className="text-lg font-medium">{producto.name}</h1>
+          <button className="bg-black rounded-md py-2 px-4 text-white hover:bg-slate-500 transition-colors block mx-auto">
+          Añadir al carrito
+        </button>
         </div>
-        <div className="grid grid-cols-2 justify-items-center w-[30%] m-auto py-10">
-        <button
-          onClick={handlerPrev}
-          className="mx-1 text-3xl"
-        >
-          <BsFillArrowLeftSquareFill />
-        </button>
-        <button
-          onClick={handlerNext}
-        
-          className="mx-1 text-3xl"
-        >
-          <BsFillArrowRightSquareFill />
-        </button>
       </div>
+      <p className="mt-1 text-sm text-gray-600 font-medium">{producto.descripcion}</p>
+      <hr className="my-4 border-gray-300 w-11/12 mx-auto" />
+      <div className="flex justify-between">
+        <p className="text-md font-medium">${producto.precio_venta}</p>
       </div>
-      </section>
-    );
-  };
-  
-  export default Catalogo;
-  
+    </div>
+  ))}
+</div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Catalogo;

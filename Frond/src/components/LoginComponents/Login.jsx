@@ -4,38 +4,41 @@ import axios from "axios";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleLogin = async () => {
+    await loginWithRedirect();
+  
     try {
-      // Enviamos la solicitud POST aquí
-      await loginWithRedirect()
-      if(isAuthenticated){
-        const userData = {
-          name: user.name,
-          email: user.email
-        }
-        const response = await axios.post('/cliente', userData);
-        const data = await response.json();
-        console.log(data);
+      const userLogin = {
+        name: user.name,
+        correo_electronico: user.email
       }
+        const response = axios.post('/cliente', userLogin);
+        console.log(response.data);
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  }
-
-  if(isAuthenticated){
-    return(
-        <div></div>
-    )
+};
+  if (isLoading) {
+    return (
+      <div>
+        <p>Cargando...</p>
+      </div>
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <button className="mr-2" type="submit"><strong>Iniciar Sesion</strong></button>
-    </form>
+    <>
+      {isAuthenticated ? (
+        <div></div>
+      ) : (
+        <button className="mr-2" onClick={handleLogin}>
+          <strong>Iniciar Sesión</strong>
+        </button>
+      )}
+    </>
+
   );
 };
 
