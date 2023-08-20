@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { FaWhatsapp } from 'react-icons/fa';
 import './App.css';
 import {Route, Routes, useLocation } from "react-router-dom";
 import LandingPage from "./views/LandingPage/LandingPage";
@@ -9,18 +10,22 @@ import DevTeam from './views/DevTeam/devTeam.jsx'
 import FAQs from "./views/FAQs/FAQs"
 import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Chatbot from "react-chatbot-kit";
+import ProductList from './components/ProducList/ProductList';
+import Sidebar from './components/Sidebar/sidebar';
 import Form from "./views/Form/Form";
 import Profile from "./views/Profile/MiPerfil.jsx";
 import Configs from "./components/ChatBot/Configs";
 import MessageParser from "./components/ChatBot/MessageParser";
 import Detail from "../src/views/Detail/Detail";
 import Favoritos from "../src/views/Favoritos/Favoritos"
-import Dashboard from "./components/Dashboard/Dashboard";
+import Dashboard2 from "./views/Dashboard2/dashboard";
 import axios from "axios"
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import AddToCart from "./views/Cart/AddToCart";
+import MisCompras from '../../Frond/src/views/Mis compras/misCompras.jsx'
 import Carrito from "./views/Cart/Carrito";
+import PagoExitoso from "./views/PagoExitoso/PagoExitoso.jsx"
 import { useAuth0 } from "@auth0/auth0-react";
 import { productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
 import { useDispatch} from "react-redux";
@@ -38,7 +43,7 @@ function App () {
   const location = useLocation()
   const dispatch = useDispatch()
   const {user, isAuthenticated} = useAuth0()
-
+  
   useEffect(()=>{
     dispatch(productosSinPag())
   }, [])
@@ -51,6 +56,36 @@ function App () {
   const params = useParams();
 
   return (
+    <div className="flex">
+      <div className="w-1/5 h-screen bg-gray-100">
+        <Sidebar>
+          <Link to="/categorias">
+            <button>Categorías</button>
+          </Link>
+        </Sidebar>
+      </div>
+      <div className="w-4/5">
+        <div className="routes-container">
+          <Routes>
+            <Route exact path="/categorias" element={<ProductList />} />
+            <Route exact path="/" element={<LandingPage />} />
+            <Route path="/products" element={<Products />} />
+            {/* <Route path="/product/:id" element={<ProductDetail />} />
+            <Route exact path="/formulario" element={<Formulario />} />
+            <Route path="/carrito" element={<Carrito />} />
+            <Route path="/reviews" element={<Reviews></Reviews>} />
+            <Route path="/createProduct" element={<CreateProduct></CreateProduct>} /> */}
+            <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+        <div className="chatbot-container">
+          <Chatbot
+            config={Configs}
+            messageParser={MessageParser}
+            // actionProvider={ActionProvider}
+          />
+        </div>
     <div>
       {
             location.pathname !== "/" ? <Navbar /> : null
@@ -71,14 +106,21 @@ function App () {
         <Route path="/itemadded/:id" element={<AddToCart />} />
         <Route path="/carrito/:id" element={<Carrito />} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/dashboard" element = {<Dashboard/>}/>
+        <Route path="/perfil" element = {<Profile/>}/>
+        <Route path="/dashboard2" element = {<Dashboard2/>}/>
+        <Route path="/miscompras" element = {<MisCompras/>}/>
+        <Route path="/confirmedpayment" element = {<PagoExitoso/>}/>
+        
+        
 
       </Routes>
       <div className="chatbot-container">
-        <Chatbot
+      <FaWhatsapp/>
+        {/* <Chatbot
           config={Configs}
           messageParser={MessageParser}
           // actionProvider={ActionProvider}
+        /> */}
         />
       </div>
       {

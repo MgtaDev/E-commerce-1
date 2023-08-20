@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART} from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS, POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS} from "./action-types";
 
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
 
@@ -40,6 +40,13 @@ export const productosSinPag = () => async (dispatch) =>{
     payload: data,
   });
 }
+export const clientes = () => async dispatch => {
+  const {data} =await axios.get("/cliente")
+  dispatch({
+     type: GET_ALL_CLIENTS,
+     payload: data
+  })
+ };
 
 export const categories = () => async dispatch => {
    const {data} =await axios.get("/categoria")
@@ -249,4 +256,80 @@ export const categories = () => async dispatch => {
       type: EMPTY_LOCAL_CART
     }
   }
+  
+  export const deleteArtLS = (ArtId, ArtColor) => {
+    console.log(`actions -> id:${ArtId}, color:${ArtColor}`);
+    return{
+    type: DELETE_ART_LS,
+    payload: {ArtId, ArtColor}
+    }
+  }
+
+  const extractNumber = (string) => {
+    const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
+    return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
+  };
+
+  export const addCartLSToApi = ({ user, localCart }) => {
+    try {
+      return async (dispatch) => {
+        const extractNumber = (prodId) => {
+          const string = String(prodId);
+          const match = string.match(/\d+/);
+          return match ? parseInt(match[0]) : 0;
+        };
+        // Transformar localCart a la estructura esperada en el backend
+        const cartData = {
+            productos: localCart.map((item) => ({
+            productoId: extractNumber(item.id),
+            colorId: 1 /*item.color*/,
+            cantidad: item.amount,
+          })),
+        };
+        console.log("cartData en actions", cartData);
+
+      cartData.productos.forEach((producto) => {
+        console.log("cartData productoId:", producto.productoId);
+        console.log("cartData colorId:", producto.colorId);
+        console.log("cartData cantidad:", producto.cantidad);
+      });
+  
+  
+        await axios.put(`/carrito/${user}`, cartData);
+  
+        const { data } = await axios.get(`/carrito/${user}`);
+        
+        return dispatch({
+          type: POST_CART_API,
+          payload: cartData,
+          data: data,
+        });
+      };
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  export const deleteArtAPI = ({ user, productoId, colorId }) => {
+    try {
+      return async (dispatch, getState) => {
+        const itemData = {
+          productoId: productoId,
+          colorId: colorId,
+        };  
+        await axios.delete(`/carrito/${user}`, itemData);          
+        const { apiCart } = getState();          
+        const updatedApiCart = apiCart.filter(
+          (item) => !(item.productoId === productoId && item.colorId === colorId)
+        );  
+        dispatch({
+          type: DEL_ART_API,
+          payload: itemData,
+          data: updatedApiCart,
+        });
+      };
+    } catch (error) {
+      throw error;
+    }
+  };
   

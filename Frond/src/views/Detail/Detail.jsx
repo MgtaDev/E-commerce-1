@@ -75,7 +75,7 @@ const Detail = () => {
       
     useEffect(() => {
         dispatch(getProductsByDetail(id));
-    dispatch(addItemToCartLS(id, amount, color))
+    
 
         return () => {
             dispatch(cleanDetail());
@@ -117,6 +117,7 @@ const Detail = () => {
     }
 
     const addToCart = () => {
+        dispatch(addItemToCartLS(id, amount, color))
         dispatch(addToCartFunction(id, amount, color));
         const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
         navigate(carritotUrl);
@@ -199,3 +200,4 @@ const Detail = () => {
 }
 
 export default Detail;
+
