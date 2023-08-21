@@ -101,6 +101,7 @@ const Detail = () => {
     quantity: amount,
   };
 
+
   const addToCart = () => {
     dispatch(addItemToCartLS(id, amount, color));
     dispatch(addToCartFunction(id, amount, color));
@@ -110,6 +111,7 @@ const Detail = () => {
   const goBack = () => {
     navigate('/catalogo')
   }
+
 
   return (
     <div className="px-6 m-auto max-w-4xl">

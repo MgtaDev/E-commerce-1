@@ -7,6 +7,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Carrito = () => {
+
     const { user, isAuthenticated, isLoading } = useAuth0();
 
      useEffect(
@@ -80,6 +81,7 @@ const Carrito = () => {
   }, [isAuthenticated]);
   const cartApi = useSelector(state => state.apiCart);
   const totalProd = isAuthenticated && cartApi && cartApi.productos
+
     ? cartApi.productos.reduce((total, item) => total + (item.precio_venta * item.cantidad), 0)
     : cartUnificado.reduce((total, item) => total + (item.objeto.precio_venta * item.cantidad), 0);
   const totalArts = isAuthenticated && cartApi && cartApi.productos
@@ -111,6 +113,7 @@ const Carrito = () => {
       Swal.fire('Completa tu información de perfil antes de continuar','', 'error');
       return;
     }
+
     axios.post('http://localhost:3001/pago', cartApi)
       .then((res) => (window.location.href = res.data.response.body.init_point));
   };
@@ -161,6 +164,7 @@ const Carrito = () => {
                       ></path>
                     </svg>
                   </button>
+
                 </div>
               ))}
               <div className="flex justify-end">
