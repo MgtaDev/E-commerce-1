@@ -18,7 +18,7 @@ const Carrito = () => {
     };
     
     
-    const NumUserId = isAuthenticated ? extractNumber(user) : null;
+    const NumUserId = isAuthenticated ? extractNumber(user) : undefined;
     
      
     const [userInfo, setUserInfo] = useState({
