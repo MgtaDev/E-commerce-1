@@ -12,14 +12,32 @@ module.exports = sequelize => {
         type:DataTypes.STRING,
         allowNull:false
     },
-    created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-      modified_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-  });
+    productoId:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    rating: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    fecha: {
+      type: DataTypes.DATE,// Tipo de dato para la fecha
+      allowNull: false,
+    },
+    comentario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
+  },{ tableName: 'Reviwers', timestamps: false })
+
+  Reviwers.associate = models => {
+    Reviwers.belongsTo(models.Cliente, {
+      foreignKey: 'clienteId',
+    });
+  
+    Reviwers.belongsTo(models.Producto, {
+      foreignKey: 'productoId',
+    });
+  };
   return Reviwers;
 };
