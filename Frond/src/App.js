@@ -79,6 +79,7 @@ function App () {
         <Route path="/miscompras" element = {<MisCompras/>}/>
         <Route path="/confirmedpayment" element = {<PagoExitoso/>}/>
         
+        
 
       </Routes>
       <div className="chatbot-container">
@@ -87,7 +88,7 @@ function App () {
           messageParser={MessageParser}
           // actionProvider={ActionProvider}
         /> */}
-
+      </div>
       {
             location.pathname !== "/" ? <Footer /> : null
          }
