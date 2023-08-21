@@ -316,8 +316,8 @@ const ProductosTable = () => {
         <tbody className="text-gray-600 text-sm font-light">
           {stateProducts.productos.sort((a, b) => a.id - b.id).map((product) => (
             <tr key={product.id} className="border-t">
-              <td className="px-6 text-center py-10">{product.id}</td>
-              <td className="px-6 text-center py-10">{product.name}</td>
+              <td className="px-6 text-center capitalize py-10">{product.id}</td>
+              <td className="px-6 text-center capitalize py-10">{product.name}</td>
               <td className="px-6 text-center py-10">{product.cantidad} unidades</td>
               <td className="px-6 l text-center py-10">
               {product.activa === true ? (
