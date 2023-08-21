@@ -61,6 +61,7 @@ server.post("/pagoCarrito", (req, res) => {
       title: producto.nombre,
       unit_price: Number(producto.precio),
       description: producto.descripcion,
+      
     };
   });
 
