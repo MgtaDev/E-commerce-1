@@ -18,16 +18,10 @@ const Miperfil = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [buttonSwitch, setButtonSwitch] = useState(false);
 
-  const usuarios = useSelector((state) => state.Allclients);
-  const currentUser = usuarios && usuarios.find((usuario) => {
-    return (
-      usuario.name &&
-      usuario.correo_electronico &&
-      usuario.name.toLowerCase() === user.name.toLowerCase() &&
-      usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
-    );
+  const usuarios = useSelector((state)=> state.Allclients);
+  const currentUser = usuarios.find((usuario) => {
+    return usuario.name.toLowerCase() === user.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
   });
-  
   console.log(currentUser);
   console.log(usuarios)
 
