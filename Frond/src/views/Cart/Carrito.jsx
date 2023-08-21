@@ -9,14 +9,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Carrito = () => {
     const dispatch = useDispatch();
     const [apicart, setApicart] = useState([]);
-    // const { user, isAuthenticated } = useAuth0();
-    const isAuthenticated = true;
-    const userid = "cli-29";
+    const { user, isAuthenticated } = useAuth0();
+    // const isAuthenticated = true;
+    // const user = "cli-29";
     const extractNumber = (string) => {
         const match = string.match(/\d+/); 
         return match ? parseInt(match[0]) : 0; 
     };
-    const NumUserId = extractNumber(userid);
+    
+    
+    const NumUserId = isAuthenticated ? extractNumber(user) : null;
+    
      
     const [userInfo, setUserInfo] = useState({
         nombre: 'Daniel',
