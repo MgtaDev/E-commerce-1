@@ -43,8 +43,6 @@ const { Producto, Subcategoria } = sequelize.models;
 Producto.belongsToMany(Subcategoria, { through: 'producto_subcategoria' });
 Subcategoria.belongsToMany(Producto, { through: 'producto_subcategoria' });
 
-
-
 module.exports = {
   ...sequelize.models,
   conn: sequelize,
