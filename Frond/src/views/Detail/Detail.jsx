@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
 //import colorIcon from '../../assets/img/colorIcon.svg'
-import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS } from "../../redux/actions";
+import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS, addItemToCartApi } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
@@ -34,7 +33,8 @@ const Detail = () => {
         },
     
     */
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    // const { user, isAuthenticated, isLoading } = useAuth0(); 
+    const isAuthenticated = true;
     const { loginWithRedirect } = useAuth0()
     const back = useNavigate();
     const dispatch = useDispatch();
@@ -136,12 +136,14 @@ const Detail = () => {
         nombre: stateProducts.name,
         precio: stateProducts.precio_venta,
         descripcion: stateProducts.descripcion,
-        imagen: stateProducts.imagenPrincipal,
-        quantity: amount
     }
-
+    
     const addToCart = () => {
-        dispatch(addItemToCartLS(id, amount, color))
+        if (isAuthenticated){
+            dispatch(addItemToCartApi({userId:29, productoId:id, cantidad:amount, colorId:color}));
+        }else{
+            dispatch(addItemToCartLS(id, amount, color)); 
+        }
         dispatch(addToCartFunction(id, amount, color));
         const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
         navigate(carritotUrl);

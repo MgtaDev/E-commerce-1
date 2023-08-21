@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Carrito = () => {
     const dispatch = useDispatch();
     // const { user, isAuthenticated } = useAuth0();
-    const isAuthenticated = false;
+    const isAuthenticated = true;
     const userid = "cli-29";
     const extractNumber = (string) => {
         const match = string.match(/\d+/); 
@@ -91,7 +91,8 @@ const Carrito = () => {
         } else {
           return;
         }
-    }, [isAuthenticated]);
+        return ()=>{}
+    },[]);
 
 
     const cartApi = useSelector(state => state.apiCart);
@@ -110,15 +111,15 @@ const Carrito = () => {
 
 
     const cartToRender = isAuthenticated ? cartApi : cartUnificado;
-console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuthenticated); console.log("cartApi", cartApi); console.log("cartUnificado", cartUnificado);
+console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuthenticated); console.log("cartApi linea 113", cartApi); console.log("cartUnificado", cartUnificado);
     const handleEmptyCart = () => {
         dispatch(emptyCartLS());
     }
     const handleDeleteArtLS = (item) => {
         dispatch(deleteArtLS(item.objeto.id, item.color));
     }
-    const handleDeleteArtAPI = (item) => {
-        dispatch(deleteArtAPI({ user: NumUserId, productoId: item.id, colorId: 1 }))
+    const handleDeleteArtAPI = (item) => {        
+        dispatch(deleteArtAPI({ user:NumUserId, productoId:item.productoId, colorId:item.colorId }))
     }
 
     const handleProceedToPayment = () => {
@@ -180,6 +181,12 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
                                 <div className="col-start-5 col-span-1 flex items-center justify-end font-medium ">
                                     <p class="text-xs mr-1">Costo: </p>{item.precio_venta * item.cantidad}
                                 </div>
+                                <button
+                                    onClick={() => handleDeleteArtAPI(item)}
+                                    className="col-start-6 rounded-md place-self-center px-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100"
+                                >
+                                    X
+                                </button>
                             </div>
                         ))
                        ) : (
@@ -276,4 +283,3 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
 };
 
 export default Carrito;
-
