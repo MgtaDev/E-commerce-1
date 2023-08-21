@@ -61,6 +61,7 @@ server.post("/pagoCarrito", (req, res) => {
       title: producto.nombre,
       unit_price: Number(producto.precio),
       description: producto.descripcion,
+      
     };
   });
 
@@ -70,8 +71,8 @@ server.post("/pagoCarrito", (req, res) => {
       // success: "http://localhost:3000",
       // failure: "http://localhost:3000",
       // pending: "",
-      success: "bonitaandlovely-git-daniel-brandonlopez98.vercel.app",
-      failure: "bonitaandlovely-git-daniel-brandonlopez98.vercel.app",
+      success: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
+      failure: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
       pending: "",
     },
     auto_return: "approved",
@@ -103,8 +104,8 @@ server.post("/pago", (req, res) => {
       },
     ],
     back_urls: {
-      success: "https://bonitaandlovely-git-daniel-brandonlopez98.vercel.app/catalogo",
-      failure: "https://bonitaandlovely-git-daniel-brandonlopez98.vercel.app",
+      success: "bonitaandlovely-git-main-brandonlopez98.vercel.app//catalogo",
+      failure: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
       pending: "",
     },
     auto_return: "approved",
