@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS, POST_CART_API, DEL_ART_API} from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS, POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS, GET_ALL_VENTAS, GET_USER_COMPRAS} from "./action-types";
 
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
 
@@ -40,6 +40,28 @@ export const productosSinPag = () => async (dispatch) =>{
     payload: data,
   });
 }
+export const clientes = () => async dispatch => {
+  const {data} =await axios.get("/cliente")
+  dispatch({
+     type: GET_ALL_CLIENTS,
+     payload: data
+  })
+ };
+ export const ventas = () => async dispatch => {
+  const {data} =await axios.get("/carrito/Todoelhistorial/0")
+  dispatch({
+     type: GET_ALL_VENTAS,
+     payload: data
+  })
+ };
+ export const userCompras = (id) => async dispatch => {
+  const {data} =await axios.get(`/carrito/historial/${id}`)
+  dispatch({
+     type: GET_USER_COMPRAS,
+     payload: data
+  })
+ };
+
 
 export const categories = () => async dispatch => {
    const {data} =await axios.get("/categoria")
@@ -326,3 +348,5 @@ export const categories = () => async dispatch => {
     }
   };
   
+
+
