@@ -91,7 +91,7 @@ const Card = ({ id, name, precio, imagenPrincipal }) => {
       </Link>
       <div className="relative px-4 py-5 bg-white">
         <div className="flex justify-between items-center">
-          <h3 className="text-xl leading-tight font-semibold text-gray-800">{name}</h3>
+          <h3 className="text-xl leading-tight font-semibold capitalize text-gray-800">{name}</h3>
           <button
             className={`relative group p-2 ml-2 ${
               isFavorite ? "text-red-500 font-bold" : "text-gray-400"
