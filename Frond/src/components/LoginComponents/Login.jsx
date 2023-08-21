@@ -21,7 +21,8 @@ const LoginButton = () => {
 
   if (isAuthenticated && user) {
     const { name, email } = user;
-    const userLogin = { name, correo_electronico: email, admin: true };
+    const admin = email === "passantinodev@gmail.com" ? true : false;
+    const userLogin = { name, correo_electronico: email, admin };
     const existeCliente = clientes.find((cliente) => cliente.correo_electronico === email);
     if (existeCliente) {
       console.log("El cliente ya existe en la base de datos");

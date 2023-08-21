@@ -112,8 +112,8 @@ const Detail = () => {
   }
 
   return (
-    <div className="px-6 m-auto max-w-4xl">
-      <button onClick={goBack} className="bg-customColor mt-5 mb-3 cursor-pointer text-white py-2 px-4 rounded flex items-center">
+    <><div className="px-6 m-auto max-w-4xl">
+      <button onClick={goBack} className="bg-customColor mt-8 mb-8 cursor-pointer text-white py-2 px-4 rounded flex items-center">
         <FaArrowLeft className="mr-2" />
         Volver
       </button>
@@ -122,49 +122,36 @@ const Detail = () => {
           <img
             src={stateProducts.imagenPrincipal}
             alt={stateProducts.name}
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
           <div className="flex items-center justify-between bg-gray-100 p-4 mt-4 rounded-md">
             <FaCircle
               color={colorIcon1}
               alt="colorIcon"
-              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${
-                color === colorIcon1 ? "opacity-100" : "opacity-50"
-              }`}
+              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon1 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon1);
-              }}
-            />
+              } } />
             <FaCircle
               color={colorIcon2}
               alt="colorIcon"
-              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${
-                color === colorIcon2 ? "opacity-100" : "opacity-50"
-              }`}
+              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon2 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon2);
-              }}
-            />
+              } } />
             <FaCircle
               color={colorIcon3}
               alt="colorIcon"
-              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${
-                color === colorIcon3 ? "opacity-100" : "opacity-50"
-              }`}
+              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon3 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon3);
-              }}
-            />
+              } } />
             <FaCircle
               color={colorIcon4}
               alt="colorIcon"
-              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${
-                color === colorIcon4 ? "opacity-100" : "opacity-50"
-              }`}
+              className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon4 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon4);
-              }}
-            />
+              } } />
           </div>
         </div>
         <div className="flex flex-col gap-6 w-full">
@@ -199,56 +186,48 @@ const Detail = () => {
             <h3 className="font-medium text-gray-900">Color</h3>
             <div className="mt-4 flex items-center gap-3">
               <div
-                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${
-                  color === colorIcon1
+                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon1
                     ? `border-${colorIcon1}`
-                    : "border-transparent"
-                }`}
+                    : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon1}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon1);
-                }}
+                } }
               ></div>
               <div
-                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${
-                  color === colorIcon2
+                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon2
                     ? `border-${colorIcon2}`
-                    : "border-transparent"
-                }`}
+                    : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon2}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon2);
-                }}
+                } }
               ></div>
               <div
-                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${
-                  color === colorIcon3
+                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon3
                     ? `border-${colorIcon3}`
-                    : "border-transparent"
-                }`}
+                    : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon3}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon3);
-                }}
+                } }
               ></div>
               <div
-                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${
-                  color === colorIcon4
+                className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon4
                     ? `border-${colorIcon4}`
-                    : "border-transparent"
-                }`}
+                    : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon4}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon4);
-                }}
+                } }
               ></div>
             </div>
           </div>
@@ -261,14 +240,13 @@ const Detail = () => {
               <img
                 src={bagIcon}
                 alt="bag icon"
-                className="inline-block w-6 h-6 mr-2"
-              />{" "}
+                className="inline-block w-6 h-6 mr-2" />{" "}
               Añadir al carrito
             </button>
             <button
               onClick={() => {
                 handleProceedToPayment();
-              }}
+              } }
               className="w-1/2 bg-customColor2 text-customColor py-3 px-6 rounded-lg text-lg font-medium hover:bg-customColor3 transition duration-300 ease-in-out"
               style={{ borderWidth: "2px" }}
             >
@@ -278,8 +256,10 @@ const Detail = () => {
         </div>
       </div>
       <br />
-      <MoreProductsContainer />
-    </div>
+
+    </div><div className='flex flex-row gap-2 mt-10 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
+        <MoreProductsContainer />
+      </div></>
   );
 };
 
