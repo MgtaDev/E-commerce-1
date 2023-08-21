@@ -44,10 +44,14 @@ const Profile = () => {
   const ref = useRef(null);
   const usuarios = useSelector((state)=> state.Allclients);
   const currentUser = usuarios.find((usuario) => {
-    if(!isLoading && user) // Agregar comprobación para user existente
-      return usuario.name.toLowerCase() === user.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
+    if (!isLoading && user && Array.isArray(usuarios)) {
+      return (
+        usuario.name.toLowerCase() === user.name.toLowerCase() &&
+        usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
+      );
+    }
+    return false;
   });
-
   const toggleUserMenu = () => {
     setIsOpen(!isOpen);
   };
