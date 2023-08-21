@@ -114,6 +114,8 @@ const Detail = () => {
         nombre: stateProducts.name,
         precio: stateProducts.precio_venta,
         descripcion: stateProducts.descripcion,
+        imagen: stateProducts.imagenPrincipal,
+        quantity: amount
     }
 
     const addToCart = () => {

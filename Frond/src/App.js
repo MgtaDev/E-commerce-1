@@ -30,9 +30,9 @@ import { useDispatch} from "react-redux";
 
 import { useParams } from "react-router-dom"; 
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
-axios.defaults.baseURL = "http://localhost:3001/"
-
-
+// axios.defaults.baseURL = "http://localhost:3001/"
+//Acá va el link del back
+axios.defaults.baseURL = "bonitaandlovely-production-a643.up.railway.app"
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
@@ -79,7 +79,6 @@ function App () {
         <Route path="/miscompras" element = {<MisCompras/>}/>
         <Route path="/confirmedpayment" element = {<PagoExitoso/>}/>
         
-        
 
       </Routes>
       <div className="chatbot-container">
@@ -88,7 +87,7 @@ function App () {
           messageParser={MessageParser}
           // actionProvider={ActionProvider}
         /> */}
-      </div>
+
       {
             location.pathname !== "/" ? <Footer /> : null
          }
