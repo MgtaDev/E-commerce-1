@@ -95,7 +95,9 @@ module.exports = (sequelize) => {
         name: 'proveedorId',
       }
     });
-  
+    Producto.hasMany(models.Reviwers, {
+      foreignKey: 'productoId',
+    });
 
   };
 

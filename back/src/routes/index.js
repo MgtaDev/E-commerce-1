@@ -27,7 +27,7 @@ router.use('/cliente',clienteRouter)
 router.use('/favorito',favoritoRouter)
 router.use('/inventario',inventarioRouter)
 router.use('/carrito',carritoRouter)
-
+router.use('/reviewr',reviewrRouter)
 
 
 module.exports = router;
