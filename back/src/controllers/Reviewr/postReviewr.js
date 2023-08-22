@@ -51,8 +51,8 @@ module.exports = async (clienteId, productoId, rating, comentario) => {
         const nuevaReseña = await Reviwers.create({
             rating,
             comentario,
+            fecha: new Date(), 
             clienteId,
-            fecha: new Date(),
             productoId,
         });
 

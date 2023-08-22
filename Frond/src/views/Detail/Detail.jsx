@@ -52,7 +52,7 @@ const Detail = () => {
       Swal.fire("Producto agotado momentáneamente", "", "error");
       return;
     }
-  
+
     axios
       .post("bonitaandlovely-production-a643.up.railway.app/pago", productToPay)
       .then((res) => (window.location.href = res.data.response.body.init_point));
@@ -91,23 +91,24 @@ const Detail = () => {
   };
 
   const extractNumber = (string) => {
-    const match = string.match(/\d+/); 
-    return match ? parseInt(match[0]) : 0; 
-}; 
-const Clientela = useSelector(state=>state.Allclients); console.log("user"); console.log(JSON.stringify(user,null,2));
-const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
-const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
+    const match = string.match(/\d+/);
+    return match ? parseInt(match[0]) : 0;
+  };
+  const Clientela = useSelector(state => state.Allclients); console.log("user"); console.log(JSON.stringify(user, null, 2));
+  const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
+  const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
 
-  const addToCart = () => {        
-    if (isAuthenticated){ console.log("este es el color de detail", color);
-        dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount, colorId: 1}));
-    }else{
-        dispatch(addItemToCartLS(id, amount, 1)); 
+  const addToCart = () => {
+    if (isAuthenticated) {
+      console.log("este es el color de detail", color);
+      dispatch(addItemToCartApi({ userId: NumUserId, productoId: id, cantidad: amount, colorId: 1 }));
+    } else {
+      dispatch(addItemToCartLS(id, amount, 1));
     }
     dispatch(addToCartFunction(id, amount, color));
     const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
     navigate(carritotUrl);
-}
+  }
   const goBack = () => {
     navigate('/catalogo')
   }
@@ -117,7 +118,7 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
   return (
     <><div className="px-6 m-auto max-w-4xl">
       <button onClick={goBack} className="bg-customColor mt-8 mb-8 cursor-pointer text-white py-2 px-4 rounded flex items-center">
- 
+
         Volver
       </button>
       <div className="flex flex-col lg:flex-row gap-12 py-1">
@@ -133,28 +134,28 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
               className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon1 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon1);
-              } } />
+              }} />
             <FaCircle
               color={colorIcon2}
               alt="colorIcon"
               className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon2 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon2);
-              } } />
+              }} />
             <FaCircle
               color={colorIcon3}
               alt="colorIcon"
               className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon3 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon3);
-              } } />
+              }} />
             <FaCircle
               color={colorIcon4}
               alt="colorIcon"
               className={`rounded-full cursor-pointer hover:opacity-75 duration-300 ease-in-out ${color === colorIcon4 ? "opacity-100" : "opacity-50"}`}
               onClick={() => {
                 setColor(colorIcon4);
-              } } />
+              }} />
           </div>
         </div>
         <div className="flex flex-col gap-6 w-full">
@@ -162,12 +163,12 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
             {stateProducts.name}
           </h2>
           <span className="text-medium ">
-          Disponibles: {stateProducts.cantidad}
+            Disponibles: {stateProducts.cantidad}
           </span>
           <h3 className="text-xl font-medium text-customColor">
             ${stateProducts.precio_venta}
           </h3>
-    
+
           <hr />
           <div className="flex items-center gap-4">
             <button
@@ -194,47 +195,47 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
             <div className="mt-4 flex items-center gap-3">
               <div
                 className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon1
-                    ? `border-${colorIcon1}`
-                    : "border-transparent"}`}
+                  ? `border-${colorIcon1}`
+                  : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon1}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon1);
-                } }
+                }}
               ></div>
               <div
                 className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon2
-                    ? `border-${colorIcon2}`
-                    : "border-transparent"}`}
+                  ? `border-${colorIcon2}`
+                  : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon2}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon2);
-                } }
+                }}
               ></div>
               <div
                 className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon3
-                    ? `border-${colorIcon3}`
-                    : "border-transparent"}`}
+                  ? `border-${colorIcon3}`
+                  : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon3}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon3);
-                } }
+                }}
               ></div>
               <div
                 className={`w-10 h-10 rounded-full border-4 transition duration-300 ease-in-out ${color === colorIcon4
-                    ? `border-${colorIcon4}`
-                    : "border-transparent"}`}
+                  ? `border-${colorIcon4}`
+                  : "border-transparent"}`}
                 style={{
                   backgroundColor: `${colorIcon4}`,
                 }}
                 onClick={() => {
                   setColor(colorIcon4);
-                } }
+                }}
               ></div>
             </div>
           </div>
@@ -253,7 +254,7 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
             <button
               onClick={() => {
                 handleProceedToPayment();
-              } }
+              }}
               className="w-1/2 bg-customColor2 text-customColor py-3 px-6 rounded-lg text-lg font-medium hover:bg-customColor3 transition duration-300 ease-in-out"
               style={{ borderWidth: "2px" }}
             >
@@ -261,11 +262,11 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
             </button>
           </div>
 
-      
-            <div className='flex flex-row gap-2 mt-20 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
-          <MoreProductsCardContainer2/>
-        </div>
-        <SectionReviews/>
+
+          <div className='flex flex-row gap-2 mt-20 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
+            <MoreProductsCardContainer2 />
+          </div>
+          <SectionReviews />
         </div>
       </div>
       <br />
