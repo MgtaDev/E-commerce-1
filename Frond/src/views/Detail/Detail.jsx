@@ -67,51 +67,6 @@ const Detail = () => {
             .then((res) => (window.location.href = res.data.response.body.init_point));
     };
 
-import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProducts2";
-
-const Detail = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const { loginWithRedirect } = useAuth0();
-  const back = useNavigate();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const stateProducts = useSelector((state) => state.productsDetail);
-  useEffect(() => {
-    dispatch(clientes());
-  }, []);
-  const usuarios = useSelector((state) => state.Allclients);
-  const currentUser = usuarios.find(
-    (usuario) =>
-      !isLoading &&
-      user &&
-      usuario.name.toLowerCase() === user.name.toLowerCase() &&
-      usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
-  );
-
-  const handleProceedToPayment = () => {
-    if (!isAuthenticated) {
-      Swal.fire("Debes iniciar sesión para continuar", "error", "error");
-      return;
-    }
-    if (
-      !currentUser.name ||
-      !currentUser.correo_electronico ||
-      !currentUser.telefono ||
-      !currentUser.contraseña
-    ) {
-      Swal.fire("Completa tu información de perfil antes de continuar", "", "error");
-      return;
-    }
-    if (stateProducts.cantidad <= 0) {
-      Swal.fire("Producto agotado momentáneamente", "", "error");
-      return;
-    }
-  
-    axios
-      .post("bonitaandlovely-production-a643.up.railway.app/pago", productToPay)
-      .then((res) => (window.location.href = res.data.response.body.init_point));
-  };
 
   useEffect(() => {
     dispatch(getProductsByDetail(id));
