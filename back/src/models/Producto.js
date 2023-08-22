@@ -98,7 +98,6 @@ module.exports = (sequelize) => {
     Producto.hasMany(models.Reviwers, {
       foreignKey: 'productoId',
     });
-  
 
   };
 

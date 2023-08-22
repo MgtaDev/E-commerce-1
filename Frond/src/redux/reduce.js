@@ -1,4 +1,4 @@
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS,POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS, GET_ALL_VENTAS, GET_USER_COMPRAS, POST_ART_API } from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS,POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS, GET_ALL_VENTAS, GET_USER_COMPRAS, GET_REVIEWRS, POST_ART_API} from "./action-types";
 import { userCompras } from "./actions";
 const storedLocalFavorites = localStorage.getItem("localFavorites");
 const initialLocalFavorites = storedLocalFavorites ? JSON.parse(storedLocalFavorites) : [];
@@ -25,7 +25,8 @@ const InitialState = {
     localCart: initialLocalCart, apiCart:[],
     Allclients: [],
     Allventas: [],
-    userCompras: []
+    userCompras: [],
+    AllRevierwsId:[]
 }
 
 const reducer = (state = InitialState, {type, payload, data}) => {
@@ -238,14 +239,20 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                 };
 
             case DELETE_ART_LS:        
-            const { ArtId, ArtColor } = payload;
-            const newLocalCart = state.localCart.filter(
-                item => item.id !== ArtId || item.color !== ArtColor
-                    );
-                    return {
-                        ...state,
-                        localCart: newLocalCart
-                    };
+            const { ArtId, ArtColor, cantidad } = payload;
+            const indexToDelete = state.localCart.findIndex(
+                item => item.id === ArtId && item.color === ArtColor);  
+               
+              if (indexToDelete !== -1) {
+                const newLocalCart = [...state.localCart.slice(0, indexToDelete), ...state.localCart.slice(indexToDelete + 1)];                
+                console.log("newLocalCart", newLocalCart);
+                return {
+                  ...state,
+                  localCart: newLocalCart
+                };
+              }
+              return state;
+
         case POST_CART_API:
             return {
                 ...state,
@@ -262,12 +269,16 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                       ...state,
                 userCompras: data
                 }
+        case GET_REVIEWRS:
+            return{
+                ...state,
+                AllRevierwsId:payload
+            }
         case POST_ART_API:
             return {
                 ...state,
                 apiCart: data
             }      
-    
         default:
         return state
     }

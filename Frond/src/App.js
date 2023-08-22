@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FaWhatsapp } from 'react-icons/fa';
 import './App.css';
-import {Route, Routes, useLocation } from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
@@ -9,11 +9,8 @@ import Contact from "./views/Contact/Contact";
 import DevTeam from './views/DevTeam/devTeam.jsx'
 import FAQs from "./views/FAQs/FAQs"
 import Catalogo from "./views/Catalogo/Catalogo.jsx";
-import Chatbot from "react-chatbot-kit";
 import Form from "./views/Form/Form";
 import Profile from "./views/Profile/MiPerfil.jsx";
-import Configs from "./components/ChatBot/Configs";
-import MessageParser from "./components/ChatBot/MessageParser";
 import Detail from "../src/views/Detail/Detail";
 import Favoritos from "../src/views/Favoritos/Favoritos"
 import Dashboard2 from "./views/Dashboard2/dashboard";
@@ -25,22 +22,37 @@ import MisCompras from '../../Frond/src/views/Mis compras/misCompras.jsx'
 import Carrito from "./views/Cart/Carrito";
 import PagoExitoso from "./views/PagoExitoso/PagoExitoso.jsx"
 import { useAuth0 } from "@auth0/auth0-react";
-import { productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
-import { useDispatch} from "react-redux";
-
+import { clientes, productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
+import { useDispatch, useSelector} from "react-redux";
+import WhatsappIcon from '../../Frond/src/assets/img/social.png'
 import { useParams } from "react-router-dom"; 
+
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 // axios.defaults.baseURL = "http://localhost:3001/"
 
 //Acá va el link del back
-axios.defaults.baseURL = "bonitaandlovely-production-a643.up.railway.app"
+axios.defaults.baseURL = "https://bonitaandlovely-production-a643.up.railway.app"
+
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
 function App () {
   const location = useLocation()
   const dispatch = useDispatch()
-  const {user, isAuthenticated} = useAuth0()
+  const navigate = useNavigate()
+  const {user, isAuthenticated, isLoading} = useAuth0()
+  useEffect(() => {
+    dispatch(clientes());
+  }, []);
+  const usuarios = useSelector((state) => state.Allclients);
+  const currentUser = usuarios.find(
+    (usuario) =>
+      !isLoading &&
+      user &&
+      usuario.name.toLowerCase() === user.name.toLowerCase() &&
+      usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
+  );
+
   
   useEffect(()=>{
     dispatch(productosSinPag())
@@ -53,6 +65,38 @@ function App () {
   }, [user]);
   const params = useParams();
 
+  const sendWhatsappMessage = () => {
+    var botId = '';// aqui va el id del bot en la app de face
+    var phoneNbr = '';  // aqui va el numero del que se enviaran los mensajes.
+    var bearerToken = 'EAATZA9dPTFDoBAHzZAaM5FaDspyTHy66co2CQ1ipaJuVhzBHaLQsucZAI1PfnYgdIt3Q7SpbkWywPnE0A2Dew3mXSNwfghuE1sROgBkso9hU0iQbQbgubRGt1IoVdEujQIBdhaE0q2KkYCFctEXM5fcGdWQhfVi7uSXAmP3ryTr2LiwGiQLOiWwf611hnKHb3yUyOH21AZDZD';
+
+
+    const url = `https://graph.facebook.com/v15.0/${botId}/messages`;
+    const data = {
+      messaging_product: "whatsapp",
+      to: phoneNbr,
+      type: "template",
+      template: {
+        name: "hello_world",
+        language: { code: "en_US" }
+      }
+    };
+    const postReq = {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + bearerToken,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+      json: true
+    };
+    fetch(url, postReq)
+      .then(data => data.json())
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
+  };
+
+  // Esto aun no esta listo del todo, no tocar.
   return (
     <div>
       {
@@ -75,19 +119,21 @@ function App () {
         <Route path="/carrito/:id" element={<Carrito />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/perfil" element = {<Profile/>}/>
-        <Route path="/dashboard2" element = {<Dashboard2/>}/>
+        <Route path="confirmedpayment" element={<PagoExitoso/>}/>      
         <Route path="/miscompras" element = {<MisCompras/>}/>
-        <Route path="/confirmedpayment" element = {<PagoExitoso/>}/>
+
         
-        
+          {/* Protección de ruta directamente en App */}
+          {
+          location.pathname === "/dashboard2" && currentUser.admin === false
+            ? navigate('/')
+            : <Route path="/dashboard2" element={<Dashboard2 />} />
+        }
+
 
       </Routes>
-      <div className="chatbot-container">
-        {/* <Chatbot
-          config={Configs}
-          messageParser={MessageParser}
-          // actionProvider={ActionProvider}
-        /> */}
+      <div className="chatbot-container flex fixed bottom-0 w-20 right-0 m-2 p-4 rounded-full hover:opacity-75 cursor-pointer">
+      <img onClick={()=> sendWhatsappMessage()} className="w-20" src={WhatsappIcon} alt=""/>
       </div>
       {
             location.pathname !== "/" ? <Footer /> : null
