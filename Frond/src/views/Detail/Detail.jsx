@@ -1,38 +1,46 @@
+
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import SectionReviews from "../../components/modalReviwers/reviewrsDetail/SectionReviews";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
 //import colorIcon from '../../assets/img/colorIcon.svg'
-import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS, addItemToCartApi, clientes } from "../../redux/actions";
-
+import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS, addItemToCartApi } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
-import { useAuth0 } from "@auth0/auth0-react";
+import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
 import { FaCircle } from "react-icons/fa";
-
-import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProducts2";
+import MoreProductsContainer from "../../components/MoreProducts/MoreProductsContainer";
+import SectionReviews from "../../components/modalReviwers/reviewrsDetail/SectionReviews";
+import StartsDetail from "../../components/modalReviwers/reviewrsDetail/StartsDetail";
 
 const Detail = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const { loginWithRedirect } = useAuth0();
-  const back = useNavigate();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const stateProducts = useSelector((state) => state.productsDetail);
-  useEffect(() => {
-    dispatch(clientes());
-  }, []);
-  const usuarios = useSelector((state) => state.Allclients);
-  const currentUser = usuarios.find(
-    (usuario) =>
-      !isLoading &&
-      user &&
-      usuario.name.toLowerCase() === user.name.toLowerCase() &&
-      usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
-  );
+    const { isAuthenticated } = useAuth0();
+    const back = useNavigate();
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const { id } = useParams();
+    const stateProducts = useSelector(state => state.productsDetail);
+
+    const [userInfo, setUserInfo] = useState({
+         nombre: 'Daniel',
+        apellido: 'Apellido',
+        correoElectronico: 'daniel@gmail.com',
+        numeroTelefono: '031934123',
+        ciudad: 'miami',
+        provincia: 'florida',
+        codigoPostal: '6301',
+        contraseña: 'djqdijqw' 
+
+        /*    nombre: '',
+        apellido: '',
+        correoElectronico: '',
+        numeroTelefono: '',
+        ciudad: '',
+        provincia: '',
+        codigoPostal: '',
+        contraseña: '' */
+    });
 
   const handleProceedToPayment = () => {
     if (!isAuthenticated) {
@@ -52,7 +60,7 @@ const Detail = () => {
       Swal.fire("Producto agotado momentáneamente", "", "error");
       return;
     }
-
+  
     axios
       .post("bonitaandlovely-production-a643.up.railway.app/pago", productToPay)
       .then((res) => (window.location.href = res.data.response.body.init_point));
@@ -66,21 +74,33 @@ const Detail = () => {
     };
   }, [dispatch, id]);
 
-  const colorIcon1 = "#EBC9BB";
-  const colorIcon2 = "#800040";
-  const colorIcon3 = "#EF3A57";
-  const colorIcon4 = "#C81819";
 
-  const [amount, setAmount] = useState(1);
-  const [color, setColor] = useState(colorIcon1);
+  /* const [images, setImages] = useState({
+        img1: stateProducts.imagenPrincipal,
+       // img2: stateProducts.imagenes && stateProducts.imagenes[0] ? stateProducts.imagenes[0] : null,
+        //img3: stateProducts.imagenes && stateProducts.imagenes[1] ? stateProducts.imagenes[1] : null,
+        //img4: stateProducts.imagenes && stateProducts.imagenes[2] ? stateProducts.imagenes[2] : null
+    }); 
+    */
 
-  const handleDecrement = () => {
-    setAmount((prev) => Math.max(prev - 1, 1));
-  };
+    const colorIcon1 = "#EBC9BB";
+    const colorIcon2 = "#800040";
+    const colorIcon3 = "#EF3A57";
+    const colorIcon4 = "#C81819";
 
-  const handleIncrement = () => {
-    setAmount((prev) => Math.min(prev + 1, 10));
-  };
+  // const [activeImg, setActiveImage] = useState(images.img1) //stateProducts
+
+    const [amount, setAmount] = useState(1);
+    const [color, setColor] = useState(colorIcon1);
+
+
+    const handleDecrement = () => {
+        setAmount((prev) => Math.max(prev - 1, 1));
+    };
+
+    const handleIncrement = () => {
+        setAmount((prev) => Math.min(prev + 1, 10));
+    };
 
   const productToPay = {
     nombre: stateProducts.name,
@@ -268,11 +288,7 @@ const Detail = () => {
           </div>
           <SectionReviews />
         </div>
-      </div>
-      <br />
-
-    </div></>
-  );
-};
+    );
+}
 
 export default Detail;
