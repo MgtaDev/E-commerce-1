@@ -5,6 +5,7 @@ import emailjs from "emailjs-com"
 import fond from "../../assets/img/poster1.jpg"
 import Swal from 'sweetalert2';
 
+//subi mis cambios ayer y eliminaron mi pull requets loco
 
 const Contact = () => {
   const formRef = useRef();

@@ -8,14 +8,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Carrito = () => {
     const dispatch = useDispatch();
-    // const { user, isAuthenticated } = useAuth0();
-    const isAuthenticated = false;
-    const userid = "cli-29";
+    const [apicart, setApicart] = useState([]);
+    const { user, isAuthenticated } = useAuth0();
+    // const isAuthenticated = true;
+    // const user = "cli-29";
     const extractNumber = (string) => {
         const match = string.match(/\d+/); 
         return match ? parseInt(match[0]) : 0; 
     };
-    const NumUserId = extractNumber(userid);
+    
+    
+    const NumUserId = isAuthenticated ? extractNumber(user) : undefined;
+    
      
     const [userInfo, setUserInfo] = useState({
         nombre: 'Daniel',
@@ -37,6 +41,24 @@ const Carrito = () => {
         // contraseña: ''
 
     });
+
+    useEffect(() => {
+        if (isAuthenticated) {          
+          axios.get(`/carrito/${NumUserId}`)
+            .then(response => {
+              setApicart(response.data);
+            })
+            .catch(error => {             
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: error.response?.data || 'Hubo un error en la solicitud.',
+                });
+              });
+        }else{
+            return
+        }
+      }, [NumUserId, isAuthenticated]);
 
     const cartLS = useSelector(state => state.localCart); //estos son los item en carrito en local/
     cartLS.forEach(item => {
@@ -79,7 +101,7 @@ const Carrito = () => {
     })
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated && cartLS) {
           dispatch(addCartLSToApi({ user: NumUserId, localCart: cartLS }))
             .catch(error => {             
               Swal.fire({
@@ -117,9 +139,19 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
     const handleDeleteArtLS = (item) => {
         dispatch(deleteArtLS(item.objeto.id, item.color));
     }
-    const handleDeleteArtAPI = (item) => {
-        dispatch(deleteArtAPI({ user: NumUserId, productoId: item.id, colorId: 1 }))
-    }
+    const handleDeleteArtAPI = async (item) => {
+        try {
+          await dispatch(deleteArtAPI({ user: NumUserId, productoId: item.productoId, colorId: 10 }));
+        } catch (error) {
+          console.error('Error en handleDeleteArtAPI:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: error.response?.data || 'Hubo un error en la solicitud.',
+          });
+        }
+      }
+      
 
     const handleProceedToPayment = () => {
         if (!isAuthenticated) {
@@ -180,6 +212,12 @@ console.log("cartToRender", cartToRender); console.log("isAuthenticated", isAuth
                                 <div className="col-start-5 col-span-1 flex items-center justify-end font-medium ">
                                     <p class="text-xs mr-1">Costo: </p>{item.precio_venta * item.cantidad}
                                 </div>
+                                <button
+                                    onClick={() => handleDeleteArtAPI(item)}
+                                    className="col-start-6 rounded-md place-self-center px-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100"
+                                >
+                                    X
+                                </button>
                             </div>
                         ))
                        ) : (

@@ -20,6 +20,10 @@ module.exports = sequelize => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    fecha: {
+      type: DataTypes.DATE,// Tipo de dato para la fecha
+      allowNull: false,
+    },
     comentario: {
       type: DataTypes.STRING,
       allowNull: false,
