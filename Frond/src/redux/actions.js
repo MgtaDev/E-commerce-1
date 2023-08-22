@@ -226,13 +226,12 @@ export const categories = () => async dispatch => {
       }
     }}
 
-  export const addToCartFunction = (id, amount,color) => {
+  export const addToCartFunction = (id, amount) => {
     return {
       type: ADD_TO_CART,
       payload: {
         id,
-        amount,
-        color
+        amount        
       },
     };
   };
@@ -251,10 +250,10 @@ export const categories = () => async dispatch => {
     }
   }
 
-  export const addItemToCartLS = (id, amount, color) => {
+  export const addItemToCartLS = (id, amount) => {
     return {
       type: POST_CART_LS, 
-      payload: {id, amount, color}
+      payload: {id, amount}
     }
   }
 
@@ -272,11 +271,11 @@ export const categories = () => async dispatch => {
     }
   }
   
-  export const deleteArtLS = (ArtId, ArtColor, cantidad) => {
-    console.log(`actions -> id:${ArtId}, color:${ArtColor}, cantidad:${cantidad}`);
+  export const deleteArtLS = (ArtId, cantidad) => {
+    console.log(`actions -> id:${ArtId}, cantidad:${cantidad}`);
     return{
     type: DELETE_ART_LS,
-    payload: {ArtId, ArtColor, cantidad}
+    payload: {ArtId, cantidad}
     }
   }
 
@@ -293,7 +292,7 @@ export const categories = () => async dispatch => {
         const cartData = {
           productos: localCart.map((item) => ({
             productoId: extractNumber(item.id),
-            colorId: item.color,
+            
             cantidad: item.amount,
           })),
         };  
@@ -310,12 +309,12 @@ export const categories = () => async dispatch => {
     }
   };
 
-  export const deleteArtAPI = ({ user, productoId, colorId }) => { console.log(`en actiosn user: ${user}, productoId: ${productoId}, colorId: ${colorId}`);
+  export const deleteArtAPI = ({ user, productoId }) => { 
     try {
       return async (dispatch, getState) => {
         const itemData = {
           productoId: productoId,
-          colorId: colorId,
+          
         };  
         await axios.delete(`/carrito/${user}`, { data: itemData });          
         const response = await axios.get(`/carrito/${user}`);
@@ -331,16 +330,13 @@ export const categories = () => async dispatch => {
     }
   };
 
-  export const addItemToCartApi = ({ userId, productoId, cantidad, colorId }) => {
+  export const addItemToCartApi = ({ userId, productoId, cantidad}) => {
     return async (dispatch)=>{
-    try {
-      const colorClave = await getColorIdByHex(colorId);
-      console.log("userId en additemtocartapi", userId);                   
+    try {                   
       const cartData = {
         productos: [
           {
-            productoId: extractNumber(productoId),
-            colorId: extractNumber(colorClave),
+            productoId: extractNumber(productoId),            
             cantidad: cantidad,
           },
         ],
@@ -360,18 +356,7 @@ export const categories = () => async dispatch => {
     }}
   };
   
-  
-   const getColorIdByHex = async (hexColor) =>{
-    try {
-      const colorResponse = await axios.get('/color');
-      const colorTable = colorResponse.data;
-      const matchingColor = colorTable.find(color=> color.name === hexColor);
-      return matchingColor ? matchingColor.id : 1;
-    } catch (error) {
-      throw error;
-      return 1;
-    }
-   };
+
   
 export const previewrsId = (id) => async (dispatch) => {
   const {data} = await axios.get(`reviewr/${id}`)
