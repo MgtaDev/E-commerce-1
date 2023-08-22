@@ -62,7 +62,7 @@ const Detail = () => {
             return;
         }
 
-        axios.post('http://localhost:3001/pago', productToPay)
+        axios.post('/pago', productToPay)
             .then((res) => (window.location.href = res.data.response.body.init_point));
     };
 
