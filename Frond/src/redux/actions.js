@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS, POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS, GET_ALL_VENTAS, GET_USER_COMPRAS, GET_REVIEWRS, CLEAN_PREVIEW} from "./action-types";
+import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS, POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS, GET_ALL_VENTAS, GET_USER_COMPRAS, GET_REVIEWRS, CLEAN_PREVIEW, POST_ART_API} from "./action-types";
 
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
 
@@ -297,7 +297,7 @@ export const categories = () => async dispatch => {
         const cartData = {
             productos: localCart.map((item) => ({
             productoId: extractNumber(item.id),
-            colorId: 1 /*item.color*/,
+            colorId: 10 /*item.color*/,
             cantidad: item.amount,
           })),
         };
@@ -325,18 +325,16 @@ export const categories = () => async dispatch => {
     }
   };
 
-  export const deleteArtAPI = ({ user, productoId, colorId }) => {
+  export const deleteArtAPI = ({ user, productoId, colorId }) => { console.log(`en actiosn user: ${user}, productoId: ${productoId}, colorId: ${colorId}`);
     try {
       return async (dispatch, getState) => {
         const itemData = {
           productoId: productoId,
           colorId: colorId,
         };  
-        await axios.delete(`/carrito/${user}`, itemData);          
-        const { apiCart } = getState();          
-        const updatedApiCart = apiCart.filter(
-          (item) => !(item.productoId === productoId && item.colorId === colorId)
-        );  
+        await axios.delete(`/carrito/${user}`, { data: itemData });          
+        const response = await axios.get(`/carrito/${user}`);
+        const updatedApiCart = response.data;
         dispatch({
           type: DEL_ART_API,
           payload: itemData,
@@ -347,6 +345,33 @@ export const categories = () => async dispatch => {
       throw error;
     }
   };
+
+  export const addItemToCartApi = ({userId, productoId, cantidad, colorId}) => {
+    const user = extractNumber(userId);
+    try {
+      return async (dispatch) => {
+        const cartData = {
+          productos:[
+            {
+          productoId: extractNumber(productoId),
+          colorId: 10 /*item.color*/,
+          cantidad: cantidad,
+           },
+          ],
+        };
+        await axios.put(`/carrito/${user}`, cartData);
+        const { data } = await axios.get(`/carrito/${user}`);
+        return dispatch({
+          type: POST_ART_API, 
+          payload: cartData,
+          data:data
+        })
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+      throw error;
+    }
+   };
   
 export const previewrsId = (id) => async (dispatch) => {
   const {data} = await axios.get(`reviewr/${id}`)

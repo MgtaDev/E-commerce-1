@@ -28,6 +28,8 @@ export const GET_ALL_VENTAS = 'GET_ALL_VENTAS'
 export const GET_USER_COMPRAS = 'GET_USER_COMPRAS'
 export const GET_REVIEWRS = 'GET_REVIEWRS'
 export const CLEAN_PREVIEW = 'CLEAN_PREVIEW'
+export const POST_ART_API = 'POST_ART_API';
+
 
 
 

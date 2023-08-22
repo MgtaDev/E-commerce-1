@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
 //import colorIcon from '../../assets/img/colorIcon.svg'
-import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS } from "../../redux/actions";
+import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS, addItemToCartApi } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
@@ -15,29 +15,7 @@ import SectionReviews from "../../components/modalReviwers/reviewrsDetail/Sectio
 import StartsDetail from "../../components/modalReviwers/reviewrsDetail/StartsDetail";
 
 const Detail = () => {
-
-     /*
-     {
-           "productos": [
-        {
-          "id": "col-16",
-          "name": "Spray fijador de maquillaje",
-          "descripcion": "Spray fijador de maquillaje para una larga duración",
-          "precio_compra": "11.40",
-          "porcentaje_ganancia": 25,
-          "precio_venta": "14.25",
-          "referencia_proveedor": "REF238",
-          "marcaId": 1,
-          "categoriaId": 3,
-          "tamañoId": 3,
-          "proveedorId": 6,
-          "activa": true
-        }
-        },
-    
-    */
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    const { loginWithRedirect } = useAuth0()
+    const { isAuthenticated } = useAuth0();
     const back = useNavigate();
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -143,7 +121,11 @@ const Detail = () => {
     }
 
     const addToCart = () => {
-        dispatch(addItemToCartLS(id, amount, color))
+        if (isAuthenticated){
+            dispatch(addItemToCartApi({userId:29, productoId:id, cantidad:amount, colorId:color}));
+        }else{
+            dispatch(addItemToCartLS(id, amount, color)); 
+        }
         dispatch(addToCartFunction(id, amount, color));
         const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
         navigate(carritotUrl);
