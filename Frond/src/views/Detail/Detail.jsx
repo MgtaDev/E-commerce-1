@@ -57,7 +57,7 @@ const Detail = () => {
             !userInfo.codigoPostal ||
             !userInfo.contraseña
         ) {
-
+//Aaaaa
             Swal.fire('Completa tu información de perfil antes de continuar', 'error');
             return;
         }
