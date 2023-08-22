@@ -99,10 +99,10 @@ const clientFound = isAuthenticated ? Clientela.find(client => client.correo_ele
 const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
 
   const addToCart = () => {        
-    if (isAuthenticated){ console.log("este es el color de detail", color);
-        dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount, colorId: 1}));
+    if (isAuthenticated){
+        dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount}));
     }else{
-        dispatch(addItemToCartLS(id, amount, 1)); 
+        dispatch(addItemToCartLS(id, amount)); 
     }
     dispatch(addToCartFunction(id, amount, color));
     const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
