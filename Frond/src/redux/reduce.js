@@ -239,14 +239,20 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                 };
 
             case DELETE_ART_LS:        
-            const { ArtId, ArtColor } = payload;
-            const newLocalCart = state.localCart.filter(
-                item => item.id !== ArtId || item.color !== ArtColor
-                    );
-                    return {
-                        ...state,
-                        localCart: newLocalCart
-                    };
+            const { ArtId, ArtColor, cantidad } = payload;
+            const indexToDelete = state.localCart.findIndex(
+                item => item.id === ArtId && item.color === ArtColor);  
+               
+              if (indexToDelete !== -1) {
+                const newLocalCart = [...state.localCart.slice(0, indexToDelete), ...state.localCart.slice(indexToDelete + 1)];                
+                console.log("newLocalCart", newLocalCart);
+                return {
+                  ...state,
+                  localCart: newLocalCart
+                };
+              }
+              return state;
+
         case POST_CART_API:
             return {
                 ...state,

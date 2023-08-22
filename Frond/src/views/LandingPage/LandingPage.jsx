@@ -23,10 +23,7 @@ const Container = styled.div`
 `;
 
 const LandingPage = () => {
-  useEffect(
-    () => {
-        dispatch(clientes());
-      },[])
+
   const stateProducts = useSelector(state => state.Allproducts);
 const [pageNumberNx, setPageNumberNx] = useState(0);
 const numberSize = 20;

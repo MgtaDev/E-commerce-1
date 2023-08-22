@@ -56,7 +56,9 @@ const Favoritos = () => {
           <button className="text-gray-600 text-xl font-medium">Tu lista de favoritos esta vacia</button>
         </div>
       )}
+      <div className='flex flex-row gap-2 mt-10 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
       <MoreProductsCardContainer />
+      </div>
     </div>
   );
 };
