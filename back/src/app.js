@@ -4,14 +4,13 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const helmet = require('helmet'); // Agregamos el paquete 'helmet' para seguridad
+const path = require('path');
 const mercadopago = require("mercadopago");
 require('dotenv').config()
 const { MERCADO_PAGO_ACCESS_TOKEN, MERCADO_PAGO_KEY } = process.env
 mercadopago.configure({
   access_token: MERCADO_PAGO_ACCESS_TOKEN,
 });
-
-
 require('./db.js');
 
 const server = express();
@@ -50,11 +49,8 @@ server.use((err, req, res, next) => {
   res.status(500).send('Internal Server Error');
 });
 
+
 //Mercado pago:
-server.get("/", function (req, res) {
-  const filePath = path.resolve(__dirname, "..", "client", "index.html");
-  res.sendFile(filePath);
-});
 
 server.post("/pagoCarrito", (req, res) => {
   const productos = req.body;
@@ -65,19 +61,25 @@ server.post("/pagoCarrito", (req, res) => {
       title: producto.nombre,
       unit_price: Number(producto.precio),
       description: producto.descripcion,
+      
     };
   });
 
   let preference = {
     items: items,
     back_urls: {
-      success: "http://localhost:3000",
-      failure: "http://localhost:3000",
+      // success: "http://localhost:3000",
+      // failure: "http://localhost:3000",
+      // pending: "",
+      // "bonitaandlovely-git-main-brandonlopez98.vercel.app",
+      success: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
+      failure: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
       pending: "",
     },
     auto_return: "approved",
     binary_mode: true,
   };
+   
 
   mercadopago.preferences
     .create(preference)
@@ -103,8 +105,9 @@ server.post("/pago", (req, res) => {
       },
     ],
     back_urls: {
-      success: "http://localhost:3000/catalogo",
-      failure: "http://localhost:3000",
+      // "bonitaandlovely-git-main-brandonlopez98.vercel.app//catalogo",
+      success: "bonitaandlovely-git-main-brandonlopez98.vercel.app/confirmedpayment",
+      failure: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
       pending: "",
     },
     auto_return: "approved",

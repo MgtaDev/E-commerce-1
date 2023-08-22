@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import bagIcon from "../../assets/img/baghandleWhite.svg";
-import { FaArrowLeft } from 'react-icons/fa';
-import {
-  getProductsByDetail,
-  cleanDetail,
-  addToCartFunction,
-  addItemToCartLS,
-  clientes,
-} from "../../redux/actions";
+
+import bagIcon from '../../assets/img/baghandleWhite.svg';
+//import colorIcon from '../../assets/img/colorIcon.svg'
+import { getProductsByDetail, cleanDetail, addToCartFunction, addItemToCartLS, addItemToCartApi, clientes } from "../../redux/actions";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
@@ -65,7 +61,7 @@ const Detail = () => {
     }
 
     axios
-      .post("http://localhost:3001/pago", productToPay)
+      .post("bonitaandlovely-production-a643.up.railway.app/pago", productToPay)
       .then((res) => (window.location.href = res.data.response.body.init_point));
   };
 
@@ -102,6 +98,7 @@ const Detail = () => {
   };
 
 
+
   const addToCart = () => {
     dispatch(addItemToCartLS(id, amount, color));
     dispatch(addToCartFunction(id, amount, color));
@@ -113,10 +110,11 @@ const Detail = () => {
   }
 
 
+
   return (
     <><div className="px-6 m-auto max-w-4xl">
       <button onClick={goBack} className="bg-customColor mt-8 mb-8 cursor-pointer text-white py-2 px-4 rounded flex items-center">
-        <FaArrowLeft className="mr-2" />
+ 
         Volver
       </button>
       <div className="flex flex-col lg:flex-row gap-12 py-1">
