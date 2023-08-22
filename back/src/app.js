@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const helmet = require('helmet'); // Agregamos el paquete 'helmet' para seguridad
 const path = require('path');
-const path = require('path');
 const mercadopago = require("mercadopago");
 require('dotenv').config()
 const { MERCADO_PAGO_ACCESS_TOKEN, MERCADO_PAGO_KEY } = process.env
