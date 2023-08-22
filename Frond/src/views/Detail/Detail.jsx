@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 import { useAuth0 } from '@auth0/auth0-react';
 import { FaCircle } from "react-icons/fa";
 import MoreProductsContainer from "../../components/MoreProducts/MoreProductsContainer";
+import SectionReviews from "../../components/modalReviwers/reviewrsDetail/SectionReviews";
+import StartsDetail from "../../components/modalReviwers/reviewrsDetail/StartsDetail";
 
 const Detail = () => {
 
@@ -172,6 +174,7 @@ const Detail = () => {
                                 <p key={item.id}> {item.name.toUpperCase()}</p>
                             ))}
                         </div>
+                        <div className="flex justify-end p-5"><StartsDetail/></div>
                         <h1 className='text-4xl font-bold'>{stateProducts.name}</h1>
                     </div>
                     <p className='text-gray-700 text-2xl'> {stateProducts.descripcion}</p>
@@ -218,7 +221,7 @@ const Detail = () => {
             <div className='flex flex-row gap-2 mt-20 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
           <MoreProductsContainer/>
         </div>
-        
+        <SectionReviews/>
         </div>
     );
 }
