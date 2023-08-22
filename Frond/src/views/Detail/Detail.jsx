@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
-import { FaCircle } from "react-icons/fa";
+// import { FaCircle } from "react-icons/fa";
 
 import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProducts2";
 
@@ -66,13 +66,13 @@ const Detail = () => {
     };
   }, [dispatch, id]);
 
-  const colorIcon1 = "#EBC9BB";
-  const colorIcon2 = "#800040";
-  const colorIcon3 = "#EF3A57";
-  const colorIcon4 = "#C81819";
+  // const colorIcon1 = "#EBC9BB";
+  // const colorIcon2 = "#800040";
+  // const colorIcon3 = "#EF3A57";
+  // const colorIcon4 = "#C81819";
 
   const [amount, setAmount] = useState(1);
-  const [color, setColor] = useState(colorIcon1);
+  // const [color, setColor] = useState(colorIcon1);
 
   const handleDecrement = () => {
     setAmount((prev) => Math.max(prev - 1, 1));
@@ -99,20 +99,18 @@ const clientFound = isAuthenticated ? Clientela.find(client => client.correo_ele
 const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
 
   const addToCart = () => {        
-    if (isAuthenticated){
+    if (isAuthenticated){ 
         dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount}));
     }else{
         dispatch(addItemToCartLS(id, amount)); 
     }
-    dispatch(addToCartFunction(id, amount, color));
-    const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
+    dispatch(addToCartFunction(id, amount));
+    const carritotUrl = `/itemadded/${id}?amount=${amount}`;
     navigate(carritotUrl);
 }
   const goBack = () => {
     navigate('/catalogo')
   }
-
-
 
   return (
     <><div className="px-6 m-auto max-w-4xl">
@@ -126,7 +124,7 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
             src={stateProducts.imagenPrincipal}
             alt={stateProducts.name}
             className="w-full h-full object-cover" />
-          <div className="flex items-center justify-between bg-gray-100 p-4 mt-4 rounded-md">
+          {/* <div className="flex items-center justify-between bg-gray-100 p-4 mt-4 rounded-md">
             <FaCircle
               color={colorIcon1}
               alt="colorIcon"
@@ -155,8 +153,8 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
               onClick={() => {
                 setColor(colorIcon4);
               } } />
-          </div>
-        </div>
+          </div> 
+        </div>*/}
         <div className="flex flex-col gap-6 w-full">
           <h2 className="text-3xl capitalize font-bold text-gray-900">
             {stateProducts.name}
@@ -189,7 +187,7 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
             </button>
           </div>
           <hr />
-          <div>
+           {/*<div>
             <h3 className="font-medium text-gray-900">Color</h3>
             <div className="mt-4 flex items-center gap-3">
               <div
@@ -235,8 +233,8 @@ const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
                 onClick={() => {
                   setColor(colorIcon4);
                 } }
-              ></div>
-            </div>
+              ></div> 
+            </div>*/}
           </div>
           <hr />
           <div className="flex justify-between">
