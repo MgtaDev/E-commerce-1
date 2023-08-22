@@ -14,6 +14,8 @@ const ProductosTable = () => {
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumberNx, setPageNumberNx] = useState(0);
   const numberSize = 20;
+  const [disablePrev, setDisablePrev] = useState(true);
+  const [disableNext, setDisableNext] = useState(false);
   console.log(stateProducts)
 
   const handlerPageNumber = (index) => {
@@ -36,6 +38,41 @@ const ProductosTable = () => {
     },
     [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
   );
+
+  const handlePageClick = (newPageNumber) => {
+    // Limitar la navegación entre las páginas 1 y 3
+    if (newPageNumber < 0) {
+      newPageNumber = 0;
+    } else if (newPageNumber > 2) {
+      newPageNumber = 2;
+    }
+    setPageNumber(newPageNumber);
+    const queries = {
+      page: newPageNumber,
+      size: numberSize
+    };
+    dispatch(products(queries));
+  };
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const renderPageButtons = () => {
+    const pages = [];
+    for (let i = 0; i < 3; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
+            i === pageNumber ? "bg-slate-950 text-white" : ""
+          }`}
+          disabled={i === pageNumber || stateProducts.loading}
+          onClick={() => handlePageClick(i)}
+        >
+          {i + 1}
+        </button>
+      );
+    }
+    return pages;
+  };
   
 
   //delete or add product
@@ -353,15 +390,25 @@ const ProductosTable = () => {
 
       <div className="flex py-30 justify-center items-center space-x-2 mt-4 mb-10">
     
-      {Array.from(Array(stateProducts.paginas), (_, i) => (
-        <button
-          key={i}
-          className={`px-4 py-2 rounded hover:bg-gray-700 ${pageNumberNx=== i ? 'bg-gray-800 text-white font-bold' : 'bg-white text-gray-600'}`}
-          onClick={() => handlerPageNumber(i)}
-        >
-          {i + 1}
-        </button>
-      ))}
+      <div className="flex justify-center py-10">
+            <button
+              disabled={disablePrev || stateProducts.loading}
+              onClick={() => handlePageClick(pageNumber - 1)}
+              className="mx-1 text-3xl"
+            >
+              {"<"}
+            </button>
+            {renderPageButtons()}
+            <button
+              disabled={disableNext || stateProducts.loading}
+              onClick={() => handlePageClick(pageNumber + 1)}
+              className="mx-1 text-3xl"
+            >
+              {">"}
+            </button>
+
+         
+          </div>
     
     </div>
         </>

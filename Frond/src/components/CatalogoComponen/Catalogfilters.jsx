@@ -47,7 +47,7 @@ const Catalogfilters = () => {
       setFilterChanged(true);
     }, [minPrice, maxPrice]);
     
-    const total  = stateProducts.paginas * 10;
+    const total  = stateProducts.productos.length * 3;
     
     const handleMultipleOptionChange = (propertyName, optionId) => {
       setSelectedFilters((prevFilters) => {
@@ -107,101 +107,127 @@ const Catalogfilters = () => {
   }
 
     return (
-      <div className="grid grid-cols-1  w-[90%] bg-white text-black py-10 text-lg capitalize justify-items-start">
-        <h2 className="font-bold text-2xl">total</h2>
-        <p>{total} productos</p>
-       
-        {/* talla */}
-        <div className="pt-5">
-          <h3 className="font-bold">Talla</h3>
-          <ul>
-           {tallas && (
-            tallas.map((talla)=>{
-              const tallaNumber = extractNumber(talla.id)
-              return <div className="flex">
-              <li key={talla.id}>{talla.name}</li>
-              <input
-                className="m-1"
-                type="checkbox"
-                checked={selectedFilters.tamañoId.includes(tallaNumber)}
-                onChange={() => handleMultipleOptionChange("tamañoId", tallaNumber)}
-              />
-              </div>
-            })
-           )}
-          </ul>
+      <div className="grid grid-cols-1 w-4/5 my-10 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start  rounded-md">
+      <h2 className="font-bold text-2xl mb-5">Total <br/> {total} productos</h2>
+    
+      {/* Talla */}
+      <div>
+        <h3 className="font-bold mb-2">Talla</h3>
+        <ul>
+          {tallas &&
+            tallas.map(talla => {
+              const tallaNumber = extractNumber(talla.id);
+              return (
+                <li key={talla.id} className="flex items-center mb-2">
+                  <input
+                    className="mr-2"
+                    type="checkbox"
+                    checked={selectedFilters.tamañoId.includes(tallaNumber)}
+                    onChange={() =>
+                      handleMultipleOptionChange("tamañoId", tallaNumber)
+                    }
+                  />
+                  <span>{talla.name}</span>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    
+      {/* Marca */}
+      <div>
+        <h3 className="font-bold mb-2">Marca</h3>
+        <ul>
+          {marcas &&
+            marcas.map(marca => {
+              const marcaNumber = extractNumber(marca.id);
+              return (
+                <li key={marca.id} className="flex items-center mb-2">
+                  <input
+                    className="mr-2"
+                    type="checkbox"
+                    checked={selectedFilters.marcaId.includes(marcaNumber)}
+                    onChange={() =>
+                      handleMultipleOptionChange("marcaId", marcaNumber)
+                    }
+                  />
+                  <span>{marca.name}</span>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    
+      {/* Categorias */}
+      <div>
+        <h3 className="font-bold mb-2">Categorías</h3>
+        <ul>
+          {categorias &&
+            categorias.map(categoria => {
+              const categoriaNumber = extractNumber(categoria.id);
+              return (
+                <li key={categoria.id} className="flex items-center mb-2">
+                  <input
+                    className="mr-2"
+                    type="checkbox"
+                    checked={selectedFilters.categoriaId.includes(categoriaNumber)}
+                    onChange={() =>
+                      handleMultipleOptionChange("categoriaId", categoriaNumber)
+                    }
+                  />
+                  <span>{categoria.name}</span>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    
+      {/* Precios */}
+      <div>
+        <h3 className="font-bold mb-2">Precios</h3>
+        <div className="grid grid-cols-5 mb-2">
+          <div className="col-span-2">
+            <input
+              label="precio"
+              placeholder="min"
+              type="number"
+              className="border border-gray-300 px-2 py-1 rounded w-full"
+              value={minPrice}
+              onChange={e => {
+                const value = parseFloat(e.target.value);
+                setMinPrice(isNaN(value) || value < 0 ? 0 : value);
+              }}
+            />
+          </div>
+          <div className="flex items-center justify-center font-bold">
+            -
+          </div>
+          <div className="col-span-2">
+            <input
+              label="precio"
+              placeholder="max"
+              type="number"
+              className="border border-gray-300 px-2 py-1 rounded w-full"
+              value={maxPrice}
+              onChange={e => {
+                const value = parseFloat(e.target.value);
+                setMaxPrice(isNaN(value) || value < 0 ? 0 : value);
+              }}
+            />
+          </div>
         </div>
-        {/* marca */}
-        <div className="pt-5">
-          <h3 className="font-bold">Marca</h3>
-          <ul>
-           {marcas && (
-            marcas.map((marca)=>{
-              const marcaNumber = extractNumber(marca.id)
-              return <div className="flex">
-              <li key={marca.id}>{marca.name}</li>
-              <input
-                className="m-1"
-                type="checkbox"
-                checked={selectedFilters.marcaId.includes(marcaNumber)}
-                onChange={() => handleMultipleOptionChange("marcaId", marcaNumber)}
-              />
-              </div>
-            })
-           )}
-          </ul>
-        </div>
-        {/* color */}
-        <div className="pt-5">
-          <h3 className="font-bold">Categorias</h3>
-          <ul>
-           {categorias && (
-            categorias.map((categoria)=>{
-              const categoriaNumber = extractNumber(categoria.id)
-              return <div className="flex">
-                <li key={categoria.id}>{categoria.name}</li>
-                <input
-                className="m-1"
-                type="checkbox"
-                checked={selectedFilters.categoriaId.includes(categoriaNumber)}
-                onChange={() => handleMultipleOptionChange("categoriaId", categoriaNumber)}
-              />
-              </div>
-            })
-           )}
-          </ul>
-        </div>
-
-        {/* precios */}
-        <div className="grid grid-row-1 gap-5">
-          <div><strong>Precios:</strong>
-        </div>
-        </div>
-        <div className="grid grid-cols-5">
-          <input 
-          label="precio"  
-          placeholder="min" 
-          type="number" 
-          className="border border-[255 255 255] px-1 col-span-2 rounded"
-          value={minPrice}
-          onChange={(e) => {const value = parseFloat(e.target.value);
-            setMinPrice(isNaN(value) || value < 0 ? 0 : value)}}/>
-          <span className="m-auto col-span-1 px-5 font-bold">-</span>
-          <input 
-          label="precio" 
-          type="number" 
-          placeholder="max" 
-          className=" border border-[255 255 255] px-1 col-span-2 rounded"
-          value={maxPrice}
-          onChange={(e) => {const value = parseFloat(e.target.value);
-            setMaxPrice(isNaN(value) || value < 0 ? 0 : value)}}/>
-        </div>
-        <button 
-        class=" h-10 px-10 font-semibold rounded-md bg-black mt-5  text-white" 
-        onClick={handleReset}>
-           RESET
+      </div>
+    
+      {/* Botón RESET */}
+      <div className="flex justify-center">
+        <button
+          className="px-8 py-2 mt-5 font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-all duration-300"
+          onClick={handleReset}
+        >
+          RESET
         </button>
       </div>
+    </div>
     );
   };
   

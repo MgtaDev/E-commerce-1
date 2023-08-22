@@ -11,7 +11,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaCircle } from "react-icons/fa";
-import MoreProductsContainer from "../../components/MoreProducts/MoreProductsContainer";
+import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProducts2";
 
 const Detail = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -35,31 +35,23 @@ const Detail = () => {
 
   const handleProceedToPayment = () => {
     if (!isAuthenticated) {
-      Swal.fire(
-        "Debes iniciar sesión para continuar",
-        "error",
-        "error"
-      );
+      Swal.fire("Debes iniciar sesión para continuar", "error", "error");
       return;
     }
     if (
-      !currentUser.nombre ||
-      !currentUser.apellido ||
-      !currentUser.correoElectronico ||
-      !currentUser.numeroTelefono ||
-      !currentUser.ciudad ||
-      !currentUser.provincia ||
-      !currentUser.codigoPostal ||
+      !currentUser.name ||
+      !currentUser.correo_electronico ||
+      !currentUser.telefono ||
       !currentUser.contraseña
     ) {
-      Swal.fire(
-        "Completa tu información de perfil antes de continuar",
-        "",
-        "error"
-      );
+      Swal.fire("Completa tu información de perfil antes de continuar", "", "error");
       return;
     }
-
+    if (stateProducts.cantidad <= 0) {
+      Swal.fire("Producto agotado momentáneamente", "", "error");
+      return;
+    }
+  
     axios
       .post("bonitaandlovely-production-a643.up.railway.app/pago", productToPay)
       .then((res) => (window.location.href = res.data.response.body.init_point));
@@ -97,14 +89,24 @@ const Detail = () => {
     quantity: amount,
   };
 
+  const extractNumber = (string) => {
+    const match = string.match(/\d+/); 
+    return match ? parseInt(match[0]) : 0; 
+}; 
+const Clientela = useSelector(state=>state.Allclients); console.log("user"); console.log(JSON.stringify(user,null,2));
+const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
+const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
 
-
-  const addToCart = () => {
-    dispatch(addItemToCartLS(id, amount, color));
+  const addToCart = () => {        
+    if (isAuthenticated){ console.log("este es el color de detail", color);
+        dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount, colorId: 1}));
+    }else{
+        dispatch(addItemToCartLS(id, amount, 1)); 
+    }
     dispatch(addToCartFunction(id, amount, color));
     const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${color}`;
     navigate(carritotUrl);
-  };
+}
   const goBack = () => {
     navigate('/catalogo')
   }
@@ -158,9 +160,13 @@ const Detail = () => {
           <h2 className="text-3xl capitalize font-bold text-gray-900">
             {stateProducts.name}
           </h2>
+          <span className="text-medium ">
+          Disponibles: {stateProducts.cantidad}
+          </span>
           <h3 className="text-xl font-medium text-customColor">
             ${stateProducts.precio_venta}
           </h3>
+    
           <hr />
           <div className="flex items-center gap-4">
             <button
@@ -258,7 +264,7 @@ const Detail = () => {
       <br />
 
     </div><div className='flex flex-row gap-2 mt-10 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
-        <MoreProductsContainer />
+        <MoreProductsCardContainer2 />
       </div></>
   );
 };

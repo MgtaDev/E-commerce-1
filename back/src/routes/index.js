@@ -11,6 +11,7 @@ const clienteRouter = require('./clienteRouter')
 const favoritoRouter = require('./favoritoRouter')
 const inventarioRouter = require('./inventarioRouter')
 const carritoRouter = require('./carritoRouter')
+const reviewrRouter = require('./reviewrRouter')
 
 const router = Router();
 

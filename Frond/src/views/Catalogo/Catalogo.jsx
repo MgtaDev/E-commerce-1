@@ -32,6 +32,12 @@ const Catalogo = () => {
   }, [pageNumber, stateProducts.paginas]);
 
   const handlePageClick = (newPageNumber) => {
+    // Limitar la navegación entre las páginas 1 y 3
+    if (newPageNumber < 0) {
+      newPageNumber = 0;
+    } else if (newPageNumber > 2) {
+      newPageNumber = 2;
+    }
     setPageNumber(newPageNumber);
     const queries = {
       page: newPageNumber,
@@ -42,7 +48,7 @@ const Catalogo = () => {
 
   const renderPageButtons = () => {
     const pages = [];
-    for (let i = 0; i < stateProducts.paginas; i++) {
+    for (let i = 0; i < 3; i++) {
       pages.push(
         <button
           key={i}
