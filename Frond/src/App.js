@@ -31,7 +31,7 @@ import { useParams } from "react-router-dom";
 // axios.defaults.baseURL = "http://localhost:3001/"
 
 //Acá va el link del back
-axios.defaults.baseURL = "bonitaandlovely-production-a643.up.railway.app"
+axios.defaults.baseURL = "https://bonitaandlovely-production-a643.up.railway.app"
 
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
