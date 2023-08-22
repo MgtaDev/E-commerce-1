@@ -5,16 +5,20 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { clientes } from '../../redux/actions';
 
+
+
 const PagoExitoso = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [emailSent, setEmailSent] = useState(false);
   const { user } = useAuth0();
+
   useEffect (
     () => {
       dispatch(clientes())
     }
   ,[]);
+
   const usuarios = useSelector((state)=> state.Allclients);
   const currentUser = usuarios.find((usuario) => {
     return usuario.name.toLowerCase() === user.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
@@ -23,6 +27,7 @@ const PagoExitoso = () => {
 
 
   const handleButtonClick = () => {
+
     const currentDate = new Date(); // Obtén la fecha y hora actual
     const formattedDate = `${currentDate.toLocaleDateString()} a las ${currentDate.toLocaleTimeString()}`; // Formatea la fecha y hora en una cadena legible para el usuario
     const message = `
@@ -34,6 +39,7 @@ const PagoExitoso = () => {
   
       Productos comprados:
   
+
       ¡Gracias por tu compra!
     `;
     // Lógica para enviar el correo electrónico con los detalles de la compra

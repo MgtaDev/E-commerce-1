@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const helmet = require('helmet'); // Agregamos el paquete 'helmet' para seguridad
 const path = require('path');
+const path = require('path');
 const mercadopago = require("mercadopago");
 require('dotenv').config()
 const { MERCADO_PAGO_ACCESS_TOKEN, MERCADO_PAGO_KEY } = process.env
@@ -50,6 +51,7 @@ server.use((err, req, res, next) => {
 });
 
 
+
 //Mercado pago:
 
 server.post("/pagoCarrito", (req, res) => {
@@ -71,9 +73,11 @@ server.post("/pagoCarrito", (req, res) => {
       // success: "http://localhost:3000",
       // failure: "http://localhost:3000",
       // pending: "",
+
       // "bonitaandlovely-git-main-brandonlopez98.vercel.app",
       success: "bonitaandlovely-git-main-brandonlopez98.vercel.app/confirmedpayment",
       failure: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
+
       pending: "",
     },
     auto_return: "approved",
@@ -105,8 +109,10 @@ server.post("/pago", (req, res) => {
       },
     ],
     back_urls: {
+
       success: "bonitaandlovely-git-main-brandonlopez98.vercel.app/confirmedpayment",
       failure: "",
+
       pending: "",
     },
     auto_return: "approved",

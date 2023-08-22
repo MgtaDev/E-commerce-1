@@ -26,12 +26,13 @@ import { clientes, productosSinPag, syncFavoritesWithAPI } from "./redux/actions
 import { useDispatch, useSelector} from "react-redux";
 import WhatsappIcon from '../../Frond/src/assets/img/social.png'
 import { useParams } from "react-router-dom"; 
-import { send } from "process";
+
 //para no repetir el puerto:(se está configurando una URL base que se utilizará como prefijo para todas las peticiones realizadas con Axios) 
 // axios.defaults.baseURL = "http://localhost:3001/"
 
 //Acá va el link del back
 axios.defaults.baseURL = "bonitaandlovely-production-a643.up.railway.app"
+
 
 // import ActionProvider from "./components/ChatBot/ActionProvider";
 
