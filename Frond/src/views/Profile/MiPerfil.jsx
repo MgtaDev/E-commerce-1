@@ -32,7 +32,7 @@ const Miperfil = () => {
     telefono: currentUser.telefono ? currentUser.telefono : '',
     ciudad: currentUser.direccion ? currentUser.direccion.split(',')[0]: '',
     provincia: currentUser.direccion ? currentUser.direccion.split(',')[1]: '',
-    codigoPostal: '',
+    codigoPostal: currentUser.direccion ? currentUser.direccion.split(',')[2]: '',
     contraseña: currentUser.contraseña ? currentUser.contraseña : ''
 
   });
@@ -42,7 +42,7 @@ const Miperfil = () => {
     name: `${userInfo.name} ${userInfo.apellido}`,
     telefono: userInfo.telefono,
     correo_electronico: userInfo.correo_electronico,
-    direccion: `${userInfo.ciudad}, ${userInfo.provincia}`,
+    direccion: `${userInfo.ciudad}, ${userInfo.provincia}, ${userInfo.codigoPostal}`,
     contraseña: userInfo.contraseña,
   }
 
