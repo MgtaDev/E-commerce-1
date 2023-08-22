@@ -52,6 +52,7 @@ module.exports = async (clienteId, productoId, rating, comentario) => {
             rating,
             comentario,
             clienteId,
+            fecha: new Date(),
             productoId,
         });
 
