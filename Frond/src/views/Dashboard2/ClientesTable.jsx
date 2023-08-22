@@ -12,11 +12,35 @@ const ClientesTable = () => {
 
   const dispatch = useDispatch()
   const stateClients = useSelector(state => state.Allclients);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [selectedPage, setSelectedPage] = useState(1)
+  const [itemsPerPage] = useState(5)
+  const lastClient = currentPage * itemsPerPage;
+  const firtsClient = lastClient - itemsPerPage
+  const currentClient = stateClients.slice(firtsClient,lastClient)
   console.log(stateClients);
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
   const numberSize = 10;
-
+  const generatePageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(stateClients.length / itemsPerPage); i++) {
+    pageNumbers.push({number:i, selected: i === selectedPage});
+  }
+  return pageNumbers;
+};
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1 );
+    setSelectedPage(selectedPage - 1);
+  };
+  
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1 );
+    setSelectedPage(selectedPage + 1);
+  };
+  
+  
+const pageNumbers = generatePageNumbers();
   const handlerPageNumber = (index) => {
     setPageNumber(index);
   };
@@ -193,7 +217,7 @@ const ClientesTable = () => {
               </tr>
             </thead>
             <tbody className="text-gray-600 text-sm font-light">
-              {stateClients.map((client) => (
+              {currentClient.map((client) => (
                 <tr key={client.id} className="border-t">
                   <td className="px-6 text-center py-10">{client.name}</td>
                   <td className="px-6 text-center py-10">{client.correo_electronico}</td>
@@ -241,19 +265,42 @@ const ClientesTable = () => {
             </tbody>
           </table>
     
-          <div className="flex py-30 justify-center items-center space-x-2 mt-4 mb-10">
-        
-          {Array.from(Array(stateClients.paginas), (_, i) => (
+          <div className="flex justify-center py-8">
             <button
-              key={i}
-              className={`px-4 py-2 rounded hover:bg-gray-700 ${pageNumber === i ? 'bg-gray-800 text-white font-bold' : 'bg-white text-gray-600'}`}
-              onClick={() => handlerPageNumber(i)}
+              onClick={() => {
+                if (currentPage > 1) {
+                  setCurrentPage(currentPage - 1);
+                  setSelectedPage(selectedPage - 1);
+                }
+              }}
+              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-black  focus:outline-none"
             >
-              {i + 1}
+              {"<"}
             </button>
-          ))}
-        
-        </div>
+            {pageNumbers.map(({ number, selected }) => (
+              <button
+                key={number}
+                onClick={() => {
+                  setCurrentPage(number);
+                  setSelectedPage(number);
+                }}
+                className={`mx-1 text-lg font-bold px-3 py-1 rounded ${selected ? 'bg-black text-white' : 'bg-white text-black '}`}
+              >
+                {number}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                if (currentPage < Math.ceil(stateClients.length / itemsPerPage)) {
+                  setCurrentPage(currentPage + 1);
+                  setSelectedPage(selectedPage + 1);
+                }
+              }}
+              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-gray-500 focus:outline-none"
+            >
+              {">"}
+            </button>
+          </div>
        </>
       )
     }

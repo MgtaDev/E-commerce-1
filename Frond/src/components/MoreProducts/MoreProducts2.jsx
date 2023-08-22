@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 /* Install pure-react-carousel using -> npm i pure-react-carousel */
 
-const MoreProductsCardContainer = () => {
+const MoreProductsCardContainer2 = () => {
   const dispatch = useDispatch()
   const stateProducts = useSelector(state => state.Allproducts);
   const numberSize = 20;
@@ -48,7 +48,7 @@ const MoreProductsCardContainer = () => {
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
                   <Slider>
         <div id="slider" className="h-full flex lg:gap-2 md:gap-3 gap-14 items-center justify-start transition ease-out duration-700">
-          {stateProducts.productos.sort((a, b) => a.precio_venta - b.precio_venta).map((product, index) => (
+          {stateProducts.productos.sort((a, b) => b.precio_venta - a.precio_venta).map((product, index) => (
             <Slide index={index} key={index}>
                <div
       className="flex flex-shrink-0 relative w-full sm:w-auto"
@@ -86,4 +86,4 @@ const MoreProductsCardContainer = () => {
   );
 }
 
-export default MoreProductsCardContainer;
+export default MoreProductsCardContainer2;

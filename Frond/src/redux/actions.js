@@ -272,48 +272,33 @@ export const categories = () => async dispatch => {
     }
   }
   
-  export const deleteArtLS = (ArtId, ArtColor) => {
-    console.log(`actions -> id:${ArtId}, color:${ArtColor}`);
+  export const deleteArtLS = (ArtId, ArtColor, cantidad) => {
+    console.log(`actions -> id:${ArtId}, color:${ArtColor}, cantidad:${cantidad}`);
     return{
     type: DELETE_ART_LS,
-    payload: {ArtId, ArtColor}
+    payload: {ArtId, ArtColor, cantidad}
     }
   }
 
   const extractNumber = (string) => {
-    const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
-    return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
+    const stringInput = String(string);
+    const match = stringInput.match(/\d+/); 
+    return match ? parseInt(match[0]) : 0; 
   };
 
-  export const addCartLSToApi = ({ user, localCart }) => {
+  export const addCartLSToApi = ({ user, localCart }) => { 
     try {
       return async (dispatch) => {
-        const extractNumber = (prodId) => {
-          const string = String(prodId);
-          const match = string.match(/\d+/);
-          return match ? parseInt(match[0]) : 0;
-        };
-        // Transformar localCart a la estructura esperada en el backend
+        console.log("este es user en actions", user);
         const cartData = {
-            productos: localCart.map((item) => ({
+          productos: localCart.map((item) => ({
             productoId: extractNumber(item.id),
-            colorId: 10 /*item.color*/,
+            colorId: item.color,
             cantidad: item.amount,
           })),
-        };
-        console.log("cartData en actions", cartData);
-
-      cartData.productos.forEach((producto) => {
-        console.log("cartData productoId:", producto.productoId);
-        console.log("cartData colorId:", producto.colorId);
-        console.log("cartData cantidad:", producto.cantidad);
-      });
-  
-  
-        await axios.put(`/carrito/${user}`, cartData);
-  
+        };  
+        await axios.put(`/carrito/${user}`, cartData);  
         const { data } = await axios.get(`/carrito/${user}`);
-        
         return dispatch({
           type: POST_CART_API,
           payload: cartData,
@@ -346,30 +331,45 @@ export const categories = () => async dispatch => {
     }
   };
 
-  export const addItemToCartApi = ({userId, productoId, cantidad, colorId}) => {
-    const user = extractNumber(userId);
+  export const addItemToCartApi = ({ userId, productoId, cantidad, colorId }) => {
+    return async (dispatch)=>{
     try {
-      return async (dispatch) => {
-        const cartData = {
-          productos:[
-            {
-          productoId: extractNumber(productoId),
-          colorId: 10 /*item.color*/,
-          cantidad: cantidad,
-           },
-          ],
-        };
-        await axios.put(`/carrito/${user}`, cartData);
-        const { data } = await axios.get(`/carrito/${user}`);
-        return dispatch({
-          type: POST_ART_API, 
+      const colorClave = await getColorIdByHex(colorId);
+      console.log("userId en additemtocartapi", userId);                   
+      const cartData = {
+        productos: [
+          {
+            productoId: extractNumber(productoId),
+            colorId: extractNumber(colorClave),
+            cantidad: cantidad,
+          },
+        ],
+      };
+      await axios.put(`/carrito/${userId}`, cartData);
+      const { data } = await axios.get(`/carrito/${userId}`); 
+      return (dispatch) => {
+        dispatch({
+          type: POST_ART_API,
           payload: cartData,
-          data:data
-        })
-      }
+          data: data,
+        });
+      };
     } catch (error) {
       console.error("Error en la solicitud:", error);
       throw error;
+    }}
+  };
+  
+  
+   const getColorIdByHex = async (hexColor) =>{
+    try {
+      const colorResponse = await axios.get('/color');
+      const colorTable = colorResponse.data;
+      const matchingColor = colorTable.find(color=> color.name === hexColor);
+      return matchingColor ? matchingColor.id : 1;
+    } catch (error) {
+      throw error;
+      return 1;
     }
    };
   
