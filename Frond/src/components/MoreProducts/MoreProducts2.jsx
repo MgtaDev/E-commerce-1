@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -12,7 +11,7 @@ const MoreProductsCardContainer2 = () => {
   const dispatch = useDispatch()
   const stateProducts = useSelector(state => state.Allproducts);
   const numberSize = 20;
-  console.log(stateProducts)
+  
   useEffect(() => {
     const fetchData = () => {
       const queries = {
@@ -33,6 +32,33 @@ const MoreProductsCardContainer2 = () => {
     navigate(`/detail/${id}`)
   }
 
+  // Asegúrate de que stateProducts.productos esté definido antes de intentar ordenarlo y mapearlo
+  const sortedAndMappedProducts = stateProducts.productos
+    ? stateProducts.productos.sort((a, b) => b.precio_venta - a.precio_venta).map((product, index) => (
+        <Slide index={index} key={index}>
+          <div
+            className="flex flex-shrink-0 relative w-full sm:w-auto"
+            onMouseOver={(e) => e.currentTarget.querySelector('.overlay').classList.remove('opacity-0')}
+            onMouseOut={(e) => e.currentTarget.querySelector('.overlay').classList.add('opacity-0')}
+            onClick={() => navigateProductDetail(product.id)}
+          >
+            <img
+              src={product.imagenPrincipal}
+              alt={product.name}
+              className="object-cover object-center w-[800px] h-[190px]"
+            />
+            <div className="overlay bg-gray-900 bg-opacity-50 text-white absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300">
+              <div className="p-6">
+                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 capitalize">{product.name}</h2>
+                <br />
+                <h2 className="lg:text-xl leading-4 text-base lg:leading-5 capitalize">${product.precio_venta}</h2>
+              </div>
+            </div>
+          </div>
+        </Slide>
+      ))
+    : [];
+
   return (
     <div className="container w-full">
       <h2 onClick={goCatalog} className="bg-customColor m-2 font-semibold inline-block text-white ml-10 py-1 px-4 items-center gap-2"> Más productos </h2>
@@ -46,33 +72,11 @@ const MoreProductsCardContainer2 = () => {
               </svg>
             </ButtonBack>
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-                  <Slider>
-        <div id="slider" className="h-full flex lg:gap-2 md:gap-3 gap-14 items-center justify-start transition ease-out duration-700">
-          {stateProducts.productos.sort((a, b) => b.precio_venta - a.precio_venta).map((product, index) => (
-            <Slide index={index} key={index}>
-               <div
-      className="flex flex-shrink-0 relative w-full sm:w-auto"
-      onMouseOver={(e) => e.currentTarget.querySelector('.overlay').classList.remove('opacity-0')}
-      onMouseOut={(e) => e.currentTarget.querySelector('.overlay').classList.add('opacity-0')}
-      onClick={() => navigateProductDetail(product.id)}
-    >
-      <img
-        src={product.imagenPrincipal}
-        alt={product.name}
-        className="object-cover object-center w-[800px] h-[190px]"
-      />
-      <div className="overlay bg-gray-900 bg-opacity-50 text-white absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300">
-        <div className="p-6">
-        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 capitalize">{product.name}</h2>
-        <br />
-        <h2 className="lg:text-xl leading-4 text-base lg:leading-5 capitalize">${product.precio_venta}</h2>
-        </div>
-      </div>
-    </div>
-            </Slide>
-          ))}
-        </div>
-      </Slider>
+              <Slider>
+                <div id="slider" className="h-full flex lg:gap-2 md:gap-3 gap-14 items-center justify-start transition ease-out duration-700">
+                  {sortedAndMappedProducts}
+                </div>
+              </Slider>
             </div>
             <ButtonNext role="button" aria-label="slide forward" className="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
               <svg width={8} height={14} viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
