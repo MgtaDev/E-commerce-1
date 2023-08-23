@@ -3,10 +3,13 @@ import Card from "./Card";
 
 const Cards = ({ stateProducts }) => {
   const productosFiltrados = useSelector((state) => state.productsFiltered);
-  const searchResults = useSelector((state) => state.searchResults); 
-
+  const searchResults = useSelector((state) => state.searchResults);   
   
-  const productListToRender = searchResults.length > 0 ? searchResults : stateProducts.productos;
+  const productListToRender = searchResults.length > 0
+  ? searchResults
+  : productosFiltrados.length > 0
+    ? productosFiltrados
+    : stateProducts.productos;
 
   return (
     <div className="grid md:grid-cols-3 lg:grid-cols-3 grid-auto-rows grid-rows-1 gap-5 ">

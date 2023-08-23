@@ -283,11 +283,15 @@ const SearchBar = ({ placeholder }) => {
 		}
 	};
 
+	const handleClick = () => {
+		navigate('/catalogo');
+	}
+
 	return (
     <>
 		<FormSearchBar onSubmit={handleSubmit}>
 			<input 
-        onChange={handleChange} 
+        onChange={handleChange} onClick={handleClick}
         type="text" placeholder={placeholder} 
         value={inputText} 
       />
