@@ -53,7 +53,7 @@ const Carrito = () => {
     const cartUnif = (cart) => {
         const countMap = {};
         cart.forEach((item) => {
-            if (item.id !== undefined && item.id !== null) {
+            if (item.id !== undefined && item.id !== null && item.color) {
                 const itemKey = `${item.id}`;
                 if (countMap[itemKey]) {
                     countMap[itemKey] += item.amount;
@@ -67,7 +67,7 @@ const Carrito = () => {
             return {
                 objeto: cart.find((item) => item.id === itemId),
                 cantidad: countMap[itemKey],
-                
+                color: 1
             };
         });
         return cartUnifRes;
@@ -77,7 +77,7 @@ const Carrito = () => {
 
     useEffect(() => {
         if (isAuthenticated && cartLS) {
-          dispatch(addCartLSToApi({ user: NumUserId, localCart: cartLS }))
+          dispatch(addCartLSToApi({ user: NumUserId, localCart: cartLS, colorId:1 }))
             .catch(error => {             
               Swal.fire({
                 icon: 'error',
@@ -100,14 +100,14 @@ const Carrito = () => {
     ? cartApi.productos.reduce((qty, item) => qty + (item.cantidad), 0)
     : cartUnificado.reduce((qty, item) => qty + (item.cantidad), 0);
 
-    const cartToRender = isAuthenticated ? cartApi : cartUnificado;
+    
 
     const handleEmptyCart = () => {
         dispatch(emptyCartLS());
     }
 
-    const handleDeleteArtLS = (item) => {
-        dispatch(deleteArtLS(item.objeto.id));
+    const handleDeleteArtLS = (item) => { console.log("item.cantidad", item.cantidad);
+        dispatch(deleteArtLS(item.objeto.id, item.cantidad, item.color));
     }
 
     const handleDeleteArtAPI = async (item) => {

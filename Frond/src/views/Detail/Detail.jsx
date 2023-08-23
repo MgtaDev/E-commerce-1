@@ -100,13 +100,13 @@ const Detail = () => {
 const NumUserId=user;
   const addToCart = () => {        
     if (isAuthenticated){ console.log("Autenticated en detail", isAuthenticated);
-        dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount}));
+        dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount, color:1}));
     }else{ console.log("Autenticated en detail LS", isAuthenticated);
-        dispatch(addItemToCartLS(id, amount)); 
+        dispatch(addItemToCartLS(id, amount, 1)); 
     }
-    dispatch(addToCartFunction(id, amount));
-    const carritotUrl = `/itemadded/${id}?amount=${amount}`;
-    navigate(carritotUrl);
+    dispatch(addToCartFunction(id, amount, 1)); 
+    const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${1}`;
+    navigate(carritotUrl); console.log("carritotUrl", carritotUrl);
 }
   const goBack = () => {
     navigate('/catalogo')

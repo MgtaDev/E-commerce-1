@@ -214,10 +214,10 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                     const itemsInCart = (id) =>{
                         return state.productos.find((prod)=>prod.id===id);
                     };
-                    const { id, amount } = payload;  
+                    const { id, amount, color } = payload;  
                                   
                     if (amount>0){                                                           
-                            const newItem = {...itemsInCart(id), amount}                                
+                            const newItem = {...itemsInCart(id), color, amount}                                
                             const newItemsInCart = [...state.localCart, newItem];                                
                             localStorage.setItem("localCart", JSON.stringify(newItemsInCart));                                                 
                             return{
@@ -239,9 +239,9 @@ const reducer = (state = InitialState, {type, payload, data}) => {
                 };
 
             case DELETE_ART_LS:        
-            const { ArtId, cantidad } = payload;
+            const { ArtId, ArtColor, cantidad } = payload;
             const indexToDelete = state.localCart.findIndex(
-                item => item.id === ArtId);  
+                item => item.id === ArtId && item.amount === cantidad && item.color === ArtColor);  
                
               if (indexToDelete !== -1) {
                 const newLocalCart = [...state.localCart.slice(0, indexToDelete), ...state.localCart.slice(indexToDelete + 1)];                

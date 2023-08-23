@@ -250,10 +250,10 @@ export const categories = () => async dispatch => {
     }
   }
 
-  export const addItemToCartLS = (id, amount) => {
+  export const addItemToCartLS = (id, amount, color) => {
     return {
       type: POST_CART_LS, 
-      payload: {id, amount}
+      payload: {id, amount, color}
     }
   }
 
@@ -271,11 +271,11 @@ export const categories = () => async dispatch => {
     }
   }
   
-  export const deleteArtLS = (ArtId, cantidad) => {
+  export const deleteArtLS = (ArtId, cantidad, ArtColor) => {
     console.log(`actions -> id:${ArtId}, cantidad:${cantidad}`);
     return{
     type: DELETE_ART_LS,
-    payload: {ArtId, cantidad}
+    payload: {ArtId, cantidad, ArtColor}
     }
   }
 
@@ -292,7 +292,7 @@ export const categories = () => async dispatch => {
         const cartData = {
           productos: localCart.map((item) => ({
             productoId: extractNumber(item.id),
-            
+            colorId: item.color,
             cantidad: item.amount,
           })),
         };  
@@ -309,12 +309,12 @@ export const categories = () => async dispatch => {
     }
   };
 
-  export const deleteArtAPI = ({ user, productoId }) => { 
+  export const deleteArtAPI = ({ user, productoId, colorId }) => { 
     try {
       return async (dispatch, getState) => {
         const itemData = {
           productoId: productoId,
-          
+          colorId: colorId
         };  
         await axios.delete(`/carrito/${user}`, { data: itemData });          
         const response = await axios.get(`/carrito/${user}`);
@@ -330,7 +330,7 @@ export const categories = () => async dispatch => {
     }
   };
 
-  export const addItemToCartApi = ({ userId, productoId, cantidad}) => {
+  export const addItemToCartApi = ({ userId, productoId, cantidad, colorId}) => {
     return async (dispatch)=>{
     try {                   
       const cartData = {
@@ -338,6 +338,7 @@ export const categories = () => async dispatch => {
           {
             productoId: extractNumber(productoId),            
             cantidad: cantidad,
+            colorId: colorId
           },
         ],
       };
