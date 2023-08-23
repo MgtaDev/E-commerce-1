@@ -1,4 +1,4 @@
-const { Carrito, Producto, Color, Cliente } = require('../../db');
+const { Carrito, Producto, Color, Cliente, Reviwers } = require('../../db');
 
 module.exports = async (clienteId) => {
   try {
@@ -21,7 +21,7 @@ module.exports = async (clienteId) => {
     });
 
     if (!carritoExistente.length) {
-       return(`No existe un historial para el cliente con ID ${clienteId}.`);
+      return(`No existe un historial para el cliente con ID ${clienteId}.`);
     }
 
     const clienteDetalles = await Cliente.findByPk(clienteId, {
@@ -40,6 +40,13 @@ module.exports = async (clienteId) => {
         });
 
         if (productoDetalles) {
+          const reseñas = await Reviwers.findAll({
+            where: {
+              productoId: producto.productoId,
+              clienteId: clienteId
+            },
+          });
+
           productos.push({
             colorId: producto.colorId,
             colorName: colorDetalles.name,
@@ -49,6 +56,7 @@ module.exports = async (clienteId) => {
             productoPrecio: productoDetalles.precio_venta,
             inventarioId: producto.inventarioId,
             fechaCompra: carrito.dataValues.fechaCompra,
+            reseñas: reseñas
           });
         }
       }
@@ -59,7 +67,6 @@ module.exports = async (clienteId) => {
       clienteName: clienteDetalles.name,
       productos: productos
     }
-
 
     return historial;
   } catch (error) {

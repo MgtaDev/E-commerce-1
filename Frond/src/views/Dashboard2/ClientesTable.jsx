@@ -17,14 +17,14 @@ const ClientesTable = () => {
   const [itemsPerPage] = useState(5)
   const lastClient = currentPage * itemsPerPage;
   const firtsClient = lastClient - itemsPerPage
-  const currentClient = stateClients.slice(firtsClient,lastClient)
+  const currentClient = stateClients?.slice(firtsClient,lastClient)
   console.log(stateClients);
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
   const numberSize = 10;
   const generatePageNumbers = () => {
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(stateClients.length / itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(stateClients?.length / itemsPerPage); i++) {
     pageNumbers.push({number:i, selected: i === selectedPage});
   }
   return pageNumbers;
@@ -199,7 +199,7 @@ const pageNumbers = generatePageNumbers();
   return (
     <>
     {
-      stateClients.length === 0 ? (
+      stateClients?.length === 0 ? (
         <div className="flex justify-center items-center h-full">
         <div className="text-3xl text-gray-500 font-bold">No hay clientes aun...</div>
       </div>
@@ -217,7 +217,7 @@ const pageNumbers = generatePageNumbers();
               </tr>
             </thead>
             <tbody className="text-gray-600 text-sm font-light">
-              {currentClient.map((client) => (
+              {currentClient?.map((client) => (
                 <tr key={client.id} className="border-t">
                   <td className="px-6 text-center py-10">{client.name}</td>
                   <td className="px-6 text-center py-10">{client.correo_electronico}</td>
