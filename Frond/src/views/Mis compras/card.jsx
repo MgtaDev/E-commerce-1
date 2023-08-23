@@ -1,4 +1,6 @@
-const ProductCard = ({ product, handleAddReview }) => {
+// import ReviwerM from "../../components/modalReviwers/ReviwerM"
+// import ReviwerE from "../../components/modalReviwers/ReviwerE"
+const ProductCard = ({ product }) => {
   return (
     <div className="p-4 my-4 bg-white rounded-md shadow-md">
       <div className="flex flex-row items-center">
@@ -12,18 +14,11 @@ const ProductCard = ({ product, handleAddReview }) => {
       <hr className="my-4 border-gray-300 w-11/12 mx-auto" />
       <div className="flex justify-between">
         <p className="text-md font-medium">{product.price}</p>
-        {product.review ? (
-          <button className="bg-gray-400 hover:bg-gray-500 text-gray-900 font-semibold py-2 px-4 rounded-md">
-            Editar reseña
-          </button>
+        {/* {product.review ? (
+          <ReviwerM product={product.id} currentUser={currentUser.id} />
         ) : (
-          <button 
-            onClick={() => handleAddReview(product.id)} 
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md"
-          >
-            Agregar reseña
-          </button>
-        )}
+          <ReviwerE  product={product.id} initialRating={product.review} initialComentario/>
+        )} */}
       </div>
     </div>
   );

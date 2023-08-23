@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const getIdReviewr = require('../controllers/Reviewr/getIdReviewr')
+const getAll = require("../controllers/Reviewr/getAllReviewr")
 const postReviewr = require("../controllers/Reviewr/postReviewr")
 const getReviewr = require("../controllers/Reviewr/getAllReviewrId")
 const putReviewr = require("../controllers/Reviewr/putReviewr")
@@ -17,16 +17,16 @@ router.get('/:productoId', async (req, res) => {
     }
 });
 
-
-router.get('/:id', async (req,res)=>{
-    const { id } = req.params;
-    try {
-        const reviewr = await getIdReviewr(id)
-        res.status(200).json(reviewr);
-    } catch (error) {
-        res.status(400).json(error.message);
+router.get('/' , async (req, res) => {
+    try{
+        const productoReseñas = await getAll()
+        res.status(200).json(productoReseñas)
+    }catch(error){
+        console.error('Error al obtener la reseña:', error.message);
+      res.status(500).json({ error: 'Ha ocurrido un error al obtener la reseña.' });
     }
 })
+
 
 router.post('/', async (req, res) => {
     const { clienteId, productoId, rating, comentario } = req.body;

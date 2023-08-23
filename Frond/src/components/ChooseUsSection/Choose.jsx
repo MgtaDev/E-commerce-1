@@ -7,7 +7,7 @@ const ChooseUsSection = () => {
   return (
     <section className="bg-[#FDA9FF] w-full h-full">
       <div className="w-[80%] m-auto px-20 py-10">
-        <h2 className=" text-center font-bold	text-3xl pb-10 text-white">por que escogernos?</h2>
+        <h2 className=" text-center font-bold	text-3xl pb-10 text-white capitalize">por que escogernos?</h2>
         <div className=" container grid grid-rows-1 grid-cols-4 gap-20 items-center text-center capitalize	  text-white">
           <div className="flex flex-col items-center">
             <BsBagCheckFill className="text-9xl" />

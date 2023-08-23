@@ -8,7 +8,7 @@ module.exports  = async(productoId, rating, comentario) => {
             }
         })
         if(!clienteReseña){
-            throw new Error('la reseña del cliente no existe')
+            return('la reseña del cliente no existe')
         }
         await Reviwers.update({
             rating,
