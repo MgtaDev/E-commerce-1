@@ -94,14 +94,14 @@ const Detail = () => {
     const match = string.match(/\d+/); 
     return match ? parseInt(match[0]) : 0; 
 }; 
-const Clientela = useSelector(state=>state.Allclients); console.log("user"); console.log(JSON.stringify(user,null,2));
-const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
-const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
-
+// const Clientela = useSelector(state=>state.Allclients); console.log("user"); console.log(JSON.stringify(user,null,2));
+// const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
+// const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined; 
+const NumUserId=user;
   const addToCart = () => {        
-    if (isAuthenticated){ 
+    if (isAuthenticated){ console.log("Autenticated en detail", isAuthenticated);
         dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:amount}));
-    }else{
+    }else{ console.log("Autenticated en detail LS", isAuthenticated);
         dispatch(addItemToCartLS(id, amount)); 
     }
     dispatch(addToCartFunction(id, amount));

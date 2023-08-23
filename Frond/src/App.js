@@ -32,10 +32,7 @@ import { useParams } from "react-router-dom";
 
 //Acá va el link del back
 axios.defaults.baseURL = "https://bonitaandlovely-production-a643.up.railway.app"
-
-
 // import ActionProvider from "./components/ChatBot/ActionProvider";
-
 
 function App () {
   const location = useLocation()
@@ -66,36 +63,9 @@ function App () {
   }, [user]);
   const params = useParams();
 
-  const sendWhatsappMessage = () => {
-    var botId = '';// aqui va el id del bot en la app de face
-    var phoneNbr = '';  // aqui va el numero del que se enviaran los mensajes.
-    var bearerToken = 'EAATZA9dPTFDoBAHzZAaM5FaDspyTHy66co2CQ1ipaJuVhzBHaLQsucZAI1PfnYgdIt3Q7SpbkWywPnE0A2Dew3mXSNwfghuE1sROgBkso9hU0iQbQbgubRGt1IoVdEujQIBdhaE0q2KkYCFctEXM5fcGdWQhfVi7uSXAmP3ryTr2LiwGiQLOiWwf611hnKHb3yUyOH21AZDZD';
-
-
-    const url = `https://graph.facebook.com/v15.0/${botId}/messages`;
-    const data = {
-      messaging_product: "whatsapp",
-      to: phoneNbr,
-      type: "template",
-      template: {
-        name: "hello_world",
-        language: { code: "en_US" }
-      }
+    const sendWhatsappMessage = () => {
+      window.open("https://wa.me/573103232638", "_blank")
     };
-    const postReq = {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + bearerToken,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data),
-      json: true
-    };
-    fetch(url, postReq)
-      .then(data => data.json())
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
-  };
 
   // Esto aun no esta listo del todo, no tocar.
   return (

@@ -90,7 +90,7 @@ const Carrito = () => {
         }
     }, [isAuthenticated]);
 
-    const cartApi = useSelector(state => state.apiCart);
+    const cartApi = useSelector(state => state.apiCart); console.log("cartApi", cartApi);console.log("cartUnificado", cartUnificado);
 
     const totalProd = isAuthenticated && cartApi && cartApi.productos
     ? cartApi.productos.reduce((total, item) => total + (item.precio_venta * item.cantidad), 0)
@@ -142,8 +142,8 @@ const Carrito = () => {
             Swal.fire('Completa tu información de perfil antes de continuar', 'error');
             return;
         }
-
-        axios.post('http://localhost:3001/pago', cartApi)
+        axios.post('https://bonitaandlovely-git-developer-brandonlopez98.vercel.app/pago', cartApi)
+        // axios.post('http://localhost:3001/pago', cartApi)
             .then((res) => (window.location.href = res.data.response.body.init_point));
     };
 
@@ -225,7 +225,11 @@ const Carrito = () => {
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
                         </div>
                     )}
-                    
+                    {cartUnificado.length>0 &&(
+                    <button onClick={() => handleEmptyCart()} className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100">
+                      Limpiar carrito
+                      </button>
+                    )}
                 </div>
 
                 <div className="col-span-1">
