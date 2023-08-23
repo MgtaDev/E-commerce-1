@@ -7,6 +7,8 @@ const LoginButton = () => {
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
   const clientes = useSelector((state) => state.Allclients);
 
+
+
   const handleLogin = async () => {
     await loginWithRedirect();
   };
@@ -19,9 +21,11 @@ const LoginButton = () => {
     );
   }
 
+  
+
   if (isAuthenticated && user) {
     const { name, email } = user;
-    const admin = email === "passantinodev@gmail.com" ? true : false;
+    const admin = email === "bonitaandlovely@gmail.com" ? true : false;
     const userLogin = { name, correo_electronico: email, admin };
     const existeCliente = clientes.find((cliente) => cliente.correo_electronico === email);
     if (existeCliente) {
