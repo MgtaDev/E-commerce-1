@@ -45,11 +45,11 @@ router.post('/', async (req, res) => {
 
 });
 
-router.put('/:productoId', async (req, res) => {
-    const {productoId} = req.params;
+router.put('/:productoId/:clienteId', async (req, res) => {
+    const {productoId, clienteId} = req.params;
     const {rating, comentario} = req.body;
     try{
-        const reseñaActual = await putReviewr(productoId, rating, comentario)
+        const reseñaActual = await putReviewr(clienteId, productoId, rating, comentario)
         res.status(200).json(reseñaActual)
     }catch(error){
         console.error('Error al actualizar la reseña:', error.message);
