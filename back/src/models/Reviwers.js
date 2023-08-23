@@ -8,9 +8,9 @@ module.exports = sequelize => {
       primaryKey: true,
       autoIncrement: true
     },
-    comentario:{
-        type:DataTypes.STRING,
-        allowNull:false
+    clienteId:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     productoId:{
       type: DataTypes.INTEGER,

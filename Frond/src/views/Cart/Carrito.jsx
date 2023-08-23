@@ -53,8 +53,8 @@ const Carrito = () => {
     const cartUnif = (cart) => {
         const countMap = {};
         cart.forEach((item) => {
-            if (item.id !== undefined && item.id !== null && item.color !== undefined && item.color !== null) {
-                const itemKey = `${item.id}_${item.color}`;
+            if (item.id !== undefined && item.id !== null) {
+                const itemKey = `${item.id}`;
                 if (countMap[itemKey]) {
                     countMap[itemKey] += item.amount;
                 } else {
@@ -63,11 +63,11 @@ const Carrito = () => {
             }
         });
         const cartUnifRes = Object.keys(countMap).map((itemKey) => {
-            const [itemId, color] = itemKey.split('_');
+            const [itemId] = itemKey.split('_');
             return {
                 objeto: cart.find((item) => item.id === itemId),
                 cantidad: countMap[itemKey],
-                color: color,
+                
             };
         });
         return cartUnifRes;
@@ -107,12 +107,12 @@ const Carrito = () => {
     }
 
     const handleDeleteArtLS = (item) => {
-        dispatch(deleteArtLS(item.objeto.id, item.color));
+        dispatch(deleteArtLS(item.objeto.id));
     }
 
     const handleDeleteArtAPI = async (item) => {
         try {
-          await dispatch(deleteArtAPI({ user: NumUserId, productoId: item.productoId, colorId : 1 }));
+          await dispatch(deleteArtAPI({ user: NumUserId, productoId: item.productoId }));
         } catch (error) {
           console.error('Error en handleDeleteArtAPI:', error);
           Swal.fire({

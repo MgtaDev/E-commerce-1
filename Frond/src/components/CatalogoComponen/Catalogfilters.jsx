@@ -19,8 +19,8 @@ const Catalogfilters = () => {
   console.log(productosFiltrados)
   console.log(selectedFilters)
   const extractNumber = (string) => {
-  const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
-    return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
+  const match = string.match(/\d+/); 
+    return match ? parseInt(match[0]) : 0; 
   };
   
   const [minPrice, setMinPrice] = useState(""); 
@@ -47,7 +47,7 @@ const Catalogfilters = () => {
       setFilterChanged(true);
     }, [minPrice, maxPrice]);
     
-    const total  = stateProducts.productos.length * 3;
+    const total  = stateProducts.productos?.length * 3;
     
     const handleMultipleOptionChange = (propertyName, optionId) => {
       setSelectedFilters((prevFilters) => {
