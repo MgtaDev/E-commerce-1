@@ -62,26 +62,24 @@ const Card = ({ id, name, precio, imagenPrincipal }) => {
     setIsFavorite(!isFavorite);
   };
 
- const navigate = useNavigate() 
-const Clientela = useSelector(state=>state.Allclients); console.log("user"); console.log(JSON.stringify(user,null,2));
-const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
-const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
-
+const NumUserId=user;
 const addToCart = () => {        
-  if (isAuthenticated){
-      dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:1, colorId: 1}));
-  }else{
-      dispatch(addItemToCartLS(id, 1, 1)); 
+  if (isAuthenticated){ console.log("Autenticated en detail", isAuthenticated);
+      dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:1}));
+  }else{ console.log("Autenticated en detail LS", isAuthenticated);
+      dispatch(addItemToCartLS(id, 1)); 
   }
   dispatch(addToCartFunction(id, 1));
 
   Swal.fire({
-      icon: 'success',
-      title: 'Añadido al carrito',
-      showConfirmButton: false,
-      timer: 1500
-  });
+    icon: 'success',
+    title: 'Añadido al carrito',
+    showConfirmButton: false,
+    timer: 1500
+});
 }
+  
+
 
   const cartIcon =
     "inline-block mr-2 -mt-1 text-xl text-white group-hover:text-gray-100 transition-colors duration-300";

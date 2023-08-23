@@ -29,10 +29,10 @@ const MisCompras = () => {
       <h2 className="text-4xl text-center font-bold text-gray-00  my-8 pb-4">
         Mis compras
       </h2>
-      {userComprasById?.length > 0 ? (
+      {userComprasById?.productos.length > 0 ? (
         <div className="flex flex-row justify-start">
           <div className="grid grid-cols-1 gap-8 w-4/5 mx-auto">
-            {userComprasById.map((product) => (
+            {userComprasById.productos.map((product) => (
               <div key={product.id} className="bg-white rounded-md shadow-md">
                 <ProductCard product={product} />
               </div>
