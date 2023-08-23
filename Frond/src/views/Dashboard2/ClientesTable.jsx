@@ -235,7 +235,7 @@ const pageNumbers = generatePageNumbers();
                   </>
                   )}</td>
                   {
-                      client.correo_electronico === 'passantinodev@gmail.com' 
+                      client.correo_electronico === 'bonitaandlovely@gmail.com' 
                       ? 
                       <td className="px-6 text-center py-4">
                       <button className="bg-purple-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Principal Admin</button>
