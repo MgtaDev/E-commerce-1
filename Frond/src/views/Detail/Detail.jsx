@@ -26,7 +26,7 @@ const Detail = () => {
     dispatch(clientes());
   }, []);
   const usuarios = useSelector((state) => state.Allclients);
-  const currentUser = usuarios.find(
+  const currentUser = usuarios?.find(
     (usuario) =>
       !isLoading &&
       user &&
