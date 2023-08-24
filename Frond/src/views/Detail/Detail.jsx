@@ -26,7 +26,7 @@ const Detail = () => {
     dispatch(clientes());
   }, []);
   const usuarios = useSelector((state) => state.Allclients);
-  const currentUser = usuarios.find(
+  const currentUser = usuarios?.find(
     (usuario) =>
       !isLoading &&
       user &&
@@ -37,7 +37,7 @@ const Detail = () => {
     const idParts = id.split('-'); // Separa el string en partes utilizando el carácter "-"
     return parseInt(idParts[1]); // Convierte la segunda parte a un número entero y lo retorna
   };
-  const idNumber = extractIdNumber(currentUser.id); //
+  const idNumber = extractIdNumber(currentUser?.id); //
   const productId = extractIdNumber(id); //
   const [amount, setAmount] = useState(1);
 
