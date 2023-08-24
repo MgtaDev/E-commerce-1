@@ -286,4 +286,4 @@ const Carrito = () => {
 
 };
 
-export default Carrito;
+export default Carrito; 
