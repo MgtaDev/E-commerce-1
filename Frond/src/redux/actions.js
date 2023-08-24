@@ -55,7 +55,7 @@ export const clientes = () => async dispatch => {
   })
  };
  export const userCompras = (id) => async dispatch => {
-  const {data} =await axios.get(`/carrito/historial/${id}`)
+  const {data} =await axios.get(`/carrito/historialproducto/${id}`)
   dispatch({
      type: GET_USER_COMPRAS,
      payload: data

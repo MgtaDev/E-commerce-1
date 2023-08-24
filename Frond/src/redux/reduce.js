@@ -267,7 +267,7 @@ const reducer = (state = InitialState, {type, payload, data}) => {
             case GET_USER_COMPRAS:
                 return{
                       ...state,
-                userCompras: data
+                userCompras: payload
                 }
         case GET_REVIEWRS:
             return{
