@@ -6,6 +6,37 @@ const VentasTable = () => {
   const dispatch = useDispatch()
   const [selectedVenta, setSelectedVenta] = useState(null);
   const stateVentas = useSelector(state => state.Allventas);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [selectedPage, setSelectedPage] = useState(1)
+  const [itemsPerPage] = useState(2)
+  const lastSale = currentPage * itemsPerPage;
+  const firtsSale = lastSale - itemsPerPage
+  const currentSales = stateVentas?.slice(firtsSale,lastSale)
+  console.log(stateVentas);
+  const [pageNumber, setPageNumber] = useState(0);
+  const generatePageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(stateVentas?.length / itemsPerPage); i++) {
+    pageNumbers.push({number:i, selected: i === selectedPage});
+  }
+  return pageNumbers;
+};
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1 );
+    setSelectedPage(selectedPage - 1);
+  };
+  
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1 );
+    setSelectedPage(selectedPage + 1);
+  };
+  
+  
+const pageNumbers = generatePageNumbers();
+  const handlerPageNumber = (index) => {
+    setPageNumber(index);
+  };
+
   useEffect(
     () => {
       dispatch(ventas())
@@ -40,7 +71,7 @@ const VentasTable = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
-            {stateVentas?.map((venta) => (
+            {currentSales?.map((venta) => (
               <tr key={venta.cliente + venta.fecha} className="border-t">
                 <td className="px-6 text-center py-10">{venta.clienteName}</td>
                 <td className="px-6 text-center py-10">{venta.productoName}</td>
@@ -59,8 +90,45 @@ const VentasTable = () => {
             ))}
           </tbody>
         </table>
+        
       )}
 
+<div className="flex justify-center py-8">
+            <button
+              onClick={() => {
+                if (currentPage > 1) {
+                  setCurrentPage(currentPage - 1);
+                  setSelectedPage(selectedPage - 1);
+                }
+              }}
+              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-black  focus:outline-none"
+            >
+              {"<"}
+            </button>
+            {pageNumbers.map(({ number, selected }) => (
+              <button
+                key={number}
+                onClick={() => {
+                  setCurrentPage(number);
+                  setSelectedPage(number);
+                }}
+                className={`mx-1 text-lg font-bold px-3 py-1 rounded ${selected ? 'bg-black text-white' : 'bg-white text-black '}`}
+              >
+                {number}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                if (currentPage < Math.ceil(stateVentas?.length / itemsPerPage)) {
+                  setCurrentPage(currentPage + 1);
+                  setSelectedPage(selectedPage + 1);
+                }
+              }}
+              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-gray-500 focus:outline-none"
+            >
+              {">"}
+            </button>
+          </div>
       {selectedVenta && (
         <div className="fixed z-50 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen px-4" onMouseDown={handleCloseModal}>

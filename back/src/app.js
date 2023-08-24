@@ -57,26 +57,20 @@ server.post("/pagoCarrito", (req, res) => {
   const productos = req.body;
 
   let items = productos.map((producto) => {
-    return {
+    return  {
       id: producto.id,
       title: producto.nombre,
       unit_price: Number(producto.precio),
       description: producto.descripcion,
-      
-    };
+      quantity: producto.quantity
+    }
   });
 
   let preference = {
     items: items,
     back_urls: {
-      // success: "http://localhost:3000",
-      // failure: "http://localhost:3000",
-      // pending: "",
-
-      // "bonitaandlovely-git-main-brandonlopez98.vercel.app",
-      success: "bonitaandlovely-git-main-brandonlopez98.vercel.app/confirmedpayment",
-      failure: "bonitaandlovely-git-main-brandonlopez98.vercel.app",
-
+      success: "http://localhost:3000/confirmedpayment",
+      failure: '',
       pending: "",
     },
     auto_return: "approved",
@@ -109,7 +103,7 @@ server.post("/pago", (req, res) => {
     ],
     back_urls: {
 
-      success: "bonitaandlovely-git-main-brandonlopez98.vercel.app/confirmedpayment",
+      success: "http://localhost:3000/confirmedpayment",
       failure: "",
 
       pending: "",

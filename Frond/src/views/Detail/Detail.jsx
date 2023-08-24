@@ -30,8 +30,8 @@ const Detail = () => {
     (usuario) =>
       !isLoading &&
       user &&
-      usuario.name.toLowerCase() === user.name.toLowerCase() &&
-      usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
+      usuario.name.toLowerCase() === user?.name.toLowerCase() &&
+      usuario.correo_electronico.toLowerCase() === user?.email.toLowerCase()
   );
   const extractIdNumber = (id) => {
     const idParts = id.split('-'); // Separa el string en partes utilizando el carácter "-"

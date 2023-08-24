@@ -42,8 +42,8 @@ const Dashboard = () => {
     setProductos(false);
     setVentas(true);
     setFormCreacion(false)
-
-    setNavStyles(["bg-white text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900"]);
+  
+    setNavStyles(["bg-yellow-400 text-gray-900", "text-gray-900", "text-gray-900"]); // <-- Corregir el tercer elemento
   };
   const handleNav4 = () => {
     setClientes(false);
