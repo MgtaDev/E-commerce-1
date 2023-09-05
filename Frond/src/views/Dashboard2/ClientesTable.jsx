@@ -13,12 +13,11 @@ const ClientesTable = () => {
     () => {
       dispatch(clientes())
     },[])
-
   const dispatch = useDispatch()
   const stateClients = useSelector(state => state.Allclients);
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedPage, setSelectedPage] = useState(1)
-  const [itemsPerPage] = useState(5)
+  const [itemsPerPage] = useState(4)
   const lastClient = currentPage * itemsPerPage;
   const firtsClient = lastClient - itemsPerPage
   const currentClient = stateClients?.slice(firtsClient,lastClient)

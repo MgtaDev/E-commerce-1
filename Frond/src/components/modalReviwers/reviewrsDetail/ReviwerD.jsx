@@ -26,7 +26,7 @@ const ReviwerD = () => {
           />
         ))
       ) : (
-        <div>
+        <div className="">
           <h2>Aún sin comentarios</h2>
         </div>
       )}

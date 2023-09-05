@@ -20,13 +20,13 @@ const SectionReviews = () => {
       <h2 className="text-2xl capitalize pb-5">opiniones de nuestro producto</h2>
       <div className="grid grid-cols-2  items-center">
         <div className="flex justify-start gap-4">
-          <h2 className="text-5xl text-red-500 font-semibold">{highestRating}</h2>
+          <h2 className="text-3xl text-red-500 font-semibold">{highestRating}</h2>
           <Rating 
           className=" pt-1"
             initialRating={highestRating}
             emptySymbol={
               <span className="text-lightgray">
-                <FaRegStar size="24" className="text-slate-400" />
+                <FaRegStar size="20" className="text-slate-400" />
               </span>
             }
             fullSymbol={

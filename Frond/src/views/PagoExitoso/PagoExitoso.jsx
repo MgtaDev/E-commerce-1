@@ -20,7 +20,7 @@ const PagoExitoso = () => {
   ,[]);
 
   const usuarios = useSelector((state)=> state.Allclients);
-  const currentUser = usuarios.find((usuario) => {
+  const currentUser = usuarios?.find((usuario) => {
     return usuario.name.toLowerCase() === user.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
   });
 

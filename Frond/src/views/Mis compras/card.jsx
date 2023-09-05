@@ -17,15 +17,15 @@ const ProductCard = ({ product }) => {
         <img src={product.imagenProducto} alt={product.productoName} className="h-24 w-24 object-cover border-2 border-indigo-200 rounded-md mr-4" />
         <div className="flex flex-row items-center justify-between w-full">
           <h1 className="text-lg capitalize font-medium">{product.productoName}</h1>
-          <p className="text-sm font-medium text-right">Fecha de compra: {product.fechaCompra}</p>
+          <p className="text-sm font-medium text-right">Fecha de compra: {product.fechaCompra.split(',')[0]}</p>
         </div>
       </div>
       {/* <p className="mt-1 text-sm text-gray-600 font-medium">{product.description}</p> */}
       <hr className="my-4 border-gray-300 w-11/12 mx-auto" />
       <div className="flex justify-between">
-        <p className="text-md font-medium">{product.productoPrecio}</p>
-        {product.review ? (
-          <ReviwerM product={product.id} currentUser={currentUser.id} />
+        <p className="text-md font-medium">$ {product.productoPrecio}</p>
+        {!product.review ? (
+          <ReviwerM product={product.id} currentUser={currentUser.id.split('-')[1]} />
         ) : (
           <ReviwerE  product={product.id} initialRating={product.review} initialComentario/>
         )}

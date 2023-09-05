@@ -133,15 +133,7 @@ const navigateCarrito = () => {
                 </NavLink>
               </li>
 
-              <li>
-                <NavLink
-                  to="/AboutUs"
-                  lang={initialLanguage === 'en' ? 'en' : 'es'}
-                  className={`${style.menuItem} ${style.itemAbout}`}
-                >
-                  {initialLanguage === 'en' ? 'About Us' : 'Nosotros'}
-                </NavLink>
-              </li>
+            
 
               <li>
                 <NavLink

@@ -26,7 +26,7 @@ export default function Modal({ productoId , currentUser}) {
 
             setShowModal(false);
         } catch (error) {
-            console.error('Error al enviar la reseña:', error.message);
+            console.error('Error al enviar la reseña:', error);
         }
     }
 
@@ -34,11 +34,11 @@ export default function Modal({ productoId , currentUser}) {
     return (
         <>
             <button
-                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="bg-customColor text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
-                Open regular modal
+            Calificar
             </button>
             {showModal ? (
                 <>
@@ -76,7 +76,7 @@ export default function Modal({ productoId , currentUser}) {
                                 {/*body*/}
                                 <div className="relative flex flex-col justify-items-center m-auto gap-2 text-center">
                                     <h3>Cuéntanos más acerca de tu producto</h3>
-                                    <span className="text-zinc-400">(optional)</span>
+                                    <span className="text-zinc-400">(opcional)</span>
                                     <textarea
                                         name="comentario"
                                         id="comentario"
@@ -94,14 +94,14 @@ export default function Modal({ productoId , currentUser}) {
                                         type="button"
                                         onClick={() => setShowModal(false)}
                                     >
-                                        Close
+                                        Cerrar
                                     </button>
                                     <button
-                                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="bg-customColor text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
                                         onClick={() => handleSaveChanges()}
                                     >
-                                        Save Changes
+                                        Enviar
                                     </button>
                                 </div>
                             </div>

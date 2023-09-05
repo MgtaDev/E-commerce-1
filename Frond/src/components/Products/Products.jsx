@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { categories, productFilter } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import Maquillaje from '../../assets/img/Maquillaje.jpeg'
-import Skincare from '../../assets/img/skincare.jpeg'
-import Accesorios from '../../assets/img/Accesorios.jpeg'
+import Maquillaje from '../../assets/img/Maquilajebackground.jpeg'
+import Skincare from '../../assets/img/Skincarebackground.jpeg'
+import Accesorios from '../../assets/img/Aceesorios background.jpeg'
 
 
 const CardContainer = styled.div`
@@ -38,9 +38,11 @@ const H1 = styled.h1`
 font-weight:600;
 margin-left:1%;
 font-size:30px;
+
 `
 const Img = styled.img`
-width: 520px`
+width: 450px
+`
 
 const Products = () => {
   useEffect(()=>{
@@ -79,7 +81,7 @@ return (
     <Card>
     <Img src={Maquillaje} alt="img" />
     <h2 className='absolute m-6 text-white text-4xl font-bold'>Maquillaje</h2>
-    <button  name='maquillaje' onClick={filterByCategories} style={{ backgroundColor: 'rgb(109, 1, 110)' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white" type="submit">
+    <button  name='maquillaje' onClick={filterByCategories} style={{ backgroundColor: 'rgb(109, 1, 110)' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white " type="submit">
             Ver mas
           </button>
 

@@ -15,7 +15,7 @@ const StartsDetail = ( ) => {
     
         initialRating={highestRating}
         emptySymbol={
-          <span className="text-lightgray"><FaRegStar  size="24" className='text-slate-400'/></span>
+          <span className="text-lightgray"><FaRegStar  size="20" className='text-slate-400'/></span>
         }
         fullSymbol={<span><FaStar  size="24" className="text-red-500"/></span>}
         readonly={true}
