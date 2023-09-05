@@ -11,20 +11,20 @@ import FAQs from "./views/FAQs/FAQs"
 import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Form from "./views/Form/Form";
 import Profile from "./views/Profile/MiPerfil.jsx";
-import Detail from "../src/views/Detail/Detail";
-import Favoritos from "../src/views/Favoritos/Favoritos"
+import Detail from "./views/Detail/Detail";
+import Favoritos from "./views/Favoritos/Favoritos"
 import Dashboard2 from "./views/Dashboard2/dashboard";
 import axios from "axios"
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import AddToCart from "./views/Cart/AddToCart";
-import MisCompras from '../../Frond/src/views/Mis compras/misCompras.jsx'
+import MisCompras from './views/Mis compras/misCompras.jsx'
 import Carrito from "./views/Cart/Carrito";
 import PagoExitoso from "./views/PagoExitoso/PagoExitoso.jsx"
 import { useAuth0 } from "@auth0/auth0-react";
 import { clientes, productosSinPag, syncFavoritesWithAPI } from "./redux/actions";
 import { useDispatch, useSelector} from "react-redux";
-import WhatsappIcon from '../../Frond/src/assets/img/social.png'
+import WhatsappIcon from './assets/img/social.png'
 import { useParams } from "react-router-dom"; 
 
 axios.defaults.baseURL = "http://localhost:3001/"

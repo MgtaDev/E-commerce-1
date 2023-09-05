@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Logo from '../../../src/assets/img/logoBonitaLovelyw.png';
-import icon3 from '../../../src/assets/img/icon3.svg';
-import icon2 from '../../../src/assets/img/icon2.svg';
-import icon1 from '../../../src/assets/img/icon1.svg';
+import Logo from '../../assets/img/logoBonitaLovelyw.png';
+import icon3 from '../../assets/img/icon3.svg';
+import icon2 from '../../assets/img/icon2.svg';
+import icon1 from '../../assets/img/icon1.svg';
 import 'tailwindcss/tailwind.css';
 
 

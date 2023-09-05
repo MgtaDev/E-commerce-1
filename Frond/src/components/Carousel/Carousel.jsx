@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
 
-import Img1 from '../../components/offers/Img1.webp'
-import Img2 from '../../components/offers/Img2.webp'
-import Img3 from '../../components/offers/Img3.webp'
+import Img1 from '../offers/Img1.webp'
+import Img2 from '../offers/Img2.webp'
+import Img3 from '../offers/Img3.webp'
 
 const Carousel = () => {
   const settings = {
