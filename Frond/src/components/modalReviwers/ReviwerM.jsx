@@ -2,10 +2,12 @@ import axios from "axios";
 import React from "react";
 import StarRatings from 'react-star-ratings';
 
-export default function Modal({ productoId , currentUser}) {
+export default function Modal({ productId , currentUserId}) {
     const [showModal, setShowModal] = React.useState(false);
     const [startCount, SetStartCount] = React.useState(0)
     const [comentario, setComentario] = React.useState("");
+
+    console.log(productId);
 
     const onchangeStart = (rating) => {
         SetStartCount(rating)
@@ -16,9 +18,9 @@ export default function Modal({ productoId , currentUser}) {
 
     const handleSaveChanges = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/reviewr', {
-                // clienteId,
-                productoId,
+            const response = await axios.post(`http://localhost:3001/reviewr`, {
+                currentUserId,
+                productId,
                 rating: startCount,
                 comentario
             });
@@ -30,6 +32,10 @@ export default function Modal({ productoId , currentUser}) {
         }
     }
 
+    console.log( currentUserId,
+        productId,
+        startCount,
+        comentario)
 
     return (
         <>

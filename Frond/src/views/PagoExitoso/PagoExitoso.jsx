@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { clientes } from '../../redux/actions';
 
-//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 const PagoExitoso = () => {
   const dispatch = useDispatch()
@@ -21,7 +20,7 @@ const PagoExitoso = () => {
 
   const usuarios = useSelector((state)=> state.Allclients);
   const currentUser = usuarios?.find((usuario) => {
-    return usuario.name.toLowerCase() === user.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
+    return usuario?.name.toLowerCase() === user?.name.toLowerCase() && usuario?.correo_electronico.toLowerCase() === user.email.toLowerCase();
   });
 
 
@@ -31,22 +30,26 @@ const PagoExitoso = () => {
     const currentDate = new Date(); // Obtén la fecha y hora actual
     const formattedDate = `${currentDate.toLocaleDateString()} a las ${currentDate.toLocaleTimeString()}`; // Formatea la fecha y hora en una cadena legible para el usuario
     const message = `
-      Detalles de la compra:
-  
+      Gracias por realizar tu compra con bonita and love!
+
+      Detalles de tu compra:
       Usuario: ${currentUser.name}
       Email: ${currentUser.correo_electronico}
       Fecha: ${formattedDate}
   
       Productos comprados:
   
-
-      ¡Gracias por tu compra!
+      ¡Gracias por tu escojernos!
     `;
     // Lógica para enviar el correo electrónico con los detalles de la compra
     // utilizando la librería emailjs-com
     emailjs.send('service_j9jlamg', 'template_7hdwwc9', {name: currentUser.name,  to_email: currentUser.correo_electronico ,message: message, }, '9yN7zM_SZvzvGp-oz')
       .then(() => {
         setEmailSent(true);
+        console.log(`     
+          Usuario: ${currentUser.name}
+          Email: ${currentUser.correo_electronico}
+          Fecha: ${formattedDate}`);
       })
       .catch((error) => {
         console.log('Ha ocurrido un error al enviar el correo electrónico:', error);

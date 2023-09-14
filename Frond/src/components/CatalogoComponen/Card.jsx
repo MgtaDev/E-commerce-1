@@ -12,7 +12,15 @@ const Card = ({ id, name, precio, imagenPrincipal }) => {
   const favorites = useSelector((state) => state.favorites);
   const localFavorites = useSelector((state) => state.localFavorites);
   const favoritesRaw = useSelector((state) => state.favoritesRaw);
-  const { isAuthenticated, user } = useAuth0();
+  const usuarios = useSelector((state) => state.Allclients);
+  const { isAuthenticated, user, isLoading } = useAuth0();
+  const currentUser = usuarios.find(
+    (usuario) =>
+      !isLoading &&
+      user &&
+      usuario.name.toLowerCase() === user.name.toLowerCase() &&
+      usuario.correo_electronico.toLowerCase() === user.email.toLowerCase()
+  );
   const extractNumber = (string) => {
     const match = string.match(/\d+/); // Busca uno o más dígitos en la cadena
     return match ? parseInt(match[0]) : 0; // Convierte el resultado a un número o devuelve 0 si no hay coincidencia
@@ -62,14 +70,12 @@ const Card = ({ id, name, precio, imagenPrincipal }) => {
     setIsFavorite(!isFavorite);
   };
 
-const NumUserId=user;
+// const NumUserId = extractNumber(currentUser?.id);
+
 const addToCart = () => {        
-  if (isAuthenticated){ console.log("Autenticated en detail", isAuthenticated);
-      dispatch(addItemToCartApi({userId: NumUserId, productoId:id, cantidad:1}));
-  }else{ console.log("Autenticated en detail LS", isAuthenticated);
-      dispatch(addItemToCartLS(id, 1)); 
-  }
-  dispatch(addToCartFunction(id, 1));
+
+  dispatch(addItemToCartLS(id, 1, 1)); 
+  dispatch(addToCartFunction(id, 1, 1));
 
   Swal.fire({
     icon: 'success',

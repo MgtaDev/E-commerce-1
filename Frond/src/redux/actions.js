@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ALLBRANDS, ALLCATEGORIES, ALLCOLORS, ALLPRODUCTS, COPY_ALLPRODUCTS, ALLSIZES, ALLSUBCATEGORIES, CLEAN_DETAIL, PRODUCTS_DETAIL, PRODUCTS_FILTERED, POST_FAVORITES_API, POST_FAVORITES_API_INICIO, POST_FAVORITES_LS, DELETE_FAVORITES, DELETE_FAVORITES_API, PRODUCTOS, CART_PRODUCTS, ADD_TO_CART, GETPRODUCT_BYNAME, POST_CART_LS, DELETE_CART_LS, EMPTY_LOCAL_CART, DELETE_ART_LS, POST_CART_API, DEL_ART_API, GET_ALL_CLIENTS, GET_ALL_VENTAS, GET_USER_COMPRAS, GET_REVIEWRS, CLEAN_PREVIEW, POST_ART_API} from "./action-types";
-
+import Swal from 'sweetalert2';
 // aca la ruta directamente porque la url base ya esta osea que solo queda por la ruta ejemplo:/producto
 
 //action que trae la data
@@ -240,10 +240,13 @@ export const categories = () => async dispatch => {
     return async (dispatch)=>{
       try {
         const {data} = await axios.get(`/producto?name=${name}`);
-        return dispatch({
-          type: GETPRODUCT_BYNAME,
-          payload: data
-        })
+        const productosActivos = data.filter(producto => producto.activa === true); // Filtra los productos activos
+        
+          return dispatch({
+            type: GETPRODUCT_BYNAME,
+            payload: productosActivos
+          })
+    
       } catch (error) {
         alert("Error: " + error.response.data.error);
       }

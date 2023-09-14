@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/img/logoBonitaLovelyw.png';
 import vector from '../../assets/img/vector.svg'
 import { FiChevronDown } from "react-icons/fi";
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart  , AiOutlineShoppingCart } from 'react-icons/ai';
 import {AiFillShopping} from 'react-icons/ai'
 import SearchBar from '../SearchBar/SearchBar';
 import style from './NavBar.module.css';
@@ -15,6 +15,7 @@ import { categories, productFilter, productsCopy } from '../../redux/actions';
 import Swal from 'sweetalert2';
 
 const Navbar = ({ initialLanguage }) => {
+  const cartApi = useSelector(state => state.apiCart); 
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSub, setIsOpenSub] = useState(false)
@@ -28,15 +29,6 @@ const Navbar = ({ initialLanguage }) => {
     dispatch(categories())
     dispatch(productsCopy())
 }, [dispatch])
-
-  const toggleLanguageMenu = () => {
-    setShowLanguageMenu(!showLanguageMenu);
-  };
-
-  const changeLanguage = (selectedLanguage) => {
-    setLanguage(selectedLanguage);
-    setShowLanguageMenu(false);
-  };
 
   const showCategories = () => {
     setIsOpen(true);
@@ -53,32 +45,57 @@ const Navbar = ({ initialLanguage }) => {
   const navigate = useNavigate()
   const {loginWithRedirect} = useAuth0()
 
-  // const filterByCategories = (event) => {
-  //  const categoryToFilter = event.target.textContent
-  //  const categoriaId = event.target.id
-  //  console.log(categoriaId)
-  //  console.log(categoryToFilter)
-  //  switch (categoryToFilter) {
-  //   case 'Maquillaje':
-  //     navigate('/catalogo')
-  //     dispatch(productFilter({categoriaId: [1]}))
-  //      break;
+  const filterByCategories = (event) => {
+   const categoryToFilter = event.target.textContent
+   const categoriaId = event.target.id
+   console.log(categoriaId)
+   console.log(categoryToFilter)
+   switch (categoryToFilter) {
+    case 'Maquillaje':
+      navigate('/catalogo')
+      dispatch(productFilter({categoriaId: [1]}))
+       break;
  
-  //    case 'Skincare':
-  //      navigate('/catalogo')
-  //      dispatch(productFilter({categoriaId: [2]}))
-  //      break;
+     case 'Skincare':
+       navigate('/catalogo')
+       dispatch(productFilter({categoriaId: [2]}))
+       break;
  
-  //    case 'Accesorios':
-  //      navigate('/catalogo')
-  //      dispatch(productFilter({categoriaId: [3]}))
-  //      break;
+     case 'Accesorios':
+       navigate('/catalogo')
+       dispatch(productFilter({categoriaId: [3]}))
+       break;
        
    
-  //   default:
-  //     break;
-  //  }
-  // }
+    default:
+      break;
+   }
+  }
+
+  const cartUnif = (cart) => {
+    const countMap = {};
+    cart.forEach((item) => {
+        if (item.id !== undefined && item.id !== null && item.color) {
+            const itemKey = `${item.id}`;
+            if (countMap[itemKey]) {
+                countMap[itemKey] += item.amount;
+            } else {
+                countMap[itemKey] = item.amount;
+            }
+        }
+    });
+    const cartUnifRes = Object.keys(countMap).map((itemKey) => {
+        const [itemId] = itemKey.split('_');
+        return {
+            objeto: cart.find((item) => item.id === itemId),
+            cantidad: countMap[itemKey],
+            color: 1
+        };
+    });
+    return cartUnifRes;
+};
+  const cartLS = useSelector(state => state.localCart); 
+  const cartUnificado = cartUnif(cartLS);
 
 
   //Condicionales de logueo
@@ -105,9 +122,12 @@ const navigateCarrito = () => {
           </div>
 
           <div className={style.icons}>
-            <button onClick={navigateCarrito} className={style.btnb}>
-              <AiFillShopping />
-            </button>
+          <button onClick={navigateCarrito} className={`relative ${style.btnb} rounded-full`}>
+          {cartApi.length || cartUnificado.length ?(
+          <div className="absolute bg-red-500 text-white top-0 right-0 w-4 h-4 rounded-full text-xs">{isAuthenticated ? cartApi.productos?.length === 0 ? '' : cartApi.productos?.length : cartUnificado?.length === 0 ? '' : cartUnificado?.length }</div>
+          ):''}
+          <AiOutlineShoppingCart />
+          </button>
             <button  onClick={navigateFavoritos} className={style.btnb}>
               <AiFillHeart />
             </button>

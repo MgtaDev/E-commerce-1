@@ -25,17 +25,28 @@ const MoreProductsCardContainer2 = () => {
   }, [dispatch, numberSize]);
 
   const navigate = useNavigate()
+
+  const redirigirAlInicio = () => {
+    window.scrollTo(0, 0);
+  }
+
+
+
+
   const goCatalog = () => {
     navigate('/catalogo')
+    redirigirAlInicio()
   }
+
 
   const navigateProductDetail = (id) => {
     navigate(`/detail/${id}`)
+    redirigirAlInicio()
   }
 
   return (
     <div className="container w-full">
-      <h2 onClick={goCatalog} className="bg-customColor m-2 font-semibold rounded-lg inline-block text-white ml-5 py-1 px-4 items-center gap-2"> Más productos </h2>
+      <h2 onClick={goCatalog} className="bg-customColor m-2 font-semibold rounded-lg inline-block text-white ml-5 py-1 px-4 items-center cursor-pointer gap-2"> Más productos </h2>
       <div className="flex items-center justify-center w-full h-full py-24 sm:py-8 px-">
         {/* Carousel for desktop and large size devices */}
         <CarouselProvider className="lg:block hidden" naturalSlideWidth={100} isIntrinsicHeight={true} totalSlides={12} visibleSlides={4} step={1} infinite={true}>
@@ -65,10 +76,10 @@ const MoreProductsCardContainer2 = () => {
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
                   <Slider>
         <div id="slider" className="h-full flex lg:gap-2 md:gap-3 gap-14 items-center justify-start transition ease-out duration-700">
-          {stateProducts.productos.sort((a, b) => a.precio_venta - b.precio_venta).map((product, index) => (
+          {stateProducts.productos?.sort((a, b) => a.precio_venta - b.precio_venta).map((product, index) => (
             <Slide index={index} key={index}>
                <div
-      className="flex flex-shrink-0 relative w-full sm:w-auto"
+      className="flex flex-shrink-0 relative cursor-pointer w-full sm:w-auto"
       onMouseOver={(e) => e.currentTarget.querySelector('.overlay').classList.remove('opacity-0')}
       onMouseOut={(e) => e.currentTarget.querySelector('.overlay').classList.add('opacity-0')}
       onClick={() => navigateProductDetail(product.id)}

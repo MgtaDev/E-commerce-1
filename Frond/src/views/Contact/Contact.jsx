@@ -48,9 +48,8 @@ const Contact = () => {
   });
   return (
 <div>
-    <section class="mb-32">
-    <div className="relative h-[300px] overflow-hidden bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${fond})` }}></div>
+    <section class="" >
+    <div className="relative h-[300px] overflow-hidden bg-cover bg-center " style={{ backgroundImage: `url(${fond})` }}></div>
     <div class="container px-6 md:px-12 m-auto">
       <div
         class="block rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] ">
@@ -64,7 +63,7 @@ const Contact = () => {
         <input
           type="text"
           name="name"
-          placeholder="enter your name"
+          placeholder="Ingresa su nombre"
           onBlur={formik.handleBlur}
           value={formik.values.name}
           onChange={formik.handleChange}
@@ -80,7 +79,7 @@ const Contact = () => {
         <input
           type="email"
           name="email"
-          placeholder="ingrese su email"
+          placeholder="Ingrese su email"
           onBlur={formik.handleBlur}
           value={formik.values.email}
           onChange={formik.handleChange}
@@ -95,7 +94,7 @@ const Contact = () => {
         ) : null}
         <textarea
           name="message"
-          placeholder="ingrese un mensaje"
+          placeholder="Escriba tu mensaje aqui"
           onBlur={formik.handleBlur}
           value={formik.values.message}
           onChange={formik.handleChange}
@@ -111,7 +110,7 @@ const Contact = () => {
         ) : null}
         <input
           type="submit"
-          value="Send"
+          value="Enviar"
           className="pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
         />
       </form>

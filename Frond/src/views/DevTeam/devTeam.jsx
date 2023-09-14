@@ -2,18 +2,17 @@ import React from 'react';
 import styled from 'styled-components'; // Importa Styled Components
 import GithubLogo from './assets/github.png'
 import LinkedinLogo from './assets/linkedin.png'
-import Footer from '../../components/Footer/Footer'
+
 import GmailLogo from './assets/gmail.png'
 import code from './assets/Code.png'
 
-import Paul from './assets/PaulGamara.jpeg'
-import Orli from './assets/OrliDev.jpeg'
-import Dani from './assets/DaniDev.jpeg'
+
+import Dani from './assets/MIFOTO.jpeg'
 import Iveth from './assets/IvethDev.jpeg'
 import Nat from './assets/NatDev.jpeg'
 import Nahuel from './assets/NahuelDev.png'
 import Esteban from './assets/EstebanDev.png'
-import Hector from './assets/HectorDev.png'
+
 
 let imageLink =
     'https://media.istockphoto.com/id/1337144146/es/vector/vector-de-icono-de-perfil-de-avatar-predeterminado.jpg?s=612x612&w=0&k=20&c=YiNB64vwYQnKqp-bWd5mB_9QARD3tSpIosg-3kuQ_CI=';
@@ -54,7 +53,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 40px;
+  border-radius: 25px;
   border: 1px solid rgba(0, 0, 0, 0.20);
   background: #FFF;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -83,8 +82,8 @@ font-weight:600;
 margin-left:1%;
 text-align:center;
 font-size:32px;
-opacity:70%;
-margin-top:5%
+opacity:80%;
+margin-top:3%
 `
 
 const ButtonsDiv = styled.div`
@@ -146,7 +145,7 @@ const Subtitle = styled.h2`
 font-weight:600;
 text-align:center;
 font-size:22px;
-font-family: Galdeano;
+
 opacity:40%;
 text-align:center;
 `

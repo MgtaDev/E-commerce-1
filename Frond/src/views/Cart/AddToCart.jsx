@@ -8,6 +8,8 @@ import OtherMoreProductsContainer from "../../components/MoreProducts/OtherMoreP
 
 
 const AddToCart = () => {
+  const cartLS = useSelector(state => state.localCart);
+  console.log(cartLS);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -23,8 +25,9 @@ const AddToCart = () => {
     dispatch(getCartProducts(id, amount));
   }, [dispatch, id, amount]);
 
+
+
   const addToCart = () => {
-    dispatch(addToCartFunction(id, amount)); 
     const carritotUrl = `/carrito/${id}?amount=${amount}`;
     navigate(carritotUrl);
   };
@@ -35,7 +38,7 @@ const AddToCart = () => {
         <div className='flex m-10 rounded-lg shadow-2xl p-20 justify-between items-center'>
 
           {stateProducts.productos && stateProducts.productos.map((item) => (
-            <p key={item.id}>{item.name.toUpperCase()}</p>
+            <p key={item.id} className="capitalize">{item.name}</p>
           ))}
           <div className='flex items-center'>
             <div className='relative'>
@@ -45,8 +48,8 @@ const AddToCart = () => {
           </div>
 
           <div>
-          <p className=' text-1xl font-bold'>{(stateProducts.name)}</p>
-          <p className='text-green-500 font-semibold'>fue agregado al carrito exitosamente</p>
+          <p className=' text-1xl capitalize font-bold'>{(stateProducts.name)}</p>
+          <p className='text-green-500 font-semibold'>Fue agregado al carrito exitosamente</p>
           </div>
 
           <p> Hay {amount} producto(s) en tu carrito </p>
@@ -56,8 +59,8 @@ const AddToCart = () => {
             Ver carrito
           </button>
 
-          <button onClick={addToCart} className='bg-customLightColor text-white font-semibold py-1 px-4 rounded-xl flex items-center gap-2'>
-            Comprar carrito
+          <button onClick={()=> navigate('/catalogo')} className='bg-customColor text-white font-semibold py-1 px-4 rounded-xl flex items-center gap-2'>
+           Catalogo
           </button>
         </div>
         </div>

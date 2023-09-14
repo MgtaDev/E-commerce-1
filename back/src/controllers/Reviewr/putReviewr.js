@@ -1,11 +1,11 @@
 const { Reviwers } = require('../../db');
 
-module.exports = async (clienteId, productoId, rating, comentario) => {
+module.exports = async (currentUserId, productId, rating, comentario) => {
     try {
         const clienteReseña = await Reviwers.findOne({
             where: {
-                clienteId: clienteId,
-                productoId: productoId
+                clienteId: currentUserId,
+                productoId: productId
             }
         });
 

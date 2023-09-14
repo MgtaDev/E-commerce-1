@@ -25,6 +25,13 @@ const ClientesTable = () => {
   const [disableTF, setDisableTF] = useState(true);
   const [pageNumber, setPageNumber] = useState(0);
   const numberSize = 10;
+
+  const redirigirAlInicio = () => {
+    window.scrollTo(0, 0);
+  }
+
+
+
   const generatePageNumbers = () => {
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(stateClients?.length / itemsPerPage); i++) {
@@ -47,13 +54,6 @@ const pageNumbers = generatePageNumbers();
   const handlerPageNumber = (index) => {
     setPageNumber(index);
   };
-
-  useEffect (
-    () => {
-      dispatch(clientes())
-    }
-  ,[]);
-  
   console.log(stateClients)
   //Admin
   const makeAdminAlert = (id) => {
@@ -268,6 +268,7 @@ const pageNumbers = generatePageNumbers();
             </tbody>
           </table>
     
+          {/* Pagination Buttons */}
           <div className="flex justify-center py-8">
             <button
               onClick={() => {

@@ -24,7 +24,7 @@ const Container = styled.div`
 
 const LandingPage = () => {
 
-  const stateProducts = useSelector(state => state.Allproducts);
+const stateProducts = useSelector(state => state.Allproducts);
 const [pageNumberNx, setPageNumberNx] = useState(0);
 const numberSize = 20;
 console.log(stateProducts)
@@ -70,7 +70,7 @@ useEffect(
     <>
         <NavBar />
       <Container darkMode={isDarkMode}>
-        <div style={{ height: '500px', overflowX: 'scroll', marginTop: '-2%' }}>
+        <div style={{ height: '500px', overflowX: 'scroll' }}>
           <CarouselMid />
         </div>
         

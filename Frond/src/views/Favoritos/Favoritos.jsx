@@ -53,7 +53,7 @@ const Favoritos = () => {
         </div>
       ) : (
         <div className="text-center p-20 my-8">
-          <button className="text-gray-600 text-xl font-medium">Tu lista de favoritos esta vacia</button>
+          <button className="text-gray-600 text-xl font-medium ">Tu lista de favoritos esta vacia</button>
         </div>
       )}
       <div className='flex flex-row gap-2 mt-10 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>

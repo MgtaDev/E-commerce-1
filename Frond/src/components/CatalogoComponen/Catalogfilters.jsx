@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { brands, colors, sizes, productFilter} from "../../redux/actions";
 
-const Catalogfilters = () => {
+const Catalogfilters = ({products, pageNumber, searchResults}) => {
   const stateProducts = useSelector(state => state.Allproducts);
   const tallas = useSelector((state)=> state.Allsizes)
   const marcas = useSelector((state) => state.Allbrands)
@@ -47,7 +47,7 @@ const Catalogfilters = () => {
       setFilterChanged(true);
     }, [minPrice, maxPrice]);
     
-    const total  = stateProducts.productos?.length * 3;
+    const total  = products?.length;
     
     const handleMultipleOptionChange = (propertyName, optionId) => {
       setSelectedFilters((prevFilters) => {
@@ -105,29 +105,53 @@ const Catalogfilters = () => {
   const handleReset = ()=>{
     window.location.reload();
   }
+  console.log(pageNumber);
 
     return (
-      <div className="grid grid-cols-1 w-4/5 my-10 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start  rounded-md">
-      <h2 className="font-bold text-2xl mb-5">Total <br/> {total} productos</h2>
+      <div className="grid grid-cols-1 w-4/5 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start rounded-md">
+        
+        {searchResults.length ? (
+       <span className="text-sm text-gray-500 rounded-full shadow-lg border-2  px-4 py-2 border-gray-500">{searchResults.length} Resultados</span>
+        )
+      :
+      <>
+        {!productosFiltrados.length ? (
+      <h2 className="font-bold text-2xl mb-5">Pagina {pageNumber === 0 ? '1' : pageNumber === 1 ? '2' : '3'} <br/> <br /> <span className="text-sm rounded-full shadow-lg border-2  px-4 py-2 border-gray-500 text-gray-500 ">{total} Resultados</span></h2>
+      )
+      : <h2 className="font-bold text-2xl mb-5">Pagina {pageNumber === 0 ? '1' : pageNumber === 1 ? '2' : '3'} <br/> <br /> <span className="text-sm text-gray-500 rounded-full shadow-lg border-2  px-4 py-2 border-gray-500">{productosFiltrados.length} Resultados</span></h2>
+        }
+      </>
+      }   
     
-      {/* Talla */}
+      {/* Botón RESET */}
+      <div className="flex justify-center">
+        <button
+          className="px-8 py-2 mt-5 font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-all duration-300"
+          onClick={handleReset}
+        >
+          RESET
+        </button>
+      </div>
+      <br />
+
+      {/* Categorias */}
       <div>
-        <h3 className="font-bold mb-2">Talla</h3>
+        <h3 className="font-bold mb-2">Categorías</h3>
         <ul>
-          {tallas &&
-            tallas.map(talla => {
-              const tallaNumber = extractNumber(talla.id);
+          {categorias &&
+            categorias.map(categoria => {
+              const categoriaNumber = extractNumber(categoria.id);
               return (
-                <li key={talla.id} className="flex items-center mb-2">
+                <li key={categoria.id} className="flex items-center mb-2">
                   <input
                     className="mr-2"
                     type="checkbox"
-                    checked={selectedFilters.tamañoId.includes(tallaNumber)}
+                    checked={selectedFilters.categoriaId.includes(categoriaNumber)}
                     onChange={() =>
-                      handleMultipleOptionChange("tamañoId", tallaNumber)
+                      handleMultipleOptionChange("categoriaId", categoriaNumber)
                     }
                   />
-                  <span>{talla.name}</span>
+                  <span>{categoria.name}</span>
                 </li>
               );
             })}
@@ -157,25 +181,25 @@ const Catalogfilters = () => {
             })}
         </ul>
       </div>
-    
-      {/* Categorias */}
+
+      {/* Talla */}
       <div>
-        <h3 className="font-bold mb-2">Categorías</h3>
+        <h3 className="font-bold mb-2">Talla</h3>
         <ul>
-          {categorias &&
-            categorias.map(categoria => {
-              const categoriaNumber = extractNumber(categoria.id);
+          {tallas &&
+            tallas.map(talla => {
+              const tallaNumber = extractNumber(talla.id);
               return (
-                <li key={categoria.id} className="flex items-center mb-2">
+                <li key={talla.id} className="flex items-center mb-2">
                   <input
                     className="mr-2"
                     type="checkbox"
-                    checked={selectedFilters.categoriaId.includes(categoriaNumber)}
+                    checked={selectedFilters.tamañoId.includes(tallaNumber)}
                     onChange={() =>
-                      handleMultipleOptionChange("categoriaId", categoriaNumber)
+                      handleMultipleOptionChange("tamañoId", tallaNumber)
                     }
                   />
-                  <span>{categoria.name}</span>
+                  <span>{talla.name}</span>
                 </li>
               );
             })}
@@ -187,6 +211,7 @@ const Catalogfilters = () => {
         <h3 className="font-bold mb-2">Precios</h3>
         <div className="grid grid-cols-5 mb-2">
           <div className="col-span-2">
+          <p className="text-sm font-bold">Desde</p>
             <input
               label="precio"
               placeholder="min"
@@ -203,6 +228,7 @@ const Catalogfilters = () => {
             -
           </div>
           <div className="col-span-2">
+          <p className="text-sm font-bold">Hasta</p>
             <input
               label="precio"
               placeholder="max"
@@ -218,15 +244,7 @@ const Catalogfilters = () => {
         </div>
       </div>
     
-      {/* Botón RESET */}
-      <div className="flex justify-center">
-        <button
-          className="px-8 py-2 mt-5 font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-all duration-300"
-          onClick={handleReset}
-        >
-          RESET
-        </button>
-      </div>
+ 
     </div>
     );
   };

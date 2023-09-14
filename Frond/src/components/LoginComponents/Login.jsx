@@ -13,9 +13,7 @@ const LoginButton = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <p>Cargando...</p>
-      </div>
+      <div className="spinner border-t-4 border-purple-800 rounded-full h-10 w-10 ml-4 "></div>
     );
   }
 
@@ -41,9 +39,23 @@ const LoginButton = () => {
     {isAuthenticated ? (
       <div></div>
     ) : (
-      <button className="mr-2" onClick={handleLogin}>
-        <strong>Iniciar Sesión</strong>
-      </button>
+      <>
+         <button onClick={handleLogin} className="purpleSet hover:purpleSet text-white font-bold py-2 px-4 rounded-full">
+            <strong>Iniciar Sesión</strong>
+          </button> 
+          
+          <button
+          style={{
+            backgroundColor: '#ffffff',
+            color: '#6d016e',
+            border: '2px solid #6d016e' 
+          }}
+          className="text-black hover:border-purpleSet ml-3 font-bold py-2 px-4 rounded-full"
+        >
+          <strong>Registrarse</strong>
+          </button>
+            </>
+    
     )}
   </>
   )

@@ -51,21 +51,29 @@ const Products = () => {
   const categorias = useSelector((state) => state.Allcategories)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const redirigirAlInicio = () => {
+    window.scrollTo(0, 0);
+  }
+
   const filterByCategories = (event) => {
     const categoryToFilter = event.target.name
     switch (categoryToFilter) {
      case 'maquillaje':
       navigate('/catalogo')
+      redirigirAlInicio()
       dispatch(productFilter({categoriaId: [1]}))
        break;
  
      case 'skinCare':
        navigate('/catalogo')
+       redirigirAlInicio()
        dispatch(productFilter({categoriaId: [2]}))
        break;
  
      case 'accesorios':
        navigate('/catalogo')
+       redirigirAlInicio()
        dispatch(productFilter({categoriaId: [3]}))
        break;
        
@@ -78,19 +86,18 @@ const Products = () => {
 return (
   <><H1>Descubre nuestras categorias</H1><CardContainer>
 
-    <Card>
-    <Img src={Maquillaje} alt="img" />
-    <h2 className='absolute m-6 text-white text-4xl font-bold'>Maquillaje</h2>
-    <button  name='maquillaje' onClick={filterByCategories} style={{ backgroundColor: 'rgb(109, 1, 110)' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white " type="submit">
-            Ver mas
-          </button>
-
-    </Card>
+   <Card>
+  <Img src={Maquillaje} alt="img" />
+  <h2 className='absolute m-6l text-gray-700 text-4xl font-bold' style={{ right: '3.6rem' ,marginTop:'5rem' }}>Maquillaje</h2>
+  <button name='maquillaje' onClick={filterByCategories} style={{ backgroundColor: 'rgb(109, 1, 110)', position: 'absolute', bottom: '8rem', right: '5rem' }} class="h-10 px-10 font-semibold rounded-md text-white" type="submit">
+    Ver mas
+  </button>
+</Card>
 
     <Card>
     <Img src={Skincare} alt="img" />
-    <h2 className='absolute m-6 text-white text-4xl font-bold'>Skincare</h2>
-    <button  name='skinCare' onClick={filterByCategories}  style={{ backgroundColor: 'rgb(109, 1, 110)' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white" type="submit">
+    <h2 className='absolute m-6 text-gray-700 text-4xl font-bold' style={{ right: '3.6rem' ,marginTop:'5rem' }}>Skincare</h2>
+    <button  name='skinCare' onClick={filterByCategories}  style={{ backgroundColor: 'rgb(109, 1, 110)', position: 'absolute', bottom: '8rem', right: '5rem' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white" type="submit">
             Ver mas
           </button>
 
@@ -99,8 +106,8 @@ return (
 
     <Card>
     <Img src={Accesorios} alt="img" />
-    <h2 className='absolute m-6 text-white text-4xl font-bold'>Accesorios</h2>
-    <button  name='accesorios' onClick={filterByCategories}   style={{ backgroundColor: 'rgb(109, 1, 110)' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white" type="submit">
+    <h2 className='absolute m-6 text-gray-700 text-4xl font-bold' style={{ right: '3.6rem' ,marginTop:'7rem' }}>Accesorios</h2>
+    <button  name='accesorios' onClick={filterByCategories}   style={{ backgroundColor: 'rgb(109, 1, 110)', position: 'absolute', bottom: '8rem', right: '5rem' }} class="absolute h-10 px-10 font-semibold rounded-md  mt-20 ml-10 text-white" type="submit">
             Ver mas
           </button>
 

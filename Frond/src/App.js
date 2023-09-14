@@ -72,7 +72,7 @@ function App () {
          }
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/categorias" element={<Products />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/catalogo" element={<Catalogo />} />
@@ -81,7 +81,6 @@ function App () {
         <Route path="/form" element={<Form />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/favoritos" element={<Favoritos />} />
-        {/* Esta era la ruta anterior <Route path="/catalogo/detail/:id" element={<Detail />} /> */}
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/itemadded/:id" element={<AddToCart />} />
         <Route path="/carrito/:id" element={<Carrito />} />
@@ -100,8 +99,8 @@ function App () {
 
 
       </Routes>
-      <div className="chatbot-container flex fixed bottom-0 w-20 right-0 m-2 p-4 rounded-full hover:opacity-75 cursor-pointer">
-      <img onClick={()=> sendWhatsappMessage()} className="w-20" src={WhatsappIcon} alt=""/>
+      <div className="flex fixed bottom-0 w-20 right-0 m-2 p-4 rounded-full cursor-pointer">
+      <img onClick={()=> sendWhatsappMessage()} className="w-20 hover:transform hover:scale-110" src={WhatsappIcon} alt=""/>
       </div>
       {
             location.pathname !== "/" ? <Footer /> : null

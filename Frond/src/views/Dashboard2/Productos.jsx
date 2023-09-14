@@ -344,7 +344,7 @@ const ProductosTable = () => {
           <tr className="text-gray-600">
             <th className="border-0 px-6 py-4 font-bold">ID</th>
             <th className="border-0 px-6 py-4 font-bold">Nombre</th>
-            <th className="border-0 px-6 py-4 font-bold">Stock</th>
+            <th className="border-0 px-6 py-4 font-bold">Inventario</th>
             <th className="border-0 px-6 py-4 font-bold">Estado</th>
             <th className="border-0 px-6 py-4 font-bold">Editar</th>
             <th className="border-0 px-6 py-4 font-bold">Borrar</th>

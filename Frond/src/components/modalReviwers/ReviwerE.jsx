@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StarRatings from 'react-star-ratings';
 import axios from 'axios';
 
-export default function EditReviewModal({ reviewId, initialRating, initialComentario }) {
+export default function EditReviewModal({ currentUserId, productId , initialRating, initialComentario }) {
     const [showModal, setShowModal] = useState(false);
     const [newRating, setNewRating] = useState(initialRating);
     const [newComentario, setNewComentario] = useState(initialComentario);
@@ -17,7 +17,7 @@ export default function EditReviewModal({ reviewId, initialRating, initialComent
 
     const handleSaveChanges = async () => {
         try {
-            const response = await axios.put(`http://localhost:3001/reviewr/${reviewId}`, {
+            const response = await axios.put(`http://localhost:3001/reviewr/${productId}/${currentUserId}`, {
                 rating: newRating,
                 comentario: newComentario
             });
@@ -25,14 +25,14 @@ export default function EditReviewModal({ reviewId, initialRating, initialComent
 
             setShowModal(false);
         } catch (error) {
-            console.error('Error al editar la reseña:', error.message);
+            console.error('Error al editar la reseña:', error.data);
         }
     }
 
     return (
         <>
         <button
-          className="bg-purple-400 text-white hover:bg-gray-500 text-gray-900 font-semibold py-2 px-4 rounded-md"
+          className="bg-customColor text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           onClick={() => setShowModal(true)}
         >
           Editar reseña

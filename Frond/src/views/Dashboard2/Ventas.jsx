@@ -8,7 +8,7 @@ const VentasTable = () => {
   const stateVentas = useSelector(state => state.Allventas);
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedPage, setSelectedPage] = useState(1)
-  const [itemsPerPage] = useState(2)
+  const [itemsPerPage] = useState(5)
   const lastSale = currentPage * itemsPerPage;
   const firtsSale = lastSale - itemsPerPage
   const currentSales = stateVentas?.slice(firtsSale,lastSale)
@@ -72,15 +72,13 @@ const pageNumbers = generatePageNumbers();
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
 
-            { !currentSales 
-            ? ''
-            : currentSales?.map((venta, index) => (
+            {currentSales.map((venta, index) => (
               <tr key={venta.cliente + venta.fecha} className="border-t">
                 <td className="px-6 text-center py-10">#00{index}</td>
                 <td className="px-6 text-center py-10">{venta.clienteName}</td>
-                <td className="px-6 text-center py-10">{venta.productoName}</td>
+                <td className="px-6 text-center capitalize py-10">{venta.productoName}</td>
                 <td className="px-6 text-center py-10">$ {venta.productoPrecio * venta.cantidad}</td>
-                <td className="px-6 text-center py-10">{venta.cantidad} und</td>
+                <td className="px-6 text-center py-10">{venta.cantidad} {venta.cantidad === 1 ? 'unidad' : 'unidades'}</td>
                 <td className="px-6 text-center py-10">{venta.fechaCompra.split(',')[0]}</td>
                 <td className="px-6 text-center py-10">
                 <button

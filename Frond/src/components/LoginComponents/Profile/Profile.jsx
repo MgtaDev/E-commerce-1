@@ -82,10 +82,10 @@ const Profile = () => {
     };
   }, []);
 
-  if (!isAuthenticated) {
-    return <div className={style.unloguedUser}><FaUser/></div>;
-  }
-
+   // eslint-disable-next-line no-lone-blocks
+   {!isAuthenticated
+    && ( <div className={style.unloguedUser}><FaUser/></div>)
+    }
   return (
     isAuthenticated && (
       <div className="relative flex items-center" ref={ref}>

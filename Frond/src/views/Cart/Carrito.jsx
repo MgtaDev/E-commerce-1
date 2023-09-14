@@ -3,15 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { emptyCartLS, addCartLSToApi, deleteArtLS, deleteArtAPI } from "../../redux/actions"
 import { NavLink, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import axios, { all } from "axios";
+import axios  from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import LastBuyedSlider from "../../components/Last Buyed/lastBuyedSlider";
+import { useSpring } from "react-spring";
 
 const Carrito = () => {
+    const [show, setShow] = useState(false);
+    const fadeIn = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { duration: 500 },
+        delay: 200,
+        onRest: () => setShow(true)
+      });
+    
+      const slideIn = useSpring({
+        from: { transform: "translateY(20px)", opacity: 0 },
+        to: { transform: "translateY(0px)", opacity: show ? 1 : 0 },
+        config: { duration: 500 },
+        delay: 500,
+      });
     const dispatch = useDispatch();
     const [apicart, setApicart] = useState([]); 
     const { user, isAuthenticated, isLoading } = useAuth0();
     const usuarios = useSelector((state) => state.Allclients);
-  const currentUser = usuarios.find(
+    const currentUser = usuarios.find(
     (usuario) =>
       !isLoading &&
       user &&
@@ -28,16 +45,7 @@ const Carrito = () => {
     const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
     const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
 
-    // const [userInfo, setUserInfo] = useState({
-    //     nombre: '',
-    //     apellido: '',
-    //     correoElectronico: '',
-    //     numeroTelefono: '',
-    //     ciudad: '',
-    //     provincia: '',
-    //     codigoPostal: '',
-    //     contraseña: ''
-    // });
+
 
     useEffect(() => {
         if (isAuthenticated) {          
@@ -57,7 +65,7 @@ const Carrito = () => {
         }
       }, [NumUserId, isAuthenticated]);
       
-    const cartLS = useSelector(state => state.localCart); console.log("cartLS", cartLS);
+    const cartLS = useSelector(state => state.localCart); 
 
     const cartUnif = (cart) => {
         const countMap = {};
@@ -141,9 +149,9 @@ const Carrito = () => {
     quantity: product.cantidad,
     })); console.log("productsToPay", productsToPay);
 
-      const handleProceedToPayment = async () => {
+    const handleProceedToPayment = async () => {
         if (!isAuthenticated) {
-          Swal.fire("Debes iniciar sesión para continuar", "error", "error");
+          Swal.fire("Debes iniciar sesión para continuar", "", "error");
           return;
         }
         if (
@@ -155,21 +163,14 @@ const Carrito = () => {
           Swal.fire("Completa tu información de perfil antes de continuar", "", "error");
           return;
         }
-
-    //     axios
-    //       .post("bonitaandlovely-production-a643.up.railway.app/pagoCarrito", productsToPay)
-    //       .then((res) => (window.location.href = res.data.response.body.init_point));
-    //   };
     try {
-    
-       
-        // Si el carrito fue actualizado correctamente, proceder al pago
-        const response = await axios.post("http://localhost:3001/pago", productsToPay);
+
+        const response = await axios.post("http://localhost:3001/pagoCarrito", productsToPay);
         window.location.href = response.data.response.body.init_point;
         
         // Marcar el carrito como pagado
         if(response){
-          axios.put(`http://localhost:3001/carrito/pagado/${NumUserId}`, { pagado: true });
+          axios.put(`http:localhost:3001/carrito/pagado/${NumUserId}`, { pagado: true });
         }
     
         
@@ -178,17 +179,15 @@ const Carrito = () => {
       }
     };
 
-  
-
 
     return (
         <>
             <div className="grid grid-cols-3 gap-6 mx-10 mt-6">
 
                 <div className="col-span-2">
-                    {cartApi || cartUnificado.productos ? ( 
+                    {cartApi.productos?.length || cartUnificado.length ? ( 
                         <div>
-                            {isAuthenticated && cartApi.productos ? (
+                            { cartApi.productos ? (
                                 cartApi.productos.map((item, index) =>(
                                     <div key={index} className="flex flex-col items-center justify-between p-4 rounded-lg bg-white shadow-sm mb-4">
                                         <div className="flex items-center justify-between w-full">
@@ -205,7 +204,7 @@ const Carrito = () => {
                                             </div>
                                             <div className="w-32 text-right font-medium">
                                                 <div className="text-xs text-gray-500">Costo</div>
-                                                {item.precio_venta * item.cantidad}
+                                                {item.precio_venta * item.cantidad} $
                                             </div>
                                             <button
                                                 onClick={() => handleDeleteArtAPI(item)}
@@ -216,9 +215,9 @@ const Carrito = () => {
                                         </div>
                                     </div>
                                 ))
-                            ) : (
+                            ) : ( cartUnificado.length ?
                                 cartUnificado.map((item, index) => (
-                                    <div key={index} className="flex flex-col items-center justify-between p-4 rounded-lg bg-white shadow-sm mb-4">
+                                    <div key={item.objeto.id} className="flex flex-col items-center justify-between p-4 rounded-lg bg-white shadow-sm mb-4">
                                         <div className="flex items-center justify-between w-full">
                                             <img src={item.objeto.imagenPrincipal} alt="fotoProducto" className="w-16 h-16 object-cover border-2 border-indigo-200 rounded-full" />
                                             <div className="ml-4 w-40">
@@ -232,7 +231,7 @@ const Carrito = () => {
                                             </div>
                                             <div className="w-32 text-right font-medium">
                                                 <div className="text-xs text-gray-500">Costo</div>
-                                                {item.objeto.precio_venta * item.cantidad}
+                                                {item.objeto.precio_venta * item.cantidad} $
                                             </div>
                                             <button
                                                 onClick={() => handleDeleteArtLS(item)}
@@ -243,14 +242,15 @@ const Carrito = () => {
                                         </div>
                                     </div>
                                 ))
+                                : 'Algo pasa'
                             )}                                                                    
                         </div>
                     ) : (
-                        <div className="flex items-center justify-center p-4 rounded-lg bg-fuchsia-50">
+                        <div className="flex items-center justify-center mt-40 text-xl">
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
                         </div>
                     )}
-                    {cartUnificado.length>0 && !isAuthenticated ?(
+                    {cartUnificado.length > 0 && !isAuthenticated ?(
                     <button onClick={() => handleEmptyCart()} className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100">
                       Limpiar carrito
                       </button>
@@ -262,18 +262,18 @@ const Carrito = () => {
                         <h2 className="font-bold text-gray-800 mb-4">Resumen de Compra</h2>
 
                         <div className="flex items-center justify-between mb-4">
-                            <div className="text-gray-800 font-medium">Arts. ({totalArts || 0})</div>
-                            <div className="text-gray-800">{totalProd || 0}</div>
+                            <div className="text-gray-800 font-medium">Articulos ({totalArts || 0})</div>
+                            <div className="text-gray-800">{totalProd || 0} $</div>
                         </div>
 
                         <div className="flex items-center justify-between mb-4">
                             <div className="text-gray-800 font-medium">Envio</div>
-                            <div className="text-gray-800">0</div>
+                            <div className="text-gray-500 text-sm">Consultar con su proveedor</div>
                         </div>
 
                         <div className="flex items-center justify-between mb-4">
                             <div className="font-bold text-gray-800">Total</div>
-                            <div className="font-bold text-gray-800">{totalProd || 0}</div>
+                            <div className="font-bold text-gray-800">{totalProd || 0} $</div>
                         </div>
 
                         <button
@@ -289,12 +289,15 @@ const Carrito = () => {
 
                     <div className="mt-6 flex justify-center">
                         <NavLink to="/catalogo">
-                            <button style={{ backgroundColor: 'rgb(109, 1, 110)' }} className="transition duration-300 rounded-md py-2 px-4 text-white font-medium w-full">
+                            <button  className="transition bg-gray-400 duration-300 rounded-md py-2 px-4 text-white font-medium w-full">
                                 Agregar articulos
                             </button>
                         </NavLink>
                     </div>
                 </div>
+            </div>
+            <div className='flex flex-row gap-2 mt-10 m-10 rounded-lg p-10  justify-center items-center'>
+                <LastBuyedSlider/>
             </div>
         </>
     )

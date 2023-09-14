@@ -1,11 +1,13 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import user1 from "../../assets/img/1.png";
-import user2 from "../../assets/img/2.png";
-import user3 from "../../assets/img/3.png";
-import user4 from "../../assets/img/4.png";
-import user5 from "../../assets/img/5.png";
-import user6 from "../../assets/img/5.png";
+import user1 from "../../assets/img/images.jpeg";
+import user2 from "../../assets/img/images3.jpeg";
+import user3 from "../../assets/img/images 6.jpeg";
+import user4 from "../../assets/img/images 2.jpeg";
+import user5 from "../../assets/img/images 1.jpeg";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Reviews = () => {
   const reviews = [
@@ -43,49 +45,75 @@ const Reviews = () => {
       text: "Todo perfecto!! Voy a volver a comprar.",
       user: user5,
       name: "Mark"
-    },
-    {
-      date: "19/07/2023",
-      rating: 5,
-      text: "Recomendado al 100%!",
-      user: user6,
-      name: "Olivia"
     }
   ];
+
+  const settings = {
+    // dots: true,
+    arrows: true,
+    infinite: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    rtl: true, // Propiedad rtl para dirección opuesta
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          arrows: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        }
+      }
+    ]
+  };
 
   return (
     <div className="px-5 py-10 bg-gray-light">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-10">Calificaciones de nuestros clientes</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-12">
+        <Slider {...settings}>
           {reviews.map((review, index) => (
-            <div key={index} className="p-5 flex flex-col rounded-lg border border-gray bg-white">
-              <div className="flex items-center mb-3">
-                <img src={review.user} alt="" className="w-8 h-8 object-cover mx-auto rounded-full mr-3" />
-                <div>
-                  <h3 className="text-xl font-medium">{review.name}</h3>
-                  <span className="text-gray-darker text-sm">{review.date}</span>
+            <div key={index}>
+              <div className="p-5 mb-5 rounded-lg border border-gray bg-white" style={{ maxWidth: "350px" }}>
+                <div className="flex items-center mb-3">
+                  <img src={review.user} alt="" className="w-12 h-12 object-cover rounded-full mr-3" />
+                  <div className="flex flex-col">
+                    <h3 className="text-xl font-medium">{review.name}</h3>
+                    <span className="text-sm text-gray-darker">{review.date}</span>
+                  </div>
                 </div>
+                <div className="flex items-center mb-3">
+                  {[...Array(5)].map((star, index) => {
+                    const ratingValue = index + 1;
+                    return (
+                      <label key={index}>
+                        <input type="radio" name="review" value={ratingValue} className="hidden" />
+                        <FaStar
+                          size="1.25em"
+                          className="cursor-pointer hover:text-yellow-400"
+                          color={ratingValue <= review.rating ? "#ffc107" : "#e4e5e9"}
+                        />
+                      </label>
+                    );
+                  })}
+                </div>
+                <p className="text-lg text-gray-darker">{review.text}</p>
               </div>
-              <div className="flex items-center mb-3">
-                {[...Array(5)].map((star, index) => {
-                  const ratingValue = index + 1;
-                  return (
-                    <label key={index}>
-                      <input type="radio" name="review" value={ratingValue} className="hidden" />
-                      <FaStar
-                        size="1.25em"
-                        className="cursor-pointer hover:text-yellow-400"
-                        color={ratingValue <= review.rating ? "#ffc107" : "#e4e5e9"}
-                      />
-                    </label>
-                  );
-                })}
-              </div>
-              <p className="text-gray-darker text-lg mb-5">{review.text}</p>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </div>
   );

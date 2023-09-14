@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 /* Install pure-react-carousel using -> npm i pure-react-carousel */
 
 const MoreProductsCardContainer = () => {
+  const redirigirAlInicio = () => {
+    window.scrollTo(0, 0);
+  }
   const dispatch = useDispatch()
   const stateProducts = useSelector(state => state.Allproducts);
   const numberSize = 20;
@@ -27,15 +30,17 @@ const MoreProductsCardContainer = () => {
   const navigate = useNavigate()
   const goCatalog = () => {
     navigate('/catalogo')
+    redirigirAlInicio()
   }
 
   const navigateProductDetail = (id) => {
     navigate(`/detail/${id}`)
+    redirigirAlInicio()
   }
 
   return (
     <div className="container w-full">
-      <h2 onClick={goCatalog} className="bg-customColor m-2 font-semibold inline-block text-white ml-10 py-1 px-4 items-center gap-2"> Más productos </h2>
+      <h2 onClick={goCatalog} className="purpleSet m-2 cursor-pointer font-semibold inline-block text-white ml-10 py-1 px-4 items-center gap-2 rounded-lg"> Más productos </h2>
       <div className="flex items-center justify-center w-full h-full py-24 sm:py-8 px-">
         {/* Carousel for desktop and large size devices */}
         <CarouselProvider className="lg:block hidden" naturalSlideWidth={100} isIntrinsicHeight={true} totalSlides={12} visibleSlides={4} step={1} infinite={true}>
@@ -51,7 +56,7 @@ const MoreProductsCardContainer = () => {
           {stateProducts.productos.sort((a, b) => b.precio_venta - a.precio_venta).map((product, index) => (
             <Slide index={index} key={index}>
                <div
-      className="flex flex-shrink-0 relative w-full sm:w-auto"
+      className="flex flex-shrink-0 relative cursor-pointer w-full sm:w-auto"
       onMouseOver={(e) => e.currentTarget.querySelector('.overlay').classList.remove('opacity-0')}
       onMouseOut={(e) => e.currentTarget.querySelector('.overlay').classList.add('opacity-0')}
       onClick={() => navigateProductDetail(product.id)}

@@ -4,7 +4,7 @@
     margin: 0 1rem;
     cursor: pointer;
     margin-bottom: -.7rem;
-    border: 3px solid rgb(56, 192, 108);
+    border: 3px solid rgb(59, 221, 41);
 }
 .imgProfile:hover{
     transform: translateY(-0.2rem);
@@ -13,9 +13,10 @@
 }
 
 .off{
-    width: 20px;
-    opacity: 70%;
-    margin: 1rem;
+    width: 23px;
+    opacity: 80%;
+    margin: 1rem 0 1rem 1rem;
+;
 }
 .unloguedUser{
     margin: 1rem;
@@ -29,5 +30,6 @@
     width: 100px;
     border-radius: 50%;
     margin-left: 2.8rem;
+    border: 3px solid rgb(59, 221, 41);
 }
 

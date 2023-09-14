@@ -29,14 +29,14 @@ router.get('/' , async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    const { clienteId, productoId, rating, comentario } = req.body;
+    const { currentUserId, productId, rating, comentario } = req.body;
 
-    if (!clienteId || !productoId || !rating || !comentario) {
+    if (!currentUserId || !productId || !rating || !comentario) {
         return res.status(400).json({ error: 'Faltan propiedades en la solicitud.' });
     }
 
     try {
-        const nuevaReseña = await postReviewr(clienteId, productoId, rating, comentario);
+        const nuevaReseña = await postReviewr(currentUserId, productId, rating, comentario);
         res.status(201).json(nuevaReseña);
     } catch (error) {
         console.error('Error al agregar la reseña:', error.message);
@@ -46,13 +46,13 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:productoId/:clienteId', async (req, res) => {
-    const {productoId, clienteId} = req.params;
+    const {productId, currentUserId} = req.params;
     const {rating, comentario} = req.body;
     try{
-        const reseñaActual = await putReviewr(clienteId, productoId, rating, comentario)
+        const reseñaActual = await putReviewr(currentUserId, productId, rating, comentario)
         res.status(200).json(reseñaActual)
     }catch(error){
-        console.error('Error al actualizar la reseña:', error.message);
+        console.error('Error al actualizar la reseña:', error);
         res.status(500).json({ error: 'Ha ocurrido un error al actualizar la reseña: ' + error.message });
     }
 });
