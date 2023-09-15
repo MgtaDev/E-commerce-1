@@ -250,7 +250,7 @@ const Carrito = () => {
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
                         </div>
                     )}
-                    {cartUnificado.length > 0 && cartApi.productos?.length > 0 ?(
+                    {cartUnificado.length > 0  && !isAuthenticated ?(
                     <button onClick={() => handleEmptyCart()} className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100">
                       Limpiar carrito
                       </button>
