@@ -36,7 +36,7 @@ const Navbar = ({ initialLanguage }) => {
   const hideCategories = () => {
     setIsOpen(false);
   };
-  const showSub = () => {
+  const showSube = () => {
     setIsOpenSub(true);
   };
   const hideSub = () => {
