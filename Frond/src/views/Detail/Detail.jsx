@@ -51,7 +51,7 @@ const Detail = () => {
 
   const handleProceedToPayment = async () => {
     if (!isAuthenticated) {
-      Swal.fire("Debes iniciar sesión para continuar", "error", "error");
+      Swal.fire("Debes iniciar sesión para continuar", "", "error");
       return;
     }
     if (

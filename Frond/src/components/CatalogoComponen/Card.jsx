@@ -7,6 +7,9 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const Card = ({ id, name, precio, imagenPrincipal }) => {
+  const redirigirAlInicio = () => {
+    window.scrollTo(0, 0);
+  }
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
@@ -97,6 +100,7 @@ const addToCart = () => {
           src={imagenPrincipal}
           alt={name}
           className="w-full h-48 object-cover rounded-md"
+          onClick={()=> redirigirAlInicio()}
         />
       </Link>
       <div className="flex justify-between items-center mt-4">

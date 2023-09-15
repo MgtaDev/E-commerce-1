@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { brands, colors, sizes, productFilter} from "../../redux/actions";
+import Swal from "sweetalert2";
 
 const Catalogfilters = ({products, pageNumber, searchResults}) => {
   const stateProducts = useSelector(state => state.Allproducts);
@@ -99,13 +100,16 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
     } else if (filterChanged) {
       dispatch(productFilter(selectedFilters));
       setFilterChanged(false);
-    } 
+  } 
+
   }, [selectedFilters, filterChanged]);
   
   const handleReset = ()=>{
     window.location.reload();
   }
   console.log(pageNumber);
+
+
 
     return (
       <div className="grid grid-cols-1 w-4/5 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start rounded-md">
@@ -150,6 +154,7 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
                     onChange={() =>
                       handleMultipleOptionChange("categoriaId", categoriaNumber)
                     }
+                  
                   />
                   <span>{categoria.name}</span>
                 </li>

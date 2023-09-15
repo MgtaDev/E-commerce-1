@@ -45,6 +45,7 @@ const LoginButton = () => {
           </button> 
           
           <button
+          onClick={handleLogin}
           style={{
             backgroundColor: '#ffffff',
             color: '#6d016e',

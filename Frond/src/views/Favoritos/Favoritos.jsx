@@ -10,8 +10,8 @@ const Favoritos = () => {
   const favoritosAPI = useSelector((state) => state.favorites);
   const { user, isAuthenticated } = useAuth0();
   const categorias = useSelector((state) => state.Allcategories);
-
   const favoritos = isAuthenticated ? favoritosAPI : favoritosLS;
+  console.log(user);
 
   const saludo = () => {
     return (
@@ -22,7 +22,7 @@ const Favoritos = () => {
             tus productos Favoritos:
           </h1>
         ) : (
-          <h1>Estos son tus productos Favoritos</h1>
+          <h1 className="mx-16 my-4">Estos son tus productos Favoritos</h1>
         )}
       </div>
     );

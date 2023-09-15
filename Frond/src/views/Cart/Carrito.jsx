@@ -250,7 +250,7 @@ const Carrito = () => {
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
                         </div>
                     )}
-                    {cartUnificado.length > 0 && !isAuthenticated ?(
+                    {cartUnificado.length > 0 && cartApi.productos?.length > 0 ?(
                     <button onClick={() => handleEmptyCart()} className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100">
                       Limpiar carrito
                       </button>
@@ -289,7 +289,7 @@ const Carrito = () => {
 
                     <div className="mt-6 flex justify-center">
                         <NavLink to="/catalogo">
-                            <button  className="transition bg-gray-400 duration-300 rounded-md py-2 px-4 text-white font-medium w-full">
+                            <button  className="transition bg-gray-800 duration-300 rounded-md py-2 px-4 text-white font-medium w-full">
                                 Agregar articulos
                             </button>
                         </NavLink>

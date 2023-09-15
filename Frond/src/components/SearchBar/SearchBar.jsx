@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import loupe from '../../assets/img/Loupe.svg';
 import styled from 'styled-components';
 import { getProductByName } from '../../redux/actions';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import LandingPage from '../../views/LandingPage/LandingPage';
 
 //Styled components
 const FormSearchBar = styled.form`
@@ -88,6 +89,7 @@ const CustomDatalist = styled.ul`
 `;
 
 const SearchBar = ({ placeholder }) => {
+  const location = useLocation()
   const dispatch = useDispatch();
   const [inputText, setInputText] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -135,6 +137,8 @@ const SearchBar = ({ placeholder }) => {
     };
   }, []);
 
+
+
   return (
     <>
       <FormSearchBar onSubmit={handleSubmit} ref={formRef}>
@@ -152,8 +156,11 @@ const SearchBar = ({ placeholder }) => {
                 className="capitalize text-black-600"
                 key={option.id}
                 value={option.name}
-                onClick={() => {
-                  setInputText(option.name);
+                onClick={ async () => {
+                  await setInputText(option.name);
+                  await navigate('/catalogo')
+                  dispatch(getProductByName(inputText));
+                  
                   setOptions([]);
                 }}
               >
@@ -161,6 +168,11 @@ const SearchBar = ({ placeholder }) => {
               </li>
             ))}
           </CustomDatalist>
+        )}
+        {inputText.length > 0 && (
+        <button onClick={()=>{
+          setInputText('')
+        }} className='mb-1'>x</button>
         )}
         <button type="submit">
           <img src={loupe} alt="seeker" />

@@ -156,12 +156,7 @@ const Catalogo = () => {
           </div>
           <div className="col-span-4 py-2 px-0 pr-20">
             {searchResults.length  || productosFiltrados.length? (
-              <div className="flex flex-row">
-              <div className="m-8 text-3xl flex flex-row font-bold text-gray-700 text-center">{productosFiltrados[0]?.categoriaId === 1 ? 'Maquillaje' : productosFiltrados[0]?.categoriaId === 2 ? 'Skincare' : productosFiltrados[0]?.categoriaId === 3 ? 'Accesorios' : ''}</div>
-              {productosFiltrados[36]?.categoriaId === 2 ? (
-              <div className="mt-8 relative r-4 text-3xl font-bold text-gray-700  "> & Skincare</div>
-              ):''}
-              </div>
+              ''
             ) : (
               <animated.div style={buttonsSlideIn}>
                 <div className="flex justify-center py-10">
