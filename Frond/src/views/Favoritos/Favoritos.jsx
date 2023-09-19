@@ -34,10 +34,10 @@ const Favoritos = () => {
       {saludo()}
       {favoritos?.length ? (
         <div className="mx-24 my-8">
-          <div className="flex flex-row flex-wrap justify-center">
+          <div className="grid md:grid-cols-1 lg:grid-cols-1 grid-auto-rows grid-rows-1 gap-5 ">
             {favoritos.map(({ id, imagenPrincipal, name, descripcion, precio_venta }) => {
               return (
-                <div className="w-80 justify-around p-3">
+                <div className="grid md:grid-cols-1 lg:grid-cols-1 grid-auto-rows grid-rows-1 gap-5">
                   <Card
                     id={id}
                     key={id}

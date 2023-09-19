@@ -7,7 +7,7 @@ import GmailLogo from './assets/gmail.png'
 import code from './assets/Code.png'
 
 
-import Dani from './assets/MIFOTO.jpeg'
+import Dani from './assets/ProfilePic.png'
 import Iveth from './assets/IvethDev.jpeg'
 import Nat from './assets/NatDev.jpeg'
 import Nahuel from './assets/NahuelDev.png'

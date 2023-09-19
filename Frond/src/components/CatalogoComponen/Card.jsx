@@ -94,39 +94,41 @@ const addToCart = () => {
     "inline-block mr-2 -mt-1 text-xl text-white group-hover:text-gray-100 transition-colors duration-300";
 
   return (
-    <div className="relative px-4 py-5 bg-white border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-gray-100">
+    <div className="relative flex-row px-4 py-5 bg-white border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-gray-100">
+    <div className="relative flex flex-row items-center">
       <Link to={`/detail/${id}`}>
         <img
           src={imagenPrincipal}
           alt={name}
           className="w-full h-48 object-cover rounded-md"
-          onClick={()=> redirigirAlInicio()}
+          onClick={() => redirigirAlInicio()}
         />
       </Link>
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex flex-col ml-4 justify-center flex-grow">
         <h3 className="text-xl leading-tight font-semibold capitalize text-gray-800">
           {name}
         </h3>
-        <button
-          className={`relative group p-2 ml-2 ${
-            isFavorite ? "text-red-500 font-bold" : "text-gray-400"
-          }`}
-          onClick={handleFavoriteClick}
-        >
-          <AiFillHeart className="text-xl transition duration-300 ease-in-out group-hover:text-red-400" />
-        </button>
+        <div className="flex items-center mt-2">
+          <p className="text-gray-500 text-sm">${precio}</p>
+          <button
+            className={`relative group p-2 ml-2 ${
+              isFavorite ? "text-red-500 font-bold" : "text-gray-400"
+            }`}
+            onClick={handleFavoriteClick}
+          >
+            <AiFillHeart className="text-xl transition duration-300 ease-in-out group-hover:text-red-400" />
+          </button>
+        </div>
       </div>
-      <p className="text-gray-500 my-2 text-sm">${precio}</p>
       <button
-      
         onClick={addToCart}
-        className="block bg-gray-800 text-white uppercase text-xs mx-auto px-8   py-2 rounded-md hover:bg-gray-700 transition-colors duration-300"
+        className="block bg-gray-800 text-white uppercase text-xs ml-4 px-8 py-2 rounded-md hover:bg-gray-700 transition-colors duration-300"
       >
-        Agregar al  
-        <AiOutlineShoppingCart className={cartIcon}  />
-
+        Agregar al 
+        <AiOutlineShoppingCart className={cartIcon} />
       </button>
     </div>
+  </div>
   );
 };
 

@@ -46,7 +46,7 @@ const Carousel = () => {
 
 const CarouselContainer = styled.div`
   position: relative;
-  height: 80px;
+  height: 50px;
 `;
 
 const CarouselWrapper = styled(Slider)`

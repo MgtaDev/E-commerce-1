@@ -16,6 +16,7 @@ const Catalogo = () => {
   const [disablePrev, setDisablePrev] = useState(true);
   const [disableNext, setDisableNext] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
+  const [cardStyles, setcardStyles] = useState()
   const numberSize = 20;
   const redirigirAlInicio = () => {
     window.scrollTo(0, 0);
@@ -88,7 +89,7 @@ const Catalogo = () => {
 }; 
   const Clientela = useSelector(state=>state.Allclients);
   const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
-  const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
+  const NumUserId = isAuthenticated ? extractNumber(clientFound?.id) : undefined;
 
 
   useEffect(() => {
@@ -148,7 +149,7 @@ const Catalogo = () => {
   });
 
   return (
-    <section>
+    <section> 
       <animated.div style={filtersFadeIn}>
         <div className="grid grid-cols-5 ">
           <div className="col-span-1 px-5">
@@ -180,7 +181,7 @@ const Catalogo = () => {
             )}
 
             <animated.div style={cardsSlideUp}>
-              <Cards stateProducts={productosEnVenta} />
+              <Cards stateProducts={productosEnVenta}  />
             </animated.div>
             {searchResults.length  || productosFiltrados.length? (
             ''

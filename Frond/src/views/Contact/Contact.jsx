@@ -48,12 +48,12 @@ const Contact = () => {
   });
   return (
 <div>
-    <section class="" >
-    <div className="relative h-[300px] overflow-hidden bg-cover bg-center " style={{ backgroundImage: `url(${fond})` }}></div>
-    <div class="container px-6 md:px-12 m-auto">
+    <section style={{ backgroundImage: `url(${fond})` }} >
+    <div className="relative h-[300px] overflow-hidden bg-cover bg-center "></div>
+    <div class="container md:px-12 m-auto py-20" >
       <div
-        class="block rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] ">
-        <div class="flex flex-wrap">
+        class="rounded-lg bg-[hsla(0,0%,100%,0.8)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:py-16 md:px-14 -mt-[300px] backdrop-blur-[30px] ">
+        <div class="flex justify-center flex-wrap">
           <div class="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
           <form
         className="w-full  m-auto grid gap-4 p-6 md:p-10 rounded-md"

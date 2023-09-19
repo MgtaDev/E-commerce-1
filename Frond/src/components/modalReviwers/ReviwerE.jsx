@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StarRatings from 'react-star-ratings';
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 export default function EditReviewModal({ currentUserId, productId , initialRating, initialComentario }) {
     const [showModal, setShowModal] = useState(false);
@@ -21,11 +22,11 @@ export default function EditReviewModal({ currentUserId, productId , initialRati
                 rating: newRating,
                 comentario: newComentario
             });
-            console.log(response.data);
-
+            console.log(response);
+            Swal.fire('Calificacion editada','Ha editado correctamente su calificacion a este producto','success')
             setShowModal(false);
         } catch (error) {
-            console.error('Error al editar la reseña:', error.data);
+            Swal.fire('Ha ocurrido un error editando tu reseña',`${error.message}`,'error')
         }
     }
 

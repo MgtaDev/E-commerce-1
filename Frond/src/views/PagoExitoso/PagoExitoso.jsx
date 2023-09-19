@@ -33,8 +33,8 @@ const PagoExitoso = () => {
       Gracias por realizar tu compra con bonita and love!
 
       Detalles de tu compra:
-      Usuario: ${currentUser.name}
-      Email: ${currentUser.correo_electronico}
+      Usuario: ${currentUser?.name}
+      Email: ${currentUser?.correo_electronico}
       Fecha: ${formattedDate}
   
       Productos comprados:

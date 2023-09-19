@@ -20,20 +20,20 @@ const Miperfil = () => {
 
   const usuarios = useSelector((state)=> state.Allclients);
   const currentUser = usuarios.find((usuario) => {
-    return usuario.name.toLowerCase() === user.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
+    return usuario?.name.toLowerCase() === user?.name.toLowerCase() && usuario.correo_electronico.toLowerCase() === user.email.toLowerCase();
   });
   console.log(currentUser);
   console.log(usuarios)
 
   const [userInfo, setUserInfo] = useState({
-    name: currentUser.name ? currentUser.name.split(' ')[0] : '',
-    apellido: currentUser.name ? currentUser.name.split(' ')[1] : '',
-    correo_electronico: currentUser.correo_electronico ? currentUser.correo_electronico : '',
-    telefono: currentUser.telefono ? currentUser.telefono : '',
-    ciudad: currentUser.direccion ? currentUser.direccion.split(',')[0]: '',
-    provincia: currentUser.direccion ? currentUser.direccion.split(',')[1]: '',
-    codigoPostal: currentUser.direccion ? currentUser.direccion.split(',')[2]: '',
-    contraseña: currentUser.contraseña ? currentUser.contraseña : ''
+    name: currentUser?.name ? currentUser?.name.split(' ')[0] : '',
+    apellido: currentUser?.name ? currentUser?.name.split(' ')[1] : '',
+    correo_electronico: currentUser?.correo_electronico ? currentUser?.correo_electronico : '',
+    telefono: currentUser?.telefono ? currentUser?.telefono : '',
+    ciudad: currentUser?.direccion ? currentUser?.direccion.split(',')[0]: '',
+    provincia: currentUser?.direccion ? currentUser?.direccion.split(',')[1]: '',
+    codigoPostal: currentUser?.direccion ? currentUser?.direccion.split(',')[2]: '',
+    contraseña: currentUser?.contraseña ? currentUser?.contraseña : ''
 
   });
 

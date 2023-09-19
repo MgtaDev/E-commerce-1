@@ -157,7 +157,13 @@ const Detail = () => {
                   {stateProducts.name}
                 </h2>
                 <span className="text-sm text-gray-500">
-                  Disponibles: {stateProducts.cantidad} unidades
+                  {stateProducts.cantidad === 0 ? (
+                    'AGOTADO'
+                    )
+                  : (
+                    `Disponibles: ${stateProducts.cantidad} unidades`
+                  )
+                  }
                 </span>
                 <h3 className="text-lg font-medium text-customColor mt-2">
                   ${stateProducts.precio_venta}

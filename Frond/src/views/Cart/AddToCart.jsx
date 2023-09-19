@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import greentick from '../../assets/img/greentick.png';
 import MoreProductsCardContainer from "../../components/MoreProducts/MoreProductsContainer";
 import OtherMoreProductsContainer from "../../components/MoreProducts/OtherMoreProductsContariner";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const AddToCart = () => {
@@ -17,9 +18,9 @@ const AddToCart = () => {
   console.log(stateProducts);
   const { id, amount } = useParams();
   const searchParams = new URLSearchParams(location.search);
- 
- //  const id = searchParams.get("id");
-   //const amount = /*searchParams.get("amount") */ 2 ; 
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const cartApi = useSelector(state => state.apiCart); 
+
 
   useEffect(() => {
     dispatch(getCartProducts(id, amount));
@@ -31,6 +32,8 @@ const AddToCart = () => {
     const carritotUrl = `/carrito/${id}?amount=${amount}`;
     navigate(carritotUrl);
   };
+
+
 
   return (
     <div className='flex flex-column items-center justify-center border border-black-500 border-5'>
@@ -52,7 +55,7 @@ const AddToCart = () => {
           <p className='text-green-500 font-semibold'>Fue agregado al carrito exitosamente</p>
           </div>
 
-          <p> Hay {amount} producto(s) en tu carrito </p>
+          <p> Hay {!isAuthenticated ? cartLS?.length : cartApi.productos?.length} producto(s) en tu carrito </p>
 
           <div className="flex space-x-4">
           <button onClick={addToCart} className='bg-customColor text-white font-semibold py-1 px-4 rounded-xl flex items-center gap-2'>

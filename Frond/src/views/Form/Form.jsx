@@ -98,23 +98,23 @@ const Form = () => {
     validationSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       console.log("Valores enviados:", values);
-
+      
       try {
         const imageUrl = await handleImageUpload(values.imagenPrincipal);
-
+        
         console.log(imageUrl);
         // Actualiza los valores con la URL de la imagen subida
         const updatedValues = {
           ...values,
           imagenPrincipal: imageUrl,
         };
-
+        
         console.log(updatedValues);
         // Realiza la solicitud al servidor para crear el producto
         const responseProducto = await axios.post("/producto", updatedValues);
-
+        
         console.log("Producto creado:", responseProducto.data);
-        resetForm();
+        // resetForm();
       } catch (error) {
         console.error("Error al crear el producto:", error);
       } finally {
@@ -122,7 +122,9 @@ const Form = () => {
       }
     },
   });
-
+  
+  console.log(formik.values);
+  console.log(formik);
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -203,6 +205,7 @@ const Form = () => {
             Crear Producto
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
             {/* Nombre del Producto */}
             <div>
               <label
@@ -296,38 +299,6 @@ const Form = () => {
               )}
             </div>
 
-            {/* Porcentaje de Ganancia */}
-            <div>
-              <label
-                htmlFor="percentageOfProfit"
-                className="font-medium text-gray-700 block mb-1"
-              >
-                Porcentaje de Ganancia
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="range"
-                  min="10"
-                  max="100"
-                  step="10"
-                  className="w-full"
-                  id="percentageOfProfit"
-                  name="porcentaje_ganancia"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.porcentaje_ganancia}
-                />
-                <span className="ml-2 font-medium">
-                  {formik.values.porcentaje_ganancia}%
-                </span>
-              </div>
-              {formik.touched.porcentaje_ganancia &&
-                formik.errors.porcentaje_ganancia && (
-                  <div className="text-red-500 text-sm mt-1 font-medium">
-                    {formik.errors.porcentaje_ganancia}
-                  </div>
-                )}
-            </div>
 
             {/* Precio de Venta */}
             <div>
@@ -361,11 +332,6 @@ const Form = () => {
               )}
             </div>
 
-            {/* Proveedor */}
-        
-
-          
-          
 
             {/* Marca */}
             <div>
@@ -421,6 +387,7 @@ const Form = () => {
               )}
             </div>
 
+
             {/* Categoría */}
             <div>
               <label
@@ -475,10 +442,10 @@ const Form = () => {
                     {formik.errors.categoriaId}
                   </div>
                 )}
-              </div>
+            </div>
 
-              {/* Tamaño */}
-              <div>
+            {/* Tamaño */}
+            <div>
                 <label
                   htmlFor="productSize"
                   className="font-medium text-gray-700 block mb-1"
@@ -529,9 +496,11 @@ const Form = () => {
                     {formik.errors.tamañoId}
                   </div>
                 )}
-              </div>
+            </div>
+
             </div>
           </div>
+
           <div className="flex flex-col items-center md:items-start pt-6 md:pt-8">
             {/* Imagen */}
             <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-64 bg-gray-200 rounded-lg overflow-hidden mb-6 md:mb-0">
@@ -589,6 +558,7 @@ const Form = () => {
               Crear Producto
             </button>
           </div>
+
         </form>
       </div>
     );

@@ -17,6 +17,7 @@ const Dashboard = () => {
     "bg-yellow-400 text-gray-900",
     "text-gray-900",
     "text-gray-900",
+    "text-gray-900",
   ]);
 
   const handleNav = () => {
@@ -43,7 +44,7 @@ const Dashboard = () => {
     setVentas(true);
     setFormCreacion(false)
   
-    setNavStyles(["bg-yellow-400 text-gray-900", "text-gray-900", "text-gray-900"]); // <-- Corregir el tercer elemento
+    setNavStyles(["text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900", "text-gray-900"]); // <-- Corregir el tercer elemento
   };
   const handleNav4 = () => {
     setClientes(false);
@@ -51,7 +52,7 @@ const Dashboard = () => {
     setVentas(false);
     setFormCreacion(true)
 
-    setNavStyles(["bg-white text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900"]);
+    setNavStyles(["bg-white text-gray-900", "text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900"]);
   };
 
 
@@ -60,8 +61,8 @@ const Dashboard = () => {
   return (
     <div className="flex">
       <nav className="bg-gray-100 w-40 flex flex-col justify-start items-stretch border-r border-gray-200">
-        <div className="flex justify-between items-center py-4 px-2">
-          <h1 className="text-3xl text-gray-700 font-medium">
+        <div className="flex justify-between items-center py-4">
+          <h1 className="text-3xl text-center text-gray-700 font-medium">
            Admin Dashboard</h1>
         </div>
         <ul className="flex-grow pb-5 mb-4">
@@ -77,12 +78,12 @@ const Dashboard = () => {
             Clientes
           </li>
           <li
-            className={`text-lg font-bold p-3 cursor-pointer shadow-md transition duration-500 ${navStyles[3]} hover:bg-gray-300`}
+            className={`text-lg font-bold p-3 cursor-pointer shadow-md transition duration-500 ${navStyles[2]} hover:bg-gray-300`}
             onClick={handleNav3}>
             Ventas
           </li>
           <li
-            className={`text-lg font-bold p-3 cursor-pointer shadow-md transition duration-500 ${navStyles[2]} hover:bg-gray-300`}
+            className={`text-lg font-bold p-3 cursor-pointer shadow-md transition duration-500 ${navStyles[3]} hover:bg-gray-300`}
             onClick={handleNav4}>
            Añadir producto
           </li>

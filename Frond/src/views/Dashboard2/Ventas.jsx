@@ -52,51 +52,53 @@ const pageNumbers = generatePageNumbers();
       setSelectedVenta(null);
   };
 
+ 
   return (
     <>
-      {currentSales?.length === 0 ? (
-        <div className="flex justify-center items-center h-full">
-          <div className="text-3xl text-gray-500 font-bold">No hay ventas aun...</div>
-        </div>
-      ) : (
-        <table className="w-full rounded-lg overflow-hidden">
-          <thead className="bg-gray-100 uppercase text-sm leading-normal">
-            <tr className="text-gray-600">
-              <th className="border-0 px-6 py-4 font-bold">Venta Id</th>
-              <th className="border-0 px-6 py-4 font-bold">Cliente</th>
-              <th className="border-0 px-6 py-4 font-bold">Producto</th>
-              <th className="border-0 px-6 py-4 font-bold">Monto</th>
-              <th className="border-0 px-6 py-4 font-bold">Cantidad</th>
-              <th className="border-0 px-6 py-4 font-bold">Fecha de compra</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-600 text-sm font-light">
-
-            {currentSales.map((venta, index) => (
-              <tr key={venta.cliente + venta.fecha} className="border-t">
-                <td className="px-6 text-center py-10">#00{index}</td>
-                <td className="px-6 text-center py-10">{venta.clienteName}</td>
-                <td className="px-6 text-center capitalize py-10">{venta.productoName}</td>
-                <td className="px-6 text-center py-10">$ {venta.productoPrecio * venta.cantidad}</td>
-                <td className="px-6 text-center py-10">{venta.cantidad} {venta.cantidad === 1 ? 'unidad' : 'unidades'}</td>
-                <td className="px-6 text-center py-10">{venta.fechaCompra.split(',')[0]}</td>
-                <td className="px-6 text-center py-10">
-                <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => handleVerClick(venta, index)}
-              >
-                Ver
-              </button>
-                </td>
-              </tr>
-            ))
-            }
-            
-
-          </tbody>
-        </table>
-        
-      )}
+      {currentSales?.length > 1 ?
+       (<table className="w-full rounded-lg overflow-hidden">
+       <thead className="bg-gray-100 uppercase text-sm leading-normal">
+         <tr className="text-gray-600">
+           <th className="border-0 px-6 py-4 font-bold">Venta Id</th>
+           <th className="border-0 px-6 py-4 font-bold">Cliente</th>
+           <th className="border-0 px-6 py-4 font-bold">Producto</th>
+           <th className="border-0 px-6 py-4 font-bold">Monto</th>
+           <th className="border-0 px-6 py-4 font-bold">Cantidad</th>
+           <th className="border-0 px-6 py-4 font-bold">Fecha de compra</th>
+         </tr>
+       </thead>
+       <tbody className="text-gray-600 text-sm font-light">
+     
+         {currentSales.length > 0 ? currentSales?.map((venta, index) => (
+           <tr key={venta.cliente + venta.fecha} className="border-t">
+             <td className="px-6 text-center py-10">#00{index}</td>
+             <td className="px-6 text-center py-10">{venta.clienteName}</td>
+             <td className="px-6 text-center capitalize py-10">{venta.productoName}</td>
+             <td className="px-6 text-center py-10">$ {venta.productoPrecio * venta.cantidad}</td>
+             <td className="px-6 text-center py-10">{venta.cantidad} {venta.cantidad === 1 ? 'unidad' : 'unidades'}</td>
+             <td className="px-6 text-center py-10">{venta.fechaCompra.split(',')[0]}</td>
+             <td className="px-6 text-center py-10">
+             <button
+             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+             onClick={() => handleVerClick(venta, index)}
+           >
+             Ver
+           </button>
+             </td>
+           </tr>
+         ))
+         : (
+          <div className="flex justify-center items-center h-full">
+            <div className="text-3xl text-gray-500 font-bold">No hay ventas aun...</div>
+          </div>
+        )
+         }
+       </tbody>
+     </table>
+     
+     )
+        : ''
+      }
 
 <div className="flex justify-center py-8">
             <button

@@ -71,7 +71,7 @@ const pageNumbers = generatePageNumbers();
         Mis compras
       </h2>
       {userComprasById?.productos?.length > 0 && (
-             <p className='text-center text-gray-500 text-sm'>Hola {currentUser.name.split(' ')[0]}, Estas son tus compras recientes:</p> 
+             <p className='ml-40 text-gray-500 text-lg'>Hola {currentUser.name.split(' ')[0]}, Estas son tus compras recientes:</p> 
       )}
 
       {userComprasById?.productos?.length > 0 ? (

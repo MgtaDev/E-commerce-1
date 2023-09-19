@@ -18,12 +18,12 @@ const LastBuyedCard = ({lastCompra}) => {
 
 
   return (
-    <div className="relative w-full  rounded-lg  bg-white border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-gray-100">
+    <div className="relative w-full h-[350px]  rounded-lg  bg-white border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-gray-100">
       <Link onClick={redirigirAlInicio} to={`/detail/${lastCompra.productoId}`}>
         <img
           src={lastCompra.imagenProducto}
           alt={lastCompra.productoName}
-          className="w-[100%] object-cover h-40  "
+          className="w-[100%] object-cover h-40 rounded-t-lg "
         />
       
       <div className="flex justify-between items-center mt-4">
@@ -48,7 +48,7 @@ const LastBuyedCard = ({lastCompra}) => {
                       </p>
                     </div>
                   ) : (
-                    <p className="text-gray-600 font-semibold">
+                    <p className="text-gray-600 ml-2 mb-4 font-semibold">
                       Sin reseñas aún
                     </p>
                   )}

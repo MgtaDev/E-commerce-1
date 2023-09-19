@@ -43,7 +43,7 @@ const Carrito = () => {
 
     const Clientela = useSelector(state=>state.Allclients);
     const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
-    const NumUserId = isAuthenticated ? extractNumber(clientFound.id) : undefined;
+    const NumUserId = isAuthenticated ? extractNumber(clientFound?.id) : undefined;
 
 
 
@@ -118,11 +118,6 @@ const Carrito = () => {
     ? cartApi.productos.reduce((qty, item) => qty + (item.cantidad), 0)
     : cartUnificado.reduce((qty, item) => qty + (item.cantidad), 0);
 
-    
-
-    const handleEmptyCart = () => {
-        dispatch(emptyCartLS());
-    }
 
     const handleDeleteArtLS = (item) => { console.log("item.cantidad", item.cantidad);
         dispatch(deleteArtLS(item.objeto.id, item.cantidad, item.color));
@@ -140,6 +135,14 @@ const Carrito = () => {
           });
         }
       }
+      
+      const handleEmptyCart = () => {
+        if(!isAuthenticated){
+            dispatch(emptyCartLS());
+        } else{
+            dispatch(deleteArtAPI({user: NumUserId}))
+        }
+    }
 
    
     const productsToPay = cartApi.productos?.map((product) => ({
@@ -250,7 +253,7 @@ const Carrito = () => {
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
                         </div>
                     )}
-                    {cartUnificado.length > 0  && !isAuthenticated ?(
+                    {cartUnificado.length > 0  || cartApi.productos?.length ?(
                     <button onClick={() => handleEmptyCart()} className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100">
                       Limpiar carrito
                       </button>

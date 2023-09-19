@@ -99,9 +99,15 @@ function App () {
 
 
       </Routes>
-      <div className="flex fixed bottom-0 w-20 right-0 m-2 p-4 rounded-full cursor-pointer">
-      <img onClick={()=> sendWhatsappMessage()} className="w-20 hover:transform hover:scale-110" src={WhatsappIcon} alt=""/>
-      </div>
+      {
+            location.pathname !== "/dashboard2" 
+            ? 
+            <div className="flex fixed bottom-0 w-20 right-0 m-2 p-4 rounded-full cursor-pointer">
+            <img onClick={()=> sendWhatsappMessage()} className="w-20 hover:transform hover:scale-110" src={WhatsappIcon} alt=""/>
+            </div> 
+            : ''
+         }
+      
       {
             location.pathname !== "/" ? <Footer /> : null
          }

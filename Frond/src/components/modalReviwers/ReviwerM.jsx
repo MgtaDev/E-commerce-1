@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import StarRatings from 'react-star-ratings';
+import Swal from "sweetalert2";
 
 export default function Modal({ productId , currentUserId}) {
     const [showModal, setShowModal] = React.useState(false);
@@ -25,8 +26,8 @@ export default function Modal({ productId , currentUserId}) {
                 comentario
             });
             console.log(response.data);
-
             setShowModal(false);
+            Swal.fire('Calificacion Envida' ,'Ha calificado correctamente este producto' ,'success')
         } catch (error) {
             console.error('Error al enviar la reseña:', error);
         }
