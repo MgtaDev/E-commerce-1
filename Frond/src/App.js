@@ -26,8 +26,7 @@ import { clientes, productosSinPag, syncFavoritesWithAPI } from "./redux/actions
 import { useDispatch, useSelector} from "react-redux";
 import WhatsappIcon from './assets/img/social.png'
 import { useParams } from "react-router-dom"; 
-
-axios.defaults.baseURL = "http://localhost:3001/"
+axios.defaults.baseURL = "https://bonita-and-lovely-e-commerce-production.up.railway.app/"
 
 
 function App () {
