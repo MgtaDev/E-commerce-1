@@ -9,6 +9,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
 import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProducts2";
+import { FaCheckCircle, FaHeart, FaShare, FaShoppingCart, FaStar } from "react-icons/fa";
+import MyK from '../../assets/img/proveedor1.png'
+
 
 const Detail = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -22,7 +25,9 @@ const Detail = () => {
   useEffect(() => {
     dispatch(clientes());
   }, []);
+
   const usuarios = useSelector((state) => state.Allclients);
+
   const currentUser = usuarios?.find(
     (usuario) =>
       !isLoading &&
@@ -108,8 +113,7 @@ const Detail = () => {
   const addToCart = () => {        
     dispatch(addItemToCartLS(id, amount, 1)); 
     dispatch(addToCartFunction(id, amount, 1)); 
-    const carritotUrl = `/itemadded/${id}?amount=${amount}&color=${1}`;
-    navigate(carritotUrl);
+    Swal.fire('Agregado exitosamente', `${stateProducts.name} ha sido agregado al carrito`, 'success')
     redirigirAlInicio()
   }
 
@@ -135,98 +139,181 @@ const Detail = () => {
 
   return (
     <>
-      <button
+      {/* <button
         onClick={goBack}
-        className="bg-customColor absolute ml-20 text-white py-2 px-4 rounded-lg mb-6 mt-12"
+        className="bg-blue-900 absolute ml-20 text-white py-2 px-4 rounded-lg mb-6 mt-12"
       >
         Volver
-      </button>
+      </button> */}
       <animated.div style={fadeIn}>
-        <div className="px-4 py-11 max-w-4xl mx-auto">
-          <animated.div style={slideIn}>
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="w-full md:w-1/2 bg-white rounded-lg shadow-md pb-6">
-                <img
-                  src={stateProducts.imagenPrincipal}
-                  alt={stateProducts.name}
-                  className="w-full object-cover rounded-md h-64 mb-4" />
-              </div>
+      
+      <div className="flex gap-10 mt-10">
+     {/* 1 */}
+      <div className="flex flex-col h-[400px] w-80 ml-20 mr-10 ">
+      <img className="rounded-md" src={stateProducts.imagenPrincipal} alt="" />
+     
+      <div className="flex gap-2 mt-5">
+      <img className="h-12 w-12" src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      </div>
+      </div>
+     {/* 2 */}
+      <div>
+      <h2 className="text-xl text-gray-900 capitalize py-2  font-bold">{stateProducts.name} - Producto certificado  <FaCheckCircle className="text-green-600"/> </h2>
+      <div className="flex text-xs items-center mb-2">
+      <FaStar className="text-yellow-400"/> <p className="text-sm mr-3">4.8</p>   1.2k reviews
+      </div>
+      <div className="flex items-center">
+      <span className="font-bold text-xl">${stateProducts.precio_venta}.00 </span>
+      <span className="text-xs text-gray-500 px-2"> / Unidad</span>
+      </div>
 
-              <div className="w-full md:w-1/2 bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl capitalize font-bold text-gray-900 mb-4">
-                  {stateProducts.name}
-                </h2>
-                <span className="text-sm text-gray-500">
-                  {stateProducts.cantidad === 0 ? (
-                    'AGOTADO'
-                    )
-                  : (
-                    `Disponibles: ${stateProducts.cantidad} unidades`
-                  )
-                  }
-                </span>
-                <h3 className="text-lg font-medium text-customColor mt-2">
-                  ${stateProducts.precio_venta}
-                  <span className="ml-1 text-sm text-gray-500">c/u</span>
+      <div className="border-b mt-4"></div>
 
-                </h3>
-                <hr className="my-4" />
-                <div className="flex items-center justify-between bg-gray-100 py-2 px-4 rounded-md">
-                  <span className="text-gray-500 text-sm font-medium">Cantidad:</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      className="rounded-full bg-customColor text-white font-bold text-xs py-1 px-2 hover:bg-customColor2"
-                      onClick={handleDecrement}
-                    >
-                      -
-                    </button>
-                    <span className="bg-gray-200 py-1 px-4 rounded-full text-xs font-medium">
+      <h2 className="font-bold py-4">Detalles</h2>
+      <div className="flex items-center">
+      <p className="text-gray-500 mr-5">Condicion</p> <span className="font-bold text-sm">Nuevo</span>
+      </div>
+      <div className="flex items-center">
+      <p className="text-gray-500 mr-5">Peso unitario</p> <span className="font-bold text-sm">10 g</span>
+      </div>
+      <div className="flex items-center">
+      <p className="text-gray-500 mr-5">Categoria</p> <span className="font-bold text-sm">Telefonos Celulares</span>
+      </div>
+
+      <div className="border-b mt-4"></div>
+
+
+      <h2 className="text-md font-bold text-gray-800 py-3 ">Descripcion del producto</h2>
+
+      <p className="text-sm mb-3">{stateProducts.descripcion}</p>
+      </div>
+
+
+
+
+
+     {/* 3 */}
+      <div>
+        <div className="shadow rounded-md p-6">
+          <div className="flex justify-between items-center">
+          <div className="flex h-10 w-10 m-2">
+            <img className="rounded-md" src={stateProducts.imagenPrincipal} alt="" />
+          </div>
+          <div>
+            <span className="text-sm">En stock <span className="text-green-500 text-sm">√</span> </span>
+          </div>
+          </div>
+         
+          <div className="border-b"></div>
+
+          <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-800">Cantidad</p>
+          <div className="flex items-center justify-end py-3 gap-2">
+                    <span className="py-1 px-4 rounded-md text-xs">
                       {amount}
                     </span>
                     <button
                       type="button"
-                      className="rounded-full bg-customColor text-white font-bold text-xs py-1 px-2 hover:bg-customColor2"
+                      className=""
+                      onClick={handleDecrement}
+                    >
+                      -
+                    </button>
+                   
+                    <button
+                      type="button"
+                      className=""
                       onClick={handleIncrement}
                     >
                       +
                     </button>
                   </div>
-                </div>
-                <div className="flex justify-center mt-6">
-                  <button
-                    onClick={addToCart}
-                    className="bg-customColor text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-customColor2 transition duration-300 ease-in-out"
-                  >
-                    <img
-                      src={bagIcon}
-                      alt="bag icon"
-                      className="inline-block w-6 h-6 mr-2" />{" "}
-                    Añadir al carrito
-                  </button>
-                  <button onClick={() => { handleProceedToPayment() } }
-                    className="bg-customColor ml-10 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-customColor3 transition duration-300 ease-in-out"
-                  >
-                    Comprar ahora
-                  </button>
+          </div>
+         
+         
+          <div className="flex justify-between">
+          <p className="text-sm text-gray-800 mb-4">Subtotal</p>
+          <span className="text-xs font-bold">${stateProducts.precio_venta * amount}.00</span>
+          </div>
+ 
 
-                </div>
-              </div>
+          <button onClick={addToCart}
+          className="flex items-center bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900"> <FaShoppingCart className="mr-2"/> Añadir al carrito</button>
+          <button onClick={handleProceedToPayment}
+           className= "bg-blue-900 w-full flex items-center text-white py-2 px-8 text-sm rounded-md text-center mt-3"> Comprar ahora</button>
+
+          <div className="flex">
+            <div className="flex items-center mt-3 px-2 text-xs">
+            <FaHeart/>
+            <p className="text-sm text-gray-800 ml-1 ">Favoritos</p> 
             </div>
-          </animated.div>
 
-          {/* Sección de reseñas */}
-          <div className="w-full justify-center bg-white rounded-lg shadow-md p-6">
-            <SectionReviews />
+            <div className="border-r"></div>
+  
+
+            <div className="flex items-center px-2 mt-3 text-sm text-gray-800">
+            <FaShare/>
+            <p className="ml-1">Compartir</p>
+            </div>
+           
           </div>
 
-          {/* Contenedor de más productos */}
+
         </div>
-        <animated.div style={slideIn}>
-          <div className='flex flex-row gap-2 mt-10 m-10 bg-fuchsia-200 rounded-lg p-10 shadow-2xl justify-center items-center'>
-            <MoreProductsCardContainer2 />
-          </div>
-        </animated.div>
+      </div>
+
+      </div>
+
+      <div className="px-20 mt-20 mb-20">
+      <div className="border-t"></div>
+
+      {/* Container */}
+      <div className="flex items-cente m-8 gap-2 justify-center">
+      <img className="h-14 w-14 border rounded-full" src={MyK} alt="" />
+      
+      <div className="flex items-center">
+      <FaCheckCircle className="text-green-600"/>
+      <h2 className="text-lg font-bold">MyK</h2>
+      </div>
+
+      <div className="flex text-xs flex-col px-20  border-r  flex items-center">
+      <FaStar className="text-yellow-400"/>
+      <span>1.2k reviews</span>
+      </div>
+
+      <div className="flex-col text-sm px-20 border-r ">
+        <p className="font-bold">700+</p>
+        <span>Producto certificado</span>
+
+      </div>
+
+      <div className="flex-col text-sm px-20">
+        <p className="font-bold">1-2 Dias</p>
+        <span>Tiempo estimado de entrega</span>
+
+      </div>
+
+
+
+
+      </div>
+      {/* Container */}
+
+
+  
+      {/* <SectionReviews /> */}
+      
+
+
+
+        <div className="border-b"></div>
+
+      </div>
         
       </animated.div>
     </>

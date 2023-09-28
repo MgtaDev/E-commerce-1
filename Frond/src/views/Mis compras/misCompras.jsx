@@ -67,7 +67,7 @@ const pageNumbers = generatePageNumbers();
 
   return (
     <>
-      <h2 className="text-3xl text-center font-bold text-gray-700  my-8 pb-4">
+      <h2 className="text-3xl px-40 text-gray-700  my-8 pb-4">
         Mis compras
       </h2>
       {userComprasById?.productos?.length > 0 && (
@@ -75,10 +75,11 @@ const pageNumbers = generatePageNumbers();
       )}
 
       {userComprasById?.productos?.length > 0 ? (
-        <><div className="flex flex-row justify-start ">
-          <div className="grid grid-cols-2 gap-8 w-4/5 mx-auto ">
+        <>
+        <div className="flex flex-row  ">
+          <div className="grid grid-cols-1 gap-8 bg-gray-50  w-4/5 mx-auto ">
             {currentOrdersToShow?.map((product) => (
-              <div key={product.id} className="bg-white rounded-md">
+              <div key={product.id} className="flex justify-center rounded-md">
                 <ProductCard product={product} />
               </div>
             ))}
@@ -91,18 +92,20 @@ const pageNumbers = generatePageNumbers();
                   setSelectedPage(selectedPage - 1);
                 }
               } }
-              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-black  focus:outline-none"
+             className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
             >
               {"<"}
             </button>
-            {pageNumbers.map(({ number, selected }) => (
+            {pageNumbers.map(({ number }) => (
               <button
                 key={number}
                 onClick={() => {
                   setCurrentPage(number);
                   setSelectedPage(number);
                 } }
-                className={`mx-1 text-lg font-bold px-3 py-1 rounded ${selected ? 'bg-black text-white' : 'bg-white text-black '}`}
+                className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
+                  number === pageNumber ? "bg-blue-900 text-white" : ""
+                }`}
               >
                 {number}
               </button>
@@ -114,7 +117,7 @@ const pageNumbers = generatePageNumbers();
                   setSelectedPage(selectedPage + 1);
                 }
               } }
-              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-gray-500 focus:outline-none"
+              className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
             >
               {">"}
             </button>

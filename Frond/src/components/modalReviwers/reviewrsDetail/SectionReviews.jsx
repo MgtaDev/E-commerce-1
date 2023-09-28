@@ -16,30 +16,17 @@ const SectionReviews = () => {
 
 
   return (
-    <section className="w-[90%] m-auto">
-      <h2 className="text-2xl capitalize pb-5">opiniones de nuestro producto</h2>
-      <div className="grid grid-cols-2  items-center">
-        <div className="flex justify-start gap-4">
-          <h2 className="text-3xl  font-semibold">{highestRating}.0</h2>
-          <Rating 
-          className=" pt-1"
-            initialRating={highestRating}
-            emptySymbol={
-              <span className="text-lightgray">
-                <FaRegStar size="20" className="text-slate-400" />
-              </span>
-            }
-            fullSymbol={
-              <span>
-                <FaStar className="text-yellow-300" size="24" />
-              </span>
-            }
-            readonly={true}
-          />
+    
+      <div className="shadow p-4">
+        <h3>Overall rating</h3>
+
+        <div className="text-xl m-4 flex items-center">
+        <FaStar className="text-yellow-500"/>
+        <span className="text-xl font-bold">4.8</span>
+        <span className="ml-2 text-xs" >de 130 reseñas</span>
         </div>
-        <ReviwerD />
       </div>
-    </section>
+    
   );
 };
 

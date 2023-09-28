@@ -11,11 +11,6 @@ const LoginButton = () => {
     await loginWithRedirect();
   };
 
-  if (isLoading) {
-    return (
-      <div className="spinner border-t-4 border-purple-800 rounded-full h-10 w-10 ml-4 "></div>
-    );
-  }
 
   if (isAuthenticated && user) {
     const { name, email } = user;
@@ -40,21 +35,7 @@ const LoginButton = () => {
       <div></div>
     ) : (
       <>
-         <button onClick={handleLogin} className="purpleSet hover:purpleSet text-white font-bold py-2 px-4 rounded-full">
-            <strong>Iniciar Sesión</strong>
-          </button> 
-          
-          <button
-          onClick={handleLogin}
-          style={{
-            backgroundColor: '#ffffff',
-            color: '#6d016e',
-            border: '2px solid #6d016e' 
-          }}
-          className="text-black hover:border-purpleSet ml-3 font-bold py-2 px-4 rounded-full"
-        >
-          <strong>Registrarse</strong>
-          </button>
+            <button onClick={handleLogin} className='h-8 mt-1 px-3 border border-blue-900 text-sm rounded-md'>Login</button>
             </>
     
     )}

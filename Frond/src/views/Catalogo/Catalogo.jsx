@@ -115,7 +115,7 @@ const Catalogo = () => {
         <button
           key={i}
           className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
-            i === pageNumber ? "bg-slate-950 text-white" : ""
+            i === pageNumber ? "bg-blue-900 text-white" : ""
           }`}
           disabled={i === pageNumber || stateProducts.loading}
           onClick={() => handlePageClick(i)}
@@ -181,7 +181,21 @@ const Catalogo = () => {
             )}
 
             <animated.div style={cardsSlideUp}>
+            {searchResults.length ? (
+       <span className="text-sm text-gray-500 px-4 py-2 ">{searchResults.length} Resultados para</span>
+        )
+      :
+      <>
+        {!productosFiltrados.length ? (
+      <h2 className="font-bold text-2xl mb-5"><span className="text-sm  px-4 py-2 border-gray-500 text-gray-500 ">60 Resultados para</span></h2>
+      )
+      : <h2 className="font-bold text-2xl mb-5"><span className="text-sm text-gray-500 px-4 py-2 b">{productosFiltrados.length} Resultados para</span></h2>
+        }
+      </>
+      }   
+
               <Cards stateProducts={productosEnVenta}  />
+              
             </animated.div>
             {searchResults.length  || productosFiltrados.length? (
             ''

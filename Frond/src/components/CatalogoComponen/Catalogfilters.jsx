@@ -112,32 +112,8 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
 
 
     return (
-      <div className="grid grid-cols-1 w-4/5 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start rounded-md">
+      <div className="grid grid-cols-1 w-4/5 mt-4 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start rounded-md">
         
-        {searchResults.length ? (
-       <span className="text-sm text-gray-500 rounded-full shadow-lg border-2  px-4 py-2 border-gray-500">{searchResults.length} Resultados</span>
-        )
-      :
-      <>
-        {!productosFiltrados.length ? (
-      <h2 className="font-bold text-2xl mb-5">Pagina {pageNumber === 0 ? '1' : pageNumber === 1 ? '2' : '3'} <br/> <br /> <span className="text-sm rounded-full shadow-lg border-2  px-4 py-2 border-gray-500 text-gray-500 ">{total} Resultados</span></h2>
-      )
-      : <h2 className="font-bold text-2xl mb-5">Pagina {pageNumber === 0 ? '1' : pageNumber === 1 ? '2' : '3'} <br/> <br /> <span className="text-sm text-gray-500 rounded-full shadow-lg border-2  px-4 py-2 border-gray-500">{productosFiltrados.length} Resultados</span></h2>
-        }
-      </>
-      }   
-    
-      {/* Botón RESET */}
-      <div className="flex justify-center">
-        <button
-          className="px-8 py-2 mt-5 font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-all duration-300"
-          onClick={handleReset}
-        >
-          RESET
-        </button>
-      </div>
-      <br />
-
       {/* Categorias */}
       <div>
         <h3 className="font-bold mb-2">Categorías</h3>
@@ -246,6 +222,15 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
               }}
             />
           </div>
+       
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="px-8 py-2 mt-5 font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-all duration-300"
+          onClick={handleReset}
+        >
+          RESET
+        </button>
         </div>
       </div>
     

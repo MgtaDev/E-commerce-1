@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { RiMoonClearLine, RiSunLine } from 'react-icons/ri';
-import NavBar from "../../components/NavBar/NavBar";
-import Proveedores from '../../components/Proveedores/Proveedores';
-import Carousel from '../../components/Carousel/Carousel';
 import CarouselMid from '../../components/CarouselMid/Carousel'
-import Products from '../../components/Products/Products'
-// import Offers from '../../components/offers/offers'
-import Footer from '../../components/Footer/Footer';
-import ChatBotComponent from '../../components/ChatBot/ChatBot';
-import Reviews from '../../components/Reviews/Reviews'
-import ChooseUs from '../../components/ChooseUsSection/Choose';
+import LastBuyedSlider from "../../components/Last Buyed/lastBuyedSlider";
 import { useDispatch, useSelector } from 'react-redux';
-import { clientes, products } from '../../redux/actions';
+import Products from '../../components/Products/Products';
+import { products } from '../../redux/actions';
+import Proveedores from '../../components/Proveedores/Proveedores';
+import ProductsMayLike from '../ProductsYouMayLike/productsMayLike';
+import Footer from '../../components/Footer/Footer';
 
 
 const Container = styled.div`
@@ -23,75 +18,57 @@ const Container = styled.div`
 `;
 
 const LandingPage = () => {
+  
+  const dispatch = useDispatch();
+  const numberSize = 20;
 
-const stateProducts = useSelector(state => state.Allproducts);
-const [pageNumberNx, setPageNumberNx] = useState(0);
-const numberSize = 20;
-console.log(stateProducts)
-
-const dispatch = useDispatch()
-useEffect(
-  () => {
+  
+  useEffect(() => {
+    // setPageNumber(0);
     const fetchData = () => {
       const queries = {
-        page: pageNumberNx,
+        page: 0,
         size: numberSize
       };
-
       dispatch(products(queries));
     };
-
     fetchData();
-  },
-  [dispatch, pageNumberNx, numberSize, stateProducts.paginas]
-);
-
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [language, setLanguage] = useState('en'); 
-
-  const handleLanguageChange = (selectedLanguage) => {
-    setLanguage(selectedLanguage);
-  };
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const getButtonLabel = (buttonLanguage) => {
-    if (language === 'es') {
-      return buttonLanguage === 'es' ? 'Español' : 'Inglés';
-    } else if (language === 'en') {
-      return buttonLanguage === 'es' ? 'Spanish' : 'English';
-    }
-  };
-
+  }, [dispatch, numberSize]);
+  
+  const stateProducts = useSelector((state)=> state.stateProducts)
+  console.log(stateProducts)
 
   return (
-    <>
-        <NavBar />
-      <Container darkMode={isDarkMode}>
-        <div style={{ height: '500px', overflowX: 'scroll' }}>
-          <CarouselMid />
-        </div>
-        
-        <Proveedores/>
-        <Products/>
-      
+    <main className='px-20'>
+    <div className='mt-10'>
+    <CarouselMid/>
 
-        <div style={{ height: '500px', overflowX: 'scroll' }}>
-        <CarouselMid></CarouselMid>
-        </div>
+    </div>
+    <div className='mt-60'>
+    <Products stateProducts={stateProducts}/>
+    </div>
 
-        <>
-        <Reviews></Reviews>
-        </>
-        <>
-        <ChooseUs></ChooseUs>
-        </>
+    <div className='mt-80'>
+      <Proveedores/>
+    </div>
 
-      </Container>
-      <Footer />
-    </>
+    <div className='mt-10'>
+    <CarouselMid/>
+    </div>
+    
+    <div className='mt-80'>
+      <Proveedores/>
+    </div>
+
+    <div className='mt-40'>
+      <ProductsMayLike/>
+    </div>
+
+    <div className='mt-40'>
+      <Footer/>
+    </div>
+
+    </main>
   );
 };
 

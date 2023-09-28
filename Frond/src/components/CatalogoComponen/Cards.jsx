@@ -20,7 +20,7 @@ const Cards = ({ stateProducts }) => {
   });
 
   return (
-    <div className="grid md:grid-cols-1 lg:grid-cols-1 grid-auto-rows grid-rows-1 gap-5 ">
+    <div className="grid gap-3 mt-4 md:grid-cols-4 lg:grid-cols-4 grid-auto-rows grid-rows-1   ">
       {transitions((style, item) => {
         return (
           <animated.div style={style}>

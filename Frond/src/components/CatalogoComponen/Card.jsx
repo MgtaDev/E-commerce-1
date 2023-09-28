@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavoriteAPI, addFavoriteLS, addItemToCartApi, addItemToCartLS, addToCartFunction, deleteFavoriteAPI, deleteFavoriteLS } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { FaStar } from "react-icons/fa";
 
-const Card = ({ id, name, precio, imagenPrincipal }) => {
+const Card = ({ id, marcaId , name, precio, imagenPrincipal }) => {
   const redirigirAlInicio = () => {
     window.scrollTo(0, 0);
   }
@@ -88,29 +89,16 @@ const addToCart = () => {
 });
 }
   
-
-
-  const cartIcon =
-    "inline-block mr-2 -mt-1 text-xl text-white group-hover:text-gray-100 transition-colors duration-300";
-
   return (
-    <div className="relative flex-row px-4 py-5 bg-white border border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-gray-100">
-    <div className="relative flex flex-row items-center">
-      <Link to={`/detail/${id}`}>
-        <img
-          src={imagenPrincipal}
-          alt={name}
-          className="w-full h-48 object-cover rounded-md"
-          onClick={() => redirigirAlInicio()}
-        />
-      </Link>
-      <div className="flex flex-col ml-4 justify-center flex-grow">
-        <h3 className="text-xl leading-tight font-semibold capitalize text-gray-800">
-          {name}
-        </h3>
-        <div className="flex items-center mt-2">
-          <p className="text-gray-500 text-sm">${precio}</p>
-          <button
+    <div class="flex bg-white-200 flex-col rounded-md shadow overflow-hidden ">
+    <Link to={`/detail/${id}`}>
+      <img class="object-cover " src={imagenPrincipal} alt="ofertas" />
+    </Link>
+    <div class="flex flex-col p-4">
+      <div class="mb-2">
+        <div className="flex items-center">
+        <h2 class="text-base font-bold capitalize text-gray-800">{name}</h2>
+        <button
             className={`relative group p-2 ml-2 ${
               isFavorite ? "text-red-500 font-bold" : "text-gray-400"
             }`}
@@ -119,14 +107,18 @@ const addToCart = () => {
             <AiFillHeart className="text-xl transition duration-300 ease-in-out group-hover:text-red-400" />
           </button>
         </div>
+
+        <p class="text-sm mt-1 font-bold text-gray-700">${precio}.00</p>
       </div>
-      <button
-        onClick={addToCart}
-        className="block bg-gray-800 text-white uppercase text-xs ml-4 px-8 py-2 rounded-md hover:bg-gray-700 transition-colors duration-300"
-      >
-        Agregar al 
-        <AiOutlineShoppingCart className={cartIcon} />
-      </button>
+      <div class="flex flex-row items-center mb-2">
+        <span class="inline-block bg-green-500 text-white text-xs font-bold py-1 px-2 rounded-full mr-2">20%</span>
+        <del class="text-xs text-gray-400">$0.00</del>
+      </div>
+      <p class="text-xs text-gray-600">{marcaId === 1 ? 'Trendy' : marcaId === 2 ? 'Kiss Beauty' : marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
+      <div class="flex flex-row items-center">
+        <FaStar class="w-4 h-4 text-yellow-500 mr-1" />
+        <p class="text-xs text-gray-600">Sin reseñas</p>
+      </div>
     </div>
   </div>
   );

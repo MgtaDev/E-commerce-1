@@ -3,14 +3,13 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
-import ofertas from '../../assets/img/Ofertas img.jpeg'
-
+import banner from '../../assets/slides/boashop banner.png'
 
 const Carousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
+    speed: 1200,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -20,7 +19,7 @@ const Carousel = () => {
     nextArrow: <ArrowIcon className="fa fa-chevron-right" />,
     appendDots: dots => (
       <DotsContainer>
-        <ul > {dots} </ul>
+        {/* <ul > {dots} </ul> */}
       </DotsContainer>
     )
   };
@@ -29,15 +28,15 @@ const Carousel = () => {
     <CarouselContainer>
       <CarouselWrapper {...settings}>
         <div>
-        <img src={ofertas} alt="ofertas" />
+        <img className='' src={banner} alt="ofertas" />
         </div>
 
         <div>
-        <img src={ofertas} alt="ofertas" />
+        <img className='' src={banner} alt="ofertas" />
         </div>
 
         <div>
-        <img src={ofertas} alt="ofertas" />
+        <img className='' src={banner} alt="ofertas" />
         </div>
       </CarouselWrapper>
     </CarouselContainer>
@@ -46,7 +45,7 @@ const Carousel = () => {
 
 const CarouselContainer = styled.div`
   position: relative;
-  height: 50px;
+  height: 58px;
 `;
 
 const CarouselWrapper = styled(Slider)`

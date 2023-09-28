@@ -92,26 +92,26 @@ const Profile = () => {
         <img onClick={toggleUserMenu} className={style.imgProfile} src={user && user.picture} alt={user && user.name} /> {/* Agregar comprobación para user existente */}
         {user && user.online && <Online className="absolute" />} {/* Agregar comprobación para user existente */}
         {isOpen && (
-          <div className="absolute left-6 top-8 right-0 z-20 w-48 bg-white border rounded-md shadow-lg pt-3 mt-7 mr-2">
+          <div className="absolute -mr-20 top-8 right-0 z-20 w-48 bg-white border rounded-md shadow-lg pt-3 mt-7 mr-2">
             <div className="flex items-center">
               <img className={style.drop} src={user && user.picture} alt={user && user.name} /> {/* Agregar comprobación para user existente */}
               {user && user.online && <OnlineDrop className="ml-2 z-40" />} {/* Agregar comprobación para user existente */}
             </div>
-            <div onClick={goPerfil} className="mt-5 cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
+            <div onClick={goPerfil} className="mt-5 text-sm cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
               <IoSettingsSharp className="inline-block mr-2" />
               Mi perfil
             </div>
-            <div onClick={goCompras} className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
+            <div onClick={goCompras} className="cursor-pointer text-sm  block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
               <IoBagHandleSharp className="inline-block mr-2" />
               Mis compras
             </div>
-            <div  onClick={goCart} className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
+            <div  onClick={goCart} className="cursor-pointer text-sm  block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
               <FaShoppingCart className="inline-block mr-2" />
               Mi carrito
             </div>
             {
               currentUser && currentUser.admin === true // Agregar comprobación para currentUser existente
-              ?  <div onClick={goDash} className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
+              ?  <div onClick={goDash} className="cursor-pointer text-sm  block px-4 py-2 text-gray-800 hover:bg-gray-200 border-b-2 border-solid">
               <FaUserShield className="inline-block mr-2" />
               Administrar
               </div> 

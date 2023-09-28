@@ -7,18 +7,18 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import LandingPage from '../../views/LandingPage/LandingPage';
+import { FaSearch } from 'react-icons/fa';
 
 //Styled components
 const FormSearchBar = styled.form`
-  background: var(--clr-white);
+  background-color: white;
   border: 2px solid var(--clr-primary);
-  border-radius: 10px;
-  min-width: 500px;
+  border-radius: 4px;
+  min-width: 930px;
   max-width: 800px;
   display: flex;
-  justify-content: space-between;
   padding: 0 0.7em;
-  border: 1px solid #eecafa;
+  border: 1px  ;
   box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.15);
 
   button {
@@ -44,17 +44,13 @@ const FormSearchBar = styled.form`
 
   input {
     background: transparent;
-    border: 1px #0d0202;
+    border: 1px blue;
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     padding: 0.7em 1em;
     width: 100%;
   }
 
-  button:focus,
-  input:focus {
-    outline: 2px solid var(--clr-primary);
-  }
 `;
 const ErrorMessage = styled.p`
   color: red;
@@ -73,8 +69,8 @@ const CustomDatalist = styled.ul`
   overflow-y: scroll;
   padding: 0;
   position: absolute;
-  top: 4em;
-  width: 35%;
+  top: 5em;
+  width: 66.8%;
   z-index: 10;
 
   li {
@@ -83,7 +79,8 @@ const CustomDatalist = styled.ul`
     text-transform: capitalize;
     color: #252525;
     &:hover {
-      background-color: #f3f3f3;
+      background-color: #0e448b;
+      color:white;
     }
   }
 `;
@@ -96,7 +93,7 @@ const SearchBar = ({ placeholder }) => {
   const [options, setOptions] = useState([]);
   const navigate = useNavigate();
   const formRef = useRef();
-
+  console.log(inputText);
 
   //Dropdown Handle
   const handleChange = async (ev) => {
@@ -145,7 +142,7 @@ const SearchBar = ({ placeholder }) => {
         <input
           onChange={handleChange}
           type="text"
-          placeholder={placeholder}
+          placeholder='Busca productos, marcas y mas'
           value={inputText}
           list="suggestions"
         />
@@ -175,7 +172,7 @@ const SearchBar = ({ placeholder }) => {
         }} className='mb-1'>x</button>
         )}
         <button type="submit">
-          <img src={loupe} alt="seeker" />
+          <FaSearch className='text-gray-500'/>
         </button>
       </FormSearchBar>
       {errorMessage && <ErrorMessage> {errorMessage} </ErrorMessage>}

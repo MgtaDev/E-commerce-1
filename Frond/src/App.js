@@ -26,7 +26,7 @@ import { clientes, productosSinPag, syncFavoritesWithAPI } from "./redux/actions
 import { useDispatch, useSelector} from "react-redux";
 import WhatsappIcon from './assets/img/social.png'
 import { useParams } from "react-router-dom"; 
-axios.defaults.baseURL = "https://bonita-and-lovely-e-commerce-production.up.railway.app/"
+axios.defaults.baseURL = "http://localhost:3001"
 
 
 function App () {
@@ -67,7 +67,7 @@ function App () {
   return (
     <div>
       {
-            location.pathname !== "/" ? <Navbar /> : null
+            location.pathname !== "" ? <Navbar /> : null
          }
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
@@ -88,13 +88,6 @@ function App () {
         <Route path="confirmedpayment" element={<PagoExitoso/>}/>      
         <Route path="/miscompras" element = {<MisCompras/>}/>
 
-        
-          {/* Protección de ruta directamente en App */}
-          {
-          location.pathname === "/dashboard2" && (isCurrentUserValid ? currentUser.admin === false : true)
-            ? navigate('/')
-            : <Route path="/dashboard2" element={<Dashboard2 />} />
-        }
 
 
       </Routes>

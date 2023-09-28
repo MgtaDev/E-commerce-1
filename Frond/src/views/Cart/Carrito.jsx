@@ -7,6 +7,7 @@ import axios  from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import LastBuyedSlider from "../../components/Last Buyed/lastBuyedSlider";
 import { useSpring } from "react-spring";
+import { FaArrowRight, FaRegHeart } from "react-icons/fa";
 
 const Carrito = () => {
     const [show, setShow] = useState(false);
@@ -37,7 +38,7 @@ const Carrito = () => {
   );
 
     const extractNumber = (string) => {
-        const match = string.match(/\d+/); 
+        const match = string?.match(/\d+/); 
         return match ? parseInt(match[0]) : 0; 
     }; 
 
@@ -183,16 +184,22 @@ const Carrito = () => {
     };
 
 
+    const envio = 287
+
+
+
     return (
         <>
-            <div className="grid grid-cols-3 gap-6 mx-10 mt-6">
+            <div className="grid grid-cols-3 gap-6 mx-20 mt-6 mb-20">
+
 
                 <div className="col-span-2">
+                <p className="px-10 py-10 text-3xl font-bold">Carrito ({totalArts})</p>
                     {cartApi.productos?.length || cartUnificado.length ? ( 
                         <div>
                             { cartApi.productos ? (
                                 cartApi.productos.map((item, index) =>(
-                                    <div key={index} className="flex flex-col items-center justify-between p-4 rounded-lg bg-white shadow-sm mb-4">
+                                    <div key={index} className="flex flex-col items-center justify-between p-4 rounded-lg bg-white border-b  mb-4">
                                         <div className="flex items-center justify-between w-full">
                                             <img src={item.imagenPrincipal} alt="fotoProducto" className="w-16 h-16 object-cover border-2 border-indigo-200 rounded-full" />
                                             <div className="ml-4 w-40">
@@ -220,21 +227,29 @@ const Carrito = () => {
                                 ))
                             ) : ( cartUnificado.length ?
                                 cartUnificado.map((item, index) => (
-                                    <div key={item.objeto.id} className="flex flex-col items-center justify-between p-4 rounded-lg bg-white shadow-sm mb-4">
+                                    <div key={item.objeto.id} className="flex justify-center ml-5 flex-col items-center justify-between p-6 w-[650px] rounded-lg bg-white border-b shadow-sm mb-4">
+                                       
                                         <div className="flex items-center justify-between w-full">
-                                            <img src={item.objeto.imagenPrincipal} alt="fotoProducto" className="w-16 h-16 object-cover border-2 border-indigo-200 rounded-full" />
-                                            <div className="ml-4 w-40">
+                                            <img src={item.objeto.imagenPrincipal} alt="fotoProducto" className="w-20 h-20 object-cover border-2 border rounded-md " />
+                                            <div className="-ml-4 w-40">
                                                 <div className="font-medium capitalize text-gray-800">{item.objeto.name}</div>
-                                            </div>
-                                            <div className="w-20 text-right font-medium flex items-center justify-center">
-                                                <div className="mr-1">Cantidad:</div> 
+                                                <div className="w-20 text-right text-xs flex items-center justify-center">
                                                 <div>
                                                     {item.cantidad}
                                                 </div>
+                                                <div className="mr-1 ml-1 text-xs"> Item</div> 
+
                                             </div>
+                                                <div className="mr-1 ml-7 text-xs">Myk</div>
+                                            </div>
+                                           
                                             <div className="w-32 text-right font-medium">
                                                 <div className="text-xs text-gray-500">Costo</div>
-                                                {item.objeto.precio_venta * item.cantidad} $
+                                                ${item.objeto.precio_venta * item.cantidad}.00
+                                                <div className="flex gap-2">
+                                                    <FaRegHeart/>
+                                                <p className="text-xs">Mover a favoritos</p>
+                                                </div>
                                             </div>
                                             <button
                                                 onClick={() => handleDeleteArtLS(item)}
@@ -254,14 +269,14 @@ const Carrito = () => {
                         </div>
                     )}
                     {cartUnificado.length > 0  || cartApi.productos?.length ?(
-                    <button onClick={() => handleEmptyCart()} className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100">
+                    <button onClick={() => handleEmptyCart()} className="ml-10 text-blue-900 text-xm">
                       Limpiar carrito
                       </button>
                     ) : null }
                 </div>
 
                 <div className="col-span-1">
-                    <div className="p-6 bg-white rounded-lg shadow-lg">
+                    <div className="py-8 mt-10 mr-2 px-4 bg-white rounded-md shadow-lg">
                         <h2 className="font-bold text-gray-800 mb-4">Resumen de Compra</h2>
 
                         <div className="flex items-center justify-between mb-4">
@@ -271,37 +286,38 @@ const Carrito = () => {
 
                         <div className="flex items-center justify-between mb-4">
                             <div className="text-gray-800 font-medium">Envio</div>
-                            <div className="text-gray-500 text-sm">Consultar con su proveedor</div>
+                            <div className="text-gray-500 text-sm">${envio}.00 </div>
                         </div>
 
                         <div className="flex items-center justify-between mb-4">
-                            <div className="font-bold text-gray-800">Total</div>
-                            <div className="font-bold text-gray-800">{totalProd || 0} $</div>
+                            <div className="font-bold text-gray-800">Subtotal</div>
+                            <div className="font-bold text-gray-800">$ {totalProd || 0} .00</div>
                         </div>
+
+                        <div className="w-full border border-gray-200 mb-4"></div>
+
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="font-bold text-gray-800">Total</div>
+                            <div className="font-bold text-gray-800">$ {totalProd  + envio || 0}.00</div>
+                        </div>
+
+                        
 
                         <button
                         onClick={() => {
                             handleProceedToPayment();                         
                         }}
-                        className="transition duration-300 rounded-md py-2 px-4 text-white font-medium w-full"
-                        style={{ backgroundColor: 'rgb(109, 1, 110)' }}
+                        className="transition flex justify-center items-center text-center duration-300 rounded-md py-3 px-4 text-white font-medium w-full bg-blue-900"
+                        
                         >
                         Continuar compra
+                        <FaArrowRight className='text-white ml-3'/>
                     </button>
                     </div>
 
-                    <div className="mt-6 flex justify-center">
-                        <NavLink to="/catalogo">
-                            <button  className="transition bg-gray-800 duration-300 rounded-md py-2 px-4 text-white font-medium w-full">
-                                Agregar articulos
-                            </button>
-                        </NavLink>
-                    </div>
                 </div>
             </div>
-            <div className='flex flex-row gap-2 mt-10 m-10 rounded-lg p-10  justify-center items-center'>
-                <LastBuyedSlider/>
-            </div>
+           
         </>
     )
 

@@ -49,7 +49,7 @@ import LastBuyedCard from "./lastBuyedCard";
     return (
       <div className=" w-full">
         {userComprasById.productos?.length > 0 && ( 
-        <h2 className="m-2 cursor-pointer text-xl font-semibold inline-block text-gray-700  py-1 px-4 items-center gap-2 rounded-lg"> Comprar de nuevo:</h2>
+        <h2 className="m cursor-pointer text-xl font-semibold inline-block text-gray-700  py-1 px-4 items-center gap-2 rounded-lg"> Ofertas</h2>
         )}
         <div className="flex items-center justify-center w-full h-full  sm:py-8">
           {/* Carousel for desktop and large size devices */}
