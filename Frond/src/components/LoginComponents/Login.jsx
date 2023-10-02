@@ -35,7 +35,7 @@ const LoginButton = () => {
       <div></div>
     ) : (
       <>
-            <button onClick={handleLogin} className='h-8 mt-1 px-3 border border-blue-900 text-sm rounded-md'>Login</button>
+            <button onClick={handleLogin} className='h-8 mt-1 text-  px-4 mx-1 border border-blue-900 bg-gray-50  text-sm rounded-md hover:bg-blue-900 hover:text-white transition duration-300 cursor-pointer ease-in-out'>Login</button>
             </>
     
     )}

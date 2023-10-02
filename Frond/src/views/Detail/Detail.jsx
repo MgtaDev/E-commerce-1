@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import SectionReviews from "../../components/modalReviwers/reviewrsDetail/SectionReviews";
 import bagIcon from '../../assets/img/baghandleWhite.svg';
@@ -11,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProducts2";
 import { FaCheckCircle, FaHeart, FaShare, FaShoppingCart, FaStar } from "react-icons/fa";
 import MyK from '../../assets/img/proveedor1.png'
+import ReviwerD from "../../components/modalReviwers/reviewrsDetail/ReviwerD";
 
 
 const Detail = () => {
@@ -25,6 +26,7 @@ const Detail = () => {
   useEffect(() => {
     dispatch(clientes());
   }, []);
+console.log(stateProducts);
 
   const usuarios = useSelector((state) => state.Allclients);
 
@@ -68,7 +70,7 @@ const Detail = () => {
       setShow(true);
       return;
     }
-    if (stateProducts.cantidad <= 0) {
+    if (stateProducts.cantidad > 1) {
       setShow(true);
       return;
     }
@@ -106,9 +108,146 @@ const Detail = () => {
     nombre: stateProducts.name,
     precio: stateProducts.precio_venta,
     descripcion: stateProducts.descripcion,
-    imagen: stateProducts.imagenPrincipal,
     quantity: amount,
   };
+
+  function obtenerMarca(stateProducts) {
+    let marca = '';
+    let imagen = '';
+    
+    switch (stateProducts.marcaId) {
+      case 1:
+        marca = 'Nike';
+        imagen = 'imagen-nike.jpg';
+        break;
+      case 2:
+        marca = 'Adidas';
+        imagen = 'imagen-adidas.jpg';
+        break;
+      case 3:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 4:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 5:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 6:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 7:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 8:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 9:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 10:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 11:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 12:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 13:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 14:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 15:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 16:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 17:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 18:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 19:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 20:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 21:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 22:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 23:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 24:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 25:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 26:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 27:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 28:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 29:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 30:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+        case 31:
+        marca = 'Puma';
+        imagen = 'imagen-puma.jpg';
+        break;
+       
+      default:
+        marca = 'Marca no encontrada';
+        imagen = 'imagen-default.jpg';
+    }
+    
+    return `<img src=${imagen}> ${marca}`;
+  }
 
   const addToCart = () => {        
     dispatch(addItemToCartLS(id, amount, 1)); 
@@ -117,10 +256,6 @@ const Detail = () => {
     redirigirAlInicio()
   }
 
-  const goBack = () => {
-    navigate('/catalogo');
-    redirigirAlInicio()
-  }
 
   const fadeIn = useSpring({
     from: { opacity: 0 },
@@ -137,32 +272,196 @@ const Detail = () => {
     delay: 500,
   });
 
+  function getProductCondition() {
+    const id = stateProducts.tamañoId
+    
+    switch(id) {
+      case 1:
+        return 'Nuevo';
+  
+      case 2:
+        return 'Reconstruido';
+  
+      case 3:
+        return 'De 2da mano';
+  
+      case 4:
+        return 'De 3ra mano';
+  
+      default:
+        return '';
+    }
+  }
+
+
+  function getProductBrand() {
+    const id = stateProducts.marcaId
+    
+    switch(id) {
+      case 1:
+        return 'Mars Gaming';
+  
+      case 2:
+        return 'Asus';
+
+      case 3:
+        return 'JBL';
+  
+      case 4:
+        return "AVR";
+  
+      case 5:
+        return 'Samsung';
+      
+      case 6:
+          return 'Lenovo';
+
+      case 7:
+          return 'Redragon';
+
+      case 8:
+          return 'Comifort';
+
+      case 9:
+          return 'Intel';
+
+      case 10:
+          return 'Nintendo';
+
+          case 11:
+            return 'Xbox';
+      
+          case 12:
+            return 'Playstation';
+    
+          case 13:
+            return 'Acer';
+      
+          case 14:
+            return "Dell";
+      
+          case 15:
+            return 'HP';
+          
+          case 16:
+              return 'Epson';
+    
+          case 17:
+              return 'APC';
+    
+          case 18:
+              return 'Techviews';
+    
+          case 19:
+              return 'Argom';
+    
+          case 20:
+              return 'Cooler Master';
+    
+          case 21:
+              return 'Biostar';
+
+              case 22:
+                return 'AMD';
+          
+              case 23:
+                return 'DeepCool';
+        
+              case 24:
+                return 'Kingston';
+          
+              case 25:
+                return "Adata";
+          
+              case 26:
+                return 'LG';
+              
+              case 27:
+                  return 'HHGears';
+        
+              case 28:
+                  return 'Razer';
+        
+              case 29:
+                  return 'Logitech';
+        
+              case 30:
+                  return 'HiperX';
+        
+            
+        
+        
+  
+      default:
+        return '';
+    }
+  }
+
+
+  function getProductCategoria() {
+    const id = stateProducts.categoriaId
+    
+    switch(id) {
+      case 1:
+        return 'Perifericos e Impresoras';
+  
+      case 2:
+        return 'Laptops';
+
+      case 3:
+        return 'Audifonos';
+  
+      case 4:
+        return "Procesadores y CPU'S";
+  
+      case 5:
+        return 'Monitores';
+      
+      case 6:
+          return 'Mobiliario y Sillas';
+
+      case 7:
+          return 'Fuentes, tarjetas y reguladores';
+
+      case 8:
+          return 'Seguridad';
+
+      case 9:
+          return 'Teclados';
+
+      case 10:
+          return 'Accesorios';
+
+      case 11:
+          return 'Consolas';
+
+
+      default:
+        return '';
+    }
+  }
+
+
   return (
     <>
-      {/* <button
-        onClick={goBack}
-        className="bg-blue-900 absolute ml-20 text-white py-2 px-4 rounded-lg mb-6 mt-12"
-      >
-        Volver
-      </button> */}
+    
       <animated.div style={fadeIn}>
       
       <div className="flex gap-10 mt-10">
      {/* 1 */}
-      <div className="flex flex-col h-[400px] w-80 ml-20 mr-10 ">
+      <div className="flex flex-col h-[400px] w-80 px-10 ">
       <img className="rounded-md" src={stateProducts.imagenPrincipal} alt="" />
      
-      <div className="flex gap-2 mt-5">
+      <div className="flex justify-center gap-2 mt-5">
       <img className="h-12 w-12" src={stateProducts.imagenPrincipal} alt="" />
       <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
       <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
       <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
-      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
-      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+     
       </div>
       </div>
      {/* 2 */}
-      <div>
+      <div className="w-[45%]">
       <h2 className="text-xl text-gray-900 capitalize py-2  font-bold">{stateProducts.name} - Producto certificado  <FaCheckCircle className="text-green-600"/> </h2>
       <div className="flex text-xs items-center mb-2">
       <FaStar className="text-yellow-400"/> <p className="text-sm mr-3">4.8</p>   1.2k reviews
@@ -171,18 +470,22 @@ const Detail = () => {
       <span className="font-bold text-xl">${stateProducts.precio_venta}.00 </span>
       <span className="text-xs text-gray-500 px-2"> / Unidad</span>
       </div>
+      <span className="text-xs text-gray-500">{stateProducts.cantidad} Disponibles</span>
 
       <div className="border-b mt-4"></div>
 
       <h2 className="font-bold py-4">Detalles</h2>
       <div className="flex items-center">
-      <p className="text-gray-500 mr-5">Condicion</p> <span className="font-bold text-sm">Nuevo</span>
+      <p className="text-gray-500 mr-5">Condicion</p> <span className="font-bold text-sm">{getProductCondition()}</span>
       </div>
       <div className="flex items-center">
-      <p className="text-gray-500 mr-5">Peso unitario</p> <span className="font-bold text-sm">10 g</span>
+      <p className="text-gray-500 mr-5">Peso unitario</p> <span className="font-bold text-sm">{stateProducts.precio_compra}g</span>
       </div>
       <div className="flex items-center">
-      <p className="text-gray-500 mr-5">Categoria</p> <span className="font-bold text-sm">Telefonos Celulares</span>
+      <p className="text-gray-500 mr-5">Categoria</p> <span className="font-bold text-sm">{getProductCategoria()}</span>
+      </div>
+      <div className="flex items-center">
+      <p className="text-gray-500 mr-5">Marca</p> <span className="font-bold text-sm">{getProductBrand()}</span>
       </div>
 
       <div className="border-b mt-4"></div>
@@ -193,6 +496,8 @@ const Detail = () => {
       <p className="text-sm mb-3">{stateProducts.descripcion}</p>
       </div>
 
+{/* precio compra es igual a peso unitario */}
+{/* Condicion es igual a referencia del proveedor */}
 
 
 
@@ -205,7 +510,15 @@ const Detail = () => {
             <img className="rounded-md" src={stateProducts.imagenPrincipal} alt="" />
           </div>
           <div>
-            <span className="text-sm">En stock <span className="text-green-500 text-sm">√</span> </span>
+            {
+              stateProducts.cantidad < 1 ? (
+                <span className="text-sm">Agotado <span className="text-red-500 text-sm">X</span> </span>
+                
+                )
+              :(
+                <span className="text-sm">En stock <span className="text-green-500 text-sm">√</span> </span>
+                )
+            }
           </div>
           </div>
          
@@ -250,7 +563,9 @@ const Detail = () => {
           <div className="flex">
             <div className="flex items-center mt-3 px-2 text-xs">
             <FaHeart/>
-            <p className="text-sm text-gray-800 ml-1 ">Favoritos</p> 
+            <Link to={'/favoritos'}>
+            <p className="text-sm text-gray-800 ml-1 cursor-pointer ">Favoritos</p> 
+            </Link>
             </div>
 
             <div className="border-r"></div>
@@ -281,7 +596,7 @@ const Detail = () => {
       <h2 className="text-lg font-bold">MyK</h2>
       </div>
 
-      <div className="flex text-xs flex-col px-20  border-r  flex items-center">
+      <div className="flex text-sm flex-col px-20  border-r  flex items-center">
       <FaStar className="text-yellow-400"/>
       <span>1.2k reviews</span>
       </div>
@@ -303,17 +618,19 @@ const Detail = () => {
 
       </div>
       {/* Container */}
+        <div className="border-b"></div>
 
 
   
       {/* <SectionReviews /> */}
-      
-
-
-
-        <div className="border-b"></div>
-
+      <div className="flex gap-2">
+      <SectionReviews/>
+      <ReviwerD/>
       </div>
+    
+
+
+        </div>
         
       </animated.div>
     </>

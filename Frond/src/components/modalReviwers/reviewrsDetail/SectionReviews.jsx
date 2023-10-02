@@ -17,13 +17,13 @@ const SectionReviews = () => {
 
   return (
     
-      <div className="shadow p-4">
-        <h3>Overall rating</h3>
+      <div className="shadow w-[400px] p-4 mt-2">
+        <h3 className="font-bold text-center text-xl text-gray-700">Calificacion</h3>
 
-        <div className="text-xl m-4 flex items-center">
+        <div className="text-xl m-1 flex items-center">
         <FaStar className="text-yellow-500"/>
-        <span className="text-xl font-bold">4.8</span>
-        <span className="ml-2 text-xs" >de 130 reseñas</span>
+        <span className="text-xl font-bold">{highestRating}.0</span>
+        <span className="ml-2 text-xs" >con 1 reseña</span>
         </div>
       </div>
     

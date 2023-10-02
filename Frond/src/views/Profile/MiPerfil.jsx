@@ -101,7 +101,7 @@ const Miperfil = () => {
             </p>
             {!buttonSwitch ? (
               <button
-                className="bg-purple-600 text-white px-3 flex items-center justify-center py-2 rounded-md  w-56 mb-10"
+                className="bg-blue-900 text-white px-3 flex items-center justify-center py-2 rounded-md  w-56 mb-10"
                 onClick={() => setButtonSwitch(true)}
               >
                 Editar perfil

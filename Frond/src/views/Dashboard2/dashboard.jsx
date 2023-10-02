@@ -46,15 +46,7 @@ const Dashboard = () => {
   
     setNavStyles(["text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900", "text-gray-900"]); // <-- Corregir el tercer elemento
   };
-  const handleNav4 = () => {
-    setClientes(false);
-    setProductos(false);
-    setVentas(false);
-    setFormCreacion(true)
-
-    setNavStyles(["bg-white text-gray-900", "text-gray-900", "text-gray-900", "bg-yellow-400 text-gray-900"]);
-  };
-
+ 
 
 
 
@@ -63,7 +55,7 @@ const Dashboard = () => {
       <nav className="bg-gray-100 w-40 flex flex-col justify-start items-stretch border-r border-gray-200">
         <div className="flex justify-between items-center py-4">
           <h1 className="text-3xl text-center text-gray-700 font-medium">
-           Admin Dashboard</h1>
+           Admin Dash</h1>
         </div>
         <ul className="flex-grow pb-5 mb-4">
 
@@ -82,20 +74,13 @@ const Dashboard = () => {
             onClick={handleNav3}>
             Ventas
           </li>
-          <li
-            className={`text-lg font-bold p-3 cursor-pointer shadow-md transition duration-500 ${navStyles[3]} hover:bg-gray-300`}
-            onClick={handleNav4}>
-           Añadir producto
-          </li>
+         
         </ul>
       </nav>
       <div className="flex-grow bg-gray-50">
         {Productos ? <ProductosTable /> : ""}
         {Clientes ? <ClientesTable /> : ""}
         {Ventas ? <VentasTable /> : ""}
-        {FormCreacion ? <Form></Form> : ""}
-
-
       </div>
     </div>
   );

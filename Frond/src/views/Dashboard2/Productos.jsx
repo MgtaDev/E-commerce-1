@@ -21,6 +21,9 @@ const ProductosTable = () => {
   const handlerPageNumber = (index) => {
     setPageNumberNx(index);
   };
+  const redirigirAlInicio = () => {
+    window.scrollTo(0, 0);
+  }
 
   useEffect(
     () => {
@@ -52,6 +55,7 @@ const ProductosTable = () => {
       size: numberSize
     };
     dispatch(products(queries));
+    redirigirAlInicio()
   };
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -351,7 +355,7 @@ const ProductosTable = () => {
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
-          {stateProducts.productos.sort((a, b) => a.id - b.id).map((product) => (
+          {stateProducts.productos?.sort((a, b) => a.id - b.id).map((product) => (
             <tr key={product.id} className="border-t">
               <td className="px-6 text-center capitalize py-10">{product.id}</td>
               <td className="px-6 text-center capitalize py-10">{product.name}</td>

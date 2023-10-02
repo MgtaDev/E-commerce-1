@@ -67,11 +67,11 @@ const pageNumbers = generatePageNumbers();
 
   return (
     <>
-      <h2 className="text-3xl px-40 text-gray-700  my-8 pb-4">
+      <h2 className="text-3xl px-40 text-gray-700  mt-8">
         Mis compras
       </h2>
       {userComprasById?.productos?.length > 0 && (
-             <p className='ml-40 text-gray-500 text-lg'>Hola {currentUser.name.split(' ')[0]}, Estas son tus compras recientes:</p> 
+             <p className='ml-40 py-2 text-gray-500 mb-10 text-lg'>Hola {currentUser.name.split(' ')[0]}, Estas son tus compras recientes:</p> 
       )}
 
       {userComprasById?.productos?.length > 0 ? (
@@ -84,7 +84,10 @@ const pageNumbers = generatePageNumbers();
               </div>
             ))}
           </div>
-        </div><div className="flex justify-center py-8">
+        </div>
+        {
+          userComprasById.length > 10 && (
+            <div className="flex justify-center py-8">
             <button
               onClick={() => {
                 if (currentPage > 1) {
@@ -121,7 +124,11 @@ const pageNumbers = generatePageNumbers();
             >
               {">"}
             </button>
-          </div></>
+        </div>
+          )
+        }
+      
+          </>
       ) : (
         <div className="text-center p-20 my-8">
           <p className="text-gray-600 text-xl font-medium">

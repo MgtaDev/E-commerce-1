@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { brands, colors, sizes, productFilter} from "../../redux/actions";
+import { brands, colors, sizes, productFilter, categories} from "../../redux/actions";
 import Swal from "sweetalert2";
 
 const Catalogfilters = ({products, pageNumber, searchResults}) => {
   const stateProducts = useSelector(state => state.Allproducts);
-  const tallas = useSelector((state)=> state.Allsizes)
+  const estados = useSelector((state)=> state.Allsizes)
   const marcas = useSelector((state) => state.Allbrands)
   const categorias = useSelector((state)=> state.Allcategories)
   const productosFiltrados = useSelector((state)=> state.productsFiltered)
   const [filterChanged, setFilterChanged] = useState(false);
+  console.log(categorias);
   const [selectedFilters, setSelectedFilters] = useState(
     {
       precio_venta: "",
@@ -32,6 +33,7 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
       dispatch(sizes())
       dispatch(colors())
       dispatch(brands())
+      dispatch(categories())
     }, [dispatch])
 
     
@@ -112,14 +114,14 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
 
 
     return (
-      <div className="grid grid-cols-1 w-4/5 mt-4 mx-auto bg-white text-black py-10 text-lg capitalize justify-items-start rounded-md">
+      <div className="grid grid-cols-1 w-4/5 mt-4 mx-auto text-black py-20 text-lg capitalize justify-items-start rounded-md">
         
       {/* Categorias */}
       <div>
         <h3 className="font-bold mb-2">Categorías</h3>
         <ul>
           {categorias &&
-            categorias.map(categoria => {
+            categorias?.map(categoria => {
               const categoriaNumber = extractNumber(categoria.id);
               return (
                 <li key={categoria.id} className="flex items-center mb-2">
@@ -165,13 +167,13 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
 
       {/* Talla */}
       <div>
-        <h3 className="font-bold mb-2">Talla</h3>
+        <h3 className="font-bold mb-2">Condicion</h3>
         <ul>
-          {tallas &&
-            tallas.map(talla => {
-              const tallaNumber = extractNumber(talla.id);
+          {estados &&
+            estados.map(estado => {
+              const tallaNumber = extractNumber(estado.id);
               return (
-                <li key={talla.id} className="flex items-center mb-2">
+                <li key={estado.id} className="flex items-center mb-2">
                   <input
                     className="mr-2"
                     type="checkbox"
@@ -180,7 +182,7 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
                       handleMultipleOptionChange("tamañoId", tallaNumber)
                     }
                   />
-                  <span>{talla.name}</span>
+                  <span>{estado.name}</span>
                 </li>
               );
             })}

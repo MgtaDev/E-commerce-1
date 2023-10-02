@@ -1,18 +1,122 @@
 [
   {
-    "name": "Trendy",
-    "id": 1
+    "name": "Mars Gaming",
+    "id": "1"
   },
   {
-    "name": "Kiss Beauty",
-    "id": 2
+    "name": "Asus",
+    "id": "2"
   },
   {
-    "name": "MyK",
-    "id": 3
+    "name": "JBL",
+    "id": "3"
   },
   {
-    "name": "Otras marcas",
-    "id": 4
+    "name": "AVR",
+    "id": "4"
+  },
+  {
+    "name": "Samsung",
+    "id": "5"
+  },
+  {
+    "name": "Lenovo",
+    "id": "6"
+  },
+  {
+    "name": "Redragon",
+    "id": "7"
+  },
+  {
+    "name": "Comifort",
+    "id": "8"
+  },
+  {
+    "name": "Intel",
+    "id": "9"
+  },
+  {
+    "name": "Nintendo",
+    "id": "10"
+  },
+  {
+    "name": "Xbox",
+    "id": "11"
+  },
+  {
+    "name": "Playstation",
+    "id": "12"
+  },
+  {
+    "name": "Acer",
+    "id": "13"
+  },
+  {
+    "name": "Dell",
+    "id": "14"
+  },
+  {
+    "name": "HP",
+    "id": "15"
+  },
+  {
+    "name": "Epson",
+    "id": "16"
+  },
+  {
+    "name": "APC",
+    "id": "17"
+  },
+  {
+    "name": "Techview",
+    "id": "18"
+  },
+  {
+    "name": "Argom",
+    "id": "19"
+  },
+  {
+    "name": "Cooler Master",
+    "id": "20"
+  },
+  {
+    "name": "Biostar",
+    "id": "21"
+  },
+  {
+    "name": "AMD",
+    "id": "22"
+  },
+  {
+    "name": "DeepCool",
+    "id": "23"
+  },
+  {
+    "name": "Kingston",
+    "id": "24"
+  },
+  {
+    "name": "Adata",
+    "id": "25"
+  },
+  {
+    "name": "LG",
+    "id": "26"
+  },
+  {
+    "name": "HHGears",
+    "id": "27"
+  },
+  {
+    "name": "Razer",
+    "id": "28"
+  },
+  {
+    "name": "Logitech",
+    "id": "29"
+  },
+  {
+    "name": "HiperX",
+    "id": "30"
   }
 ]

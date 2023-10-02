@@ -48,9 +48,9 @@ const Contact = () => {
   });
   return (
 <div>
-    <section style={{ backgroundImage: `url(${fond})` }} >
+    <section >
     <div className="relative h-[300px] overflow-hidden bg-cover bg-center "></div>
-    <div class="container md:px-12 m-auto py-20" >
+    <div class="container md:px-12 m-auto py-10" >
       <div
         class="rounded-lg bg-[hsla(0,0%,100%,0.8)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:py-16 md:px-14 -mt-[300px] backdrop-blur-[30px] ">
         <div class="flex justify-center flex-wrap">
@@ -118,9 +118,9 @@ const Contact = () => {
           <div class="w-full shrink-0 grow-0 basis-auto lg:w-7/12 text-slate-50 p-10">
             <h2 class="text-3xl pb-5">Ponte en contacto con nosotros</h2>
               <p class=" text-lg">
-En Bonita & Lovely, valoramos tu experiencia de compra y estamos aquí para responder cualquier pregunta que puedas tener. Si necesitas ayuda para elegir los productos adecuados, asesoramiento sobre nuestro cuidado de la piel o simplemente quieres compartir tus comentarios, no dudes en ponerte en contacto con nuestro amable equipo de atención al cliente.
+Desde Enmable, valoramos tu experiencia de compra y estamos aquí para responder cualquier pregunta que puedas tener. Si necesitas ayuda para elegir los productos adecuados, asesoramiento a la hora de adquirir cualquiera de nuestros productos o simplemente quieres compartir tus comentarios, no dudes en ponerte en contacto con nuestro amable equipo de atención al cliente.
 </p>
-<p class="pt-5">Equipo Bonita & Lovely</p>
+<p class="pt-5">Enmable c.a</p>
           </div>
         </div>
       </div>

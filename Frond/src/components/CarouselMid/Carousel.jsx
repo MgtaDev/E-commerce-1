@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
 import banner from '../../assets/slides/boashop banner.png'
+import banner2 from '../../assets/img/banner enmbale 2.webp'
+import banner3 from '../../assets/img/enmbale banner 3.webp'
+
 
 const Carousel = () => {
   const settings = {
@@ -32,11 +35,11 @@ const Carousel = () => {
         </div>
 
         <div>
-        <img className='' src={banner} alt="ofertas" />
+        <img className='' src={banner2} alt="ofertas" />
         </div>
 
         <div>
-        <img className='' src={banner} alt="ofertas" />
+        <img className='' src={banner3} alt="ofertas" />
         </div>
       </CarouselWrapper>
     </CarouselContainer>

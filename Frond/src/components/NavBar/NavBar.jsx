@@ -86,6 +86,9 @@ const Navbar = () => {
     };
   }, []);
 
+  const sendWhatsappMessage = () => {
+    window.open("https://wa.me/584121968978", "_blank")
+  };
 
   
   const {user, isAuthenticated, isLoading } = useAuth0()
@@ -94,16 +97,19 @@ const Navbar = () => {
       
     <header className=' text-white bg-[#103361] flex justify-between px-4 '>
     <div>
-    <p className=' text-xs py-1'>
+    <p className=' cursor-pointer text-xs py-1'>
       Contactanos al 0424-8048785
     </p>
     </div>
   
     <div>
-    <Link className='mr-4 text-xs'>
+    <Link to={'/catalogo'} className='mr-4 text-xs'>
+      Productos
+    </Link>
+    <Link to={'/aboutUs'} className='mr-4 text-xs'>
     Sobre nosotros
     </Link>
-    <Link className='text-xs'>
+    <Link to={'/faqs'} className='text-xs'>
     FAQ'S
     </Link>
     </div>

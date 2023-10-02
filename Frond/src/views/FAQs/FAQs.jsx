@@ -80,7 +80,7 @@ const FAQs = () => {
           <p className="text-base text-gray-600 mt-4">¿Aún tienes dudas sin resolver?</p>
           <p className="text-gray-600 text-sm">Si aún tienes dudas sin resolver, ¡contáctanos!</p>
           <Link to={'/contact'}>
-            <button className="purpleSet text-white rounded-lg px-3 py-2 mt-2">
+            <button className="bg-blue-900 text-white rounded-lg px-3 py-2 mt-2">
               Contactar equipo
             </button>
           </Link>

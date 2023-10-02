@@ -1,97 +1,97 @@
 [
   {
-    "name": "Labial en Matte Latte Go",
-    "descripcion": "Labial de larga duración y acabado mate",
+    "name":"Mouse Mars Gaming Mmax Optico 12400DPI Iluminacion Chroma RGB Perforado Diseño Hive",
+    "descripcion":  "Rueda de deslizamiento, Macros, pies de Teflón, cable trenzado, rueda de desplazamiento con goma, 7 botones programables, sistema de iluminación Chroma, gold plated connector, iluminación multicolor RGB de 16,8 millones, interruptores HUANO, sensor óptico Pixart 3327PRO",
     "precio_compra": 879,
     "porcentaje_ganancia": 40,
     "precio_venta": 900,
     "referencia_proveedor": "REF123",
-    "marcaId": 4,
+    "marcaId": 1,
     "categoriaId": 1,
-    "tamañoId": 2,
+    "tamañoId": 1,
     "proveedorId": 6,
     "subcategoriaId": [ 12, 9, 19, 16 ],
     "imagenes":[""],
-    "imagenPrincipal":"https://i.ibb.co/KmPvyR6/img2025.jpg"
+    "imagenPrincipal": "https://i.ibb.co/C6JHRyY/img1.png"
   },
   {
-    "name": "Paleta de Sombras Here 4",
-    "descripcion": "Paleta de sombras con tonos brillantes y mate",
+    "name": "Notebook Asus Zenbook Pro 16X",
+    "descripcion":  "UX7602ZM-XB96T, Intel Core i9-12900H, 32GB, 2TB SSD, GeForce RTX 3060 6GB, 16",
     "precio_compra": 780,
     "porcentaje_ganancia": 30,
     "precio_venta": 792,
     "referencia_proveedor": "REF456",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 2,
+    "categoriaId": 2,
+    "tamañoId": 1,
     "proveedorId": 6,
     "subcategoriaId": [ 8, 17, 3, 5 ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/9bQVmbS/img1643.jpg"
+    "imagenPrincipal":  "https://i.ibb.co/BNgBchH/img2.png"
   },
   {
-    "name": "Mascara Transparente MYK",
-    "descripcion": "Mascara de pestañas que proporciona volumen intenso",
+    "name": "Gigabyte G5 Core I5 11400H/16Gb/SSD PCIe 512Gb/RTX 3050 Ti/15,6 144Hz",
+    "descripcion": "GIGABYTE G5 GD - 15.6 pulgadas FHD IPS antirreflejo 144Hz, Intel Core i5, NVIDIA GeForce RTX 3050 GPU 4GB GDDR6, 16GB de memoria, 512GB SSD",
     "precio_compra": 331,
     "porcentaje_ganancia": 50,
     "precio_venta": 610,
     "referencia_proveedor": "REF789",
-    "marcaId": 3,
-    "categoriaId": 1,
+    "marcaId": 9,
+    "categoriaId": 2,
     "tamañoId": 1,
     "proveedorId": 6,
     "subcategoriaId": [ 6, 7, 2 ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/Xs1QVKk/img3037.jpg"
+    "imagenPrincipal": "https://i.ibb.co/Pmncx2z/img31.jpg"
   },
   {
-    "name": "Base Liquida Flawless",
-    "descripcion": "Base de maquillaje de alta cobertura y larga duración",
+    "name":  "Audífonos Inalámbricos Bluetooth Everest",
+    "descripcion": "JBL Everest 700 Inalámbrico Diseño Ergonómico Harman Recargable Bluetooth Ver4.0",
     "precio_compra": 174,
     "porcentaje_ganancia": 35,
     "precio_venta": 495,
     "referencia_proveedor": "REF246",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 3,
+    "categoriaId": 3,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [ 12, 19, 9, 16 ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/vj7NFgy/img2565.jpg"
+    "imagenPrincipal":  "https://i.ibb.co/cN8xgHC/img3.png"
   },
   {
-    "name": "Delineador Liquido Charming Karite",
-    "descripcion": "Delineador líquido con punta precisa para un acabado perfecto",
+    "name":  "Teclado Logitech G PRO Gaming",
+    "descripcion": "Teclado PRO X para gaming. Con interruptores mecánicos avanzados GX intercambiables, diseño sin teclado numérico, RGB LIGHTSYNC",
     "precio_compra": 461,
     "porcentaje_ganancia": 45,
     "precio_venta": 708,
     "referencia_proveedor": "REF753",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 29,
+    "categoriaId": 9,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [ 10, 2, 7 ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/x39m1Hc/img2774.jpg"
+    "imagenPrincipal": "https://i.ibb.co/9vT2vdG/img207.jpg"
   },
   {
-    "name": "Rubor Mineralizado MYK",
-    "descripcion": "Rubor en polvo con tonos suaves y naturales",
+    "name":  "CPU con Procesador Dual Core de 2.36Ghz Generic",
+    "descripcion": "Disco Duro de 80GB, Memoria RAM de 2GB, Unidad Optica de DVD/CD RW+",
     "precio_compra": 282,
     "porcentaje_ganancia": 25,
     "precio_venta": 647,
     "referencia_proveedor": "REF902",
-    "marcaId": 3,
-    "categoriaId": 1,
-    "tamañoId": 3,
+    "marcaId": 4,
+    "categoriaId": 4,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [ 1, 8, 17 ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/fkzxx98/img1893.jpg"
+    "imagenPrincipal": "https://i.ibb.co/GdPvQNZ/img4.png"
   },
   {
-    "name": "Kit de Brochas Glam",
-    "descripcion": "Set de brochas profesionales para maquillaje",
+    "name": "BM800 condensador profesional micrófono Podcast",
+    "descripcion": "Transmisión en directo equipo USB MIC Microfone de Studio Mic y soporte de grabación de música",
     "precio_compra": 752,
     "porcentaje_ganancia": 60,
     "precio_venta": 871,
@@ -102,17 +102,17 @@
     "proveedorId": 4,
     "subcategoriaId": [ 16, 12, 19, 9 ],
     "imagenes":["https://i.ibb.co/cXz9VD0/img1541.jpg", "https://i.ibb.co/Gsfp8tF/img1543.jpg", "https://i.ibb.co/YN2CFDG/img1545.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/4NmTBqp/setbrochas-compressed.jpg"
+    "imagenPrincipal": "https://i.ibb.co/Kx1FWJW/img5.png"
   },
   {
-    "name": "Velvet Color Kiss Beauty",
-    "descripcion": "Labial líquido de acabado mate y larga duración",
+    "name": "Monitor Samsung Curvo 32 Fhd 1960x1080 Hdmi Ultraslim 75hz",
+    "descripcion": "Soporte de colores: Máx. 16.7 M. Gama de colores (NTSC 1976): 72%. Frecuencia de actualización: Máx 75 Hz",
     "precio_compra": 844,
     "porcentaje_ganancia": 35,
     "precio_venta": 845,
     "referencia_proveedor": "REF657",
-    "marcaId": 2,
-    "categoriaId": 1,
+    "marcaId": 5,
+    "categoriaId": 5,
     "tamañoId": 1,
     "proveedorId": 6,
     "subcategoriaId": [
@@ -120,36 +120,36 @@
       13
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/MZbtk7F/img2040.jpg"
+    "imagenPrincipal": "https://i.ibb.co/Hz0kyjf/img6.png"
   },
   {
-    "name": "Sombra The Natural Ushas",
-    "descripcion": "Sombra de ojos de alta pigmentación",
+    "name": "Audífonos bluetooth recargable live pods x20 Lenovo",
+    "descripcion": "Tiempo de reproducción 6 horas continuas. Cancelación de ruido activa. Control de volumen. Bluetooth",
     "precio_compra": 51,
     "porcentaje_ganancia": 40,
     "precio_venta": 116,
     "referencia_proveedor": "REF123",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 3,
+    "marcaId": 6,
+    "categoriaId": 3,
+    "tamañoId": 1,
     "proveedorId": 3,
     "subcategoriaId": [
       3,
       1
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/QbC9JD7/img1837.jpg"
+    "imagenPrincipal": "https://i.ibb.co/fM5dhfJ/img7.png"
   },
   {
-    "name": "Polvo compacto",
-    "descripcion": "Polvo compacto de alto cubrimiento",
+    "name":  "Audifonos Gaming Redragon Icon H520",
+    "descripcion":"Los Icon son auriculares con sonido envolvente 7.1 para experimentar bajos profundos, agudos claros y jugar con todos tus sentidos. Y su micrófono desmontable, se encargará de capturar cada una de tus palabras. Poseen además diadema metálica, flexible y cable mallado, como también un excelente aislamiento pasivo",
     "precio_compra": 256,
     "porcentaje_ganancia": 30,
     "precio_venta": 423,
     "referencia_proveedor": "REF567",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 7,
+    "categoriaId": 3,
+    "tamañoId": 1,
     "proveedorId": 3,
     "subcategoriaId": [
       16,
@@ -158,18 +158,18 @@
       12
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/Fx2dGmC/img2753.jpg"
+    "imagenPrincipal": "https://i.ibb.co/xFrCTDK/img8.png"
   },
   {
-    "name": "Pestañas Foxy Engol",
-    "descripcion": "Pestañas ideales para dar el efecto foxy eyes en el ojo",
+    "name":"Mesa esquinera color negro",
+    "descripcion": "COMIFORT Escritorio Forma L - Mesa de Estudio Esquinera con Estantería de Estructura Firme, Moderna y Minimalista con 2 Baldas Espaciosas y de Gran Capacidad.",
     "precio_compra": 265,
     "porcentaje_ganancia": 50,
     "precio_venta": 414,
     "referencia_proveedor": "REF124",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 8,
+    "categoriaId": 6,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [
       14,
@@ -177,11 +177,11 @@
       13
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/NmNSGwH/img3071.jpg"
+    "imagenPrincipal": "https://i.ibb.co/5410fNn/img9.png"
   },
   {
-    "name": "Delineador en Glitter",
-    "descripcion": "Delineador en glitter de larga duración",
+    "name": "Laptop Asus F515 Intel I3 Memoria 8gb Ssd 128gb Windows 11",
+    "descripcion": "Laptop para juegos, pantalla IPS Full HD de 14 pulgadas, 144 Hz, 8 núcleos AMD Ryzen 9 5900HS, NVIDIA GeForce RTX 3060, Moonlight White-Tikbot Accesorios (16 GB RAM | 1 TB PCIe SSD)",
     "precio_compra": 587,
     "porcentaje_ganancia": 40,
     "precio_venta": 723,
@@ -197,17 +197,17 @@
       5
     ],
     "imagenes":["https://i.ibb.co/xC7qv2s/img2844.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/0QHT4mW/img2842.jpg"
+    "imagenPrincipal": "https://i.ibb.co/VM5jvgB/img10.png"
   },
   {
-    "name": "Corrector Profesional Trendy Magic Concealer",
-    "descripcion": "Corrector de alta cobertura y excelente calidad",
+    "name": "Procesador Intel Core I3 10100f 3,6 Ghz 10ma Gen Socket 1200",
+    "descripcion": "Cantidad de núcleos 4. Cantidad de subprocesos 8. Frecuencia turbo máxima 4.40 GHz. Frecuencia de la Tecnología Intel® Turbo Boost 2.0‡ 4.40 GHz. Frecuencia básica del procesador 3.70 GHz",
     "precio_compra": 625,
     "porcentaje_ganancia": 35,
     "precio_venta": 679,
     "referencia_proveedor": "REF789",
-    "marcaId": 1,
-    "categoriaId": 1,
+    "marcaId": 9,
+    "categoriaId": 4,
     "tamañoId": 1,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -216,54 +216,54 @@
       9
     ],
     "imagenes":["https://i.ibb.co/KzpPQGD/img2681.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/fD0bWBk/img2675.jpg"
+    "imagenPrincipal": "https://i.ibb.co/2sJZDjx/img11.jpg"
   },
   {
-    "name": "Labial Liquido Super Stay Matte Ink Kiss Beauty",
-    "descripcion": "Labial liquido de alta duración",
+    "name": "Combo Core I3 10th Tarjeta Madreh510m-hv Ddr4 8gb 3200tforce",
+    "descripcion": "Soporta procesadores Intel® Core™ de 10ª generación y procesadores Intel® Core™ de 11ª generación (LGA1200). Soporta memoria DDR4 3200MHz*. 1 x PCIe 4.0 x16, 1 x PCIe 3.0 x1. Opciones de salida gráficos: HDMI, D-Sub",
     "precio_compra": 494,
     "porcentaje_ganancia": 25,
     "precio_venta": 724,
     "referencia_proveedor": "REF432",
-    "marcaId": 2,
-    "categoriaId": 1,
-    "tamañoId": 4,
+    "marcaId": 9,
+    "categoriaId": 4,
+    "tamañoId": 1,
     "proveedorId": 6,
     "subcategoriaId": [
       2,
       14
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/kBZWvBK/img2240.jpg"
+    "imagenPrincipal": "https://i.ibb.co/bsWQhYR/img12.jpg"
   },
   {
-    "name": "Iluminador Liquido Shinny Febble",
-    "descripcion": "Iluminador líquido para resaltar los rasgos faciales",
+    "name": "Procesador Intel Core I7-10700f Caché De 16 M Hasta 4,80ghz",
+    "descripcion": "Cantidad de núcleos: 8. Cantidad de subprocesos: 16. Frecuencia turbo máxima: 4,80 GHz. Frecuencia de la Tecnología Intel® Turbo Boost Max 3.0: 4,80 GHz. Frecuencia de la Tecnología Intel® Turbo Boost 2.0: 4.70 GHz. Frecuencia básica del procesador: 2,90 GHz",
     "precio_compra": 141,
     "porcentaje_ganancia": 30,
     "precio_venta": 656,
     "referencia_proveedor": "REF243",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 3,
+    "marcaId": 9,
+    "categoriaId": 4,
+    "tamañoId": 1,
     "proveedorId": 5,
     "subcategoriaId": [
       18,
       17
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/2hxC1yP/img1908.jpg"
+    "imagenPrincipal": "https://i.ibb.co/hsxQ6qz/img13.jpg"
   },
   {
-    "name": "Mascara MYK",
-    "descripcion": "Mascara de pestañas color negro",
+    "name": "Procesador Intel Core I5 12400f Socket Lga 1700 12va Gen",
+    "descripcion": "Procesador Intel Core i5-12400F. 6 meses de garantía",
     "precio_compra": 22,
     "porcentaje_ganancia": 45,
     "precio_venta": 597,
     "referencia_proveedor": "REF542",
-    "marcaId": 3,
-    "categoriaId": 1,
-    "tamañoId": 4,
+    "marcaId": 9,
+    "categoriaId": 4,
+    "tamañoId": 1,
     "proveedorId": 6,
     "subcategoriaId": [
       2,
@@ -272,36 +272,36 @@
       6
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/S7xTXqg/img3062.jpg"
+    "imagenPrincipal": "https://i.ibb.co/whFSkCG/img14.jpg"
   },
   {
-    "name": "Brocha Mágica Viral",
-    "descripcion": "Brocha para aplicar base de maquillaje líquida",
+    "name":  "Nintendo Switch Edición Animal Crossing: New Horizons",
+    "descripcion":"Nintendo Switch se inspira en el diseño del nuevo juego Animal Crossing: New Horizons, con hermosos controles Joy-Con de color verde pastel y azul que son blancos en la parte posterior, muñequeras blancas y un Nintendo Switch Dock blanco, adornado con imágenes de personajes reconocibles.",
     "precio_compra": 140,
     "porcentaje_ganancia": 60,
     "precio_venta": 182,
     "referencia_proveedor": "REF873",
-    "marcaId": 4,
-    "categoriaId": 3,
-    "tamañoId": 3,
+    "marcaId": 10,
+    "categoriaId":11,
+    "tamañoId": 1,
     "proveedorId": 5,
     "subcategoriaId": [
       19,
       16
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/R6pjnSD/img1561.jpg"
+    "imagenPrincipal": "https://i.ibb.co/QQx8sXX/img15.jpg"
   },
   {
-    "name": "Bálsamo Labial",
-    "descripcion": "Bálsamo sin color",
+    "name": "Nintendo Switch With Neon Blue And Neon Red",
+    "descripcion":  "El nuevo sistema de videojuegos para casa de Nintendo. Además de proporcionar emociones individuales y multijugador en casa, el sistema Nintendo Switch se puede llevar para que los jugadores puedan disfrutar de una experiencia completa de consola en casa en cualquier momento y en cualquier lugar. La movilidad de una mano ahora se añade al poder de un sistema de juego en casa, con nuevos estilos de juego sin precedentes que cobran vida por los dos nuevos controles JoyCon.",
     "precio_compra": 609,
     "porcentaje_ganancia": 40,
     "precio_venta": 676,
     "referencia_proveedor": "REF625",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 4,
+    "marcaId": 10,
+    "categoriaId": 11,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [
       2,
@@ -309,18 +309,18 @@
       13
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/yFgyKWs/img2138.jpg"
+    "imagenPrincipal": "https://i.ibb.co/k0L1jMz/img16.jpg"
   },
   {
-    "name": "Kit x5 Brochas de Ojos y Rostro Diamantado RB",
-    "descripcion": "Set de brochas para maquillaje de ojos y ojos",
+    "name": "Nintendo Switch Pro Control Joy-con",
+    "descripcion": "Lleva tus sesiones de juego a un nivel superior con el Nintendo Switch Pro Controller. Conmutador de Nintendo portátil a un gran precio. Viene con cable de carga (USB C a USB A).",
     "precio_compra": 331,
     "porcentaje_ganancia": 30,
     "precio_venta": 361,
     "referencia_proveedor": "REF671",
-    "marcaId": 4,
-    "categoriaId": 3,
-    "tamañoId": 1,
+    "marcaId": 10,
+    "categoriaId": 11,
+    "tamañoId": 3,
     "proveedorId": 6,
     "subcategoriaId": [
       8,
@@ -329,17 +329,17 @@
       1
     ],
     "imagenes":["https://i.ibb.co/72xCzsW/img1567.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/ThGsmGX/img1569.jpg"
+    "imagenPrincipal": "https://i.ibb.co/3z9k7JQ/img17.jpg"
   },
   {
-    "name": "Spray Fijador Last Step Miis Cosmetics",
-    "descripcion": "Spray fijador de maquillaje para una larga duración",
+    "name": "Nintendo Switch Oled Modelo 2021",
+    "descripcion": "Pantalla OLED de 7 pulgadas: disfruta de colores vivos y un contraste nítido con una pantalla que hace que los colores resalten. Puerto LAN con cable: utiliza el puerto LAN del dock cuando juegas en modo TV, para conectarte a Internet por cable. Almacenamiento interno de 64 GB: guarda juegos en tu sistema, con los 64 GB de almacenamiento interno.",
     "precio_compra": 345,
     "porcentaje_ganancia": 25,
     "precio_venta": 851,
     "referencia_proveedor": "REF238",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 10,
+    "categoriaId": 11,
     "tamañoId": 3,
     "proveedorId": 6,
     "subcategoriaId": [
@@ -349,18 +349,18 @@
       9
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/47HKRVp/img842.jpg"
+    "imagenPrincipal": "https://i.ibb.co/9Tr3ctP/img18.jpg"
   },
   {
-    "name": "Sombra Galletica Hojo",
-    "descripcion": "Sombra de ojos de excelente pigmentación",
+    "name": "Xbox Series S Versión Digital + Control Powera Original",
+    "descripcion": "Nueva Consola Xbox Series S Versión All Digital Completamente Sellada más Control Alámbrico de la Marca PowerA diseñado especialmente para Xbox. Disfruta de miles de juegos digitales entre cuatro generaciones de consolas Xbox.",
     "precio_compra": 548,
     "porcentaje_ganancia": 35,
     "precio_venta": 745,
     "referencia_proveedor": "REF465",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 11,
+    "categoriaId": 11,
+    "tamañoId": 3,
     "proveedorId": 3,
     "subcategoriaId": [
       4,
@@ -369,52 +369,52 @@
       8
     ],
     "imagenes":["https://i.ibb.co/cvXCHRz/img1670.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/b6jNZ7r/img1667.jpg"
+    "imagenPrincipal": "https://i.ibb.co/hBNfWhj/img19.jpg"
   },
   {
-    "name": "Labial Velvet Diamante Aereney",
-    "descripcion": "Labial de gran duración",
+    "name": "Playstation 5 Standar Edition (lector De Discos) 825gb",
+    "descripcion": "Disfruta de la potencia de una CPU, una GPU y una SSD personalizadas con E/S integradas que redefinirá lo que una consola PlayStation puede hacer.",
     "precio_compra": 489,
     "porcentaje_ganancia": 30,
     "precio_venta": 788,
     "referencia_proveedor": "REF832",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 3,
+    "marcaId": 12,
+    "categoriaId": 11,
+    "tamañoId": 1,
     "proveedorId": 1,
     "subcategoriaId": [
       10,
       6
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/RvptWkP/img2166.jpg"
+    "imagenPrincipal": "https://i.ibb.co/jLS3sLc/img20.jpg"
   },
   {
-    "name": "Delineador en Plumón Blanco Kiss Beauty",
-    "descripcion": "Delineador en plumón para trazos precisos",
+    "name":  "Acer Chromebook 311 Mini Laptop Cpu Octacore Ram 4gb 32gb",
+    "descripcion": "Modelo de procesador: Intel Celeron. Garantía del fabricante - 12 Meses. Marca: Acer. Memoria del sistema (RAM): 4 gigabytes. Número de modelo del procesador: Intel® Celeron® N4020. Capacidad total de almacenamiento: 32 gigabytes",
     "precio_compra": 522,
     "porcentaje_ganancia": 40,
     "precio_venta": 573,
     "referencia_proveedor": "REF104",
-    "marcaId": 2,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 13,
+    "categoriaId": 2,
+    "tamañoId": 4,
     "proveedorId": 1,
     "subcategoriaId": [
       17,
       5
     ],
     "imagenes":["https://i.ibb.co/kcDJmbJ/img2832.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/Bf4N4q2/img2827.jpg"
+    "imagenPrincipal": "https://i.ibb.co/233dn6t/img21.jpg"
   },
   {
-    "name": "Trio de Esponjas Fruticas",
-    "descripcion": "Set de esponjas para aplicar maquillaje",
+    "name":  "Laptop Asus C423n De 14 PuLG 4gb/32gb N3350",
+    "descripcion": "ASUS Chromebook C423 es la forma más sencilla de aumentar tu productividad y divertirte en movimiento, todo el día y cada día. Este ultraportátil y ligero Chromebook de 14 pulgadas está alimentado te ofrece la libertad de hasta 10 horas de autonomía de la batería. También es el primer ASUS Chromebook que incorpora un diseño NanoEdge, que te ofrece una gran pantalla en un chasis compacto para facilitar la multitarea y un entretenimiento más envolvente.",
     "precio_compra": 740,
     "porcentaje_ganancia": 50,
     "precio_venta": 830,
     "referencia_proveedor": "REF429",
-    "marcaId": 4,
+    "marcaId": 2,
     "categoriaId": 3,
     "tamañoId": 1,
     "proveedorId": 3,
@@ -424,18 +424,18 @@
       19
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/kctRgF9/img1491.jpg"
+    "imagenPrincipal": "https://i.ibb.co/8nyvYnt/img22.jpg"
   },
   {
-    "name": "Labial Filo Dorado Chanlevii",
-    "descripcion": "Labial en Barra",
+    "name": "Laptop Asus Ryzen 3 3250u",
+    "descripcion": "Memoria 8gb Disco 128gb Pant 14. Disco duro de 128GB SSD. Sistema Operativo Windows",
     "precio_compra": 484,
     "porcentaje_ganancia": 35,
     "precio_venta": 869,
     "referencia_proveedor": "REF567",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 1,
+    "marcaId": 2,
+    "categoriaId": 2,
+    "tamañoId": 2,
     "proveedorId": 3,
     "subcategoriaId": [
       13,
@@ -443,18 +443,18 @@
       6
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/NCff1tR/img2068.jpga"
+    "imagenPrincipal": "https://i.ibb.co/zxp1fjm/img23.jpg"
   },
   {
-    "name": "Gel Fijador de Cejas MYK",
-    "descripcion": "Gel fijador de cejas que da forma y volumen",
+    "name": "Laptop Dell Inspiron I3-1115g4 / 8 Ram / 128 Ssd / 1 Tb Hdd",
+    "descripcion": "Processor: 11th Generation Intel® Core™ i3-1115G4 Processor (6MB Cache, up to 4.1 GHz). Operating System: Windows 10 Home Single Language(64bit). Video Card: Intel® UHD Graphics with shared graphics memory. Display: 15.6-inch FHD (1920 x 1080) Anti-glare LED Backlight Non-Touch Narrow",
     "precio_compra": 810,
     "porcentaje_ganancia": 45,
     "precio_venta": 838,
     "referencia_proveedor": "REF897",
-    "marcaId": 3,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 14,
+    "categoriaId": 2,
+    "tamañoId": 1,
     "proveedorId": 5,
     "subcategoriaId": [
       8,
@@ -463,18 +463,18 @@
       3
     ],
     "imagenes":["https://i.ibb.co/Xb4PD0p/img3059.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/fNfg0nH/img3054.jpg"
+    "imagenPrincipal": "https://i.ibb.co/S6d6wmX/img24.jpg"
   },
   {
-    "name": "Brocha Raimbow",
-    "descripcion": "Brocha para polvo",
+    "name": "Asus 14 Intel Core I3-1115g4,ram 4gb ,m.2 Ssd 128gb",
+    "descripcion": "ALMACENAMIENTO: DISCO 128GB SSD M.2 NVMe. GRAFICOS: INTEL UHD. PANTALLA: 14 LED Full HD",
     "precio_compra": 172,
     "porcentaje_ganancia": 30,
     "precio_venta": 567,
     "referencia_proveedor": "REF321",
-    "marcaId": 4,
-    "categoriaId": 3,
-    "tamañoId": 3,
+    "marcaId": 2,
+    "categoriaId": 2,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [
       16,
@@ -482,54 +482,54 @@
       19
     ],
     "imagenes":["https://i.ibb.co/JzcPhg7/img1577.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/RYsN8LF/img1575.jpg"
+    "imagenPrincipal": "https://i.ibb.co/JsmS0bG/img25.jpg"
   },
   {
-    "name": "Labial Matte",
-    "descripcion": "Labial matte con efecto voluminizante karite",
+    "name":  "Laptop Asus Rog Zephyrus 14 Wqxga Ryzen 9 1tb Ssd 16gb Ddr5",
+    "descripcion": "AMD Ryzen 9 6900HS (8 núcleos - 4.9 Ghz Max). 16Gb RAM DDR5 4800 Mhz. SSD 1TB PCIe 4.0 NVMe",
     "precio_compra": 211,
     "porcentaje_ganancia": 25,
     "precio_venta": 549,
     "referencia_proveedor": "REF903",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 2,
+    "categoriaId": 2,
+    "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [
       10,
       2
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/xYLRtNh/img2179.jpg"
+    "imagenPrincipal": "https://i.ibb.co/3S6ThNY/img26.jpg"
   },
   {
-    "name": "Delineador Líquido Colores",
-    "descripcion": "Delineador en pincel liner waterproof",
+    "name":"Laptop Dell Latitude E7270 Ultrabook",
+    "descripcion": "CPU Intel Core i5 6ta Generación. Velocidad Procesador 3.00 Ghz. Memoria RAM instalada 8 GB. S.O. Windows 10Pro 64 bits",
     "precio_compra": 253,
     "porcentaje_ganancia": 40,
     "precio_venta": 308,
     "referencia_proveedor": "REF239",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 4,
+    "marcaId": 14,
+    "categoriaId": 2,
+    "tamañoId": 1,
     "proveedorId": 1,
     "subcategoriaId": [
       4,
       1
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/tLS5CKK/img2804.jpg"
+    "imagenPrincipal":  "https://i.ibb.co/cNtM1ck/img27.jpg"
   },
   {
-    "name": "Kit Maquillaje Chicas Pesadas",
-    "descripcion": "Kit de maquillaje 4 paletas",
+    "name": "Laptop Gamer Asus Tuf 15,6 Intel Core I5 - 8gb 512ssd",
+    "descripcion":  "Su pantalla LED de 15.6 y 1920x1080 px de resolución te brindará colores más vivos y definidos. Tus películas y series preferidas cobrarán vida, ya que ganarán calidad y definición en cada detalle.",
     "precio_compra": 277,
     "porcentaje_ganancia": 30,
     "precio_venta": 830,
     "referencia_proveedor": "REF984",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 4,
+    "marcaId": 2,
+    "categoriaId": 2,
+    "tamañoId": 3,
     "proveedorId": 3,
     "subcategoriaId": [
       12,
@@ -537,18 +537,18 @@
       16
     ],
     "imagenes":["https://i.ibb.co/9qZsWM4/img1877.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/mRnMKVT/img1884.jpg"
+    "imagenPrincipal": "https://i.ibb.co/0nhNWmB/img28.jpg"
   },
   {
-    "name": "Lápiz Delineador Cremoso Engol",
-    "descripcion": "Lápices cremosos para labios y ojos engol",
+    "name": "Notebook Hp Pavilion X360 Er0010ca 15.6 Touchscreen",
+    "descripcion": "Capacidad total de almacenamiento: 256 GB. Medios de almacenamiento: SSD. Tipo de panel: IPS. Tipo HD: Full HD. Resolución de pantalla: 1920 x 1080 píxeles",
     "precio_compra": 35,
     "porcentaje_ganancia": 45,
     "precio_venta": 54,
     "referencia_proveedor": "REF672",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 2,
+    "marcaId": 15,
+    "categoriaId": 2,
+    "tamañoId": 3,
     "proveedorId": 1,
     "subcategoriaId": [
       15,
@@ -556,18 +556,18 @@
       10
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/4SQ1TNX/img2914.jpg"
+    "imagenPrincipal": "https://i.ibb.co/x7t6m5h/img29.jpg"
   },
   {
-    "name": "Kit Ruby Face",
-    "descripcion": "Kit de 8 brochas + cosmetiquera",
+    "name": "Notebook Hp 15-ec1046nr Gaming Ryzen 7-4800h 12gb 512gb",
+    "descripcion": "NOTEBOOK HP 15-ec1046nr gaming ryzen 7-4800h 12gb 512gb NEGRO",
     "precio_compra": 633,
     "porcentaje_ganancia": 50,
     "precio_venta": 886,
     "referencia_proveedor": "REF953",
-    "marcaId": 4,
-    "categoriaId": 1,
-    "tamañoId": 3,
+    "marcaId": 15,
+    "categoriaId": 2,
+    "tamañoId": 1,
     "proveedorId": 4,
     "subcategoriaId": [
       5,
@@ -575,18 +575,18 @@
       18
     ],
     "imagenes":["https://i.ibb.co/J5wWG5Z/img1550.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/q1c60G4/img1548.jpg"
+    "imagenPrincipal": "https://i.ibb.co/12NnXmV/img30.jpg"
   },
   {
-    "name": "Labial Lip Stick Chanlevii",
-    "descripcion": "Labial en barra Velvet",
+    "name":"IMPRESORA MULTIFUNCIONAL ECO TANK",
+    "descripcion": "La multinacional EcoTank L3110 te ofrece la revolucionaria impresión sin cartuchos, con nuevo diseño de tanques frontales, botellas de tinta con llenado automático y codificadas para llenado fácil de color. Con gran economía y tranquilidad en la impresión, la EcoTank L3110 te permite imprimir hasta 7.500 páginas a color1 o 4.500 páginas en negro1 con calidad profesional y alta velocidad",
     "precio_compra": 293,
     "porcentaje_ganancia": 35,
     "precio_venta": 689,
     "referencia_proveedor": "REF789",
-    "marcaId": 4,
+    "marcaId": 16,
     "categoriaId": 1,
-    "tamañoId": 2,
+    "tamañoId": 4,
     "proveedorId": 2,
     "subcategoriaId": [
       9,
@@ -594,35 +594,35 @@
       12
     ],
     "imagenes":["https://i.ibb.co/zfw2SFM/img2189.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/0nm3Z5t/img2187.jpg"
+    "imagenPrincipal": "https://i.ibb.co/NtNMPpG/img294.webp"
   },
   {
-    "name": "Brocha Ruby Face",
-    "descripcion": "Brocha para rubor con mango.",
+    "name": "Teclado Híbrido Cooler Master MK110",
+    "descripcion": "Teclado con cable Cooler Master MK110 negro RGB interruptor mem-chanical ",
     "precio_compra": 568,
     "porcentaje_ganancia": 30,
     "precio_venta": 659,
     "referencia_proveedor": "REF672",
-    "marcaId": 4,
-    "categoriaId": 3,
-    "tamañoId": 4,
+    "marcaId": 20,
+    "categoriaId": 9,
+    "tamañoId": 3,
     "proveedorId": 5,
     "subcategoriaId": [
       2,
       15
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/3CPnmTf/img1594.jpg"
+    "imagenPrincipal":"https://i.ibb.co/BTVW59g/img210.jpg"
   },
   {
-    "name": "Delineador Iman of Nobble",
-    "descripcion": "Delineador perlado glitter plumon",
+    "name": "Regulador de voltaje automático",
+    "descripcion": "APC Line-R 500VA Regulador Automático de Voltaje, 3 Universal Outlets, 230V.",
     "precio_compra": 895,
     "porcentaje_ganancia": 40,
     "precio_venta": 900,
     "referencia_proveedor": "REF537",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 17,
+    "categoriaId": 7,
     "tamañoId": 4,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -630,17 +630,17 @@
       8
     ],
     "imagenes":["https://i.ibb.co/5ckDLwf/img2966.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/8Mv0cK7/img2964.jpg"
+    "imagenPrincipal": "https://i.ibb.co/zsK339g/img295.jpg"
   },
   {
-    "name": "Paleta de sombras Naughty",
-    "descripcion": "Paletea de 18 colores.",
+    "name": "CAMARA TIPO DOMO VARIFOCAL  POE  2 MGPXL",
+    "descripcion": "Cámara De Seguridad Ip Domo Varifocal 2mp 1080p Antivandalic",
     "precio_compra": 282,
     "porcentaje_ganancia": 25,
     "precio_venta": 463,
     "referencia_proveedor": "REF402",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 18,
+    "categoriaId": 8,
     "tamañoId": 1,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -648,17 +648,17 @@
       9
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/SxBnP0R/img1831.jpg"
+    "imagenPrincipal": "https://i.ibb.co/Km5k09V/img296.webp"
   },
   {
-    "name": "Esponja Cajita Oso",
-    "descripcion": "Esponjas x 4 unidades",
+    "name": "CAMARA BALA 3,6 mm, AHD, 1.3MP/960P, NTSC, 12V/2A, 36 LEDS",
+    "descripcion": "CAMARA BALA 3.6 MM, AHD, 1.3MP/960P, NTSC, 12V/2A, 36 LEDS. FUNCIONA CON CABLE COAXIAL Y NO DE RED",
     "precio_compra": 47,
     "porcentaje_ganancia": 45,
     "precio_venta": 833,
     "referencia_proveedor": "REF753",
-    "marcaId": 4,
-    "categoriaId": 3,
+    "marcaId": 18,
+    "categoriaId": 8,
     "tamañoId": 3,
     "proveedorId": 1,
     "subcategoriaId": [
@@ -668,17 +668,17 @@
       11
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/JKBHmYL/img863.jpg"
+    "imagenPrincipal": "https://i.ibb.co/x2B7gfh/img297.webp"
   },
   {
-    "name": "Set de brochas para ojos",
-    "descripcion": "Brochas para ojos x12 unidades color Beige/negro.",
+    "name": "Teclado Multimedia Argom Usb Español Kb-7807",
+    "descripcion": "TECLADO ARGOM ARG-KB-7807 MULTIMEDIA · Diseño atractivo y sensación cómoda de la mano · Diseño: teclas españolas",
     "precio_compra": 704,
     "porcentaje_ganancia": 60,
     "precio_venta": 815,
     "referencia_proveedor": "REF129",
-    "marcaId": 4,
-    "categoriaId": 3,
+    "marcaId": 19,
+    "categoriaId": 9,
     "tamañoId": 2,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -687,17 +687,17 @@
       17
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/m6KQp54/img1572.jpg"
+    "imagenPrincipal": "https://i.ibb.co/fX5BgZY/img298.webp"
   },
   {
-    "name": "Lapiz de Labios HDBeauty",
-    "descripcion": "Labial de larga duración.",
+    "name": "Mouse Argomtech Gaming Combat Ms42 Usb Arg-ms-2042bk",
+    "descripcion": "Mouse gamer * Modelo: ARG-MS-2042BK * Marca: ARGOM TECH * Color: Negro * Conectividad: USB",
     "precio_compra": 783,
     "porcentaje_ganancia": 30,
     "precio_venta": 840,
     "referencia_proveedor": "REF674",
     "marcaId": 4,
-    "categoriaId": 1,
+    "categoriaId": 9,
     "tamañoId": 4,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -707,11 +707,11 @@
       16
     ],
     "imagenes":["https://i.ibb.co/vxBBzN5/img2351.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/hHHzSTp/img2347.jpg"
+    "imagenPrincipal": "https://i.ibb.co/DtxVgrx/img299.png"
   },
   {
-    "name": "Serum Balance&Control Moonshine by Ame",
-    "descripcion": "Mejora su apariencia, reduciendo los poros y controlando el exceso de grasa sin resecar. Contiene Niaciamida al 3% y centella asiática.",
+    "name":  "MOUSE INALÁMBRICO 2,4G ROJO ARGOM",
+    "descripcion": "Mouse inalámbrico de 2.4GHz con 6 botones. Incluye botones de mando laterales (izquierdo y derecho) y botones de, frente, atrás, botón DPI y rueda scroll que permite alta precisión, uso prolongado y desempeño asegurado.",
     "precio_compra": 734,
     "porcentaje_ganancia": 35,
     "precio_venta": 835,
@@ -725,17 +725,17 @@
       13
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/QJhNdS4/img619.jpg"
+    "imagenPrincipal": "https://i.ibb.co/PGyLz1P/img300.jpg"
   },
   {
-    "name": "Serum Brightening Moonshine by Ame",
-    "descripcion": "Serum aclarante y despigmentante facial, contiene arbutina al 2% y azeloglicina al 1,5%, encargados de aclarar tu piel.",
+    "name": "Fuente Cooler Master MWE Bronze 750W",
+    "descripcion": "Fuente de alimentación con certificación 80 PLUS Bronze. Tecnología DC a DC Ventilador HDB de 120 mm 80 PLUS Bronce Eficiencia",
     "precio_compra": 562,
     "porcentaje_ganancia": 40, 
     "precio_venta": 817,
     "referencia_proveedor": "REF567",
-    "marcaId": 4,
-    "categoriaId": 2,
+    "marcaId": 20,
+    "categoriaId": 7,
     "tamañoId": 3,
     "proveedorId": 6,
     "subcategoriaId": [
@@ -745,17 +745,17 @@
       1
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/TM0GX8R/img622.jpg"
+    "imagenPrincipal": "https://i.ibb.co/6JVWt5W/img56.jpg"
   },
   {
-    "name": "Contorno Bioaqua",
-    "descripcion": "Contorno de ojos con vitamina C",
+    "name": "Fuente ASUS TUF Gaming 550W Bronze",
+    "descripcion": "La fuente de alimentación ASUS TUF GAMING 550W Bronce PSU cuenta con una certificación 80 Plus Bronce para eficiencia energética, ventilador de 0 dB",
     "precio_compra": 171,
     "porcentaje_ganancia": 25,
     "precio_venta": 899,
     "referencia_proveedor": "REF901",
-    "marcaId": 4,
-    "categoriaId": 2,
+    "marcaId": 2,
+    "categoriaId": 7,
     "tamañoId": 4,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -764,17 +764,17 @@
       12
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/4MQX1N1/img684.jpg"
+    "imagenPrincipal": "https://i.ibb.co/r6JspmG/img57.jpg"
   },
   {
-    "name": "Parche de Ojeras Snail Kiss Beauty",
-    "descripcion": "Mejora tu piel, reduciendo el aspecto de tus ojeras.",
+    "name":  "Regulador AVR FVR-1202C 1200VA/600W (3 en línea)",
+    "descripcion": "FVR-1211USB · Capacidad: 1200VA/600W · Voltaje: 120V · Tipo de entrada: NEMA 5-15P · Tipo de salida: 8 x NEMA 5-15R · Indicador visual: Luz LED de estado",
     "precio_compra": 621,
     "porcentaje_ganancia": 30,
     "precio_venta": 662,
     "referencia_proveedor": "REF879",
-    "marcaId": 2,
-    "categoriaId": 2,
+    "marcaId": 4,
+    "categoriaId": 7,
     "tamañoId": 2,
     "proveedorId": 6,
     "subcategoriaId": [
@@ -784,17 +784,17 @@
       7
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/HTzz2Dv/img631.jpg"
+    "imagenPrincipal": "https://i.ibb.co/KmvkSs8/img62.jpg"
   },
   {
-    "name": "Crema Facial Arroz Bioaqua",
-    "descripcion": "Crema facial de uso diario.",
+    "name": "Tarjeta BIOSTAR A520MH",
+    "descripcion": "Biostar A520MH mATX placa base ; Procesadores compatibles. AMD 3rd Generation Ryzen ; Tipo de set de chips. AMD A520 ; Velocidad de memoria del reloj. 2400 MHz",
     "precio_compra": 488,
     "porcentaje_ganancia": 45,
     "precio_venta": 820,
     "referencia_proveedor": "REF702",
-    "marcaId": 4,
-    "categoriaId": 2,
+    "marcaId": 21,
+    "categoriaId": 7,
     "tamañoId": 2,
     "proveedorId": 1,
     "subcategoriaId": [
@@ -804,17 +804,17 @@
       17
     ],
     "imagenes":["https://i.ibb.co/bJBK4KZ/img665.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/qmWvHPM/img663.jpg"
+    "imagenPrincipal": "https://i.ibb.co/BTFjc7Q/img66.jpg"
   },
   {
-    "name": "Agua Micelar Kiss Beauty",
-    "descripcion": "Agua Micelar con extracto de pepino, aguacate, alo vera y hamamelis.",
+    "name": "Tarjeta Mother Asus TUF B550 Plus Gaming",
+    "descripcion": "Tarjeta madre para juegos AMD B550 (Ryzen AM4) ATX con PCIe 4.0, M.2 dual, 10 fases de poder DrMOS, Ethernet de 2.5 Gb, HDMI, DisplayPort, SATA 6 Gbps",
     "precio_compra": 767,
     "porcentaje_ganancia": 50,
     "precio_venta": 860,
     "referencia_proveedor": "REF463",
     "marcaId": 2,
-    "categoriaId": 2,
+    "categoriaId": 7,
     "tamañoId": 2,
     "proveedorId": 2,
     "subcategoriaId": [
@@ -824,17 +824,17 @@
       16
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/nkmp7x7/img827.jpg"
+    "imagenPrincipal": "https://i.ibb.co/djrfxBd/img69.jpg"
   },
   {
-    "name": "Desmaquillante Kiss Beauty",
-   "descripcion": "Desmaquillante con proteína de colágeno.",
+    "name": "Asus TUF Gaming B660M-PLUS WiFi D4",
+   "descripcion": "Tarjeta madre B660 (LGA 1700) mATX, 10 + 1 fases de poder DrMOS, compatibilidad con PCIe 5.0, DDR4 5333 (OC), dos puertos M.2 PCIe 4.0",
     "precio_compra": 147,
     "porcentaje_ganancia": 35,
     "precio_venta": 537,
     "referencia_proveedor": "REF376",
     "marcaId": 2,
-    "categoriaId": 2,
+    "categoriaId": 7,
     "tamañoId": 1,
     "proveedorId": 5,
     "subcategoriaId": [
@@ -843,17 +843,17 @@
       13
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/CtBw9pB/img834.jpg"
+    "imagenPrincipal": "https://i.ibb.co/Rc1c7BQ/img76.jpg"
   },
   {
-    "name": "Sereum ácido Salicilico Veze",
-    "descripcion": "Suero de ácido salicílico para prevenir el acne y la producción de grasita en la piel.",
+    "name": "Cooler DeepCool Gammaxx 400 V2 Red",
+    "descripcion": "GAMMAXX 400 V2(Red) es una nueva edición de la legendaria serie GAMMAXX 400 con un ventilador mejorado de 120 mm con LEDs rojos",
     "precio_compra": 157,
     "porcentaje_ganancia": 40,
     "precio_venta": 373,
     "referencia_proveedor": "REF927",
-    "marcaId": 4,
-    "categoriaId": 2,
+    "marcaId": 23,
+    "categoriaId": 10,
     "tamañoId": 3,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -861,17 +861,17 @@
       18
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/C0hGF8n/img969.jpg"
+    "imagenPrincipal":  "https://i.ibb.co/KD54H9c/img100.jpg"
   },
   {
-    "name": "Tajalapiz Cosmético",
-    "descripcion": "Tajalapiz para delineadores",
+    "name": "Disipador DeepCool Gammaxx GTE v2 White",
+    "descripcion": "Cubierta superior blanca con logotipo, premium y limpio · Ventilador PWM de 4.724 in con rendimiento mejorado e iluminación blanca",
     "precio_compra": 214,
     "porcentaje_ganancia": 25,
     "precio_venta": 333,
     "referencia_proveedor": "REF732",
-    "marcaId": 4,
-    "categoriaId": 3,
+    "marcaId": 23,
+    "categoriaId": 10,
     "tamañoId": 3,
     "proveedorId": 1,
     "subcategoriaId": [
@@ -880,16 +880,16 @@
       12
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/BqSqB1c/img884.jpg"
+    "imagenPrincipal": "https://i.ibb.co/HhnWFHs/img103.jpg"
   },
   {
-    "name": "Bálsamo Conitos",
-    "descripcion": "Bálsamo para labios",
-    "precio_compra": 347,
+    "name": "Memoria Kingston Fury Beast RGB 8GB DDR4 3600Mhz",
+    "descripcion": "HyperX Kingston FURY™ DDR4 RGB ofrece velocidades de 2666 MT/s-3733 MT/s y capacidades de hasta 128 GB, y efectos de iluminación RGB dinámicos",
+    "precio_compra": 782,
     "porcentaje_ganancia": 30,
     "precio_venta": 875,
     "referencia_proveedor": "REF429",
-    "marcaId": 4,
+    "marcaId": 24,
     "categoriaId": 1,
     "tamañoId": 4,
     "proveedorId": 2,
@@ -900,17 +900,17 @@
       2
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/6XQw0ZN/img2215.jpg"
+    "imagenPrincipal": "https://i.ibb.co/PrVzwLh/img131.jpg"
   },
   {
-    "name": "BB Cream Trendy",
-    "descripcion": "Con cobertura media y acabado saludable para un aspecto de piel sana",
+    "name":"Memoria Adata XPG Hunter 16Gb DDR5 5200Mhz",
+    "descripcion": "Memoria DIMM Adata XPG HUNTER DDR5 PC5-41600 (5200MHz), CL38, 16GB",
     "precio_compra": 782,
     "porcentaje_ganancia": 45,
     "precio_venta": 842,
     "referencia_proveedor": "REF537",
-    "marcaId": 1,
-    "categoriaId": 3,
+    "marcaId": 25,
+    "categoriaId": 1,
     "tamañoId": 3,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -919,17 +919,17 @@
       5
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/SXKSsKN/img2604.jpg"
+    "imagenPrincipal": "https://i.ibb.co/swCMGT6/img133.jpg"
   },
   {
-    "name": "Brocha para cejas Bloomshell",
-    "descripcion": "Brocha para cejas.",
+    "name": "Monitor Samsung Curvo C24F390FHL 24″",
+    "descripcion": "Pantalla de 1.800R para mayor comodidad. Panel VA que evita fugas de luz.Imágenes superiores con tecnología avanzada. AMD FreeSync",
     "precio_compra": 787,
     "porcentaje_ganancia": 50,
     "precio_venta": 868,
     "referencia_proveedor": "REF128",
-    "marcaId": 4,
-    "categoriaId": 3,
+    "marcaId": 5,
+    "categoriaId": 5,
     "tamañoId": 1,
     "proveedorId": 1,
     "subcategoriaId": [
@@ -938,17 +938,17 @@
       19
     ],
     "imagenes":["https://i.ibb.co/0FbGLcK/img1608.jpg", ",https://i.ibb.co/pxv7dpc/img1610.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/bWyKrrs/img1606.jpg"
+    "imagenPrincipal":  "https://i.ibb.co/z6Mz6T2/img161.jpg"
   },
   {
-    "name": "Pestañina Klean Color Waterproof",
-    "descripcion": "Pestañinas a prueba de agua, no baja el rizo, aporta largo y volumen.",
+    "name":"Silla HHGears SM115 Black",
+    "descripcion": "El SM-115 está equipado con una buena gama de regulación de altura para asegurar que usted está en la posición óptima en relación con su escritorio. ",
     "precio_compra": 768,
     "porcentaje_ganancia": 30,
     "precio_venta": 878,
     "referencia_proveedor": "REF645",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 27,
+    "categoriaId": 6,
     "tamañoId": 3,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -956,17 +956,17 @@
       7
     ],
     "imagenes":["https://i.ibb.co/0Br6J1v/img2979.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/8j8mtPy/img2977.jpg"
+    "imagenPrincipal":  "https://i.ibb.co/dGtmdyL/img173.jpg"
   },
   {
-    "name": "Tinta de Labios Coca-Cola",
-    "descripcion": "Tinta de labios.",
+    "name": "Silla HHGears SM115 Black and Red",
+    "descripcion":"El SM-115 está equipado con una buena gama de regulación de altura para asegurar que usted está en la posición óptima en relación con su escritorio. ",
     "precio_compra": 150,
     "porcentaje_ganancia": 35,
     "precio_venta": 364,
     "referencia_proveedor": "REF926",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 27,
+    "categoriaId": 6,
     "tamañoId": 1,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -976,17 +976,17 @@
       8
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/QJrQ8F9/img2281.jpg"
+    "imagenPrincipal": "https://i.ibb.co/dGtmdyL/img173.jpg"
   },
   {
-    "name": "Jabón Naranjas",
-    "descripcion": "Jabón corporal artesanal.",
+    "name":  "Silla HHGears SM115 Black and Green",
+    "descripcion": "El SM-115 está equipado con una buena gama de regulación de altura para asegurar que usted está en la posición óptima en relación con su escritorio. ",
     "precio_compra": 239,
     "porcentaje_ganancia": 40,
     "precio_venta": 418,
     "referencia_proveedor": "REF302",
-    "marcaId": 4,
-    "categoriaId": 3,
+    "marcaId": 27,
+    "categoriaId": 6,
     "tamañoId": 1,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -995,17 +995,17 @@
       16
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/JHWwFJT/img1018.jpg"
+    "imagenPrincipal": "https://i.ibb.co/dcGWv6j/img174.jpg"
   },
   {
-    "name": "Tinta de Labios Confite",
-    "descripcion": "Tinte de labios de larga duración.",
+    "name": "Silla HHGears XL 300 Series Black and Red",
+    "descripcion": "El XL-300 ofrece un nuevo nivel de comodidad para contornear y complementar el cuerpo del jugador. Para evitar el estrés repetitivo, tener la postura ergonómica",
     "precio_compra": 121,
     "porcentaje_ganancia": 25,
     "precio_venta": 249,
     "referencia_proveedor": "REF746",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 27,
+    "categoriaId": 6,
     "tamañoId": 2,
     "proveedorId": 4,
     "subcategoriaId": [
@@ -1013,17 +1013,17 @@
       14
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/qMCmcCC/img2278.jpg"
+    "imagenPrincipal": "https://i.ibb.co/t33Tjn9/img177.jpg"
   },
   {
-    "name": "Duo Lip Gloss Mágico + Voluminizador Karité",
-    "descripcion": "Voluminizador y brillo labial.",
+    "name":  "Silla HHGears XL 500 Series Black and Blue",
+    "descripcion":  "El XL-500 presenta un diseño elegante con costuras con dibujos de diamantes en el respaldo y el asiento. el roscado de alta calidad define el nivel superior ",
     "precio_compra": 414,
     "porcentaje_ganancia": 30,
     "precio_venta": 653,
     "referencia_proveedor": "REF642",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 27,
+    "categoriaId": 6,
     "tamañoId": 3,
     "proveedorId": 2,
     "subcategoriaId": [
@@ -1032,17 +1032,17 @@
       4
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/yy0JshQ/img2330.jpg"
+    "imagenPrincipal": "https://i.ibb.co/TrWXPxp/img184.jpg"
   },
   {
-    "name": "Pestañiña Americana Amor Us",
-    "descripcion": "Máscara de pestañas para un volumen extra.",
+    "name": "Teclado Razer Cynosa V2 Chroma",
+    "descripcion": "CON TECNOLOGÍA RAZER CHROMA RGB. Personaliza este teclado para juegos RGB con más de 16,8 millones de colores y una amplia gama de efectos a elegir. ",
     "precio_compra": 577,
     "porcentaje_ganancia": 45,
     "precio_venta": 661,
     "referencia_proveedor": "REF925",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 28,
+    "categoriaId": 9,
     "tamañoId": 3,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -1050,17 +1050,17 @@
       19
     ],
     "imagenes":["https://i.ibb.co/1GbW5Lk/img3021.jpg"],
-    "imagenPrincipal": "https://i.ibb.co/BrcQT0f/img3019.jpg"
+    "imagenPrincipal": "https://i.ibb.co/3RjPsZN/img190.jpg"
   },
   {
-    "name": "Jabón Blond Girl Kiss Beauty",
-    "descripcion": "Jabó para cejas de excelente calidad.",
+    "name": "Teclado Razer Blackwidow V3",
+    "descripcion": "El teclado mecánico para juegos más icónico, ahora equipado con funciones mejoradas y más avanzadas, incluidos nuestros switches de renombre mundial.",
     "precio_compra": 140,
     "porcentaje_ganancia": 50,
     "precio_venta": 270,
     "referencia_proveedor": "REF839",
-    "marcaId": 4,
-    "categoriaId": 3,
+    "marcaId": 28,
+    "categoriaId": 9,
     "tamañoId": 3,
     "proveedorId": 3,
     "subcategoriaId": [
@@ -1068,17 +1068,17 @@
       6
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/1rd6m74/img3029.jpg"
+    "imagenPrincipal": "https://i.ibb.co/4JGypM3/img193.jpg"
   },
   {
-    "name": "Encrespador Ruby Face Bicolor",
-    "descripcion": "Excelente encrespador para arquear tus pestañas.",
+    "name": "Teclado Razer Pro Type Ultra",
+    "descripcion": "Teclado mecánico Razer Pro Type Ultra inalámbrico: interruptores silenciosos y lineales, diseño ergonómico, tecnología HyperSpeed",
     "precio_compra": 733,
     "porcentaje_ganancia": 35,
     "precio_venta": 798,
     "referencia_proveedor": "REF468",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 28,
+    "categoriaId": 9,
     "tamañoId": 1,
     "proveedorId": 2,
     "subcategoriaId": [
@@ -1088,17 +1088,17 @@
       3
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/GvCY6qR/img1504.jpg"
+    "imagenPrincipal": "https://i.ibb.co/K5DN2xV/img194.jpg"
   },
   {
-    "name": "Iluminador Hudamoji",
-    "descripcion": "Iluminador con forma de frutas de excelente pigmentación.",
+    "name": "Teclado Logitech POP Keys Black/Yellow Inalámbrico",
+    "descripcion":  "Logitech POP Keys - Teclado mecánico inalámbrico con teclas Emoji personalizables, diseño compacto duradero, conectividad Bluetooth o USB",
     "precio_compra": 498,
     "porcentaje_ganancia": 40,
     "precio_venta": 615,
     "referencia_proveedor": "REF143",
-    "marcaId": 4,
-    "categoriaId": 1,
+    "marcaId": 29,
+    "categoriaId": 9,
     "tamañoId": 2,
     "proveedorId": 1,
     "subcategoriaId": [
@@ -1106,6 +1106,6 @@
       12
     ],
     "imagenes":[""],
-    "imagenPrincipal": "https://i.ibb.co/f8TNsmr/img1929.jpg"
+    "imagenPrincipal": "https://i.ibb.co/VHfdWfK/img205.jpg"
   }
 ]

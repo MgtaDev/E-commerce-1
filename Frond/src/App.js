@@ -26,6 +26,7 @@ import { clientes, productosSinPag, syncFavoritesWithAPI } from "./redux/actions
 import { useDispatch, useSelector} from "react-redux";
 import WhatsappIcon from './assets/img/social.png'
 import { useParams } from "react-router-dom"; 
+import Proveedores from "./components/Proveedores/Proveedores";
 axios.defaults.baseURL = "http://localhost:3001"
 
 
@@ -60,7 +61,7 @@ function App () {
   const params = useParams();
 
     const sendWhatsappMessage = () => {
-      window.open("https://wa.me/573103232638", "_blank")
+      window.open("https://wa.me/584121968978", "_blank")
     };
 
   // Esto aun no esta listo del todo, no tocar.
@@ -71,7 +72,7 @@ function App () {
          }
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route path="/categorias" element={<Products />} />
+        <Route path="/categorias" element={<Proveedores />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/catalogo" element={<Catalogo />} />
@@ -87,6 +88,8 @@ function App () {
         <Route path="/perfil" element = {<Profile/>}/>
         <Route path="confirmedpayment" element={<PagoExitoso/>}/>      
         <Route path="/miscompras" element = {<MisCompras/>}/>
+        <Route path="/dashboard" element = {<Dashboard2/>}/>
+        
 
 
 

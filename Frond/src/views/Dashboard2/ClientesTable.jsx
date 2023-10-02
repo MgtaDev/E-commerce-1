@@ -269,6 +269,8 @@ const pageNumbers = generatePageNumbers();
           </table>
     
           {/* Pagination Buttons */}
+          {
+            stateClients.length > 10 && (
           <div className="flex justify-center py-8">
             <button
               onClick={() => {
@@ -305,6 +307,9 @@ const pageNumbers = generatePageNumbers();
               {">"}
             </button>
           </div>
+            )
+          }
+          
        </>
       )
     }

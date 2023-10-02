@@ -1,10 +1,19 @@
 import React from 'react';
-import proveedor1 from '../../assets/img/proveedor1.png'
-import proveedor2 from '../../assets/img/proveedor2.png'
-import proveedor3 from '../../assets/img/proveedor3.png'
+
+import Sillas from '../../assets/img/img173.jpg'
+import Mouses from '../../assets/img/img226.jpg'
+import Teclados from '../../assets/img/img190.jpg'
+import Cooling from '../../assets/img/img57.jpg'
+import Consolas from '../../assets/img/img20.jpg'
+
+
+
+
+
 import style from './Proveedores.module.css'
 import styled from 'styled-components'
 import { FaCheckCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const Card = styled.div`
   background-color: #fff;
   border-radius: .5rem;
@@ -31,10 +40,12 @@ return (
       <div className='items-center flex justify-between'>
       <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500'/>
-        <h1 className='text-xl font-bold px-1'>Marca oficiales</h1>
+        <h1 className='text-xl font-bold px-1'>Categorias</h1>
       </div>
       <div>
+        <Link to={'/categorias'}>
         <span className='mb-1 px-4 text-sm text-blue-900'>Ver mas</span>
+        </Link>
       </div>
       </div>
      
@@ -43,75 +54,55 @@ return (
 
         <Card>
         
-        <img src={proveedor1} alt="" />
+        <img src={Mouses} alt="" />
         
-        <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
-          <div className='flex items-center px-3'>
-          <FaCheckCircle className='text-green-500'/>
-          <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
-      </div>
+          <p className='text-xs mt-2 text-gray-500 text-center'>Mouses</p>
+         
 
         </div>
         </Card>
 
         <Card>
         
-        <img src={proveedor1} alt="" />
+        <img src={Consolas} alt="" />
         
-        <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
-          <div className='flex items-center px-3'>
-          <FaCheckCircle className='text-green-500'/>
-          <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
-      </div>
+          <p className='text-xs mt-2 text-gray-500 text-center'>Sillas</p>
+         
 
         </div>
         </Card>
 
         <Card>
         
-        <img src={proveedor1} alt="" />
+        <img src={Sillas} alt="" />
         
-        <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
-          <div className='flex items-center px-3'>
-          <FaCheckCircle className='text-green-500'/>
-          <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
-      </div>
+          <p className='text-xs mt-2 text-gray-500 text-center'>Sillas</p>
+         
 
         </div>
         </Card>
 
         <Card>
         
-        <img src={proveedor1} alt="" />
+        <img src={Cooling} alt="" />
         
-        <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
-          <div className='flex items-center px-3'>
-          <FaCheckCircle className='text-green-500'/>
-          <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
-      </div>
+          <p className='text-xs mt-2 text-gray-500 text-center'>Sillas</p>
+         
 
         </div>
         </Card>
 
         <Card>
         
-        <img src={proveedor1} alt="" />
+        <img src={Teclados} alt="" />
         
-        <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
-          <div className='flex items-center px-3'>
-          <FaCheckCircle className='text-green-500'/>
-          <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
-      </div>
+          <p className='text-xs mt-2 text-gray-500 text-center'>Consolass</p>
+         
 
         </div>
         </Card>

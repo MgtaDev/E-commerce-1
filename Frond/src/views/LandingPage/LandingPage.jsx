@@ -8,6 +8,7 @@ import { products } from '../../redux/actions';
 import Proveedores from '../../components/Proveedores/Proveedores';
 import ProductsMayLike from '../ProductsYouMayLike/productsMayLike';
 import Footer from '../../components/Footer/Footer';
+import Marcas from '../../NuestrasMarcas/nuestrasMarcas';
 
 
 const Container = styled.div`
@@ -57,7 +58,7 @@ const LandingPage = () => {
     </div>
     
     <div className='mt-80'>
-      <Proveedores/>
+      <Marcas/>
     </div>
 
     <div className='mt-40'>

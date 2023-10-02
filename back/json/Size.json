@@ -1,7 +1,7 @@
 [
-    {"name": "Extra Small"},
-    {"name": "Small"},
-    {"name": "Medium"},
-    {"name": "Large"}
+  {"name": "Nuevo"},
+  {"name": "Reconstruido"},
+  {"name": "De 2da mano"},
+  {"name": "De 3ra mano"}
   ]
   

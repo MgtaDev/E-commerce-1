@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cards from '../../components/CatalogoComponen/Cards';
 import Card from '../../components/CatalogoComponen/Card';
 import { FaCheckCircle, FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ProductsMayLike = () => {
 
@@ -27,7 +28,9 @@ const ProductsMayLike = () => {
           <FaCheckCircle className='text-green-500'/>
       </div>
       <div>
-        <span className='mb-1 px-4 text-sm text-blue-900'>Ver mas</span>
+        <Link to={'/catalogo'}>
+        <spa onClick={redirigirAlInicio} className='mb-1 px-4 text-sm cursor-pointer text-blue-900'>Ir al catalogo</spa>
+        </Link>
       </div>
       </div>
       
@@ -43,7 +46,9 @@ const ProductsMayLike = () => {
                       //   imagenPrincipal={item.imagenPrincipal}
                       // />
                       <div class="flex flex-col rounded-md shadow w-[260px] shadow-md m-10">
+                        <Link to={`/detail/${item.id}`}>
                           <img class="object-contain items-center  rounded-md " src={item.imagenPrincipal} alt="ofertas" />
+                        </Link>
                           <div class="flex flex-col justify-between px-4">
                               <div class="mb-2">
                                   <p class="text-sm capitalize text-gray-800 font-bold">{item.name}</p>
@@ -56,7 +61,7 @@ const ProductsMayLike = () => {
                               <p class="text-xs ">{item.marcaId === 1 ? 'Trendy' : item.marcaId === 2 ? 'Kiss Beauty' : item.marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
                               <div class="flex flex-row items-center">
                                   <FaStar class="w-4 h-4 text-yellow-500 mr-1" />
-                                  <p class="text-xs m-2 font-bold text-gray-600">Solid 700 +</p>
+                                  <p class="text-xs m-2 font-bold text-gray-600">+99 reseñas</p>
                               </div>
                           </div>
                       </div>

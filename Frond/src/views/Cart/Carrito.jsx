@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCartLS, addCartLSToApi, deleteArtLS, deleteArtAPI } from "../../redux/actions"
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios  from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import LastBuyedSlider from "../../components/Last Buyed/lastBuyedSlider";
 import { useSpring } from "react-spring";
-import { FaArrowRight, FaRegHeart } from "react-icons/fa";
+import { FaArrowRight, FaDollarSign, FaRegHeart, FaTrash } from "react-icons/fa";
 
 const Carrito = () => {
     const [show, setShow] = useState(false);
@@ -46,7 +46,7 @@ const Carrito = () => {
     const clientFound = isAuthenticated ? Clientela.find(client => client.correo_electronico === user.email) : null;
     const NumUserId = isAuthenticated ? extractNumber(clientFound?.id) : undefined;
 
-
+    const envio = 0
 
     useEffect(() => {
         if (isAuthenticated) {          
@@ -174,7 +174,7 @@ const Carrito = () => {
         
         // Marcar el carrito como pagado
         if(response){
-          axios.put(`http:localhost:3001/carrito/pagado/${NumUserId}`, { pagado: true });
+          axios.put(`http://localhost:3001/carrito/pagado/${NumUserId}`, { pagado: true });
         }
     
         
@@ -182,10 +182,6 @@ const Carrito = () => {
         console.log(error);
       }
     };
-
-
-    const envio = 287
-
 
 
     return (
@@ -220,7 +216,7 @@ const Carrito = () => {
                                                 onClick={() => handleDeleteArtAPI(item)}
                                                 className="ml-6 rounded-md p-1.5 text-gray-400 bg-gray-200 hover:bg-gray-100"
                                             >
-                                                X
+                                                <FaTrash/>
                                             </button>
                                         </div>
                                     </div>
@@ -264,8 +260,11 @@ const Carrito = () => {
                             )}                                                                    
                         </div>
                     ) : (
-                        <div className="flex items-center justify-center mt-40 text-xl">
+                        <div className="flex items-center flex-col justify-center mt-20 text-xl">
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
+                            <Link to={'/catalogo'}>
+                            <span className="text12xs text-blue-800 underline">Ir al catalogo</span>
+                            </Link>
                         </div>
                     )}
                     {cartUnificado.length > 0  || cartApi.productos?.length ?(
@@ -280,13 +279,13 @@ const Carrito = () => {
                         <h2 className="font-bold text-gray-800 mb-4">Resumen de Compra</h2>
 
                         <div className="flex items-center justify-between mb-4">
-                            <div className="text-gray-800 font-medium">Articulos ({totalArts || 0})</div>
-                            <div className="text-gray-800">{totalProd || 0} $</div>
+                            <div className="text-gray-800 font-medium">Productos ({totalArts || 0})</div>
+                            <div className="text-gray-800">${totalProd || 0}.00</div>
                         </div>
 
                         <div className="flex items-center justify-between mb-4">
                             <div className="text-gray-800 font-medium">Envio</div>
-                            <div className="text-gray-500 text-sm">${envio}.00 </div>
+                            <div className="text-gray-500 text-sm">Acordar con proveedor </div>
                         </div>
 
                         <div className="flex items-center justify-between mb-4">

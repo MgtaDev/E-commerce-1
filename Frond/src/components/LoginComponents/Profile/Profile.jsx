@@ -60,7 +60,7 @@ const Profile = () => {
     navigate('/carrito/:id');
   };
   const goDash = () => {
-    navigate('/dashboard2');
+    navigate('/dashboard');
   };
   const goPerfil = () => {
     navigate('/perfil');

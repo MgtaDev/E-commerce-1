@@ -90,14 +90,14 @@ const addToCart = () => {
 }
   
   return (
-    <div class="flex bg-white-200 flex-col rounded-md shadow overflow-hidden ">
+    <div className="flex bg-white-200 flex-col rounded-md shadow overflow-hidden ">
     <Link to={`/detail/${id}`}>
-      <img class="object-cover " src={imagenPrincipal} alt="ofertas" />
+      <img className="object-cover " src={imagenPrincipal} alt="ofertas" />
     </Link>
-    <div class="flex flex-col p-4">
-      <div class="mb-2">
+    <div className="flex flex-col p-4">
+      <div className="mb-2">
         <div className="flex items-center">
-        <h2 class="text-base font-bold capitalize text-gray-800">{name}</h2>
+        <h2 className="text-base font-bold capitalize text-gray-800">{name}</h2>
         <button
             className={`relative group p-2 ml-2 ${
               isFavorite ? "text-red-500 font-bold" : "text-gray-400"
@@ -108,16 +108,16 @@ const addToCart = () => {
           </button>
         </div>
 
-        <p class="text-sm mt-1 font-bold text-gray-700">${precio}.00</p>
+        <p className="text-sm mt-1 font-bold text-gray-700">${precio}.00</p>
       </div>
-      <div class="flex flex-row items-center mb-2">
-        <span class="inline-block bg-green-500 text-white text-xs font-bold py-1 px-2 rounded-full mr-2">20%</span>
-        <del class="text-xs text-gray-400">$0.00</del>
+      <div className="flex flex-row items-center mb-2">
+        <span className="inline-block bg-green-500 text-white text-xs font-bold py-1 px-2 rounded-full mr-2">20%</span>
+        <del className="text-xs text-gray-400">$0.00</del>
       </div>
-      <p class="text-xs text-gray-600">{marcaId === 1 ? 'Trendy' : marcaId === 2 ? 'Kiss Beauty' : marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
-      <div class="flex flex-row items-center">
-        <FaStar class="w-4 h-4 text-yellow-500 mr-1" />
-        <p class="text-xs text-gray-600">Sin reseñas</p>
+      <p className="text-xs text-gray-600">{marcaId === 1 ? 'Trendy' : marcaId === 2 ? 'Kiss Beauty' : marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
+      <div className="flex flex-row items-center">
+        <FaStar className="w-4 h-4 text-yellow-500 mr-1" />
+        <p className="text-xs text-gray-600">Sin reseñas</p>
       </div>
     </div>
   </div>

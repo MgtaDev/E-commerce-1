@@ -1,11 +1,35 @@
 [
     {
-        "name":"maquillaje"
+        "name":"Perifericos e impresoras"
     },
     {
-        "name":"skinCare"
+        "name":"Laptop"
     },
     {
-        "name":"accesorios"
+        "name":"Audifonos"
+    },
+    {
+        "name":"Procesadores y CPU'S"
+    },
+    {
+        "name":"Monitores"
+    },
+    {
+        "name":"Mobiliario y Sillas"
+    },
+    {
+        "name":"Fuentes, tarjetas y reguladores"
+    },
+    {
+        "name":"Seguridad"
+    },
+    {
+        "name":"Teclados"
+    },
+    {
+        "name":"Accesorios"
+    },
+    {
+        "name":"Consolas"
     }
 ]

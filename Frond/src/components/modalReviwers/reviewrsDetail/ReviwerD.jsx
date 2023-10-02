@@ -26,8 +26,8 @@ const ReviwerD = () => {
           />
         ))
       ) : (
-        <div className="">
-          <h2>Aún sin comentarios</h2>
+        <div className="rounded-mg mt-2 py-2 border w-[921px] h-[100px]">
+          <h2 className="text-center font-bold text-gray-700 py-7 align-center">Aún sin comentarios</h2>
         </div>
       )}
     </div>
