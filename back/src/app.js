@@ -69,7 +69,7 @@ server.post("/pagoCarrito", (req, res) => {
   let preference = {
     items: items,
     back_urls: {
-      success: "http://localhost:3000/confirmedpayment",
+      success: "https://e-commerce-1-mgtadev.vercel.app/confirmedpayment",
       failure: '',
       pending: "",
     },
@@ -102,7 +102,7 @@ server.post("/pago", (req, res) => {
       },
     ],
     back_urls: {
-      success: "http://localhost:3000/confirmedpayment",
+      success: "https://e-commerce-1-mgtadev.vercel.app/confirmedpayment",
       failure: "",
       pending: "",
     },
