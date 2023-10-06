@@ -67,11 +67,11 @@ console.log(stateProducts);
       !currentUser.telefono ||
       !currentUser.direccion
     ) {
-      Swal.fire("Completa tu información de perfil antes de continuar", "", "error");
+      setShow(true);
       return;
     }
-    if (stateProducts.cantidad === 0) {
-      Swal.fire("Este producto esta agotado momentaneamente", "", "error");
+    if (stateProducts.cantidad > 1) {
+      setShow(true);
       return;
     }
     
@@ -81,9 +81,9 @@ console.log(stateProducts);
       const response = await axios.post("http://localhost:3001/pago", productToPay);
       window.location.href = response.data.response.body.init_point;
       
-      // if(response){
-      //   axios.put(`http://localhost:3001/carrito/pagado/${idNumber}`, { pagado: true });
-      // } 
+      if(response){
+        axios.put(`http://localhost:3001/carrito/pagado/${idNumber}`, { pagado: true });
+      } 
     } catch (error) {
       console.log(error);
     }
@@ -556,7 +556,9 @@ console.log(stateProducts);
  
 
           <button onClick={addToCart}
-          className="flex items-center bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900 hover:bg-blue-900 hover:text-white ease-in-out duration-300"> <FaShoppingCart className="mr-2"/> Añadir al carrito</button>
+          className="flex items-center bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900"> <FaShoppingCart className="mr-2"/> Añadir al carrito</button>
+          <button onClick={handleProceedToPayment}
+           className= "bg-blue-900 w-full flex items-center text-white py-2 px-8 text-sm rounded-md text-center mt-3"> Comprar ahora</button>
 
           <div className="flex">
             <div className="flex items-center mt-3 px-2 text-xs">

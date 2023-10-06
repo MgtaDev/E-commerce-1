@@ -43,7 +43,7 @@ const Products = () => {
             <div class="flex flex-col rounded-md shadow bg-white !w-[250px] shadow-full mt-5 ml-2">
               <div className='flex justify-center'>
                 <Link to={`/detail/${item.id}`}>
-                  <img class="flex hover:scale-1 justify-center cursor-pointer !w-40 !h-40" src={item.imagenPrincipal} alt="ofertas" />
+                  <img class="flex justify-center cursor-pointer !w-40 !h-40" src={item.imagenPrincipal} alt="ofertas" />
                 </Link>
               </div>
               <div class="flex flex-col px-4">

@@ -7,11 +7,10 @@ import MoreProductsCardContainer from "../../components/MoreProducts/MoreProduct
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { deleteFavoriteAPI, deleteFavoriteLS } from "../../redux/actions";
+import { deleteFavoriteLS } from "../../redux/actions";
 
 const Favoritos = () => {
   const dispatch = useDispatch()
-  const favoritesRaw = useSelector((state) => state.favoritesRaw);
   const favoritosLS = useSelector((state) => state.localFavorites);
   const favoritosAPI = useSelector((state) => state.favorites);
   const { user, isAuthenticated } = useAuth0();
@@ -90,26 +89,7 @@ const pageNumbers = generatePageNumbers();
                         <div className="text-xs text-gray-500">Costo</div>
                         ${precio_venta}.00
                         <p onClick={()=>{
-                        const correo_electronico = user?.email
-                          if(isAuthenticated){
-                            if (favoritesRaw.length > 0) {
-                              const resultado = favoritesRaw.find(
-                                (objeto) => objeto.productoId === id
-                              );
-                              if (resultado) {
-                                const idFav = resultado.id;
-                                const favoritoR = {
-                                  correo_electronico,
-                                  idFav,
-                                  id,
-                                };
-                                dispatch(deleteFavoriteAPI(favoritoR));
-                              }
-                            }
-                          }else{
-                            
-                            dispatch(deleteFavoriteLS(id))
-                          }
+                        dispatch(deleteFavoriteLS(id))
                         }} className="text-xs cursor-pointer text-red-600">Eliminar</p>
                     </div>
                     

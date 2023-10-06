@@ -97,8 +97,7 @@ async function startServer() {
       console.log('Server listening on port', PORT);
     });
   } catch (error) {
-    console.error('Error starting server:', error.message);
-    process.exit(1); // Salimos con un código de error en caso de un problema
+    console.error('Error starting server:', error);
   }
 }
 

@@ -150,7 +150,7 @@ const Carrito = () => {
     nombre: product.name,
     precio: product.precio_venta,
     descripcion: product.name,
-    quantity: product.cantidad
+    quantity: product.cantidad,
     })); console.log("productsToPay", productsToPay);
 
     const handleProceedToPayment = async () => {
@@ -171,6 +171,11 @@ const Carrito = () => {
 
         const response = await axios.post("http://localhost:3001/pagoCarrito", productsToPay);
         window.location.href = response.data.response.body.init_point;
+        
+        // Marcar el carrito como pagado
+        if(response){
+          axios.put(`http://localhost:3001/carrito/pagado/${NumUserId}`, { pagado: true });
+        }
     
         
       } catch (error) {

@@ -6,7 +6,6 @@ import LandingPage from "./views/LandingPage/LandingPage";
 import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Contact from "./views/Contact/Contact";
-import DevTeam from './views/DevTeam/devTeam.jsx'
 import FAQs from "./views/FAQs/FAQs"
 import Catalogo from "./views/Catalogo/Catalogo.jsx";
 import Form from "./views/Form/Form";
@@ -27,7 +26,7 @@ import { useDispatch, useSelector} from "react-redux";
 import WhatsappIcon from './assets/img/social.png'
 import { useParams } from "react-router-dom"; 
 import Proveedores from "./components/Proveedores/Proveedores";
-axios.defaults.baseURL = "https://e-commerce-1-mgtadev.vercel.app/"
+axios.defaults.baseURL = "http://localhost:3001"
 
 
 function App () {
@@ -77,7 +76,6 @@ function App () {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/faqs" element={<FAQs />} />
-        <Route path="/devTeam" element={<DevTeam />} />
         <Route path="/form" element={<Form />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/favoritos" element={<Favoritos />} />

@@ -65,7 +65,7 @@ const LandingPage = () => {
       <ProductsMayLike/>
     </div>
 
-    <div className='mt-40 -mx-20'>
+    <div className='mt-40'>
       <Footer/>
     </div>
 

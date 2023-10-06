@@ -1,74 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import Logo from '../../assets/img/enmablelogo.png';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
-import { addCartLSToApi, clientes, emptyCartLS } from '../../redux/actions';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import { clientes } from '../../redux/actions';
 
 
 const PagoExitoso = () => {
-  const [apicart, setApicart] = useState([]); 
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const usuarios = useSelector((state) => state.Allclients);
-  const extractNumber = (string) => {
-    const match = string?.match(/\d+/); 
-    return match ? parseInt(match[0]) : 0; 
-    
-  }; 
-  const clientFound = usuarios?.find(client => client.correo_electronico === user?.email) ;
-  const NumUserId =  extractNumber(clientFound?.id) ;
-  useEffect(() => {
-    if (isAuthenticated) {          
-      axios.get(`/carrito/${NumUserId}`)
-        .then(response => {
-          setApicart(response.data);
-        })
-        .catch(error => {             
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: error.response?.data || 'Hubo un error en la solicitud.',
-            });
-          });
-    }else{
-        return
-    }
-  }, [NumUserId, isAuthenticated]);
-  const cartLS = useSelector(state => state.localCart); 
-  useEffect(() => {
-    if (isAuthenticated && cartLS) {
-      dispatch(addCartLSToApi({ user: NumUserId, localCart: cartLS }))
-        .catch(error => {             
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: error.response?.data || 'Hubo un error en la solicitud.',
-          });
-        });
-        dispatch(emptyCartLS());
-    } else {
-      return;
-    }
-}, [isAuthenticated]);
-  
-  const cartApi = useSelector(state => state.apiCart);
-  const productsMessage = cartApi.productos?.map((product) => {
-    
-    return `
-    ${product.name.charAt(0).toUpperCase() + product.name.slice(1)}
-    Cantidad: ${product.cantidad} 
-   Precio: $ ${product.cantidad * product.precio_venta}.00`;
-
-  }).join('\n');
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [emailSent, setEmailSent] = useState(false);
-  console.log(cartApi);
-
+  const { user } = useAuth0();
 
   useEffect (
     () => {
@@ -76,6 +19,7 @@ const PagoExitoso = () => {
     }
   ,[]);
 
+  const usuarios = useSelector((state)=> state.Allclients);
   const currentUser = usuarios?.find((usuario) => {
     return usuario?.name.toLowerCase() === user?.name.toLowerCase() && usuario?.correo_electronico.toLowerCase() === user.email.toLowerCase();
   });
@@ -83,7 +27,7 @@ const PagoExitoso = () => {
 
   const handleButtonClick = () => {
     const serviceId = 'service_1g3c0si'
-    const templateId = 'template_hj87mjd'
+    const templateId = 'template_7dsbo67'
     const publicKey = 'kXx0ph3VN7L3t7N6a'
 
     const currentDate = new Date(); // Obtén la fecha y hora actual
@@ -97,10 +41,8 @@ const PagoExitoso = () => {
       Fecha: ${formattedDate}
   
       Productos comprados:
-      ${productsMessage}
 
-    Saludos cordiales,
-    Enmable Team.
+
   
     `;
     // Lógica para enviar el correo electrónico con los detalles de la compra
@@ -116,8 +58,6 @@ const PagoExitoso = () => {
       .catch((error) => {
         console.log('Ha ocurrido un error al enviar el correo electrónico:', error);
       });
-      axios.put(`http://localhost:3001/carrito/pagado/${currentUser.id}`, { pagado: true })
-      navigate('/catalogo')
   };
   
   return (

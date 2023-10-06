@@ -5,37 +5,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { getProductByName } from "../../redux/actions";
+import { getProductByName, productFilter } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { styled } from "styled-components";
 import SearchBar from "../SearchBar/SearchBar";
 import { FaHeart } from "react-icons/fa";
-
-const CustomDatalist = styled.ul`
-  background-color: #fff;
-  border-radius: 0.25rem;
-  color: black;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  list-style: none;
-  margin: 0;
-  max-height: 400px;
-  overflow-y: scroll;
-  padding: 0;
-  position: absolute;
-  top: 4em;
-  width: 35%;
-  z-index: 10;
-
-  li {
-    cursor: pointer;
-    padding: 1rem;
-    text-transform: capitalize;
-    color: #252525;
-    &:hover {
-      background-color: #f3f3f3;
-    }
-  }
-`;
 
 const Navbar = () => {
 
@@ -47,31 +21,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const formRef = useRef();
 
-
-  const handleChange = async (ev) => {
-    setInputText(ev.target.value);
-    setErrorMessage('');
-    try {
-      const response = await axios.get(`/producto?name=${inputText}`);
-      console.log(response);
-      setOptions(response.data);
-    } catch (error) {
-      console.error(error);
-      setOptions([]);
-    }
-  };
-  //Search handle
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
-    navigate('/catalogo');
-    const ProductFound = await dispatch(getProductByName(inputText));
-    if (ProductFound.payload.length > 0) {
-      setInputText('');
-    } else {
-      Swal.fire("Oops", "Este producto no existe o no esta en venta en estos momentos", "error");
-      setInputText('');
-    }
-  };
 
   //Hide dropdown useEffect
   useEffect(() => {
@@ -89,6 +38,7 @@ const Navbar = () => {
   const sendWhatsappMessage = () => {
     window.open("https://wa.me/584121968978", "_blank")
   };
+
 
   
   const {user, isAuthenticated, isLoading } = useAuth0()

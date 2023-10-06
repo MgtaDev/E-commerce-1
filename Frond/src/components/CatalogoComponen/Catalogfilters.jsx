@@ -49,8 +49,7 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
       }));
       setFilterChanged(true);
     }, [minPrice, maxPrice]);
-    
-    const total  = products?.length;
+
     
     const handleMultipleOptionChange = (propertyName, optionId) => {
       setSelectedFilters((prevFilters) => {

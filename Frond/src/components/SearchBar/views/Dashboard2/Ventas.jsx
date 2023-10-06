@@ -52,7 +52,7 @@ const pageNumbers = generatePageNumbers();
       setSelectedVenta(null);
   };
 
- console.log(currentSales)
+ 
   return (
     <>
       {currentSales?.length > 0 ?
@@ -87,15 +87,17 @@ const pageNumbers = generatePageNumbers();
              </td>
            </tr>
          ))
-         : ''
+         : (
+          <div className="flex justify-center items-center h-full">
+            <div className="text-3xl text-gray-500 font-bold">No hay ventas aun...</div>
+          </div>
+        )
          }
        </tbody>
      </table>
      
      )
-        :  <div className="flex justify-center items-center h-full">
-        <div className="text-3xl text-gray-500 font-bold">No hay ventas aun...</div>
-      </div>
+        : ''
       }
 
       {stateVentas.length > 5 && (
