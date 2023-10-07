@@ -3,11 +3,11 @@ import StarRatings from 'react-star-ratings';
 import axios from 'axios';
 import Swal from "sweetalert2";
 
-export default function EditReviewModal({ currentUserId, productId , initialRating, initialComentario }) {
+export default function EditReviewModal({ clienteId, productoId , initialRating, initialComentario }) {
     const [showModal, setShowModal] = useState(false);
     const [newRating, setNewRating] = useState(initialRating);
     const [newComentario, setNewComentario] = useState(initialComentario);
-
+    
     const onChangeRating = (rating) => {
         setNewRating(rating);
     }
@@ -18,7 +18,7 @@ export default function EditReviewModal({ currentUserId, productId , initialRati
 
     const handleSaveChanges = async () => {
         try {
-            const response = await axios.put(`/reviewr/${productId}/${currentUserId}`, {
+            const response = await axios.put(`/reviewr/${productoId}/${clienteId}`, {
                 rating: newRating,
                 comentario: newComentario
             });

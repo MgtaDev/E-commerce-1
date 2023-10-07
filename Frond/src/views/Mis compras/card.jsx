@@ -40,7 +40,7 @@ console.log(product)
         </div>
 
         {product.reseñas.length > 0 ? (
-    <ReviwerE productId={product.productoId} currentUserId={currentUser?.id.split('-')[1]} />
+      <ReviwerE productoId={product.productoId} clienteId={currentUser?.id.split('-')[1]} />
     ) : (
       <ReviwerM productId={product.productoId} currentUserId={currentUser?.id.split('-')[1]} />
   )}
