@@ -169,7 +169,7 @@ const Carrito = () => {
         }
     try {
 
-        const response = await axios.post("http://localhost:3001/pagoCarrito", productsToPay);
+        const response = await axios.post(`${axios.defaults.baseURL}/pagoCarrito`, productsToPay);
         window.location.href = response.data.response.body.init_point;
     
         

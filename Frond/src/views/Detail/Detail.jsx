@@ -12,9 +12,30 @@ import MoreProductsCardContainer2 from "../../components/MoreProducts/MoreProduc
 import { FaCheckCircle, FaHeart, FaShare, FaShoppingCart, FaStar } from "react-icons/fa";
 import MyK from '../../assets/img/proveedor1.png'
 import ReviwerD from "../../components/modalReviwers/reviewrsDetail/ReviwerD";
+import QRCode from "react-qr-code";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    maxWidth: "90%",
+    maxHeight: "80vh",
+  },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    zIndex: "50",
+  },
+};
 
 
 const Detail = () => {
+  console.log(axios.defaults.baseURL);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const redirigirAlInicio = () => {
     window.scrollTo(0, 0);
@@ -45,6 +66,7 @@ console.log(stateProducts);
   const productId = extractIdNumber(id);
   const [amount, setAmount] = useState(1);
   const [show, setShow] = useState(false);
+  const [qrVisible, setQrVisible] = useState(false); 
 
   const productToAdd = {
     productos: [
@@ -78,7 +100,7 @@ console.log(stateProducts);
     try {
       await axios.put(`carrito/${idNumber}`, productToAdd);
      
-      const response = await axios.post("http://localhost:3001/pago", productToPay);
+      const response = await axios.post(`${axios.defaults.baseURL}/pago`, productToPay);
       window.location.href = response.data.response.body.init_point;
       
       // if(response){
@@ -256,7 +278,6 @@ console.log(stateProducts);
     redirigirAlInicio()
   }
 
-
   const fadeIn = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -292,7 +313,6 @@ console.log(stateProducts);
         return '';
     }
   }
-
 
   function getProductBrand() {
     const id = stateProducts.marcaId
@@ -397,7 +417,6 @@ console.log(stateProducts);
     }
   }
 
-
   function getProductCategoria() {
     const id = stateProducts.categoriaId
     
@@ -441,6 +460,20 @@ console.log(stateProducts);
     }
   }
 
+
+  const handleShare = () => {
+    setQrVisible(!qrVisible); 
+    setQrUrl(window.location.href); // Actualiza la URL cada vez que se abre la modal// Cambia el estado para mostrar el código QR en la modal
+  };
+
+  const handleModalClose = () => {
+    setQrVisible(false); // Cambia el estado para ocultar la modal
+  };
+  console.log(qrVisible) 
+
+  const [qrUrl, setQrUrl] = useState(window.location.href);
+
+  const url = window.location.href;
 
   return (
     <>
@@ -558,7 +591,7 @@ console.log(stateProducts);
           <button onClick={addToCart}
           className="flex items-center bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900 hover:bg-blue-900 hover:text-white ease-in-out duration-300"> <FaShoppingCart className="mr-2"/> Añadir al carrito</button>
 
-          <div className="flex">
+          <div className="flex mt-2">
             <div className="flex items-center mt-3 px-2 text-xs">
             <FaHeart/>
             <Link to={'/favoritos'}>
@@ -569,9 +602,25 @@ console.log(stateProducts);
             <div className="border-r"></div>
   
 
-            <div className="flex items-center px-2 mt-3 text-sm text-gray-800">
+            <div onClick={handleShare} className="flex cursor-pointer items-center px-2 mt-3 text-sm text-gray-800">
             <FaShare/>
-            <p className="ml-1">Compartir</p>
+            <p className="ml-1 ">Compartir</p>
+                <Modal
+            isOpen={qrVisible}
+            onRequestClose={handleModalClose}
+            style={customStyles}
+          >
+            <div className="flex flex-col justify-center items-center h-full">
+              <QRCode size={300} value={qrUrl} />
+              <button
+              onClick={handleShare}
+              className="mt-5 bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900 hover:bg-blue-900 hover:text-white ease-in-out duration-300"
+              type="button"
+            >
+              Cerrar
+            </button>
+            </div>
+          </Modal>
             </div>
            
           </div>
@@ -591,7 +640,7 @@ console.log(stateProducts);
       
       <div className="flex items-center">
       <FaCheckCircle className="text-green-600"/>
-      <h2 className="text-lg font-bold">MyK</h2>
+      <h2 className="text-lg font-bold">Azus</h2>
       </div>
 
       <div className="flex text-sm flex-col px-20  border-r  flex items-center">
