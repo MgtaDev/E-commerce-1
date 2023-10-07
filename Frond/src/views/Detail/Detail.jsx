@@ -100,7 +100,7 @@ console.log(stateProducts);
     try {
       await axios.put(`carrito/${idNumber}`, productToAdd);
      
-      const response = await axios.post(`${axios.defaults.baseURL}pago`, productToPay);
+      const response = await axios.post("https://e-commerce-1-production.up.railway.app/pago", productToPay);
       window.location.href = response.data.response.body.init_point;
       
       // if(response){
