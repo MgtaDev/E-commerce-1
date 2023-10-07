@@ -66,7 +66,7 @@ const ProductosTable = () => {
         <button
           key={i}
           className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
-            i === pageNumber ? "bg-slate-950 text-white" : ""
+            i === pageNumber ? "bg-blue-900 text-white" : ""
           }`}
           disabled={i === pageNumber || stateProducts.loading}
           onClick={() => handlePageClick(i)}
@@ -398,7 +398,7 @@ const ProductosTable = () => {
             <button
               disabled={disablePrev || stateProducts.loading}
               onClick={() => handlePageClick(pageNumber - 1)}
-              className="mx-1 text-3xl"
+              className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 "
             >
               {"<"}
             </button>
@@ -406,7 +406,7 @@ const ProductosTable = () => {
             <button
               disabled={disableNext || stateProducts.loading}
               onClick={() => handlePageClick(pageNumber + 1)}
-              className="mx-1 text-3xl"
+              className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
             >
               {">"}
             </button>

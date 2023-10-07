@@ -107,8 +107,8 @@ const pageNumbers = generatePageNumbers();
           setSelectedPage(selectedPage - 1);
         }
       }}
-      className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-black  focus:outline-none"
-    >
+      className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 "
+      >
       {"<"}
     </button>
     {pageNumbers.map(({ number, selected }) => (
@@ -118,8 +118,10 @@ const pageNumbers = generatePageNumbers();
           setCurrentPage(number);
           setSelectedPage(number);
         }}
-        className={`mx-1 text-lg font-bold px-3 py-1 rounded ${selected ? 'bg-black text-white' : 'bg-white text-black '}`}
-      >
+        className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
+          selected ? "bg-blue-900 text-white" : ""
+            }`}
+            >
         {number}
       </button>
     ))}
@@ -130,8 +132,8 @@ const pageNumbers = generatePageNumbers();
           setSelectedPage(selectedPage + 1);
         }
       }}
-      className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-gray-500 focus:outline-none"
-    >
+      className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
+      >
       {">"}
     </button>
 </div>

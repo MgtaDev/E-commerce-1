@@ -90,7 +90,7 @@ server.post("/pagoCarrito", (req, res) => {
 
 server.post("/pago", (req, res) => {
   const producto = req.body;
-
+p
   let preference = {
     items: [
       {

@@ -238,7 +238,7 @@ const pageNumbers = generatePageNumbers();
                   </>
                   )}</td>
                   {
-                      client?.correo_electronico === 'bonitaandlovely@gmail.com' 
+                      client?.correo_electronico === 'passantinodev@gmail.com' 
                       ? 
                       <td className="px-6 text-center py-4">
                       <button className="bg-purple-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Principal Admin</button>
@@ -253,7 +253,7 @@ const pageNumbers = generatePageNumbers();
                   }
                 
                   {
-                    client?.correo_electronico !== 'bonitaandlovely@gmail.com' 
+                    client?.correo_electronico !== 'passantinodev@gmail.com' 
                     ? <td className="px-6 text-center py-4">
                     {client?.activa === true
                     ? <button onClick={()=> banAlert(client?.id)} className="bg-red-500 hover:bg-gray-200 text-white font-bold py-2 px-4 rounded">Banear</button>
@@ -279,7 +279,7 @@ const pageNumbers = generatePageNumbers();
                   setSelectedPage(selectedPage - 1);
                 }
               }}
-              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-black  focus:outline-none"
+              className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 "
             >
               {"<"}
             </button>
@@ -290,8 +290,11 @@ const pageNumbers = generatePageNumbers();
                   setCurrentPage(number);
                   setSelectedPage(number);
                 }}
-                className={`mx-1 text-lg font-bold px-3 py-1 rounded ${selected ? 'bg-black text-white' : 'bg-white text-black '}`}
-              >
+              className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
+              selected ? "bg-blue-900 text-white" : ""
+                }`}
+                >
+                  
                 {number}
               </button>
             ))}
@@ -302,8 +305,8 @@ const pageNumbers = generatePageNumbers();
                   setSelectedPage(selectedPage + 1);
                 }
               }}
-              className="mx-1 text-2xl font-bold px-3 py-1 rounded bg-white text-gray-500 focus:outline-none"
-            >
+              className="border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950"
+              >
               {">"}
             </button>
           </div>
