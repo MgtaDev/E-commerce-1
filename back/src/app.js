@@ -69,7 +69,7 @@ server.post("/pagoCarrito", (req, res) => {
   let preference = {
     items: items,
     back_urls: {
-      success: "https://e-commerce-1-production.up.railway.app/confirmedpayment",
+      success: "https://e-commerce-1-one.vercel.app/confirmedpayment",
       failure: '',
       pending: "",
     },
@@ -102,7 +102,7 @@ server.post("/pago", (req, res) => {
       },
     ],
     back_urls: {
-      success: "https://e-commerce-1-production.up.railway.app/confirmedpayment",
+      success: "https://e-commerce-1-one.vercel.app/confirmedpayment",
       failure: "",
       pending: "",
     },
