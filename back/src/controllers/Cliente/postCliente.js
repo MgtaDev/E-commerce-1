@@ -7,7 +7,7 @@ module.exports = async (clienteData) => {
     // Verificar si ya existe un cliente con el mismo nombre
     const existingcliente = await Cliente.findOne({
       where: {
-        name: clienteData.name,
+        name: clienteData.correo_electronico,
       },
     });
 
