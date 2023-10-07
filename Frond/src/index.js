@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const domain = 'dev-oh6m6lnus4nehfc3.us.auth0.com';
-const client = '0nqRqLUz1xyOdPGtAaoWLKS9gb5XLPzy';
+const client = '7OPEDGCbSCTf1GFuqhZwRyE58VngLbwR';
 
 ReactDOM.render(
   <Router>
