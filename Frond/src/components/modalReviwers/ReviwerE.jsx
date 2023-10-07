@@ -26,6 +26,7 @@ export default function EditReviewModal({ currentUserId, productId , initialRati
             Swal.fire('Calificacion editada','Ha editado correctamente su calificacion a este producto','success')
             setShowModal(false);
         } catch (error) {
+            console.log(error);
             Swal.fire('Ha ocurrido un error editando tu reseña',`${error.message}`,'error')
         }
     }

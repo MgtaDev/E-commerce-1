@@ -611,7 +611,7 @@ console.log(stateProducts);
             style={customStyles}
           >
             <div className="flex flex-col justify-center items-center h-full">
-              <QRCode size={300} value={qrUrl} />
+              <QRCode size={300} href={qrUrl} value={qrUrl} />
               <button
               onClick={handleShare}
               className="mt-5 bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900 hover:bg-blue-900 hover:text-white ease-in-out duration-300"
