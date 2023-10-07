@@ -19,7 +19,7 @@ export default function Modal({ productId , currentUserId}) {
 
     const handleSaveChanges = async () => {
         try {
-            const response = await axios.post(`http://localhost:3001/reviewr`, {
+            const response = await axios.post(`http://:3001/reviewr`, {
                 currentUserId,
                 productId,
                 rating: startCount,

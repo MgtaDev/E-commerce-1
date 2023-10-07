@@ -169,12 +169,12 @@ const Carrito = () => {
         }
     try {
 
-        const response = await axios.post("http://localhost:3001/pagoCarrito", productsToPay);
+        const response = await axios.post("/pagoCarrito", productsToPay);
         window.location.href = response.data.response.body.init_point;
         
         // Marcar el carrito como pagado
         if(response){
-          axios.put(`http://localhost:3001/carrito/pagado/${NumUserId}`, { pagado: true });
+          axios.put(`/carrito/pagado/${NumUserId}`, { pagado: true });
         }
     
         

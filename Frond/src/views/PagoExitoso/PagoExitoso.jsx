@@ -116,7 +116,7 @@ const PagoExitoso = () => {
       .catch((error) => {
         console.log('Ha ocurrido un error al enviar el correo electrónico:', error);
       });
-      axios.put(`http://localhost:3001/carrito/pagado/${currentUser.id}`, { pagado: true })
+      axios.put(`/carrito/pagado/${currentUser.id}`, { pagado: true })
       navigate('/catalogo')
   };
   

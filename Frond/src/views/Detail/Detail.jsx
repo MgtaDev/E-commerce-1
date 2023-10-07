@@ -104,7 +104,7 @@ console.log(stateProducts);
       window.location.href = response.data.response.body.init_point;
       
       // if(response){
-      //   axios.put(`http://localhost:3001/carrito/pagado/${idNumber}`, { pagado: true });
+      //   axios.put(`http://:3001/carrito/pagado/${idNumber}`, { pagado: true });
       // } 
     } catch (error) {
       console.log(error);

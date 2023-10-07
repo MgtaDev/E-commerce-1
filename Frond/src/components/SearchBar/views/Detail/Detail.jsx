@@ -78,11 +78,11 @@ console.log(stateProducts);
     try {
       await axios.put(`carrito/${idNumber}`, productToAdd);
      
-      const response = await axios.post("http://localhost:3001/pago", productToPay);
+      const response = await axios.post("/pago", productToPay);
       window.location.href = response.data.response.body.init_point;
       
       if(response){
-        axios.put(`http://localhost:3001/carrito/pagado/${idNumber}`, { pagado: true });
+        axios.put(`/carrito/pagado/${idNumber}`, { pagado: true });
       } 
     } catch (error) {
       console.log(error);

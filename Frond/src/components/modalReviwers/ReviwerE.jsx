@@ -18,7 +18,7 @@ export default function EditReviewModal({ currentUserId, productId , initialRati
 
     const handleSaveChanges = async () => {
         try {
-            const response = await axios.put(`http://localhost:3001/reviewr/${productId}/${currentUserId}`, {
+            const response = await axios.put(`/reviewr/${productId}/${currentUserId}`, {
                 rating: newRating,
                 comentario: newComentario
             });
