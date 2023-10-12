@@ -16,30 +16,16 @@ const validationSchema = yup.object({
     .required("La descripción es obligatoria")
     .min(10, "La descripción debe tener al menos 10 caracteres")
     .max(200, "La descripción no debe exceder los 200 caracteres"),
-  precio_compra: yup
-    .number()
-    .required("El precio del producto es obligatorio")
-    .positive("El precio debe ser un número positivo")
-    .min(1000, "El precio mínimo es 1000")
-    .max(1000000, "El precio máximo es 1000000"),
-  porcentaje_ganancia: yup
-    .number()
-    .required("El porcentaje de ganancia es obligatorio")
-    .min(10, "El porcentaje mínimo de ganancia es 10")
-    .max(100, "El porcentaje máximo de ganancia es 100"),
   precio_venta: yup
     .number()
     .required("El precio de venta es obligatorio")
     .positive("El precio de venta debe ser un número positivo")
     .min(0.01, "El precio mínimo de venta es 0.01")
     .max(99999.99, "El precio máximo de venta es 99999.99"),
-  referencia_proveedor: yup
-    .string()
-    .required("La referencia del proveedor es obligatoria"),
   marcaId: yup.number().required("Selecciona una marca"),
   categoriaId: yup.number().required("Selecciona una categoría"),
   tamañoId: yup.number().required("Selecciona un tamaño"),
-  proveedorId: yup.number().required("Selecciona un proveedor"),
+ 
 });
 
 const Form = () => {

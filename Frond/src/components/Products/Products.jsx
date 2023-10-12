@@ -55,11 +55,8 @@ const Products = () => {
                   <span class="text-xs font-bold text-green-500 mr-1">20%</span>
                   <span class="text-xs line-through text-gray-400">${item.precio_venta}.00</span>
                 </div>
-                <p class="text-xs">{item.marcaId === 1 ? 'Trendy' : item.marcaId === 2 ? 'Kiss Beauty' : item.marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
-                <div class="flex flex-row items-center">
-                  <FaStar class="w-4 h-4 text-yellow-500 mr-1" />
-                  <p class="text-xs m-2 font-bold text-gray-600">{item.referencia_proveedor}</p>
-                </div>
+                <p class="text-xs my-2">{item.marcaId === 1 ? 'Trendy' : item.marcaId === 2 ? 'Kiss Beauty' : item.marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
+              
               </div>
             </div>
           ))}

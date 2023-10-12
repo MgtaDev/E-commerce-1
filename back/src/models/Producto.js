@@ -51,11 +51,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     tamañoId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     proveedorId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     activa: {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StarRatings from 'react-star-ratings';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import { FaEdit } from "react-icons/fa";
 
 export default function EditReviewModal({ clienteId, productoId , initialRating, initialComentario }) {
     const [showModal, setShowModal] = useState(false);
@@ -34,10 +35,10 @@ export default function EditReviewModal({ clienteId, productoId , initialRating,
     return (
         <>
         <button
-          className="text-white bg-orange-500 py-1 px-3 rounded-full"
+          className="text-gray-500 py-1 px-3 rounded-full"
           onClick={() => setShowModal(true)}
         >
-          Editar reseña
+          <FaEdit/>
         </button>
         {showModal ? (
        <>

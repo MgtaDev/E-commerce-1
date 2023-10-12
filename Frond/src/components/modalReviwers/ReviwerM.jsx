@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import StarRatings from 'react-star-ratings';
 import Swal from "sweetalert2";
+import { FaThumbsUp } from 'react-icons/fa';
 
 export default function Modal({ productId , currentUserId}) {
     const [showModal, setShowModal] = React.useState(false);
@@ -41,11 +42,11 @@ export default function Modal({ productId , currentUserId}) {
     return (
         <>
             <button
-                className=" text-white bg-blue-900 py-1 px-3 rounded-full"
+                className=" text-gray-500 py-1 px-3 rounded-full"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
-            Calificar
+                <FaThumbsUp/>
             </button>
             {showModal ? (
                 <>

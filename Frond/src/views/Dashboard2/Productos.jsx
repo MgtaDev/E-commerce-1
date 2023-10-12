@@ -360,17 +360,17 @@ const ProductosTable = () => {
               <td className="px-6 text-center capitalize py-10">{product.id}</td>
               <td className="px-6 text-center capitalize py-10">{product.name}</td>
               <td className="px-6 text-center py-10">{product.cantidad} unidades</td>
-              <td className="px-6 l text-center py-10">
+              <td className="px-6 l text-center items-center py-10">
               {product.activa === true ? (
-                <div className="d-flex align-items-center">
-                  <span>Activo</span>
+                <div className="d-flex items-center">
+                  <span className="px-4">Activo</span>
 
-                  <BsCheckCircle className="mr-3 relative bottom-4" />
+                  <BsCheckCircle className="relative bottom-4" />
                 </div>
               ) : (
                 <>
-                  <span>Desactivado</span>
-                  <BsXCircle className="mr-3 relative bottom-4" />
+                  <span className="px-4">Oculto</span>
+                  <BsXCircle className=" relative bottom-4" />
               </>
               )}</td>
               <td className="px-6 text-center py-4">
