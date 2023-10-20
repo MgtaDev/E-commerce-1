@@ -40,10 +40,10 @@ const Products = () => {
       <CarouselContainer>
         <CarouselWrapper {...settings}>
           {stateProducts?.productos?.map((item) => (
-            <div class="flex flex-col rounded-md shadow bg-white !w-[250px] shadow-full mt-5 ml-2">
-              <div className='flex justify-center'>
+            <div class="flex flex-col h-80 rounded-md shadow bg-white !w-[250px] shadow-full mt-5 ml-2 transform hover:scale-110 duration-300">
+              <div className='flex px-8'>
                 <Link to={`/detail/${item.id}`}>
-                  <img class="flex justify-center cursor-pointer !w-40 !h-40" src={item.imagenPrincipal} alt="ofertas" />
+                  <img class="flex cursor-pointer !w-40 !h-40" src={item.imagenPrincipal} alt="ofertas" />
                 </Link>
               </div>
               <div class="flex flex-col px-4">
@@ -55,7 +55,7 @@ const Products = () => {
                   <span class="text-xs font-bold text-green-500 mr-1">20%</span>
                   <span class="text-xs line-through text-gray-400">${item.precio_venta}.00</span>
                 </div>
-                <p class="text-xs my-2">{item.marcaId === 1 ? 'Trendy' : item.marcaId === 2 ? 'Kiss Beauty' : item.marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
+                <p class="text-xs my-2">{item.marcaId === 1 ? 'Mars Gaming' : item.marcaId === 2 ? 'Azus' : item.marcaId === 3 ? 'None' : 'Otras marcas'}</p>
               
               </div>
             </div>

@@ -48,7 +48,7 @@ const Navbar = () => {
     <header className=' text-white bg-[#103361] flex justify-between px-4 '>
     <div>
     <p className=' cursor-pointer text-xs py-1'>
-      Contactanos al 0424-8048785
+      Contactanos al 0412-1968978
     </p>
     </div>
   

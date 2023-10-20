@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sillas from '../../assets/img/img173.jpg';
 import Mouses from '../../assets/img/img226.jpg';
 import Teclados from '../../assets/img/img190.jpg';
 import Cooling from '../../assets/img/img57.jpg';
 import Audifonos from '../../assets/img/AudifonosImg.png';
+import Laptop from '../../assets/img/LaptopImg.jpeg'
+import Monitores from '../../assets/img/monitores.png'
+import Seguridad from '../../assets/img/camaraImg.webp'
+import Accesorios from '../../assets/img/accesorios.jpeg'
+import Consolas from '../../assets/img/play5.jpeg'
+import FuentesAndMore from '../../assets/img/reguladores.jpeg'
+import { useSpring, animated } from "react-spring";
+
 import style from './Proveedores.module.css';
 import styled from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
@@ -30,9 +38,24 @@ const Card = styled.div`
   }
 `;
 
-const Proveedores = () => {
+const Proveedores2 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const slideIn = useSpring({
+    from: { transform: "translateY(20px)", opacity: 0 },
+    to: { transform: "translateY(0px)", opacity: show ? 1 : 0 },
+    config: { duration: 500 },
+    delay: 500,
+  });
+  const fadeIn = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 500 },
+    delay: 200,
+    onRest: () => setShow(true)
+  });
+
 
   const filterByCategories = (event) => {
     const categoryToFilter = event.currentTarget.getAttribute('data-categoria');
@@ -90,17 +113,14 @@ const Proveedores = () => {
   };
 
   return (
+    <animated.div style={fadeIn}>
     <div className={style.Proveedores}>
-      <div className='items-center flex justify-between'>
+      <div className='items-center my-5 flex justify-between'>
         <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500' />
           <h1 className='text-xl font-bold px-1'>Categorias</h1>
         </div>
-        <div>
-          <Link to={'/categorias2'}>
-            <span className='mb-1 px-4 text-sm text-blue-900'>Ver mas</span>
-          </Link>
-        </div>
+    
       </div>
 
       <div className={style.flex}>
@@ -138,9 +158,46 @@ const Proveedores = () => {
             <p className='text-xs mt-2 text-gray-500 text-center'>Teclados</p>
           </div>
         </Card>
+        <Card onClick={filterByCategories} id='5' data-categoria='Laptop'>
+          <img src={Laptop} alt='Consolas' />
+          <div className='flex flex-col'>
+            <p className='text-xs mt-2 text-gray-500 text-center'>Laptop</p>
+          </div>
+        </Card>
+        <Card onClick={filterByCategories} id='5' data-categoria='Monitores'>
+          <img src={Monitores} alt='Consolas' />
+          <div className='flex flex-col'>
+            <p className='text-xs mt-2 text-gray-500 text-center'>Monitores</p>
+          </div>
+        </Card>
+        <Card onClick={filterByCategories} id='5' data-categoria='Fuentes, tarjetas y reguladores'>
+          <img src={FuentesAndMore} alt='Consolas' />
+          <div className='flex flex-col'>
+            <p className='text-xs mt-2 text-gray-500 text-center'>Fuentes, tarjetas y reguladores</p>
+          </div>
+        </Card>
+        <Card onClick={filterByCategories} id='5' data-categoria='Consolas'>
+          <img src={Consolas} alt='Consolas' />
+          <div className='flex flex-col'>
+            <p className='text-xs mt-2 text-gray-500 text-center'>Consolas</p>
+          </div>
+        </Card>
+        <Card onClick={filterByCategories} id='5' data-categoria='Accesorios'>
+          <img src={Accesorios} alt='Consolas' />
+          <div className='flex flex-col'>
+            <p className='text-xs mt-2 text-gray-500 text-center'>Accesorios</p>
+          </div>
+        </Card>
+        <Card onClick={filterByCategories} id='5' data-categoria='Seguridad'>
+          <img src={Seguridad} alt='Consolas' />
+          <div className='flex flex-col'>
+            <p className='text-xs mt-2 text-gray-500 text-center'>Seguridad</p>
+          </div>
+        </Card>
       </div>
     </div>
+    </animated.div>
   );
 };
 
-export default Proveedores;
+export default Proveedores2;

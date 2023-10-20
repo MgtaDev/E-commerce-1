@@ -7,7 +7,9 @@ import Products from "./components/Products/Products";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Contact from "./views/Contact/Contact";
 import FAQs from "./views/FAQs/FAQs"
+import Marcas2 from "./NuestrasMarcas/marcas2";
 import Catalogo from "./views/Catalogo/Catalogo.jsx";
+import Proveedores2 from "./components/Proveedores/Categorias";
 import Form from "./views/Form/Form";
 import Profile from "./views/Profile/MiPerfil.jsx";
 import Detail from "./views/Detail/Detail";
@@ -73,6 +75,8 @@ function App () {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/categorias" element={<Proveedores />} />
+        <Route path="/categorias2" element={<Proveedores2 />} />
+        <Route path="/marcas2" element={<Marcas2 />} />        
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/catalogo" element={<Catalogo />} />

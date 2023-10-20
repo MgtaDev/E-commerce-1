@@ -22,7 +22,7 @@ const ProductsMayLike = () => {
 
   return (
         <>
-        <div className='items-center flex justify-between'>
+        <div className='items-center  flex justify-between'>
       <div className='flex items-center px-3'>
         <h1 className='text-xl font-bold px-1'>Productos mas vendidos</h1>
           <FaCheckCircle className='text-green-500'/>
@@ -45,7 +45,7 @@ const ProductsMayLike = () => {
                       //   precio={item.precio_venta}
                       //   imagenPrincipal={item.imagenPrincipal}
                       // />
-                      <div class="flex flex-col rounded-md shadow w-[260px] shadow-md m-10">
+                      <div class="flex flex-col rounded-md shadow w-[260px] shadow-md m-10 transform hover:scale-110 duration-300">
                         <Link to={`/detail/${item.id}`}>
                           <img class="object-contain items-center  rounded-md " src={item.imagenPrincipal} alt="ofertas" />
                         </Link>
@@ -58,7 +58,7 @@ const ProductsMayLike = () => {
                                   <span class="text-xs font-bold text-green-500 mr-1">20%</span>
                                   <span class="text-xs line-through text-gray-400">${item.precio_original}.00</span>
                               </div>
-                              <p class="text-xs my-2 ">{item.marcaId === 1 ? 'Trendy' : item.marcaId === 2 ? 'Kiss Beauty' : item.marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
+                              <p class="text-xs my-2 ">{item.marcaId === 1 ? 'Mars Gaming' : item.marcaId === 2 ? 'Azus' : item.marcaId === 3 ? 'None' : 'Otras marcas'}</p>
                              
                           </div>
                       </div>

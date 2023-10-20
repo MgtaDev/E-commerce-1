@@ -90,7 +90,7 @@ const addToCart = () => {
 }
   
   return (
-    <div className="flex bg-white-200 flex-col rounded-md shadow overflow-hidden ">
+    <div className="flex bg-white-200 h-full grid-cols-1 flex-col rounded-md shadow overflow-hidden hover:-translate-y-10 duration-300 hover:shadow-lg ease-in-out ">
     <Link to={`/detail/${id}`}>
       <img className="object-cover " src={imagenPrincipal} alt="ofertas" />
     </Link>
@@ -116,8 +116,6 @@ const addToCart = () => {
       </div>
       <p className="text-xs text-gray-600">{marcaId === 1 ? 'Trendy' : marcaId === 2 ? 'Kiss Beauty' : marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>
       <div className="flex flex-row items-center">
-        <FaStar className="w-4 h-4 text-yellow-500 mr-1" />
-        <p className="text-xs text-gray-600">Sin reseñas</p>
       </div>
     </div>
   </div>

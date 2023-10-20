@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Marca1 from '../assets/img/img173.jpg'
-import Marca2 from '../assets/img/img173.jpg'
-import Marca3 from '../assets/img/img173.jpg'
-import Marca4 from '../assets/img/img173.jpg'
-import Marca5 from '../assets/img/img173.jpg'
+import MarsGaming from '../assets/img/mars-gaming-logo.png'
+import Azus from '../assets/img/azuslogo.png'
+import JBL from '../assets/img/jbl-logo.png'
+import AVR from '../assets/img/Avr-logo.png'
+import Samsung from '../assets/img/samsung-logo.jpg'
 
 
 
@@ -41,7 +41,7 @@ return (
         <h1 className='text-xl font-bold px-1'>Marcas</h1>
       </div>
       <div>
-        <Link to={'/categorias'}>
+        <Link to={'/marcas2'}>
         <span className='mb-1 px-4 text-sm text-blue-900'>Ver mas</span>
         </Link>
       </div>
@@ -52,11 +52,11 @@ return (
 
         <Card>
         
-        <img src={Marca1} alt="" />
+        <img src={MarsGaming} alt="" />
         
         <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
+          <p className='text-xs text-center'>Mars Gaming</p>
           <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500'/>
           <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
@@ -67,11 +67,11 @@ return (
 
         <Card>
         
-        <img src={Marca2} alt="" />
+        <img src={Azus} alt="" />
         
         <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
+          <p className='text-xs text-center'>Azus</p>
           <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500'/>
           <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
@@ -82,11 +82,11 @@ return (
 
         <Card>
         
-        <img src={Marca3} alt="" />
+        <img src={JBL} alt="" />
         
         <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
+          <p className='text-xs text-center'>JBL</p>
           <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500'/>
           <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
@@ -97,11 +97,11 @@ return (
 
         <Card>
         
-        <img src={Marca4} alt="" />
+        <img src={AVR} alt="" />
         
         <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
+          <p className='text-xs text-center'>AVR</p>
           <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500'/>
           <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
@@ -112,11 +112,11 @@ return (
 
         <Card>
         
-        <img src={Marca5} alt="" />
+        <img src={Samsung} alt="" />
         
         <div className='border border-w-1 -mt-3 mb-3 border-gray-100'></div>
         <div className='flex flex-col'>
-          <p className='text-xs text-center'>Blue Makeup</p>
+          <p className='text-xs text-center'>Samsung</p>
           <div className='flex items-center px-3'>
           <FaCheckCircle className='text-green-500'/>
           <p className='text-center text-gray-500 text-xs px-1'>Tienda oficial</p>
