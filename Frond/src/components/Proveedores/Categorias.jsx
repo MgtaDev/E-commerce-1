@@ -7,7 +7,7 @@ import Audifonos from '../../assets/img/AudifonosImg.png';
 import Laptop from '../../assets/img/LaptopImg.jpeg'
 import Monitores from '../../assets/img/monitores.png'
 import Seguridad from '../../assets/img/camaraImg.webp'
-import Accesorios from '../../assets/img/accesorios.jpeg'
+// import Accesorios from '../../assets/img/accesorios.jpeg'
 import Consolas from '../../assets/img/play5.jpeg'
 import FuentesAndMore from '../../assets/img/reguladores.jpeg'
 import { useSpring, animated } from "react-spring";
@@ -182,12 +182,12 @@ const Proveedores2 = () => {
             <p className='text-xs mt-2 text-gray-500 text-center'>Consolas</p>
           </div>
         </Card>
-        <Card onClick={filterByCategories} id='5' data-categoria='Accesorios'>
+        {/* <Card onClick={filterByCategories} id='5' data-categoria='Accesorios'>
           <img src={Accesorios} alt='Consolas' />
           <div className='flex flex-col'>
             <p className='text-xs mt-2 text-gray-500 text-center'>Accesorios</p>
           </div>
-        </Card>
+        </Card> */}
         <Card onClick={filterByCategories} id='5' data-categoria='Seguridad'>
           <img src={Seguridad} alt='Consolas' />
           <div className='flex flex-col'>
