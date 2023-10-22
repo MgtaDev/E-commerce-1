@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -9,6 +10,51 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { clientes } from '../../redux/actions';
 
 const Miperfil = () => {
+
+
+const containerStyle = {
+  width:  '100%',
+  height: '400px'
+};
+
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
+
+function ProfileMap() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "YOUR_API_KEY"
+  })
+
+  const [map, setMap] = React.useState(null)
+
+  const onLoad = React.useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+  ) : <></>
+}
   const dispatch = useDispatch()
   useEffect(
     () => {
@@ -82,9 +128,9 @@ const Miperfil = () => {
   }
 
   return (
-    <div className="h-screen flex max-w-full">
-      {/* Columna izquierda */}
-      <div className="w-1/3 flex-shrink-0">
+    <>
+          
+      <div className="w-3/3 flex-shrink-0">
         <div className="p-5 h-full">
           <div className="flex mt-5 flex-col items-center justify-center space-y-4">
             <img
@@ -99,46 +145,24 @@ const Miperfil = () => {
             <p className="text-gray-400 text-lg mb-5">
               {!isLoading ? user.email : 'Loading...'}
             </p>
-            {!buttonSwitch ? (
-              <button
-                className="bg-blue-900 text-white px-3 flex items-center justify-center py-2 rounded-md  w-56 mb-10"
-                onClick={() => setButtonSwitch(true)}
-              >
-                Editar perfil
-              </button>
-            ) : (
-              <>
-                <button
-                  className="bg-green-500 text-white px-3 flex items-center justify-center py-2 rounded-md hover:bg-green-600 w-56 mb-10"
-                  onClick={() => {
-                    setButtonSwitch(false);
-                    handleSubmit(currentUser.id);
-                  }}
-                >
-                  Guardar cambios
-                </button>
-                <button
-                  className="bg-gray-500 text-white px-3 flex items-center justify-center py-2 rounded-md w-56 mb-10"
-                  onClick={() => setButtonSwitch(false)}
-                >
-                  Cancelar
-                </button>
-              </>
-            )}
+         
+         
 
           </div>
         </div>
       </div>
-
+       <div className="h-screen flex max-w-full">
+        
       {/* Columna derecha */}
-      <div className="w-2/3 m-5 flex-shrink-0">
+      <div className="w-full m-5 flex-shrink-0">
 
-      <h1 className="flex ml-20 text-4xl font-bold mb-2 text-gray-600">Mi Perfil</h1>
 
         <div className="pt-5 pb-10 px-20 flex flex-col items-center  bg-white rounded-lg shadow-lg h-full">
           <div className="w-full flex justify-between">
             {/* Columna izquierda de la derecha */}
+            
             <div className="w-5/12">
+            <h1 className="flex text-4xl font-bold mb-2  text-gray-600">Mi Perfil</h1>
               <dl className="form-group">
 
                 <label htmlFor="name" className="font-bold text-gray-600 mb-1">
@@ -225,7 +249,7 @@ const Miperfil = () => {
             </div>
 
             {/* Columna derecha de la derecha */}
-            <div className="w-7/12 ml-10">
+            <div className="w-7/12 ml-10 mt-12">
               <dl className="form-group">
                 <label htmlFor="apellido" className="font-bold text-gray-600 mb-1">
                   Apellido
@@ -278,11 +302,46 @@ const Miperfil = () => {
                   />
                 </dd>
               </dl>
+              <div className='my-11 flex-end'>
+              {!buttonSwitch ? (
+              <button
+                className="bg-blue-900 text-white px-3 ml-auto flex items-center justify-center py-2 rounded-md  w-56 mb-10"
+                onClick={() => setButtonSwitch(true)}
+              >
+                Editar perfil
+              </button>
+            ) : (
+              <>
+                <button
+                  className="bg-green-500 ml-auto text-white px-3 flex items-center justify-center py-2 rounded-md hover:bg-green-600 w-56 mb-10"
+                  onClick={() => {
+                    setButtonSwitch(false);
+                    handleSubmit(currentUser.id);
+                  }}
+                >
+                  Guardar cambios
+                </button>
+                <button
+                  className="bg-gray-500 ml-auto text-white px-3 flex items-center justify-center py-2 rounded-md w-56 mb-10"
+                  onClick={() => setButtonSwitch(false)}
+                >
+                  Cancelar
+                </button>
+              </>
+            )}
+              </div>
+            
             </div>
+         
           </div>
-        </div>
+          
+        </div>  
       </div>
     </div>
+    {ProfileMap()}
+    </>
+ 
+
   );
 };
 

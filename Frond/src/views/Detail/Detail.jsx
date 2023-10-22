@@ -15,6 +15,42 @@ import ReviwerD from "../../components/modalReviwers/reviewrsDetail/ReviwerD";
 import QRCode from "react-qr-code";
 import Modal from "react-modal";
 
+// Images
+
+import MarsGaming from '../../assets/marcas/mars-gaming-logo.png'
+import Azus from '../../assets/marcas/asus-logo.png'
+import JBL from '../../assets/marcas/jbl-logo.png'
+import AVR from '../../assets/marcas/Avr-logo.png'
+import Samsung from '../../assets/marcas/samsung-logo.jpg'
+import Lenovo from '../../assets/marcas/lenovo-logo.png'
+import Redragon from '../../assets/marcas/redragon-logo.jpg'
+import Comifort from '../../assets/marcas/comifort-logo.webp'
+import Intel from '../../assets/marcas/intel-logo.png'
+import Nintendo from '../../assets/marcas/nintendo-logo.png'
+import Xbox from '../../assets/marcas/xbox-logo.png'
+import Playstation from '../../assets/marcas/playstation-logo.png'
+import Acer from '../../assets/marcas/acer-logo.png'
+import Dell from '../../assets/marcas/dell-logo.png'
+import Hp from '../../assets/marcas/hp-logo.webp'
+import Epson from '../../assets/marcas/epson-logo.png'
+import APC from '../../assets/marcas/apc-logo.png'
+import Teachview from '../../assets/marcas/techview-logo.png'
+import Argom from '../../assets/marcas/argom-tech-logo.jpg'
+import CoolerMaster from '../../assets/marcas/Cooler-Master-Logo.png'
+import Biostar from '../../assets/marcas/biostar-logo.png' 
+import AMD from '../../assets/marcas/amd-logo.jpg'
+import Deepcool from '../../assets/marcas/depcoll-logo.png'
+import Kingston from '../../assets/marcas/kingston-logo.png'
+import Adata from '../../assets/marcas/adata-logo.png'
+import LG from '../../assets/marcas/lg-logo.png'
+import HHGears from '../../assets/marcas/HH-Gears-logo.webp'
+import Razer from '../../assets/marcas/razer-logo.jpg'
+import Logitech from '../../assets/marcas/Logitech-Logo.jpg'
+import HiperX from '../../assets/marcas/hiperx-logo.jpg'
+
+
+
+
 Modal.setAppElement("#root");
 const customStyles = {
   content: {
@@ -40,6 +76,7 @@ const Detail = () => {
   const redirigirAlInicio = () => {
     window.scrollTo(0, 0);
   }
+  const stateReviwers = useSelector(state => state.AllRevierwsId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -133,143 +170,273 @@ console.log(stateProducts);
     quantity: amount,
   };
 
-  function obtenerMarca(stateProducts) {
+  function obtenerMarcaImg(id) {
     let marca = '';
     let imagen = '';
     
-    switch (stateProducts.marcaId) {
+    switch (id) {
       case 1:
-        marca = 'Nike';
-        imagen = 'imagen-nike.jpg';
+        marca = 'Mars Gaming';
+        imagen = MarsGaming ;
         break;
       case 2:
-        marca = 'Adidas';
-        imagen = 'imagen-adidas.jpg';
+        marca = 'Asus';
+        imagen = Azus;
         break;
       case 3:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'JBL';
+        imagen = JBL;
         break;
         case 4:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'AVR';
+        imagen = AVR;
         break;
         case 5:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Samsung';
+        imagen = Samsung;
         break;
         case 6:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Lenovo';
+        imagen = Lenovo;
         break;
         case 7:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Redragon';
+        imagen = Redragon;
         break;
         case 8:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Comifort';
+        imagen = Comifort;
         break;
         case 9:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Intel';
+        imagen = Intel;
         break;
         case 10:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Nintendo';
+        imagen = Nintendo;
         break;
         case 11:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Xbox';
+        imagen = Xbox;
         break;
         case 12:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Playstation';
+        imagen = Playstation;
         break;
         case 13:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Acer';
+        imagen = Acer;
         break;
         case 14:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Dell';
+        imagen = Dell;
         break;
         case 15:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'HP';
+        imagen = Hp;
         break;
         case 16:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Epson';
+        imagen = Epson;
         break;
         case 17:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'APC';
+        imagen = APC;
         break;
         case 18:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Techview';
+        imagen = Teachview;
         break;
         case 19:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Argom';
+        imagen = Argom;
         break;
         case 20:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Cooler Master';
+        imagen = CoolerMaster;
         break;
         case 21:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Biostar';
+        imagen = Biostar;
         break;
         case 22:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'AMD';
+        imagen = AMD;
         break;
         case 23:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'DeepCool';
+        imagen = Deepcool;
         break;
         case 24:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
-        break;
-        case 25:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Kingston';
+        imagen = Kingston;
         break;
         case 26:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Adata';
+        imagen = Adata;
         break;
         case 27:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'LG';
+        imagen = LG;
         break;
         case 28:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'HHGears';
+        imagen = HHGears;
         break;
         case 29:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Razer';
+        imagen = Razer;
         break;
         case 30:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'Logitech';
+        imagen = Logitech;
         break;
         case 31:
-        marca = 'Puma';
-        imagen = 'imagen-puma.jpg';
+        marca = 'HiperX';
+        imagen = HiperX;
         break;
        
       default:
         marca = 'Marca no encontrada';
-        imagen = 'imagen-default.jpg';
+        imagen = '';
     }
     
-    return `<img src=${imagen}> ${marca}`;
+    return <img  className="h-14 w-14 border rounded-full" src={imagen} alt={marca} />;
   }
+  function obtenerMarcaName(id) {
+    let marca = '';
+    let imagen = '';
+    
+    switch (id) {
+      case 1:
+        marca = 'Mars Gaming';
+        imagen = MarsGaming ;
+        break;
+      case 2:
+        marca = 'Asus';
+        imagen = Azus;
+        break;
+      case 3:
+        marca = 'JBL';
+        imagen = JBL;
+        break;
+        case 4:
+        marca = 'AVR';
+        imagen = AVR;
+        break;
+        case 5:
+        marca = 'Samsung';
+        imagen = Samsung;
+        break;
+        case 6:
+        marca = 'Lenovo';
+        imagen = Lenovo;
+        break;
+        case 7:
+        marca = 'Redragon';
+        imagen = Redragon;
+        break;
+        case 8:
+        marca = 'Comifort';
+        imagen = Comifort;
+        break;
+        case 9:
+        marca = 'Intel';
+        imagen = Intel;
+        break;
+        case 10:
+        marca = 'Nintendo';
+        imagen = Nintendo;
+        break;
+        case 11:
+        marca = 'Xbox';
+        imagen = Xbox;
+        break;
+        case 12:
+        marca = 'Playstation';
+        imagen = Playstation;
+        break;
+        case 13:
+        marca = 'Acer';
+        imagen = Acer;
+        break;
+        case 14:
+        marca = 'Dell';
+        imagen = Dell;
+        break;
+        case 15:
+        marca = 'HP';
+        imagen = Hp;
+        break;
+        case 16:
+        marca = 'Epson';
+        imagen = Epson;
+        break;
+        case 17:
+        marca = 'APC';
+        imagen = APC;
+        break;
+        case 18:
+        marca = 'Techview';
+        imagen = Teachview;
+        break;
+        case 19:
+        marca = 'Argom';
+        imagen = Argom;
+        break;
+        case 20:
+        marca = 'Cooler Master';
+        imagen = CoolerMaster;
+        break;
+        case 21:
+        marca = 'Biostar';
+        imagen = Biostar;
+        break;
+        case 22:
+        marca = 'AMD';
+        imagen = AMD;
+        break;
+        case 23:
+        marca = 'DeepCool';
+        imagen = Deepcool;
+        break;
+        case 24:
+        marca = 'Kingston';
+        imagen = Kingston;
+        break;
+        case 26:
+        marca = 'Adata';
+        imagen = Adata;
+        break;
+        case 27:
+        marca = 'LG';
+        imagen = LG;
+        break;
+        case 28:
+        marca = 'HHGears';
+        imagen = HHGears;
+        break;
+        case 29:
+        marca = 'Razer';
+        imagen = Razer;
+        break;
+        case 30:
+        marca = 'Logitech';
+        imagen = Logitech;
+        break;
+        case 31:
+        marca = 'HiperX';
+        imagen = HiperX;
+        break;
+       
+      default:
+        marca = 'Marca no encontrada';
+        imagen = '';
+    }
+    
+    return <h2 >{marca}</h2>
+  }
+
 
   const addToCart = () => {        
     dispatch(addItemToCartLS(id, amount, 1)); 
@@ -636,16 +803,16 @@ console.log(stateProducts);
 
       {/* Container */}
       <div className="flex items-cente m-8 gap-2 justify-center">
-      <img className="h-14 w-14 border rounded-full" src={MyK} alt="" />
+      {obtenerMarcaImg(stateProducts?.marcaId)}
       
       <div className="flex items-center">
       <FaCheckCircle className="text-green-600"/>
-      <h2 className="text-lg font-bold">Azus</h2>
+      {obtenerMarcaName(stateProducts?.marcaId)}
       </div>
 
       <div className="flex text-sm flex-col px-20  border-r  flex items-center">
       <FaStar className="text-yellow-400"/>
-      <span>1.2k reviews</span>
+      <span>{stateReviwers?.length} reviews</span>
       </div>
 
       <div className="flex-col text-sm px-20 border-r ">

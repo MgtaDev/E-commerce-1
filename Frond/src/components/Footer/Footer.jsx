@@ -10,7 +10,7 @@ function Footer() {
     window.scrollTo(0, 0);
   }
   return (
-    <div className='bg-gray-100 border-t px-20 border-gray-300 py-8'>
+    <><div className='bg-gray-100 border-t px-20 border-gray-300 py-8'>
       <div className='max-w-screen-xl mx-auto px-4'>
         <div className='flex justify-between items-center'>
           <div className='flex items-center'>
@@ -28,7 +28,7 @@ function Footer() {
               <li onClick={redirigirAlInicio()}>
                 <Link to='/catalogo' className='text-gray-600 hover:text-gray-900'>Catalogo</Link>
               </li>
-           
+
             </ul>
           </div>
           <div className=''>
@@ -69,7 +69,8 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </div><div class="bg-gradient-to-r from-red-500 via-orange-500 to-pink-500 h-2 animate-pulse"></div></>
+
   );
 };
 

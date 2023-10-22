@@ -6,31 +6,31 @@ import Azus from '../assets/img/azuslogo.png'
 import JBL from '../assets/img/jbl-logo.png'
 import AVR from '../assets/img/Avr-logo.png'
 import Samsung from '../assets/img/samsung-logo.jpg'
-import Lenovo from '../assets/img/samsung-logo.jpg'
-import Redragon from '../assets/img/samsung-logo.jpg'
-import Comifort from '../assets/img/samsung-logo.jpg'
-import Intel from '../assets/img/samsung-logo.jpg'
-import Nintendo from '../assets/img/samsung-logo.jpg'
-import Xbox from '../assets/img/samsung-logo.jpg'
-import Playstation from '../assets/img/samsung-logo.jpg'
-import Acer from '../assets/img/samsung-logo.jpg'
-import Dell from '../assets/img/samsung-logo.jpg'
-import Hp from '../assets/img/samsung-logo.jpg'
-import Epson from '../assets/img/samsung-logo.jpg'
-import APC from '../assets/img/samsung-logo.jpg'
-import Teachview from '../assets/img/samsung-logo.jpg'
-import Argom from '../assets/img/samsung-logo.jpg'
-import CoolerMaster from '../assets/img/samsung-logo.jpg'
-import Biostar from '../assets/img/samsung-logo.jpg'
-import AMD from '../assets/img/samsung-logo.jpg'
-import Deepcool from '../assets/img/samsung-logo.jpg'
-import Kingston from '../assets/img/samsung-logo.jpg'
-import Adata from '../assets/img/samsung-logo.jpg'
-import LG from '../assets/img/samsung-logo.jpg'
-import HHGears from '../assets/img/samsung-logo.jpg'
-import Razer from '../assets/img/samsung-logo.jpg'
-import Logitech from '../assets/img/samsung-logo.jpg'
-import HiperX from '../assets/img/samsung-logo.jpg'
+import Lenovo from '../assets/marcas/lenovo-logo.png'
+import Redragon from '../assets/marcas/redragon-logo.jpg'
+import Comifort from '../assets/marcas/comifort-logo.webp'
+import Intel from '../assets/marcas/intel-logo.png'
+import Nintendo from '../assets/marcas/nintendo-logo.png'
+import Xbox from '../assets/marcas/xbox-logo.png'
+import Playstation from '../assets/marcas/playstation-logo.png'
+import Acer from '../assets/marcas/acer-logo.png'
+import Dell from '../assets/marcas/dell-logo.png'
+import Hp from '../assets/marcas/hp-logo.webp'
+import Epson from '../assets/marcas/epson-logo.png'
+import APC from '../assets/marcas/apc-logo.png'
+import Teachview from '../assets/marcas/techview-logo.png'
+import Argom from '../assets/marcas/argom-tech-logo.jpg'
+import CoolerMaster from '../assets/marcas/Cooler-Master-Logo.png'
+import Biostar from '../assets/marcas/biostar-logo.png' 
+import AMD from '../assets/marcas/amd-logo.jpg'
+import Deepcool from '../assets/marcas/depcoll-logo.png'
+import Kingston from '../assets/marcas/kingston-logo.png'
+import Adata from '../assets/marcas/adata-logo.png'
+import LG from '../assets/marcas/lg-logo.png'
+import HHGears from '../assets/marcas/HH-Gears-logo.webp'
+import Razer from '../assets/marcas/razer-logo.jpg'
+import Logitech from '../assets/marcas/Logitech-Logo.jpg'
+import HiperX from '../assets/marcas/hiperx-logo.jpg'
 
 
 
@@ -78,11 +78,7 @@ return (
           <FaCheckCircle className='text-green-500'/>
         <h1 className='text-xl font-bold px-1'>Marcas</h1>
       </div>
-      <div>
-        <Link to={'/categorias'}>
-        <span className='mb-1 px-4 text-sm text-blue-900'>Ver mas</span>
-        </Link>
-      </div>
+
       </div>
      
 
