@@ -47,7 +47,7 @@ const Navbar = () => {
     <div className="">
     <div class="bg-gradient-to-r from-red-500 via-orange-500 to-pink-500 h-2 animate-pulse"></div>
 
-      <header className=' text-white bg-[#103361] flex justify-between px-4 '>
+      <header className=' text-white bg-[#151616] flex justify-between px-4 '>
         <div>
           <p className=' cursor-pointer text-xs py-1'>
             Contactanos al 0412-1968978
