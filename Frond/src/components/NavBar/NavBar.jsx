@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
 
       </header>
-      <nav className='bg-[#103361] shadow shadow-md flex justify-between py-2 px-4 items-center'>
+      <nav className='bg-[#151616] shadow shadow-md flex justify-between py-2 px-4 items-center'>
         {/* Logo */}
         <Link to='/'>
           <h2 className=' text-2xl font-bold text-white cursor-pointer'>Enmable</h2>
