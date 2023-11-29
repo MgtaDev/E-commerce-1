@@ -225,14 +225,7 @@ const Catalogfilters = ({products, pageNumber, searchResults}) => {
           </div>
        
       </div>
-      <div className="flex justify-center">
-        <button
-          className="px-8 py-2 mt-5 font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-all duration-300"
-          onClick={handleReset}
-        >
-          RESET
-        </button>
-        </div>
+      
       </div>
     
  

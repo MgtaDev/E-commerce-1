@@ -29,7 +29,7 @@ const ProductsMayLike = () => {
       </div>
       <div>
         <Link to={'/catalogo'}>
-        <spa onClick={redirigirAlInicio} className='mb-1 px-4 text-sm cursor-pointer text-blue-900'>Ir al catalogo</spa>
+        <spa onClick={redirigirAlInicio} className='mb-1 px-4 text-sm cursor-pointer text-[#151616]'>Ir al catalogo</spa>
         </Link>
       </div>
       </div>

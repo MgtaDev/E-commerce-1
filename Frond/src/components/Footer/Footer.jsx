@@ -69,7 +69,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div><div class="bg-gradient-to-r from-red-500 via-orange-500 to-pink-500 h-2 animate-pulse"></div></>
+    </div></>
 
   );
 };

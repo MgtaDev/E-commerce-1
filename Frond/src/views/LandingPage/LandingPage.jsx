@@ -45,7 +45,7 @@ const LandingPage = () => {
     <CarouselMid/>
 
     </div>
-    <div className='mt-60'>
+    <div className='mt-60 mb-20'>
     <Products stateProducts={stateProducts}/>
     </div>
 

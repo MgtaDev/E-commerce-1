@@ -305,7 +305,7 @@ function ProfileMap() {
               <div className='my-11 flex-end'>
               {!buttonSwitch ? (
               <button
-                className="bg-blue-900 text-white px-3 ml-auto flex items-center justify-center py-2 rounded-md  w-56 mb-10"
+                className="bg-[#151616] hover:bg-white transition duration-300 border border-2 ease-in-out hover:text-[#151616] text-white px-3 ml-auto flex items-center justify-center py-2 rounded-md  w-56 mb-10"
                 onClick={() => setButtonSwitch(true)}
               >
                 Editar perfil

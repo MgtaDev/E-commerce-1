@@ -258,7 +258,7 @@ const Carrito = () => {
                         <div className="flex items-center flex-col justify-center mt-20 text-xl">
                             <div className="font-medium text-gray-600">No hay artículos en su carrito</div>
                             <Link to={'/catalogo'}>
-                            <span className="text12xs text-blue-800 underline">Ir al catalogo</span>
+                            <span className="text12xs text-orange-600 underline">Ir al catalogo</span>
                             </Link>
                         </div>
                     )}
@@ -301,11 +301,11 @@ const Carrito = () => {
                         onClick={() => {
                             handleProceedToPayment();                         
                         }}
-                        className="transition flex justify-center items-center text-center duration-300 rounded-md py-3 px-4 text-white font-medium w-full bg-blue-900"
+                        className="transition flex justify-center items-center text-center duration-300 rounded-md py-3 px-4 border border-2 text-white font-medium w-full bg-[#151616] hover:bg-white  hover:text-[#151616]"
                         
                         >
                         Continuar compra
-                        <FaArrowRight className='text-white ml-3'/>
+                        <FaArrowRight className='text-white ml-3 hover:text-[#151616]'/>
                     </button>
                     </div>
 

@@ -647,16 +647,16 @@ console.log(stateProducts);
     
       <animated.div style={fadeIn}>
       
-      <div className="flex gap-10 mt-10">
+      <div className="flex gap-10 mt-10 justify-center">
      {/* 1 */}
-      <div className="flex flex-col h-[400px] w-80 px-10 ">
-      <img className="rounded-md" src={stateProducts.imagenPrincipal} alt="" />
+      <div className="flex flex-col h-[400px] w-80 px-15 ">
+      <img className="rounded-md shadow shadow-md" src={stateProducts.imagenPrincipal} alt="" />
      
       <div className="flex justify-center gap-2 mt-5">
-      <img className="h-12 w-12" src={stateProducts.imagenPrincipal} alt="" />
-      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
-      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
-      <img className="h-12 w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 shadow shadow-md w-12" src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 shadow shadow-md w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 shadow shadow-md w-12"  src={stateProducts.imagenPrincipal} alt="" />
+      <img className="h-12 shadow shadow-md w-12"  src={stateProducts.imagenPrincipal} alt="" />
      
       </div>
       </div>
@@ -704,10 +704,10 @@ console.log(stateProducts);
 
      {/* 3 */}
       <div>
-        <div className="shadow rounded-md p-6">
+        <div className="shadow  shadow-md rounded-md p-6">
           <div className="flex justify-between items-center">
           <div className="flex h-10 w-10 m-2">
-            <img className="rounded-md" src={stateProducts.imagenPrincipal} alt="" />
+            <img className="rounded-md shadow shadow-md" src={stateProducts.imagenPrincipal} alt="" />
           </div>
           <div>
             {
@@ -756,7 +756,7 @@ console.log(stateProducts);
  
 
           <button onClick={addToCart}
-          className="flex items-center bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900 hover:bg-blue-900 hover:text-white ease-in-out duration-300"> <FaShoppingCart className="mr-2"/> Añadir al carrito</button>
+          className="flex items-center bg-white text-bg-[#151616] py-1.5 px-5 text-sm rounded-md border w-full text-center border-[#151616] hover:bg-[#151616] hover:text-white ease-in-out duration-300"> <FaShoppingCart className="mr-2"/> Añadir al carrito</button>
 
           <div className="flex mt-2">
             <div className="flex items-center mt-3 px-2 text-xs">
@@ -781,7 +781,7 @@ console.log(stateProducts);
               <QRCode size={300} href={qrUrl} value={qrUrl} />
               <button
               onClick={handleShare}
-              className="mt-5 bg-white text-blue-900 py-1.5 px-5 text-sm rounded-md border w-full text-center border-blue-900 hover:bg-blue-900 hover:text-white ease-in-out duration-300"
+              className="mt-5 bg-white bg-[#151616] py-1.5 px-5 text-sm rounded-md border w-full text-center border-bg-[#151616] hover:bg-[#151616] hover:text-white ease-in-out duration-300"
               type="button"
             >
               Cerrar

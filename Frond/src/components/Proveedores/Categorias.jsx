@@ -134,7 +134,7 @@ const Proveedores2 = () => {
         <Card onClick={filterByCategories} id='2' data-categoria='Audifonos'>
           <img src={Audifonos} alt='Sillas' />
           <div className='flex flex-col'>
-            <p className='text-xs mt-2 text-gray-500 text-center'>Audifonos</p>
+            <p className='text-xs mt-5 text-gray-500 text-center '>Audifonos</p>
           </div>
         </Card>
 

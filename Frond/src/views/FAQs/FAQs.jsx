@@ -29,6 +29,10 @@ const faqsData = [
     respuesta:'Sí, ofrecemos descuentos para compras al por mayor. Si estás interesado en realizar una compra de grandes cantidades, comunícate con nuestro equipo de atención al cliente o envíanos un correo electrónico a bonitaandlovely@gmail.com para obtener más información sobre nuestros precios mayoristas.'
   }
 ];
+const sendWhatsappMessage = () => {
+  window.open("https://wa.me/584121968978", "_blank")
+};
+
 
 const FAQs = () => {
   const [showFullAnswer, setShowFullAnswer] = useState(-1);
@@ -79,11 +83,9 @@ const FAQs = () => {
       
           <p className="text-base text-gray-600 mt-4">¿Aún tienes dudas sin resolver?</p>
           <p className="text-gray-600 text-sm">Si aún tienes dudas sin resolver, ¡contáctanos!</p>
-          <Link to={'/contact'}>
-            <button className="bg-blue-900 text-white rounded-lg px-3 py-2 mt-2">
+            <button onClick={sendWhatsappMessage} className="bg-[#151616] text-white rounded-lg px-3 py-2 mt-2">
               Contactar equipo
             </button>
-          </Link>
         </div>
       </div>
     </>

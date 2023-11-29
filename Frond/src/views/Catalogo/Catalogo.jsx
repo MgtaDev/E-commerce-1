@@ -115,7 +115,7 @@ const Catalogo = () => {
         <button
           key={i}
           className={`border-solid rounded border border-[255 255 255] px-3 py-1 mx-1 text-lg font-semibold text-slate-400 focus:text-slate-950 focus:border-slate-950 ${
-            i === pageNumber ? "bg-blue-900 text-white" : ""
+            i === pageNumber ? "bg-[#151616] text-white" : ""
           }`}
           disabled={i === pageNumber || stateProducts.loading}
           onClick={() => handlePageClick(i)}

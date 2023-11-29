@@ -42,7 +42,7 @@ return (
       </div>
       <div>
         <Link to={'/marcas2'}>
-        <span className='mb-1 px-4 text-sm text-blue-900'>Ver mas</span>
+        <span className='mb-1 px-4 text-sm text-[#151616]'>Ver mas</span>
         </Link>
       </div>
       </div>

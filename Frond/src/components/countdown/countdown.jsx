@@ -28,7 +28,7 @@ function Countdown() {
   return (
     <div className="">
       <div className="flex flex-row items-center justify-center">
-        <div className="flex bg-green-500 text-white ml-2 rounded-md py-1 px-2 countdown-timer">
+        <div className="flex bg-gradient-to-r from-red-500 via-orange-500 to-pink-500  text-white ml-2 rounded-md py-1 px-2 countdown-timer">
           <p>{formatTime(hours)}:</p>
           <p>{formatTime(minutes)}:</p>
           <p>{formatTime(seconds)}</p>

@@ -111,7 +111,7 @@ const addToCart = () => {
         <p className="text-sm mt-1 font-bold text-gray-700">${precio}.00</p>
       </div>
       <div className="flex flex-row items-center mb-2">
-        <span className="inline-block bg-green-500 text-white text-xs font-bold py-1 px-2 rounded-full mr-2">20%</span>
+        <span className="inline-block bg-orange-600 text-white text-xs font-bold py-1 px-2 rounded-full mr-2">20%</span>
         <del className="text-xs text-gray-400">$0.00</del>
       </div>
       <p className="text-xs text-gray-600">{marcaId === 1 ? 'Trendy' : marcaId === 2 ? 'Kiss Beauty' : marcaId === 3 ? 'MyK' : 'Otras marcas'}</p>

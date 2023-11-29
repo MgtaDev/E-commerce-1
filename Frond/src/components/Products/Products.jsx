@@ -17,8 +17,8 @@ const Products = () => {
     slidesToShow: 5,
     slidesToScroll: 1,
     cssEase: 'linear',
-    prevArrow: <FaArrowAltCircleLeft className='!bg-orange-500'/>,
-    nextArrow: <FaArrowAltCircleRight className="!bg-orange-500 " />
+    prevArrow: <FaArrowAltCircleLeft className='!bg-orange-700'/>,
+    nextArrow: <FaArrowAltCircleRight className="!bg-orange-700 " />
   };
   const stateProducts = useSelector(state => state.Allproducts);
   const productosFiltrados = useSelector((state) => state.productsFiltered);   
@@ -31,7 +31,7 @@ const Products = () => {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <div className='mb-20'>
       <div className='flex items-center px-3'>
         <FaCheckCircle className='text-green-500'/>
         <h1 className='text-xl font-bold px-1'>Productos en oferta</h1>
@@ -62,7 +62,7 @@ const Products = () => {
           ))}
         </CarouselWrapper>
       </CarouselContainer>
-    </>
+    </div>
   );
 };
 
