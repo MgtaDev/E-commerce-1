@@ -79,7 +79,7 @@ const CustomDatalist = styled.ul`
     text-transform: capitalize;
     color: #252525;
     &:hover {
-      background-color: #0e448b;
+      background-color: #151616;
       color:white;
     }
   }
