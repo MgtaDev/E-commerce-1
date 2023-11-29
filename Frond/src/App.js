@@ -28,8 +28,8 @@ import { useDispatch, useSelector} from "react-redux";
 import WhatsappIcon from './assets/img/social.png'
 import { useParams } from "react-router-dom"; 
 import Proveedores from "./components/Proveedores/Proveedores";
-// axios.defaults.baseURL = "https://e-commerce-1-production.up.railway.app"
-axios.defaults.baseURL = "http://localhost:3001"
+axios.defaults.baseURL = "https://e-commerce-1-production.up.railway.app"
+// axios.defaults.baseURL = "http://localhost:3001"
 
 
 function App () {
