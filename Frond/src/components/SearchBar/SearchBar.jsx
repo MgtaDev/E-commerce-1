@@ -18,40 +18,59 @@ const FormSearchBar = styled.form`
   max-width: 800px;
   display: flex;
   padding: 0 0.7em;
-  border: 1px  ;
+  border: 1px solid #ccc; /* Add a border for small screens */
   box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.15);
 
+  @media (max-width: 768px) {
+    min-width: auto; /* Remove the min-width for small screens */
+    max-width: none; /* Remove the max-width for small screens */
+    padding: 0.7em; /* Add some padding for small screens */
+    flex-wrap: wrap; /* Allow the form to wrap for small screens */
+    input {
+      width: auto; /* Remove the width for small screens */
+      margin-bottom: 10px; /* Add some margin for small screens */
+    }
+    button {
+      width: auto; /* Remove the width for small screens */
+      margin-left: none; /* Remove the margin for small screens */
+      margin-top: auto; /* Move the button to the bottom for small screens */
+      img {
+        height: auto; /* Remove the height for small screens */
+      }
+    }
+  }
+  
   button {
-    width: 20px;
-    background: transparent;
-    border: none;
-    margin-left: 0.5em;
-
-    transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.75, 2);
-
-    transform-origin: center;
-    text-align: right;
-    &:hover,
-    &:focus {
-      filter: brightness(75%);
-      transform: rotateZ(15deg);
-    }
-
+    width: auto; /* Remove the width for medium screens */
+    margin-left: none; /* Remove the margin for medium screens */
+    margin-top: auto; /* Move the button to the bottom for medium screens */
     img {
-      height: 20px;
+      height: auto; /* Remove the height for medium screens */
     }
-  }
+    
+    transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.75, 2); /* Add a transition for medium screens */
+    
+    transform-origin: center; /* Change the transform origin for medium screens */
+    
+    &:hover, &:focus { /* Add a hover and focus effect for medium screens */
+      filter: brightness(75%); /* Add a filter effect for medium screens */
+      transform: rotateZ(15deg); /* Add a transform effect for medium screens */
+    }
+    
+    &[data-size="small"] { /* Add a size prop to change styles for small devices */
+      width: auto; /* Remove the width for small devices */
+      margin-left: none; /* Remove the margin for small devices */
+      margin-top: auto; /* Move the button to the bottom for small devices */
+      img { /* Remove the height and add a smaller height for small devices */
+        height: 16px; /* Change the height to fit your design */
+      }
+      
+      @media (max-width: 480px) { /* Add a media query to change styles for extra small devices */
+        img { /* Change the height again to fit your design */
+          height: 14px; /* Change the height again to fit your design */
 
-  input {
-    background: transparent;
-    border: 1px blue;
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    padding: 0.7em 1em;
-    width: 100%;
-  }
+          `
 
-`;
 const ErrorMessage = styled.p`
   color: red;
   margin-left: 15px;
