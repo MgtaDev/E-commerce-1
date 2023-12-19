@@ -14,9 +14,9 @@ function Footer() {
       <div className='max-w-screen-xl mx-auto px-4'>
         <div className='flex justify-between items-center'>
           <div className='flex items-center'>
-            <p className='text-xl font-bold '>Enmable</p>
+            <p className='text-xl font-bold '>MgtaTech</p>
           </div>
-          <p className='text-sm text-gray-700'>© 2023 Enmable. Todos los derechos reservados.</p>
+          <p className='text-sm text-gray-700'>© 2023 MgtaTech. Todos los derechos reservados.</p>
         </div>
         <div className='grid grid-cols-3 gap-8 mt-8'>
           <div className=''>
@@ -46,7 +46,7 @@ function Footer() {
             <h2 className='text-lg font-bold mb-4'>Contacto</h2>
             <ul className='space-y-2'>
               <li>
-                <a href='mailto:info@enmable.com' className='text-gray-600 hover:text-gray-900'>info@enmable.com</a>
+                <a href='mailto:info@MgtaTech.com' className='text-gray-600 hover:text-gray-900'>info@MgtaTech.com</a>
               </li>
               <li onClick={redirigirAlInicio()}>
                 <Link to={'/contact'}>Contactanos</Link>

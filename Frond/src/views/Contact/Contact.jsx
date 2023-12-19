@@ -118,9 +118,9 @@ const Contact = () => {
           <div class="w-full shrink-0 grow-0 basis-auto lg:w-7/12 text-slate-50 p-10">
             <h2 class="text-3xl pb-5">Ponte en contacto con nosotros</h2>
               <p class=" text-lg">
-Desde Enmable, valoramos tu experiencia de compra y estamos aquí para responder cualquier pregunta que puedas tener. Si necesitas ayuda para elegir los productos adecuados, asesoramiento a la hora de adquirir cualquiera de nuestros productos o simplemente quieres compartir tus comentarios, no dudes en ponerte en contacto con nuestro amable equipo de atención al cliente.
+Desde MgtaTech, valoramos tu experiencia de compra y estamos aquí para responder cualquier pregunta que puedas tener. Si necesitas ayuda para elegir los productos adecuados, asesoramiento a la hora de adquirir cualquiera de nuestros productos o simplemente quieres compartir tus comentarios, no dudes en ponerte en contacto con nuestro amable equipo de atención al cliente.
 </p>
-<p class="pt-5">Enmable c.a</p>
+<p class="pt-5">MgtaTech c.a</p>
           </div>
         </div>
       </div>

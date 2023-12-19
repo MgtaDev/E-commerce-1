@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Logo from '../../assets/img/enmablelogo.png';
+import Logo from '../../assets/img/MgtaTechlogo.png';
 import icon3 from '../../assets/img/icon3.svg';
 import icon2 from '../../assets/img/icon2.svg';
 import icon1 from '../../assets/img/icon1.svg';
