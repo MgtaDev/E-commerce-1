@@ -41,7 +41,7 @@ const LandingPage = () => {
 
   return (
     <main className='px-20'>
-    <div className='mt-10'>
+    <div className='-mx-20'>
     <CarouselMid/>
 
     </div>
@@ -53,7 +53,7 @@ const LandingPage = () => {
       <Proveedores/>
     </div>
 
-    <div className='mt-10'>
+    <div className='mt-10 -mx-20'>
     <CarouselMid/>
     </div>
     

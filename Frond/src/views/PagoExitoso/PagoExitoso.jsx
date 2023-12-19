@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import Logo from '../../assets/img/MgtaTechlogo.png';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";

@@ -17,57 +17,57 @@ const FormSearchBar = styled.form`
   min-width: 930px;
   max-width: 800px;
   display: flex;
-  padding: 0 0.7em;
+  padding: 0 0.5rem;
   border: 1px solid #ccc; /* Add a border for small screens */
   box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.15);
 
-  @media (max-width: 768px) {
-    min-width: auto; /* Remove the min-width for small screens */
-    max-width: none; /* Remove the max-width for small screens */
-    padding: 0.7em; /* Add some padding for small screens */
-    flex-wrap: wrap; /* Allow the form to wrap for small screens */
-    input {
-      width: auto; /* Remove the width for small screens */
-      margin-bottom: 10px; /* Add some margin for small screens */
-    }
-    button {
-      width: auto; /* Remove the width for small screens */
-      margin-left: none; /* Remove the margin for small screens */
-      margin-top: auto; /* Move the button to the bottom for small screens */
-      img {
-        height: auto; /* Remove the height for small screens */
-      }
-    }
-  }
+  // @media (max-width: 768px) {
+  //   min-width: auto; /* Remove the min-width for small screens */
+  //   max-width: none; /* Remove the max-width for small screens */
+  //   padding: 0.7em; /* Add some padding for small screens */
+  //   flex-wrap: wrap; /* Allow the form to wrap for small screens */
+  //   input {
+  //     width: auto; /* Remove the width for small screens */
+  //     margin-bottom: 10px; /* Add some margin for small screens */
+  //   }
+  //   button {
+  //     width: auto; /* Remove the width for small screens */
+  //     margin-left: none; /* Remove the margin for small screens */
+  //     margin-top: auto; /* Move the button to the bottom for small screens */
+  //     img {
+  //       height: auto; /* Remove the height for small screens */
+  //     }
+  //   }
+  // }
   
-  button {
-    width: auto; /* Remove the width for medium screens */
-    margin-left: none; /* Remove the margin for medium screens */
-    margin-top: auto; /* Move the button to the bottom for medium screens */
-    img {
-      height: auto; /* Remove the height for medium screens */
-    }
+  // button {
+  //   width: auto; /* Remove the width for medium screens */
+  //   margin-left: none; /* Remove the margin for medium screens */
+  //   margin-top: auto; /* Move the button to the bottom for medium screens */
+  //   img {
+  //     height: auto; /* Remove the height for medium screens */
+  //   }
     
-    transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.75, 2); /* Add a transition for medium screens */
+  //   transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.75, 2); /* Add a transition for medium screens */
     
-    transform-origin: center; /* Change the transform origin for medium screens */
+  //   transform-origin: center; /* Change the transform origin for medium screens */
     
-    &:hover, &:focus { /* Add a hover and focus effect for medium screens */
-      filter: brightness(75%); /* Add a filter effect for medium screens */
-      transform: rotateZ(15deg); /* Add a transform effect for medium screens */
-    }
+  //   &:hover, &:focus { /* Add a hover and focus effect for medium screens */
+  //     filter: brightness(75%); /* Add a filter effect for medium screens */
+  //     transform: rotateZ(15deg); /* Add a transform effect for medium screens */
+  //   }
     
-    &[data-size="small"] { /* Add a size prop to change styles for small devices */
-      width: auto; /* Remove the width for small devices */
-      margin-left: none; /* Remove the margin for small devices */
-      margin-top: auto; /* Move the button to the bottom for small devices */
-      img { /* Remove the height and add a smaller height for small devices */
-        height: 16px; /* Change the height to fit your design */
-      }
+  //   &[data-size="small"] { /* Add a size prop to change styles for small devices */
+  //     width: auto; /* Remove the width for small devices */
+  //     margin-left: none; /* Remove the margin for small devices */
+  //     margin-top: auto; /* Move the button to the bottom for small devices */
+  //     img { /* Remove the height and add a smaller height for small devices */
+  //       height: 16px; /* Change the height to fit your design */
+  //     }
       
-      @media (max-width: 480px) { /* Add a media query to change styles for extra small devices */
-        img { /* Change the height again to fit your design */
-          height: 14px; /* Change the height again to fit your design */
+  //     @media (max-width: 480px) { /* Add a media query to change styles for extra small devices */
+  //       img { /* Change the height again to fit your design */
+  //         height: 14px; /* Change the height again to fit your design */
 
           `
 
@@ -185,14 +185,17 @@ const SearchBar = ({ placeholder }) => {
             ))}
           </CustomDatalist>
         )}
+        <div className='flex justify-between'>
         {inputText.length > 0 && (
         <button onClick={()=>{
           setInputText('')
-        }} className='mb-1'>x</button>
+        }} className='mb-1 mx-5'>x</button>
         )}
         <button type="submit">
-          <FaSearch className='text-gray-500'/>
+          <FaSearch className='mx-5 text-gray-500'/>
         </button>
+        </div>
+      
       </FormSearchBar>
       {errorMessage && <ErrorMessage> {errorMessage} </ErrorMessage>}
     </>

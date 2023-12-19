@@ -77,6 +77,7 @@ const CarouselWrapper = styled(Slider)`
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
+    opacity:0;
 
     &:hover {
       color: #ff6b6b;
@@ -104,7 +105,6 @@ const CarouselWrapper = styled(Slider)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.5rem;
     transition: all 0.5s ease;
  
   }
